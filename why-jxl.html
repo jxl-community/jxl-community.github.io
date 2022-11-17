@@ -8,12 +8,12 @@
         <meta property="og:url" content="http://jpegxl.info/why-jxl.html" />
         <meta property="og:title" content="JPEG XL" />
         <meta property="og:description" content="Why JPEG XL?" />
-        <meta property="og:image" content="http://jpegxl.info/jxl.png" />
+        <meta property="og:image" content="http://jpegxl.info/jxl-illustration.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <style>
             h1 { margin: 0; padding-top: 1vh; font-family: 'Muli', sans-serif; font-size: calc(10px + 7vw); font-weight: 700;  text-align: center; color: #eeffff; }
             h2 { margin-bottom: 0.3em; margin-top: 0; padding-top: 0;  font-family: 'Muli', sans-serif; font-size: calc(10px + 3vw); font-weight: 200; text-align: center; color: #5eb4b2; }
-            body { display: flex; justify-content: center; flex-wrap: wrap; background: #191611; align-items: flex-start; padding: 0; margin: 0; color: #888; height: 100vh;    overflow: hidden; }
+            body { background: #191611; padding: 0; margin: 0; color: #888; height: 100vh;    overflow: hidden; }
             .container {
                 scroll-snap-type: y mandatory;
                 scroll-snap-stop: always;
@@ -30,7 +30,7 @@
                 padding-bottom: 3em;
                 scroll-snap-align: center;
             }
-            .box:nth-child(2n+0) { background: #292621; }
+            @media screen { .box:nth-child(2n+0) { background: #292621; } }
             .light { display: none; }
             .dark { display: block; }
             img { margin: auto; max-height: 20vh; max-width: 50vw; padding: 1em 0; vertical-align: middle; padding-top: 2em;}
@@ -52,21 +52,20 @@
             .box:nth-child(2n+0) p { border-left: none; border-right: 2px solid #5eb4b2; text-align: right; }
             p.noline { border: none; text-align: center; max-width: 90%;}
             @media print {
-                body { height: auto; }
-                .box { color: black; background: none; width: 50%; font-size: 8pt; font-family: Times, serif; page-break-inside: avoid; }
-                h1 { font-size: 25pt; margin-top: 10pt; margin-bottom: 0; text-shadow: none; page-break-inside: avoid; }
-                h2 { font-size: 15pt; margin-top: 30pt; page-break-inside: avoid; }
+                body { height: auto; overflow: visible; }
+                .container { height: auto; overflow: visible; position: relative; }
+                .box { color: black; background: none; font-size: 9pt; font-family: Times, serif; page-break-inside: avoid !important; display:block; position: relative;}
+                h1 { font-size: 25pt; margin-top: 10pt; margin-bottom: 0; color:black; }
+                h2 { font-size: 15pt; margin-top: 30pt; }
                 a { color: #000; text-decoration: underline #008 solid; font-weight: normal; }
-                .boxes { width: 100%; }
                 body { background: none; }
                 h2 { border: 0; margin: 0; padding-top: 0; }
                 h1 { border: 0; }
-                p { padding: 0 1em; page-break-inside: avoid; }
+                p { padding: 0 1em; }
                 .light { display: block; }
                 .dark { display: none; }
+                img.software-icon {max-height: 10vh; max-width: 15vw; }
                 img {
-                    page-break-before: auto;
-                    page-break-after: auto;
                     page-break-inside: avoid;
                     max-width: 20vw;
                     max-height: 10vh;
