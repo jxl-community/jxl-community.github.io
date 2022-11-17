@@ -13,13 +13,8 @@
         <style>
             h1 { margin: 0; padding-top: 1vh; font-family: 'Muli', sans-serif; font-size: calc(10px + 7vw); font-weight: 700;  text-align: center; color: #eeffff; }
             h2 { margin-bottom: 0.3em; margin-top: 0; padding-top: 0;  font-family: 'Muli', sans-serif; font-size: calc(10px + 3vw); font-weight: 200; text-align: center; color: #5eb4b2; }
-            body { background: #191611; padding: 0; margin: 0; color: #888; height: 100vh;    overflow: hidden; }
+            body { background: #191611; padding: 0; margin: 0; color: #888; }
             .container {
-                scroll-snap-type: y proximity;
-                scroll-snap-stop: always;
-                overflow: scroll;
-                height: 100vh;
-                width: 100vw;
             }
             .box {
                 width: 100%;
@@ -28,7 +23,6 @@
                 color: white;
                 font-family: sans-serif;
                 padding-bottom: 3em;
-                scroll-snap-align: center;
             }
             @media screen { .box:nth-child(2n+0) { background: #292621; } }
             .light { display: none; }
