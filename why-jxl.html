@@ -11,8 +11,8 @@
         <meta property="og:image" content="http://jpegxl.info/jxl.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <style>
-            h1 { margin: 0; padding-top: 2vh; font-family: 'Muli', sans-serif; font-size: 8vw; font-weight: 700;  text-align: center; color: #5eb4b2; text-shadow: 1px 1px 5px black;}
-            h2 { margin-bottom: 0.3em; margin-top: 0; padding-top: 0;  font-family: 'Muli', sans-serif; font-size: 5vw; font-weight: 200; text-align: center; color: #5eb4b2; }
+            h1 { margin: 0; padding-top: 1vh; font-family: 'Muli', sans-serif; font-size: calc(10px + 7vw); font-weight: 700;  text-align: center; color: #eeffff; }
+            h2 { margin-bottom: 0.3em; margin-top: 0; padding-top: 0;  font-family: 'Muli', sans-serif; font-size: calc(10px + 3vw); font-weight: 200; text-align: center; color: #5eb4b2; }
             body { display: flex; justify-content: center; flex-wrap: wrap; background: #191611; align-items: flex-start; padding: 0; margin: 0; color: #888; height: 100vh;    overflow: hidden; }
             .container {
                 scroll-snap-type: y mandatory;
@@ -21,33 +21,38 @@
                 height: 100vh;
                 width: 100vw;
             }
-
             .box {
                 width: 100%;
                 margin: auto;
                 text-align: center;
                 color: white;
                 font-family: sans-serif;
-                hyphens: auto;
                 padding-bottom: 3em;
                 scroll-snap-align: center;
             }
             .box:nth-child(2n+0) { background: #292621; }
             .light { display: none; }
             .dark { display: block; }
+            img { margin: auto; max-height: 20vh; max-width: 50vw; padding: 1em 0; vertical-align: middle; padding-top: 2em;}
+            img.software-icon {max-height: 15vh; max-width: 30vw; }
+            picture {display: inline-block;}
+            a { font-weight: bold; text-decoration: none; color: #5eb4b2; }
+            a:hover { text-decoration: underline; }
+            a:hover img { background: #5eb4b2; }
             @media screen and (prefers-color-scheme: light) {
+                h1 { color: #001110; }
                 body { background: #f9f0e9; }
                 .box { color: black; border-bottom: 2px solid #e0d9d0; }
                 .box:nth-child(2n+0) { background: #d0d9e0; }
                 .light { display: block; }
                 .dark { display: none; }
             }
-            img { margin: auto; max-height: 30vh; max-width: 50vw; padding: 1em 0;}
-            .vcenter { margin: auto; }
-            a { font-weight: bold; text-decoration: none; color: #5eb4b2; }
-            a:hover { text-decoration: underline; }
-            p { padding: 1em; max-width: 40em; margin: auto;}
+
+            p { padding: 1em; max-width: calc(min(40em,100vw - 4em));; margin: auto; text-align: left; border-left: 2px solid #5eb4b2; }
+            .box:nth-child(2n+0) p { border-left: none; border-right: 2px solid #5eb4b2; text-align: right; }
+            p.noline { border: none; text-align: center; max-width: 90%;}
             @media print {
+                body { height: auto; }
                 .box { color: black; background: none; width: 50%; font-size: 8pt; font-family: Times, serif; page-break-inside: avoid; }
                 h1 { font-size: 25pt; margin-top: 10pt; margin-bottom: 0; text-shadow: none; page-break-inside: avoid; }
                 h2 { font-size: 15pt; margin-top: 30pt; page-break-inside: avoid; }
@@ -75,52 +80,54 @@
     <body>
         <div class="container">
             <div class="box">
-                <h1>JPEG XL</h1>
-                <p>
-                    JPEG XL is a next-generation image format that brings many advantages.
-                </p>
                 <picture>
                     <source srcset="jxl-illustration.jxl 2x" type="image/jxl">
+                    <source srcset="jxl-illustration.png 2x" type="image/png">
                     <img src="jxl-illustration.png" alt="Illustration showing some of the key features of JPEG XL" style="max-width: 100%; max-height: 70vh">
                 </picture>
+                <h1>JPEG XL</h1>
+                <p class="noline">
+                    JPEG XL is a next-generation image format that brings many advantages.
+                </p>
             </div>
             <div class="box">
+                <img src="icons/jpg.svg">
                 <h1>Legacy-friendly</h1>
                 <h2>Lossless JPEG recompression</h2>
                 <p>
                     Existing JPEG images can be converted to JPEG XL in a 100% reversible, lossless way.
                     The resulting JPEG XL files will be about 20% smaller and can be converted back to the bit-exact original JPEG file.
                 </p>
-                <img src="icons/jpg.svg">
             </div>
             <div class="box">
+                <img src="icons/fidelity.svg">
                 <h1>High-fidelity</h1>
                 <h2>Visually lossless compression</h2>
                 <p>
                     JPEG XL can reliably apply lossy compression in a way that avoids any visible compression artifacts, preserving fidelity
                     while reducing the file sizes significantly compared to other image formats &mdash; e.g. 60% smaller than JPEG.
                 </p>
-                <img src="icons/fidelity.svg">
             </div>
             <div class="box">
+                <img src="icons/rgb.svg">
                 <h1>HDR and Wide gamut</h1>
                 <h2>Stunning color accuracy</h2>
                 <p>
                     Display technology is increasingly capable of reproducing rich colors with a high dynamic range.
                     JPEG XL is specifically designed for high-precision colors, so your images can be preserved perfectly without any compromises.
                 </p>
-                <img src="icons/rgb.svg">
             </div>
             <div class="box">
+                <img src="icons/fast.svg">
                 <h1>Fast</h1>
                 <h2>Saving and loading without waiting</h2>
                 <p>
                     Nobody likes to look at progress bars. JPEG XL was designed to be fast on the hardware of today.
                     No special hardware is needed to save or load JPEG XL images in the blink of an eye.
                 </p>
-                <img src="icons/fast.svg">
             </div>
             <div class="box">
+                <img src="icons/delivery.svg">
                 <h1>Web delivery</h1>
                 <h2>Progressive decode, minimal overhead</h2>
                 <p>
@@ -128,36 +135,36 @@
                     image while it is loading, improving the user experience dramatically, regardless of network conditions.
                     It has minimal header overhead and state-of-the-art compression also at web quality.
                 </p>
-                <img src="icons/delivery.svg">
             </div>
             <div class="box">
+                <img src="icons/equal.svg">
                 <h1>Lossless</h1>
                 <h2>High-precision, fast and compact</h2>
                 <p>
                     Unlike its predecessor JPEG, JPEG XL also supports lossless compression. Pixels can be stored at high bit depths
                     (up to 32-bit) and images can be saved faster than PNG while being 35% smaller.
                 </p>
-                <img src="icons/equal.svg">
             </div>
             <div class="box">
+                <img src="icons/scalpel.svg">
                 <h1>Superior compression</h1>
                 <h2>Small files, high quality</h2>
                 <p>
                     At all the relevant fidelity targets, from web quality to lossless, JPEG XL offers the best available compression.
                     Compressing with surgical precision, it is unmatched in terms of quality per byte.
                 </p>
-                <img src="icons/scalpel.svg">
             </div>
             <div class="box">
+                <img src="icons/painter.svg">
                 <h1>Authoring</h1>
                 <h2>Layers and extra channels</h2>
                 <p>
                     JPEG XL has several features aimed at image authoring workflows: it supports layers and can store additional channels
                     like selection masks and spot colors. It also supports CMYK for use cases targeting printing.
                 </p>
-                <img src="icons/painter.svg">
             </div>
             <div class="box">
+                <img src="icons/future.svg">
                 <h1>Future-proof</h1>
                 <h2>Anticipating the future</h2>
                 <p>
@@ -166,9 +173,9 @@
                     that of tomorrow. It can represent new kinds of image information like depth maps and thermal imaging, and has
                     mechanisms to extend such functionality in the future in a way that can be deployed gradually.
                 </p>
-                <img src="icons/future.svg">
             </div>
             <div class="box">
+                <img src="icons/royalty-free.svg">
                 <h1>Royalty-free</h1>
                 <h2>Free for everyone</h2>
                 <p>
@@ -176,10 +183,37 @@
                     The reference software, libjxl, has a permissive open source license and is a production-ready library that can be
                     (and already has been) integrated into a variety of image-related software.
                 </p>
-                <img src="icons/royalty-free.svg">
             </div>
             <div class="box">
+                <h1>Software support</h1>
+                <h2>New, but rapidly gaining traction</h2>
                 <p>
+                    Since JPEG XL is a new format (standardized in 2022), software support is still limited.
+                    However the format is rapidly gaining traction, and it is already supported in the most popular image software.
+                </p>
+                <a href="https://helpx.adobe.com/il_en/camera-raw/using/hdr-output.html"><picture>
+                    <source srcset="icons/sw_adobe_camera_raw.jxl 2x" type="image/jxl">
+                    <source srcset="icons/sw_adobe_camera_raw.png 2x" type="image/png">
+                    <img src="icons/sw_adobe_camera_raw.png" alt="Adobe Camera Raw" class="software-icon">
+                </picture></a>
+                <a href="https://affinity.serif.com/"><picture>
+                    <source srcset="icons/sw_affinity.jxl 2x" type="image/jxl">
+                    <source srcset="icons/sw_affinity.png 2x" type="image/png">
+                    <img src="icons/sw_affinity.png" alt="Serif Affinity 2" class="software-icon">
+                </picture></a>
+                <a href="https://www.gimp.org/"><img src="icons/sw_gimp.svg" alt="GIMP" class="software-icon"></a>
+                <a href="https://krita.org/"><img src="icons/sw_krita.svg" alt="Krita" class="software-icon"></a>
+                <a href="https://www.darktable.org/"><img src="icons/sw_darktable.svg" alt="darktable" class="software-icon"></a>
+                <a href="https://ffmpeg.org/"><img src="icons/sw_ffmpeg.svg" alt="FFmpeg" class="software-icon"></a>
+                <a href="https://imagemagick.org/"><picture>
+                    <source srcset="icons/sw_imagemagick.jxl 2x" type="image/jxl">
+                    <source srcset="icons/sw_imagemagick.png 2x" type="image/png">
+                    <img src="icons/sw_imagemagick.png" alt="ImageMagick" class="software-icon">
+                </picture></a>
+
+            </div>
+            <div class="box">
+                <p class="noline">
                     More information about JPEG XL can be found on the <a href="https://jpegxl.info">libjxl community website</a> and on the
                     <a href="https://jpeg.org/jpegxl/">official JPEG XL website</a>.
                 </p>
