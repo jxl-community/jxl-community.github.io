@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <title>JPEG XL</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="viewport" content="width=device-width" />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="http://jpegxl.info/why-jxl.html" />
         <meta property="og:title" content="JPEG XL" />
@@ -129,6 +129,10 @@
                     image while it is loading, improving the user experience dramatically, regardless of network conditions.
                     It has minimal header overhead and state-of-the-art compression also at web quality.
                 </p>
+                <picture>
+                    <source srcset="progressive-comparison.jxl" type="image/jxl">
+                    <img src="progressive-comparison.apng" alt="Comparison of loading a WebP image and a JPEG XL image" style="max-width: 90vw; max-height: 50vh;">
+                </picture></a>
             </div>
             <div class="box">
                 <img src="icons/equal.svg">
