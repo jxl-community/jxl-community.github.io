@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>JPEG XL Art</title>
+<meta name="viewport" content="width=device-width" />
+<link rel="icon" type="image/jxl" href="data:image/jxl;base64,/wo6HwGRCAYBAKQBC4ALbNQxslZLlFdAkOAPoAehB5BJcYD1Lo0WYXbZB4vCxGjuQc6x/4UgLq5cjpgHPfUXsGDCgv45dgEZBArgt1YI436HAHKD5uNY+OGH8BV0jPMRJGl0oiUXUAHBDV4eWQQw6vhLEg4A">
+<style>
+h1 { font-size: 80px; font-weight: 700; text-align: center; color: #5eb4b2; }
+body { background: #191611; color: white; font-family: 'Muli', sans-serif; text-align: center; 
+background:
+  repeating-conic-gradient(#191611 0% 25%, #292621 0% 50%) 
+    50%/ 60px 60px;
+margin: 0;
+}
+img { max-width: 100% }
+table { max-width: 100% }
+td { text-align: center; padding: 1vw; font-size: calc(7px + 0.5vw); }
+@media screen and (prefers-color-scheme: light) {
+    body { background: #f9f0e9; color: black;
+background:
+  repeating-conic-gradient(#f9f0e9 0% 25%, #e9e0d9 0% 50%) 
+    50%/ 60px 60px;
+}
+}
+</style>
+</head>
+<body>
+<h1>JPEG XL test page</h1>
+<p>
+Here is an example image:
+</p>
+<center>
+<table>
+<tr><td><img src="red-room.jxl" srcset="red-room.jxl 2x" alt="Red room (jxl)">
+<td><img src="red-room.webp" srcset="red-room.webp 2x" alt="Red room (webp)">
+<td><img src="red-room.jpg" srcset="red-room.jpg 2x" alt="Red room (jpeg)">
+<td><img src="red-room.png" srcset="red-room.png 2x" alt="Red room (png)">
+<tr><td>JPEG XL, 182 kb, ssimulacra2: 87.43
+<td>WebP, 237 kb, ssimulacra2: 78.73
+<td>JPEG, 262 kb, ssimulacra2: 86.49
+<td>PNG, 918 kb, ssimulacra2: 100
+</table>
+</center>
+
+<hr>
+<p>
+Here is an example of an image with alpha transparency:
+</p>
+<center>
+<table>
+<tr><td><img src="dice.jxl" srcset="dice.jxl 2x" alt="Dice (jxl)">
+<td><img src="dice.webp" srcset="dice.webp 2x" alt="Dice (webp)">
+<td><img src="dice.png" srcset="dice.png 2x" alt="Dice (png)">
+<tr><td>JPEG XL, 46 kb, ssimulacra2: 89.35
+<td>WebP, 65 kb, ssimulacra2: 80.23
+<td>PNG, 227 kb, ssimulacra2: 100
+</table>
+</center>
+
+<hr>
+<p>
+Here is an example of a wide-gamut image (you should see a faint Webkit logo when viewed on a P3 display):
+</p>
+<center>
+<table>
+<tr><td><img src="Webkit-logo-P3.jxl" srcset="Webkit-logo-P3.jxl 2x" alt="Webkit logo (jxl)">
+<td><img src="Webkit-logo-P3.jpg" srcset="Webkit-logo-P3.jpg 2x" alt="Webkit logo (jpeg)">
+<td><img src="Webkit-logo-P3.png" srcset="Webkit-logo-P3.png 2x" alt="Webkit logo (png)">
+<tr><td>JPEG XL, 10 kb, ssimulacra2: 100
+<td>JPEG, 24 kb, ssimulacra2: 84.66
+<td>PNG, 48 kb, ssimulacra2: 100
+</table>
+</center>
+
+<hr>
+<p>
+Here is an example of an animation:
+</p>
+<center>
+<table>
+<tr><td><img src="anim-icos.jxl" srcset="anim-icos.jxl 2x" alt="Animated 4D icosahedron (jxl)">
+<td><img src="anim-icos.webp" srcset="anim-icos.webp 2x" alt="Animated 4D icosahedron (webp)">
+<td><img src="anim-icos.apng" srcset="anim-icos.apng 2x" alt="Animated 4D icosahedron (png)">
+<td><img src="anim-icos.gif" srcset="anim-icos.gif 2x" alt="Animated 4D icosahedron (gif)">
+<tr><td>JPEG XL, 341 kb
+<td>WebP, 391 kb
+<td>APNG, 991 kb
+<td>GIF, 384 kb
+</table>
+</center>
+</body>
+</html>
