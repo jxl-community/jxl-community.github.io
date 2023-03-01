@@ -107,9 +107,9 @@
     <body>
         <div class="boxes">
             <div class="box"><div class="vcenter">
-                <center>
-                <img src="jxl.svg" alt="JPEG XL logo (jxl ambigram) by Boaz Lederer" width="40%" class="ambigram">
-                </center>
+                <div style="text-align:center">
+                    <img src="jxl.svg" alt="JPEG XL logo (jxl ambigram) by Boaz Lederer" width="40%" class="ambigram">
+                </div>
                 <p>
                     Welcome to the <a href="https://jpeg.org/jpegxl">JPEG XL</a> and <a href="https://github.com/libjxl/libjxl">libjxl</a> community website.
                     If you don't know what JPEG XL is, <a href="why-jxl.html">check out its key advantages!</a>
@@ -118,12 +118,14 @@
                     Want to update this site? <a href="https://github.com/jxl-community/jxl-community.github.io">Make a pull request!</a>
                 </p>
             </div></div>
-            <div class="box"><center>
-                <picture>
-                    <source srcset="logo.jxl" type="image/jxl">
-                    <img src="fallbacklogo.jpg" alt="JPEG XL logo / browser support test" width="95%">
-                </picture>
-            </center></div>
+            <div class="box">
+                <div style="text-align:center">
+                    <picture>
+                        <source srcset="logo.jxl" type="image/jxl">
+                        <img src="fallbacklogo.jpg" alt="JPEG XL logo / browser support test" width="95%">
+                    </picture>
+                </div>
+            </div>
             <div class="box"><div class="vcenter">
                 <h2>JPEG XL?</h2>
                 <p>
@@ -176,13 +178,20 @@
                     <li><a href="https://github.com/libjxl/libjxl">JPEG XL reference implementation</a> (libjxl)
                         <a href="https://artifacts.lucaversari.it/libjxl/libjxl/latest/">(nightly dev builds)</a>
                     </li>
-                    <li><a href="https://www.google.com/chrome">Chrome</a>: behind a flag since M91, removed since M110</li>
-                    <li><a href="https://www.mozilla.org/firefox">Firefox</a>: behind a flag in Nightly since version 90</li>
+                    <li>
+                        <a href="https://www.google.com/chrome">Chrome</a>: behind a flag since M91, removed since M110.
+                        An <a href="https://chrome.google.com/webstore/detail/jpeg-xl-viewer/bkhdlfmkaenamnlbpdfplekldlnghchp">add-on</a> is available.
+                    </li>
+                    <li>
+                        <a href="https://www.mozilla.org/firefox">Firefox</a>: behind a flag in Nightly since version 90.
+                        An <a href="https://addons.mozilla.org/en-US/firefox/addon/jxl/">add-on</a> is available.
+                    </li>
                     <li><a href="https://thorium.rocks/">Thorium</a>: enabled by default since M98</li>
                     <li><a href="https://www.microsoft.com/edge">Edge</a>: behind a flag since version 91</li>
                     <li><a href="https://www.opera.com">Opera</a>: behind a flag since version 77</li>
                     <li><a href="https://www.palemoon.org">Pale Moon</a>: supported since version 31.4.0</li>
                     <li><a href="https://imagemagick.org">ImageMagick</a>: since version 7.0.10-54</li>
+                    <li>A <a href="https://github.com/niutech/jxl.js">javascript polyfill</a>: from the sources of <a href='https://squoosh.app'>squoosh</a></li>
                     <li><a href="https://libvips.github.io/libvips/">libvips</a>: since version 8.11</li>
                     <li><a href="https://ffmpeg.org/">FFmpeg</a></li>
                     <li><a href="https://www.gimp.org/">GIMP</a></li>
@@ -263,14 +272,14 @@
             </div></div>
             <div class="bigbox">
                 <h2>Comparison table</h2>
-                <center>
-                <a href="https://cloudinary.com/blog/time_for_next_gen_codecs_to_dethrone_jpeg">
-                <picture>
-                    <source srcset="comparison.jxl" type="image/jxl">
-                    <img src="comparison.png" alt="Battle of the Codecs: a comparison of JPEG, PNG, J2K, WebP, HEIC, AVIF, and JXL" style="max-height: 100vh; max-width: 100%">
-                </picture>
-                </a>
-                </center>
+                <div style="text-align:center">
+                    <a href="https://cloudinary.com/blog/time_for_next_gen_codecs_to_dethrone_jpeg">
+                    <picture>
+                        <source srcset="comparison.jxl" type="image/jxl">
+                        <img src="comparison.png" alt="Battle of the Codecs: a comparison of JPEG, PNG, J2K, WebP, HEIC, AVIF, and JXL" style="max-height: 100vh; max-width: 100%">
+                    </picture>
+                    </a>
+                </div>
             </div>
             <div class="bigbox">
                 <h2>Codec architecture</h2>
