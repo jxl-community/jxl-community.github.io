@@ -13,6 +13,7 @@
         <style>
             h1 { margin: 0; padding-top: 1vh; font-family: 'Muli', sans-serif; font-size: calc(10px + 7vw); font-weight: 700;  text-align: center; color: #eeffff; }
             h2 { margin-bottom: 0.3em; margin-top: 0; padding-top: 0;  font-family: 'Muli', sans-serif; font-size: calc(10px + 3vw); font-weight: 200; text-align: center; color: #5eb4b2; }
+            h3 { margin-bottom: 0.3em; margin-top: 1em; padding-top: 0;  font-family: 'Muli', sans-serif; font-size: calc(10px + 2vw); font-weight: 200; text-align: center; color: #eeffff; }
             body { background: #191611; padding: 0; margin: 0; color: #888; }
             .container {
             }
@@ -24,11 +25,11 @@
                 font-family: sans-serif;
                 padding-bottom: 3em;
             }
-            @media screen { .box:nth-child(2n+0) { background: #292621; } }
+            @media screen { .box:nth-child(2n+0) { background: #393631; } }
             .light { display: none; }
             .dark { display: block; }
             img { margin: auto; max-height: 20vh; max-width: 50vw; padding: 1em 0; vertical-align: middle; padding-top: 2em;}
-            img.software-icon {max-height: 15vh; max-width: 30vw; }
+            img.software-icon {max-height: 15vh; max-width: 22vw; padding: 0.5em; }
             picture {display: inline-block;}
             a { font-weight: bold; text-decoration: none; color: #5eb4b2; }
             a:hover { text-decoration: underline; }
@@ -189,23 +190,31 @@
                 <h2>New, but rapidly gaining traction</h2>
                 <p>
                     Since JPEG XL is a new format (standardized in 2022), software support is still limited.
-                    However the format is rapidly gaining traction, and it is already supported in the most popular image software.
+                    However the format is rapidly gaining traction, and it is already supported in some of the most popular
+                    operating systems, web browsers and image authoring software.
                 </p>
-                <a href="https://helpx.adobe.com/il_en/camera-raw/using/hdr-output.html"><picture>
-                    <source srcset="icons/sw_adobe_camera_raw.jxl 2x" type="image/jxl">
-                    <source srcset="icons/sw_adobe_camera_raw.webp 2x" type="image/webp">
-                    <source srcset="icons/sw_adobe_camera_raw.png 2x" type="image/png">
-                    <img src="icons/sw_adobe_camera_raw.png" alt="Adobe Camera Raw" title="Adobe Camera Raw" class="software-icon">
+                <h3>Operating systems</h3>
+                <a href="https://www.apple.com/"><img src="icons/sw_apple.svg" alt="Apple" title="Apple" class="software-icon"></a>
+                <a href="https://en.wikipedia.org/wiki/IOS_17">
+                    <img src="icons/sw_iOS.svg" alt="iOS 17" title="iOS 17" class="software-icon"><picture>
+                    <source srcset="icons/sw_iOS17.jxl 2x" type="image/jxl">
+                    <source srcset="icons/sw_iOS17.webp 2x" type="image/webp">
+                    <source srcset="icons/sw_iOS17.png 2x" type="image/png">
+                    <img src="icons/sw_iOS17.png" alt="iOS 17" title="iOS 17" class="software-icon">
                 </picture></a>
-                <a href="https://affinity.serif.com/"><picture>
-                    <source srcset="icons/sw_affinity.jxl 2x" type="image/jxl">
-                    <source srcset="icons/sw_affinity.webp 2x" type="image/webp">
-                    <source srcset="icons/sw_affinity.png 2x" type="image/png">
-                    <img src="icons/sw_affinity.png" alt="Serif Affinity 2" title="Serif Affinity 2" class="software-icon">
+                <a href="https://en.wikipedia.org/wiki/MacOS_Sonoma"><img src="icons/sw_macOS.svg" alt="macOS 14 (Sonoma)" title="macOS 14 (Sonoma)" class="software-icon"></a>
+                <a href="https://www.openmandriva.org/"><picture>
+                    <source srcset="icons/sw_openmandriva.jxl 2x" type="image/jxl">
+                    <source srcset="icons/sw_openmandriva.webp 2x" type="image/webp">
+                    <source srcset="icons/sw_openmandriva.png 2x" type="image/png">
+                    <img src="icons/sw_openmandriva.png" alt="OpenMandriva Lx" title="OpenMandriva Lx" class="software-icon">
                 </picture></a>
-                <a href="https://www.gimp.org/"><img src="icons/sw_gimp.svg" alt="GIMP" title="GIMP" class="software-icon"></a>
-                <a href="https://krita.org/"><img src="icons/sw_krita.svg" alt="Krita" title="Krita" class="software-icon"></a>
-                <a href="https://www.darktable.org/"><img src="icons/sw_darktable.svg" alt="darktable" title="darktable" class="software-icon"></a>
+                <a href="https://kaosx.us/"><img src="icons/sw_kaos.svg" alt="KaOS" title="KaOS" class="software-icon"></a>
+
+                <h3>Web browsers</h3>
+                <a href="https://webkit.org/blog/14205/news-from-wwdc23-webkit-features-in-safari-17-beta/#images"><img src="icons/sw_safari.svg" alt="Safari 17" title="Safari 17" class="software-icon"></a>
+                <a href="https://thorium.rocks/"><img src="icons/sw_thorium.svg" alt="Thorium" title="Thorium" class="software-icon"></a>
+                <a href="https://www.waterfox.net/"><img src="icons/sw_waterfox.svg" alt="Waterfox" title="Waterfox" class="software-icon"></a>
                 <a href="https://www.mozilla.org/en-US/firefox/nightly/notes/"><picture>
                     <source srcset="icons/sw_firefox_nightly.jxl 2x" type="image/jxl">
                     <source srcset="icons/sw_firefox_nightly.webp 2x" type="image/webp">
@@ -218,6 +227,25 @@
                     <source srcset="icons/sw_palemoon.png 2x" type="image/png">
                     <img src="icons/sw_palemoon.png" alt="Pale Moon" title="Pale Moon" class="software-icon">
                 </picture></a>
+
+                <h3>Image authoring software</h3>
+                <a href="https://helpx.adobe.com/il_en/camera-raw/using/hdr-output.html"><picture>
+                    <source srcset="icons/sw_adobe_camera_raw.jxl 2x" type="image/jxl">
+                    <source srcset="icons/sw_adobe_camera_raw.webp 2x" type="image/webp">
+                    <source srcset="icons/sw_adobe_camera_raw.png 2x" type="image/png">
+                    <img src="icons/sw_adobe_camera_raw.png" alt="Adobe Camera Raw" title="Adobe Camera Raw" class="software-icon">
+                </picture></a>
+                <a href="https://www.adobe.com/products/photoshop.html"><img src="icons/sw_photoshop.svg" alt="Adobe Photoshop" title="Adobe Photoshop" class="software-icon"></a>
+                <a href="https://www.adobe.com/products/photoshop-lightroom.html"><img src="icons/sw_lightroom.svg" alt="Adobe Lightroom" title="Adobe Lightroom" class="software-icon"></a>
+                <a href="https://affinity.serif.com/"><picture>
+                    <source srcset="icons/sw_affinity.jxl 2x" type="image/jxl">
+                    <source srcset="icons/sw_affinity.webp 2x" type="image/webp">
+                    <source srcset="icons/sw_affinity.png 2x" type="image/png">
+                    <img src="icons/sw_affinity.png" alt="Serif Affinity 2" title="Serif Affinity 2" class="software-icon">
+                </picture></a>
+                <a href="https://www.gimp.org/"><img src="icons/sw_gimp.svg" alt="GIMP" title="GIMP" class="software-icon"></a>
+                <a href="https://krita.org/"><img src="icons/sw_krita.svg" alt="Krita" title="Krita" class="software-icon"></a>
+                <a href="https://www.darktable.org/"><img src="icons/sw_darktable.svg" alt="darktable" title="darktable" class="software-icon"></a>
                 <a href="https://ffmpeg.org/"><img src="icons/sw_ffmpeg.svg" alt="FFmpeg" title = "FFmpeg" class="software-icon"></a>
                 <a href="https://imagemagick.org/"><picture>
                     <source srcset="icons/sw_imagemagick.jxl 2x" type="image/jxl">
@@ -237,11 +265,8 @@
 | <a href="https://github.com/novomesk/qt-jpegxl-image-plugin">Qt / KDE</a> (gwenview, digiKam, KolourPaint, KPhotoAlbum, LXImage-Qt, qimgv, qView, nomacs, VookiImageViewer, PhotoQt)
 | <a href="https://github.com/libjxl/libjxl/tree/main/plugins/gdk-pixbuf">GDK-pixbuf</a> (eog, gThumb, Geeqie)
 | <a href="https://www.enlightenment.org">EFL</a> (entice, ephoto)
-| <a href="https://github.com/yllan/JXLook">MacOS plugin</a>
 | <a href="https://github.com/mirillis/jpegxl-wic">Windows Imaging Component</a>
 | <a href="https://github.com/saschanaz/jxl-winthumb">Windows thumbnail handler</a>
-| <a href="https://www.openmandriva.org/en/news/article/openmandriva-lx-4-3-rc-available-for-testing">OpenMandriva Lx</a>
-| <a href="https://news.itsfoss.com/kaos-2021-06-release/">KaOS</a>
 | <a href="https://github.com/0xC0000054/pdn-jpegxl">Paint.NET</a>
 | <a href="https://www.xnview.com/en/">XnView</a>
 | <a href="https://imageglass.org/">ImageGlass</a>
