@@ -1,1 +1,42 @@
-<svg viewBox="0 0 256 256" height="512" width="512" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#a)"><path d="M128 191.995c35.346 0 64-28.654 64-64 0-35.347-28.654-64-64-64-35.346 0-64 28.654-64 64 0 35.346 28.654 64 64 64Z" fill="#000"/><path d="M96.01 183.41a63.681 63.681 0 0 1-23.42-23.43l-.007.004-55.425-96a128.027 128.027 0 0 0 110.841 192.018l55.436-96.018a63.985 63.985 0 0 1-16.465 18.775 64.007 64.007 0 0 1-70.96 4.651Z" fill="#669DF6"/><path d="M191.991 127.984a63.683 63.683 0 0 1-8.581 31.996l.007.004-55.426 96a128.029 128.029 0 0 0 110.872-192H127.991a64 64 0 0 1 64 64Z" fill="#AECBFA"/><path d="M128 180c28.719 0 52-23.281 52-52s-23.281-52-52-52-52 23.281-52 52 23.281 52 52 52Z" fill="#1A73E8"/><path d="M95.99 72.59a63.684 63.684 0 0 1 32.001-8.566v-.008h110.851A128.035 128.035 0 0 0 127.991.026 128.028 128.028 0 0 0 17.13 63.999l55.436 96.018a64.003 64.003 0 0 1 4.65-70.961A64 64 0 0 1 95.991 72.59Z" fill="#1967D2"/></g><defs><clipPath id="a"><path fill="#000" d="M0 0h256v256H0z"/></clipPath></defs></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="svg44" xmlns:svg="http://www.w3.org/2000/svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+	 style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#path34-4_00000075853498491031461470000010556414940792861569_);}
+	.st1{fill:url(#path36-1_00000113317448677781473950000008393043105654370464_);}
+	.st2{fill:url(#path38-7_00000006678933145031513170000016641512559604383898_);}
+	.st3{stroke:#000000;stroke-miterlimit:10;}
+	.st4{fill:url(#path42-5_00000083768406650072771080000017764913794342874815_);}
+	.st5{fill:#FFFFFF;}
+	.st6{font-family:'Lato-Bold';}
+	.st7{font-size:120px;}
+</style>
+<linearGradient id="path34-4_00000052069020947075151100000010140638130624436886_" gradientUnits="userSpaceOnUse" x1="-415.3693" y1="688.3945" x2="-415.5139" y2="586.7113" gradientTransform="matrix(3.7794 0 0 -3.7794 1953.9363 2729.1909)">
+	<stop  offset="0" style="stop-color:#AFCCFB"/>
+	<stop  offset="1" style="stop-color:#8BB5F8"/>
+</linearGradient>
+<path id="path34-4" style="fill:url(#path34-4_00000052069020947075151100000010140638130624436886_);" d="M256,256l110.9,64
+	L256,512c141.4,0,256-114.6,256-256c0-46.6-12.5-90.3-34.3-128H256L256,256z"/>
+<linearGradient id="path36-1_00000165197466272322593430000007933251624600468612_" gradientUnits="userSpaceOnUse" x1="-699.3729" y1="796.4599" x2="-699.2816" y2="794.9747" gradientTransform="matrix(231.6257 0 0 -231.6247 162241.0156 184481.9062)">
+	<stop  offset="0" style="stop-color:#1972E7"/>
+	<stop  offset="1" style="stop-color:#1969D5"/>
+</linearGradient>
+<path id="path36-1" style="fill:url(#path36-1_00000165197466272322593430000007933251624600468612_);" d="M256,0
+	C161.2,0,78.6,51.5,34.3,128l110.8,192L256,256V128h221.7C433.4,51.5,350.7,0,256,0z"/>
+<linearGradient id="path38-7_00000047030317141797111950000009190773286797101227_" gradientUnits="userSpaceOnUse" x1="-699.8397" y1="799.973" x2="-698.0883" y2="798.9619" gradientTransform="matrix(94.9316 164.4269 164.4276 -94.9311 -64917.3555 191142.8125)">
+	<stop  offset="0" style="stop-color:#659CF6"/>
+	<stop  offset="1" style="stop-color:#4285F4"/>
+</linearGradient>
+<path id="path38-7" style="fill:url(#path38-7_00000047030317141797111950000009190773286797101227_);" d="M0,256
+	c0,141.4,114.6,256,256,256l110.9-192L256,256l-110.9,64L34.3,128C12.5,165.7,0,209.4,0,256"/>
+<path id="path40" class="st3" d="M384,256c0,70.7-57.3,128-128,128s-128-57.3-128-128s57.3-128,128-128S384,185.3,384,256"/>
+<linearGradient id="path42-5_00000055682703508271731300000008984872210056520338_" gradientUnits="userSpaceOnUse" x1="-449.3998" y1="681.8005" x2="-449.1192" y2="626.8712" gradientTransform="matrix(3.7794 0 0 -3.7794 1953.9362 2729.1909)">
+	<stop  offset="0" style="stop-color:#3680F0"/>
+	<stop  offset="1" style="stop-color:#2678EC"/>
+</linearGradient>
+<path id="path42-5" style="fill:url(#path42-5_00000055682703508271731300000008984872210056520338_);" d="M360,256
+	c0,57.4-46.6,104-104,104s-104-46.6-104-104s46.6-104,104-104S360,198.6,360,256"/>
+<text transform="matrix(1 0 0 1 188.5171 298.9404)" class="st5 st6 st7">Th</text>
+</svg>
