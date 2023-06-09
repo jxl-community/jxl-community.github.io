@@ -29,13 +29,19 @@
             .light { display: none; }
             .dark { display: block; }
             img { margin: auto; max-height: 20vh; max-width: 50vw; padding: 1em 0; vertical-align: middle; padding-top: 2em;}
-            img.software-icon {max-height: 15vh; max-width: 22vw; padding: 0.5em; }
-            picture {display: inline-block;}
+            img.software-icon {max-width: 80%; vertical-align: bottom; padding-top: 1em; }
+            picture {display: inline-block; margin: auto; }
+            div.software-icons { display: flex; justify-content: center; flex-wrap: wrap; }
+            .software-icons a { display: inline-flex; flex-direction: column; color: #eeffff; width: calc(60px + 8vw); height: calc(80px + 8vw); padding: 0.5em; justify-content: flex-end; }
             a { font-weight: bold; text-decoration: none; color: #5eb4b2; }
             a:hover { text-decoration: underline; }
-            a:hover img { background: #5eb4b2; }
+            a:hover img { max-width: 95%; max-height: 95%;}
             @media screen and (prefers-color-scheme: light) {
                 h1 { color: #001110; }
+                h2 { color: #3e9492; }
+                h3 { color: #224442; }
+                .software-icons a { color: black; }
+                a { color: #3e9492; }
                 body { background: #f9f0e9; }
                 .box { color: black; border-bottom: 2px solid #e0d9d0; }
                 .box:nth-child(2n+0) { background: #d0d9e0; }
@@ -194,71 +200,80 @@
                     operating systems, web browsers and image authoring software.
                 </p>
                 <h3>Operating systems</h3>
-                <a href="https://www.apple.com/"><img src="icons/sw_apple.svg" alt="Apple" title="Apple" class="software-icon"></a>
+                <div class="software-icons">
+                <a href="https://www.apple.com/"><img src="icons/sw_apple.svg" alt="Apple" title="Apple" class="software-icon">Apple</a>
                 <a href="https://en.wikipedia.org/wiki/IOS_17">
-                    <img src="icons/sw_iOS.svg" alt="iOS 17" title="iOS 17" class="software-icon"><picture>
+                    <picture>
                     <source srcset="icons/sw_iOS17.jxl 2x" type="image/jxl">
                     <source srcset="icons/sw_iOS17.webp 2x" type="image/webp">
                     <source srcset="icons/sw_iOS17.png 2x" type="image/png">
                     <img src="icons/sw_iOS17.png" alt="iOS 17" title="iOS 17" class="software-icon">
-                </picture></a>
-                <a href="https://en.wikipedia.org/wiki/MacOS_Sonoma"><img src="icons/sw_macOS.svg" alt="macOS 14 (Sonoma)" title="macOS 14 (Sonoma)" class="software-icon"></a>
+                </picture>iOS 17</a>
+                <a href="https://en.wikipedia.org/wiki/MacOS_Sonoma">
+                    <img src="icons/sw_macOS.svg" alt="macOS 14 (Sonoma)" title="macOS 14 (Sonoma)" class="software-icon">
+                    macOS 14</a>
                 <a href="https://www.openmandriva.org/"><picture>
                     <source srcset="icons/sw_openmandriva.jxl 2x" type="image/jxl">
                     <source srcset="icons/sw_openmandriva.webp 2x" type="image/webp">
                     <source srcset="icons/sw_openmandriva.png 2x" type="image/png">
                     <img src="icons/sw_openmandriva.png" alt="OpenMandriva Lx" title="OpenMandriva Lx" class="software-icon">
-                </picture></a>
-                <a href="https://kaosx.us/"><img src="icons/sw_kaos.svg" alt="KaOS" title="KaOS" class="software-icon"></a>
+                </picture>OpenMandriva</a>
+                <a href="https://kaosx.us/"><img src="icons/sw_kaos.svg" alt="KaOS" title="KaOS" class="software-icon">KaOS</a>
+                </div>
 
                 <h3>Web browsers</h3>
-                <a href="https://webkit.org/blog/14205/news-from-wwdc23-webkit-features-in-safari-17-beta/#images"><img src="icons/sw_safari.svg" alt="Safari 17" title="Safari 17" class="software-icon"></a>
-                <a href="https://thorium.rocks/"><img src="icons/sw_thorium.svg" alt="Thorium" title="Thorium" class="software-icon"></a>
-                <a href="https://www.waterfox.net/"><img src="icons/sw_waterfox.svg" alt="Waterfox" title="Waterfox" class="software-icon"></a>
+                <div class="software-icons">
+                <a href="https://webkit.org/blog/14205/news-from-wwdc23-webkit-features-in-safari-17-beta/#images"><img src="icons/sw_safari.svg" alt="Safari 17" title="Safari 17" class="software-icon">Safari 17</a>
+                <a href="https://thorium.rocks/"><img src="icons/sw_thorium.svg" alt="Thorium" title="Thorium" class="software-icon">Thorium</a>
+                <a href="https://www.waterfox.net/"><img src="icons/sw_waterfox.svg" alt="Waterfox" title="Waterfox" class="software-icon">Waterfox</a>
                 <a href="https://www.mozilla.org/en-US/firefox/nightly/notes/"><picture>
                     <source srcset="icons/sw_firefox_nightly.jxl 2x" type="image/jxl">
                     <source srcset="icons/sw_firefox_nightly.webp 2x" type="image/webp">
                     <source srcset="icons/sw_firefox_nightly.png 2x" type="image/png">
                     <img src="icons/sw_firefox_nightly.png" alt="Firefox Nightly" title="Firefox Nightly (behind a flag)" class="software-icon">
-                </picture></a>
+                </picture>Firefox Nightly</a>
                 <a href="https://www.palemoon.org/"><picture>
                     <source srcset="icons/sw_palemoon.jxl 2x" type="image/jxl">
                     <source srcset="icons/sw_palemoon.webp 2x" type="image/webp">
                     <source srcset="icons/sw_palemoon.png 2x" type="image/png">
                     <img src="icons/sw_palemoon.png" alt="Pale Moon" title="Pale Moon" class="software-icon">
-                </picture></a>
+                </picture>Pale Moon</a>
+                </div>
 
                 <h3>Image authoring software</h3>
+                <div class="software-icons">
                 <a href="https://helpx.adobe.com/il_en/camera-raw/using/hdr-output.html"><picture>
                     <source srcset="icons/sw_adobe_camera_raw.jxl 2x" type="image/jxl">
                     <source srcset="icons/sw_adobe_camera_raw.webp 2x" type="image/webp">
                     <source srcset="icons/sw_adobe_camera_raw.png 2x" type="image/png">
                     <img src="icons/sw_adobe_camera_raw.png" alt="Adobe Camera Raw" title="Adobe Camera Raw" class="software-icon">
-                </picture></a>
-                <a href="https://www.adobe.com/products/photoshop.html"><img src="icons/sw_photoshop.svg" alt="Adobe Photoshop" title="Adobe Photoshop" class="software-icon"></a>
-                <a href="https://www.adobe.com/products/photoshop-lightroom.html"><img src="icons/sw_lightroom.svg" alt="Adobe Lightroom" title="Adobe Lightroom" class="software-icon"></a>
+                </picture>Camera Raw</a>
+                <a href="https://www.adobe.com/products/photoshop.html"><img src="icons/sw_photoshop.svg" alt="Adobe Photoshop" title="Adobe Photoshop" class="software-icon">Photoshop</a>
+                <a href="https://www.adobe.com/products/photoshop-lightroom.html"><img src="icons/sw_lightroom.svg" alt="Adobe Lightroom" title="Adobe Lightroom" class="software-icon">Lightroom</a>
                 <a href="https://affinity.serif.com/"><picture>
                     <source srcset="icons/sw_affinity.jxl 2x" type="image/jxl">
                     <source srcset="icons/sw_affinity.webp 2x" type="image/webp">
                     <source srcset="icons/sw_affinity.png 2x" type="image/png">
                     <img src="icons/sw_affinity.png" alt="Serif Affinity 2" title="Serif Affinity 2" class="software-icon">
-                </picture></a>
-                <a href="https://www.gimp.org/"><img src="icons/sw_gimp.svg" alt="GIMP" title="GIMP" class="software-icon"></a>
-                <a href="https://krita.org/"><img src="icons/sw_krita.svg" alt="Krita" title="Krita" class="software-icon"></a>
-                <a href="https://www.darktable.org/"><img src="icons/sw_darktable.svg" alt="darktable" title="darktable" class="software-icon"></a>
-                <a href="https://ffmpeg.org/"><img src="icons/sw_ffmpeg.svg" alt="FFmpeg" title = "FFmpeg" class="software-icon"></a>
+                </picture>Affinity 2</a>
+                <a href="https://www.gimp.org/"><img src="icons/sw_gimp.svg" alt="GIMP" title="GIMP" class="software-icon">Gimp</a>
+                <a href="https://krita.org/"><img src="icons/sw_krita.svg" alt="Krita" title="Krita" class="software-icon">Krita</a>
+                <a href="https://www.darktable.org/"><img src="icons/sw_darktable.svg" alt="darktable" title="darktable" class="software-icon">Darktable</a>
+                <a href="https://ffmpeg.org/"><img src="icons/sw_ffmpeg.svg" alt="FFmpeg" title = "FFmpeg" class="software-icon">FFmpeg</a>
                 <a href="https://imagemagick.org/"><picture>
                     <source srcset="icons/sw_imagemagick.jxl 2x" type="image/jxl">
                     <source srcset="icons/sw_imagemagick.webp 2x" type="image/webp">
                     <source srcset="icons/sw_imagemagick.png 2x" type="image/png">
                     <img src="icons/sw_imagemagick.png" alt="ImageMagick" title="ImageMagick" class="software-icon">
-                </picture></a>
+                </picture>ImageMagick</a>
                 <a href="https://gdal.org/"><picture>
                     <source srcset="icons/sw_gdal.jxl 2x" type="image/jxl">
                     <source srcset="icons/sw_gdal.webp 2x" type="image/webp">
                     <source srcset="icons/sw_gdal.png 2x" type="image/png">
                     <img src="icons/sw_gdal.png" alt="GDAL" title="GDAL" class="software-icon">
-                </picture></a>
+                </picture>GDAL</a>
+                </div>
+
                 <p class="noline">More software with JPEG XL support:
 <a href="https://libvips.github.io/libvips/">libvips</a>
 | <a href="https://github.com/alistair7/imlib2-jxl">Imlib2</a>
