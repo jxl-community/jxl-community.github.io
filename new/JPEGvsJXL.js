@@ -254,14 +254,14 @@ document.addEventListener("DOMContentLoaded", () => {
     ]).then(() => {
         // After both data sets are loaded, initialize the display
         const initialSizeSliderValue = elements.mySizeRange.value;
-       // const initialQualitySliderValue = elements.myQualityRange.value;
-        displayData(imagesSizeArray, initialSizeSliderValue, 'JPEGCompareSize');
-      //  displayData(imagesQualityArray, initialQualitySliderValue, 'JPEGCompareQuality');
+        const initialQualitySliderValue = elements.myQualityRange.value;
+    //    displayData(imagesSizeArray, initialSizeSliderValue, 'JPEGCompareSize');
+        displayData(imagesQualityArray, initialQualitySliderValue, 'JPEGCompareQuality');
 
-        // Ensure the first tab is active
+        // Ensure the initial tab is active
         const jpegTabs = document.querySelector('.jpeg-jxl-tabs');
-        jpegTabs.querySelector('.tabs__button[data-for-tab="jpeg-size"]').classList.add('tabs__button-active');
-        jpegTabs.querySelector('.tabs__content[data-tab="jpeg-size"]').classList.add('tabs__content-active');
+        jpegTabs.querySelector('.tabs__button[data-for-tab="jpeg-quality"]').classList.add('tabs__button-active');
+        jpegTabs.querySelector('.tabs__content[data-tab="jpeg-quality"]').classList.add('tabs__content-active');
     });
     setupTabs();
     // Initial data display
