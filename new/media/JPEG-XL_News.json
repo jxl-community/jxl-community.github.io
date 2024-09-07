@@ -1,0 +1,419 @@
+{
+    "Blog Posts": [
+        {
+            "title": "Linear Color Analysis of Modern Image Formats",
+            "link": "https://saklistudio.com/miniblog/modern-image-format-linear-color-analysis/",
+            "date": "2024-08-20",
+            "section": "Blog posts",
+            "Author": "Kampidh",
+            "Publication": "Sakli Studio",
+            "Summary": "A comparison of the performance of JPEG XL, AVIF, and WebP in handling wide-gamut linear color profiles.",
+            "Tags": [
+                "JPEG XL",
+                "Wide-Gamut",
+                "Color Profiles",
+                "AVIF",
+                "WebP"
+            ]
+        },       {
+            "title": "JPEG XL and the Pareto Front",
+            "link": "https://cloudinary.com/blog/jpeg-xl-and-the-pareto-front",
+            "date": "2024-02-28",
+            "section": "Blog posts",
+            "Author": "Jon Sneyers",
+            "Publication": "Cloudinary Blog",
+            "Summary": "An exploration of JPEG XL’s performance on the image compression Pareto front versus other encoders.",
+            "Tags": [
+                "JPEG XL",
+                "Pareto Front",
+                "Compression Comparison"
+            ]
+        },
+        {
+            "title": "Samsung Now Supports DNG 1.7, Including JPEG XL",
+            "link": "https://cloudinary.com/blog/samsung-now-supports-dng-1-7-including-jpeg-xl",
+            "date": "2024-01-23",
+            "section": "Blog posts",
+            "Author": "Cloudinary Team",
+            "Publication": "Cloudinary Blog",
+            "Summary": "Samsung’s Galaxy S24 ships with JPEG XL support, using it as an “Expert RAW” format",
+            "Tags": [
+                "JPEG XL",
+                "Samsung",
+                "Galaxy S24",
+                "RAW",
+                "Adobe DNG"
+            ]
+        },
+        {
+            "title": "Google’s decision to deprecate JPEG-XL emphasizes the need for browser choice and free formats",
+            "link": "https://www.fsf.org/blogs/community/googles-decision-to-deprecate-jpeg-xl-emphasizes-the-need-for-browser-choice-and-free-formats",
+            "date": "2023-04-23",
+            "section": "Blog posts",
+            "Author": "Cloudinary Team",
+            "Publication": "Free Software Foundation",
+            "Summary": "Google's decision to deprecate JPEG XL in Chrome highlights the importance of browser diversity and the need for free and open image formats, like JPEG XL, to ensure that users are not locked into proprietary technologies.",
+            "Tags": [
+                "JPEG XL",
+                "Google",
+                "Google Chrome",
+                "Browser Support"
+            ]
+        },
+        {
+            "title": "Introducing the Galaxy S24 Camera/Gallery!",
+            "link": "https://r2.community.samsung.com/t5/Galaxy-S/Introducing-the-Galaxy-S24-Camera-Gallery/td-p/15350511",
+            "date": "2024-01-18",
+            "section": "Blog posts",
+            "Author": "CamcyclopediaExpert",
+            "Publication": "Samsung Community",
+            "Summary": "Samsung’s Galaxy S24 series supports JPEG XL, a significant milestone for the adoption of this new image format",
+            "Tags": [
+                "JPEG XL",
+                "Samsung",
+                "Galaxy S24",
+                "RAW",
+                "Adobe DNG"
+            ]
+        },
+        {
+            "title": "JPEG XL vs AVIF: A Comparison",
+            "link": "https://tonisagrista.com/blog/2023/jpegxl-vs-avif/",
+            "date": "2023-02-19",
+            "section": "Blog posts",
+            "Author": "Toni Sagristà Sellés",
+            "Publication": "Tonisagrista",
+            "Summary": "An unscientific analysis of these two image formats based on file size and image quality.",
+            "Tags": [
+                "JPEG XL",
+                "Compression Comparison",
+                "AVIF"
+            ]
+        },
+        {
+            "title": "The Case for JPEG XL",
+            "link": "https://cloudinary.com/blog/the-case-for-jpeg-xl",
+            "date": "2022-11-02",
+            "section": "Blog posts",
+            "Author": "Jon Sneyers",
+            "Publication": "Cloudinary Blog",
+            "Summary": "A detailed case for the adoption of JPEG XL as a primary image format.",
+            "Tags": [
+                "JPEG XL",
+                "Image Format",
+                "Adoption"
+            ]
+        },
+        {
+            "title": "Using Saliency in Progressive JPEG XL Images",
+            "link": "https://opensource.googleblog.com/2021/09/using-saliency-in-progressive-jpeg-xl-images.html",
+            "date": "2021-09-07",
+            "section": "Blog posts",
+            "Author": "Google Open Source Blog Team",
+            "Publication": "Google Open Source Blog",
+            "Summary": "Discussion on the use of saliency maps in creating progressive JPEG XL images.",
+            "Tags": [
+                "JPEG XL",
+                "Saliency",
+                "Progressive Images",
+                "Google"
+            ]
+        },
+        {
+            "title": "Time for Next-Gen Codecs to Dethrone JPEG",
+            "link": "https://cloudinary.com/blog/time_for_next_gen_codecs_to_dethrone_jpeg",
+            "date": "2021-02-22",
+            "Author": "Jon Sneyers",
+            "Publication": "Cloudinary Blog",
+            "Summary": "An argument for why next-gen codecs like JPEG XL are poised to replace JPEG.",
+            "Tags": [
+                "JPEG XL",
+                "Next-gen Codecs",
+                "JPEG replacement"
+            ]
+        },
+        {
+            "title": "Legacy and Transition: Creating a New Universal Image Codec",
+            "link": "https://cloudinary.com/blog/legacy_and_transition_creating_a_new_universal_image_codec",
+            "date": "2021-01-20",
+            "Author": "Jon Sneyers",
+            "Publication": "Cloudinary Blog",
+            "Summary": "Insights into the creation and adoption of JPEG XL as a universal image codec.",
+            "Tags": [
+                "JPEG XL",
+                "universal codec",
+                "Image Format"
+            ]
+        },
+        {
+            "title": "Improve the Web Experience With Progressive Image Decoding",
+            "link": "https://cloudinary.com/blog/improve_the_web_experience_with_progressive_image_decoding",
+            "date": "2021-01-13",
+            "Author": "Jon Sneyers",
+            "Publication": "Cloudinary Blog",
+            "Summary": "How progressive image decoding with JPEG XL can enhance web experiences.",
+            "Tags": [
+                "JPEG XL",
+                "Progressive Decoding",
+                "web experience"
+            ]
+        },
+        {
+            "title": "What to Focus on in Image Compression: Fidelity Or Appeal",
+            "link": "https://cloudinary.com/blog/what_to_focus_on_in_image_compression_fidelity_or_appeal",
+            "date": "2020-12-30",
+            "Author": "Jon Sneyers",
+            "Publication": "Cloudinary Blog",
+            "Summary": "Discussing the balance between fidelity and appeal in Image Compression.",
+            "Tags": [
+                "JPEG XL",
+                "Image Compression",
+                "Fidelity",
+                "Appeal"
+            ]
+        },
+        {
+            "title": "Cloudinary Supports JPEG XL",
+            "link": "https://cloudinary.com/blog/cloudinary_supports_jpeg_xl",
+            "date": "2020-11-16",
+            "Author": "Jon Sneyers",
+            "Publication": "Cloudinary Blog",
+            "Summary": "Announcement of Cloudinary's support for JPEG XL.",
+            "Tags": [
+                "JPEG XL",
+                "Cloudinary",
+                "Support"
+            ]
+        },
+        {
+            "title": "How JPEG XL Compares to Other Image Codecs",
+            "link": "https://cloudinary.com/blog/how_jpeg_xl_compares_to_other_image_codecs",
+            "date": "2020-05-26",
+            "Author": "Jon Sneyers",
+            "Publication": "Cloudinary Blog",
+            "Summary": "A comparative analysis of JPEG XL and other image codecs.",
+            "Tags": [
+                "JPEG XL",
+                "Image Codecs",
+                "Compression Comparison"
+            ]
+        },
+        {
+            "title": "FUIF: Introducing FUIF",
+            "link": "https://cloudinary.com/blog/introducing_fuif_responsive_images_by_design",
+            "date": "2018-11-14",
+            "Author": "Jon Sneyers",
+            "Publication": "Cloudinary Blog",
+            "Summary": "Introduction to FUIF and its benefits for responsive images.",
+            "Tags": [
+                "FUIF",
+                "Responsive Images",
+                "Image Format"
+            ]
+        },
+        {
+            "title": "FUIF: Why Another Image Format?",
+            "link": "https://cloudinary.com/blog/fuif_why_do_we_need_a_new_image_file_format",
+            "date": "2018-11-21",
+            "Author": "Jon Sneyers",
+            "Publication": "Cloudinary Blog",
+            "Summary": "Explaining the need for a new image format like FUIF.",
+            "Tags": [
+                "FUIF",
+                "Image Format",
+                "New Format"
+            ]
+        },
+        {
+            "title": "FUIF: Legacy Friendliness",
+            "link": "https://cloudinary.com/blog/fuif_new_legacy_friendly_image_file_format",
+            "date": "2018-12-05",
+            "Author": "Jon Sneyers",
+            "Publication": "Cloudinary Blog",
+            "Summary": "Discussion on the legacy friendliness of the FUIF image format.",
+            "Tags": [
+                "FUIF",
+                "Legacy Friendly",
+                "Image Format"
+            ]
+        }
+    ],
+    "Presentations": [
+        {
+            "title": "JPEG XL Overview (Slide Deck is Kept Up-to-Date)",
+            "link": "https://docs.google.com/presentation/d/1LlmUR0Uoh4dgT3DjanLjhlXrk_5W2nJBDqDAMbhe8v8/edit?usp=sharing",
+            "date": "2024-05",
+            "Author": "JPEG XL Team",
+            "Publication": "Google Slides",
+            "Summary": "An up-to-date overview slide deck of JPEG XL.",
+            "Tags": [
+                "JPEG XL",
+                "Overview",
+                "Slide Deck"
+            ]
+        },
+        {
+            "title": "JPEG XL White Paper",
+            "link": "http://ds.jpeg.org/whitepapers/jpeg-xl-whitepaper.pdf",
+            "date": "2021-01",
+            "Author": "JPEG Committee",
+            "Publication": "JPEG.org",
+            "Summary": "The official white paper on JPEG XL.",
+            "Tags": [
+                "JPEG XL",
+                "White Paper"
+            ]
+        },
+        {
+            "title": "JPEG XL: The Next Generation ‘Alien Technology From The Future’, ImageReady",
+            "link": "https://youtu.be/t63DBrQCUWc",
+            "date": "2020-10",
+            "Author": "ImageReady Team",
+            "Publication": "YouTube",
+            "Summary": "Presentation on JPEG XL’s advanced technology and future potential.",
+            "Tags": [
+                "JPEG XL",
+                "ImageReady"
+            ]
+        },
+        {
+            "title": "JPEG XL: An Update, ImageReady 1.2",
+            "link": "https://youtu.be/YsbsKimR-Fw",
+            "date": "2021-10",
+            "Author": "ImageReady Team",
+            "Publication": "YouTube",
+            "Summary": "Update on JPEG XL’s developments and improvements in ImageReady 1.2.",
+            "Tags": [
+                "JPEG XL",
+                "ImageReady",
+                "Update"
+            ]
+        },
+        {
+            "title": "Next-Generation of Image Formats for the Web, ImageCon",
+            "link": "https://youtu.be/RYJf7kelYQQ",
+            "date": "2019-05",
+            "Author": "ImageCon Team",
+            "Publication": "YouTube",
+            "Summary": "Discussion on the next-generation image formats including JPEG XL at ImageCon.",
+            "Tags": [
+                "JPEG XL",
+                "ImageCon",
+                "Next-Generation"
+            ]
+        }
+    ],
+    "In the News": [
+        {
+            "Title": "Mozilla Is Interested In A Rust JPEG-XL Decoder For Firefox & Google Might Develop It",
+            "link": "https://www.phoronix.com/news/Mozilla-Interest-JPEG-XL-Rust",
+            "date": "2024-09-04",
+            "Author": "Michael Larabel",
+            "Publication": "Phoronix",
+            "Summary": "Mozilla is exploring the adoption of a Rust-based JPEG-XL decoder, contingent on assurances of security, performance, and compatibility.",
+            "Tags": [
+                "Mozilla",
+                "Firefox",
+                "JPEG XL",
+                "Rust",
+                "Browser Support",
+                "Google"
+            ]
+        },
+        {
+            "Title": "Green coding – Cloudinary: Could a JPEG successor render greener?",
+            "link": "https://www.computerweekly.com/blog/CW-Developer-Network/Green-coding-Cloudinary-Could-a-JPEG-successor-render-greener",
+            "date": "2024-05-24",
+            "Author": "Adrian Bridgwater",
+            "Publication": "Computer Weekly",
+            "Summary": "Cloudinary’s JPEG XL optimizes compression and efficiency, reducing storage costs, lowers bandwidth consumption, decreasing carbon emissions at a massive scale.",
+            "Tags": [
+                "Cloudinary",
+                "JPEG XL",
+                "Green Coding",
+                "Sustainable Tech",
+                "Dr Jon Sneyers"
+            ]
+        },
+        {
+            "Title": "Google’s Jpegli open-source library can compress high quality images 35% more than traditional JPEG codecs",
+            "link": "https://www.cnx-software.com/2024/04/05/googles-jpegli-open-source-library-can-compress-high-quality-images-35-more-than-traditional-jpeg-codecs/",
+            "date": "2024-04-05",
+            "Author": "Jean-Luc Aufranc",
+            "Publication": "CNX Software",
+            "Summary": "Google’s Jpegli open-source library offers a next-gen Image Compression codec that can compress images up to 35% more than traditional JPEG while maintaining the same quality.",
+            "Tags": [
+                "Jpegli",
+                "JPEG XL",
+                "Image Codec"
+            ]
+        },
+        {
+            "Title": "Linux Mint 22 Will Use The PipeWire Sound Server, Support JPEG XL Images",
+            "link": "https://www.phoronix.com/news/Linux-Mint-22-March-2024",
+            "date": "2024-04-01",
+            "Author": "Michael Larabel",
+            "Publication": "Phoronix",
+            "Summary": "JPEG XL support comes to Linux Mint",
+            "Tags": [
+                "JPEG XL",
+                "Linux Mint",
+                "OS Support"
+            ]
+        },
+        {
+            "Title": "Google is once again accused of snubbing the JPEG XL image format",
+            "link": "https://www.techspot.com/news/101764-google-once-again-accused-snubbing-jpeg-xl-image.html",
+            "date": "2024-02-05",
+            "Author": "Alfonso Maruccia",
+            "Publication": "TechSpot",
+            "Summary": "Google is facing criticism for allegedly ignoring the JPEG XL image format, a more efficient and higher-quality alternative to traditional JPEG, in its Chrome browser and Android operating system.",
+            "Tags": [
+                "JPEG XL",
+                "Google Chrome",
+                "Browser Support"
+            ]
+        },
+        {
+            "Title": "Still no love for JPEG XL: Browser maker love-in snubs next-gen image format",
+            "link": "https://www.theregister.com/2024/02/03/jpeg_xl_interop_2024/",
+            "date": "2024-02-03",
+            "Author": "Thomas Claburn",
+            "Publication": "The Register",
+            "Summary": "The JPEG XL image format, designed to replace traditional JPEG, has reached a major milestone with the announcement of interoperability between different implementations, paving the way for wider adoption in 2024.",
+            "Tags": [
+                "JPEG XL",
+                "Google Chrome",
+                "Interop 2024",
+                "Browser Support"
+            ]
+        },
+        {
+            "Title": "The new Pixelmator Pro update enables a full HDR image editing workflow",
+            "link": "https://9to5mac.com/2023/12/13/pixelmator-pro-update-hdr-images/",
+            "date": "2023-12-13",
+            "Author": "Benjamin Mayo",
+            "Publication": "9to5Mac",
+            "Summary": "Full HDR workflow comes to Pixelmator Pro with support for JPEG XL",
+            "Tags": [
+                "Pixelmator Pro",
+                "App Support",
+                "JPEG XL"
+            ]
+        },
+        {
+            "Title": "Google snubbed JPEG XL so of course Apple now supports it in Safari",
+            "link": "https://www.theregister.com/2023/06/07/apple_safari_jpeg_xl/",
+            "date": "2023-06-07",
+            "Author": "Thomas Claburn",
+            "Publication": "The Register",
+            "Summary": "Apple’s Safari browser now supports JPEG XL, a next-generation image format that offers better compression and quality than traditional JPEG, marking a significant milestone in the format’s adoption.",
+            "Tags": [
+                "JPEG XL",
+                "Safari",
+                "Google Chrome",
+                "Browser Support"
+            ]
+        }
+    ]
+}

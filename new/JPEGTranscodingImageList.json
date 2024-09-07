@@ -1,0 +1,90 @@
+[
+ {
+   "Image": "david-clode-EDfZ0Sjmp_w-unsplash.png",
+   "FileName": "david-clode-EDfZ0Sjmp_w-unsplash.jpg",
+   "FallbackFile": "",
+   "Title": "Red Fish, Pink Coral",
+   "Type": "JPEG",
+   "File Size": 221686,
+   "Effort": null,
+   "Smaller": "",
+   "BPP": 1.83
+ },
+ {
+   "Image": "david-clode-EDfZ0Sjmp_w-unsplash.png",
+   "FileName": "david-clode-EDfZ0Sjmp_w-unsplash.jpg.jxl",
+   "FallbackFile": "david-clode-EDfZ0Sjmp_w-unsplash.jpg",
+   "Title": "Red Fish, Pink Coral",
+   "Type": "JXL",
+   "File Size": 182862,
+   "Effort": 9,
+   "Smaller": "17.5%",
+   "BPP": 1.51
+ },
+ {
+   "Image": "jeremy-bishop-_CFv3bntQlQ-unsplash.png",
+   "FileName": "jeremy-bishop-_CFv3bntQlQ-unsplash.jpg",
+   "FallbackFile": "",
+   "Title": "Surfing",
+   "Type": "JPEG",
+   "File Size": 191137,
+   "Effort": null,
+   "Smaller": "",
+   "BPP": 1.58
+ },
+ {
+   "Image": "jeremy-bishop-_CFv3bntQlQ-unsplash.png",
+   "FileName": "jeremy-bishop-_CFv3bntQlQ-unsplash.jpg.jxl",
+   "FallbackFile": "jeremy-bishop-_CFv3bntQlQ-unsplash.jpg",
+   "Title": "Surfing",
+   "Type": "JXL",
+   "File Size": 158471,
+   "Effort": 9,
+   "Smaller": "17.1%",
+   "BPP": 1.31
+ },
+ {
+   "Image": "tim-mossholder-nIhWA_wcq_8-unsplash.png",
+   "FileName": "tim-mossholder-nIhWA_wcq_8-unsplash.jpg",
+   "FallbackFile": "",
+   "Title": "Peacock",
+   "Type": "JPEG",
+   "File Size": 158065,
+   "Effort": null,
+   "Smaller": "",
+   "BPP": 1.31
+ },
+ {
+   "Image": "tim-mossholder-nIhWA_wcq_8-unsplash.png",
+   "FileName": "tim-mossholder-nIhWA_wcq_8-unsplash.jpg.jxl",
+   "FallbackFile": "tim-mossholder-nIhWA_wcq_8-unsplash.jpg",
+   "Title": "Peacock",
+   "Type": "JXL",
+   "File Size": 120815,
+   "Effort": 9,
+   "Smaller": "23.6%",
+   "BPP": 1.00
+ },
+ {
+   "Image": "deepthi-clicks-hWQoKSYtolM-unsplash.png",
+   "FileName": "deepthi-clicks-hWQoKSYtolM-unsplash.jpg",
+   "FallbackFile": "",
+   "Title": "Sliced Oranges",
+   "Type": "JPEG",
+   "File Size": 342442,
+   "Effort": null,
+   "Smaller": "",
+   "BPP": 2.83
+ },
+ {
+   "Image": "deepthi-clicks-hWQoKSYtolM-unsplash.png",
+   "FileName": "deepthi-clicks-hWQoKSYtolM-unsplash.jpg.jxl",
+   "FallbackFile": "deepthi-clicks-hWQoKSYtolM-unsplash.jpg",
+   "Title": "Sliced Oranges",
+   "Type": "JXL",
+   "File Size": 282988,
+   "Effort": 9,
+   "Smaller": "17.4%",
+   "BPP": 2.34
+ }
+]

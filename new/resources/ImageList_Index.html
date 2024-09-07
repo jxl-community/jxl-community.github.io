@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JPEG XL Distance & Effort Variations</title>
+  <link rel="stylesheet" type="text/css" href="DistanceVSEffort.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <select id="image-dropdown"></select>
+    <div style="display: flex; align-items: center;" class="image-slider-container">
+      <img id="image" src="" alt="Image" class="no-smoothing">
+      <div id="vertical-slider-container" class="effort-slider-container">
+        <label for="effort-slider" class="effort-label">Effort:</label>
+        <input type="range" orient="vertical" id="effort-slider" min="0" value="0" step="1">
+      </div>
+      <div class="effort-slider-labels" id="effort-slider-labels"></div>
+    </div>
+    <div class="bottom-container">
+      <div class="slider-container">
+        <label for="slider" class="distance-label">Distance:</label>
+        <input type="range" id="slider" min="0" value="0" step="1">
+        <div class="slider-labels" id="slider-labels"></div>
+      </div>
+      <div class="info">
+        <p><span class="label">Size:</span> <span id="size"></span> bytes</p>
+        <p><span class="label">BPP:</span> <span id="bpp"></span></p>
+        <p><span class="label">SSIMU2:</span> <span id="ssim"></span></p>
+        <p><span class="label">Encoding Time:</span> <span id="compression-time"></span> s</p>
+      </div>
+    </div>
+
+  </div>
+  <script src="ImageList_script.js"></script>
+</body>
+</html>

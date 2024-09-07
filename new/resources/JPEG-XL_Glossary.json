@@ -1,0 +1,297 @@
+[
+  {
+    "term": "Alpha Channel",
+    "definition": "An additional channel in an image file that stores transparency information. Images with alpha channels can have transparent, opaque and semi-transparent areas.",
+    "subcategory": "Fundamentals"
+  },
+  {
+    "term": "AVIF (AV1 Image File Format)",
+    "definition": "A modern image compression standard, developed by the Alliance for Open Media based on the AV1 video compression algorithm. It outperforms JPEG and WebP, but is missing some image-only features like progressive decoding.",
+    "subcategory": "Formats"
+  },
+  {
+    "term": "AV1",
+    "definition": "See AVIF.",
+    "subcategory": "Formats"
+  },
+  {
+    "term": "Bit Depth",
+    "definition": "The number of bits used to represent the color of each pixel in an image. Higher bit depth allows for more accurate color representation. JPEG and WebP are capped at 8-bits per channel, while more modern image compressors allow higher depths. High depths are required to fully support HDR and wide gamut images. JPEG XL supports bit depths up to 32-bits per channel, and supports both integer and floating-point representations.",
+    "subcategory": "Fundamentals"
+  },
+  {
+    "term": "Bits Per Channel (bpc)",
+    "definition": "Represents the number of bits used to define the intensity or color value for each individual color channel in a pixel. Common values for bpc are 8 (256 possible values) and 16 (65,536 possible values). An image with 8 bits per channel (bpc) for Red, Green, and Blue (RGB) has a total of 24 bits per pixel (bpp) because 8 bpc × 3 channels = 24 bpp.",
+    "subcategory": "Fundamentals"
+  },
+  {
+    "term": "Bits Per Pixel (bpp)",
+    "definition": "Represents the total number of bits used to represent the color information of a single pixel in an image. It’s calculated by multiplying the number of bits per channel (bpc) by the number of color channels (usually 3 for RGB  and 4 in CMYK images).",
+    "subcategory": "Fundamentals"
+  },
+  {
+    "term": "Channel",
+    "definition": "An individual component of an image that represents a specific type of information. Common channels include red, green, blue (RGB), and alpha (transparency).",
+    "subcategory": "Fundamentals"
+  },
+  {
+    "term": "Chroma/Chrominance",
+    "definition": "Often abbreviated as ‘C’, chroma is the color information in an image. It’s separate from the luma (luminance, denoted by ‘Y’), which represents the brightness or intensity of the light.",
+    "subcategory": "Fundamentals"
+  },
+  {
+    "term": "Chroma From Luma",
+    "definition": "Signaled multipliers embedded within JPEG XL data (at 1:64 resolution) that indicate how to adjust color information based on brightness values, improving compression efficiency when there is a strong local correlation between chroma and luma.",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "Color Gamut",
+    "definition": "The set of colors that can be represented by a color space, reproduced by a display or printer, or captured by a camera sensor. It is typically determined by the exact color of the primaries, e.g. the red, green, and blue subpixels of a display or the cyan, magenta, yellow, and black inks of a printer.",
+    "subcategory": "Color & Display Tech"
+  },
+  {
+    "term": "Color Model",
+    "definition": "A model that defines how colors are represented mathematically. Common color models include RGB, CMYK, Lab, and XYB. Additive color models like RGB are based on models of light, while subtractive color models like CMYK are based on models of ink.",
+    "subcategory": "Color & Display Tech"
+  },
+  {
+    "term": "Color Space",
+    "definition": "A numerical representation of colors with a precise colorimetric interpretation. For example, the sRGB color space is based on the RGB color model, with the same color gamut as Rec.709 (ITU-R BT.709), with the D65 white point, and with a transfer function consisting of a linear segment in the darks and a gamma curve.",
+    "subcategory": "Color & Display Tech"
+  },
+  {
+    "term": "Compression",
+    "definition": "The process of reducing the size in bytes of an image file while either preserving all information exactly (lossless compression) or allowing some amount of information loss while maintaining the visual image quality as much as possible (lossy compression).",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "Compression Ratio",
+    "definition": "The ratio between the original, uncompressed image file size and the compressed image file size. Typical compression ratios in JPEG XL for lossless compression are 2:1 for photographic images and 5:1 for non-photographic images; for lossy compression the typical range is 10:1 for high-fidelity encoding and 30:1 for web quality. Compression performance is also often expressed in bits per pixel (bpp), where uncompressed 8-bit RGB is 24 bpp and web-quality lossy compression is typically around 1 bpp for JPEG XL and around 2 bpp for JPEG.",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "DCT (Discrete Cosine Transform)",
+    "definition": "A mathematical technique used in image compression – like JPEG and JPEG XL – to transform spatial information (pixel values) into frequency information. JPEG XL uses a more versatile version of DCT called Variable Block-size DCT (VarDCT).",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "Decoding",
+    "definition": "The process of converting a compressed image file back into its original format.",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "EDR (Extended Dynamic Range)",
+    "definition": "An Apple technology that allows for the display of high dynamic range (HDR) content on Apple devices that might not otherwise have HDR ability. It uses any extra available brightness headroom (the difference between a display’s peak brightness and the brightness it uses for standard content (SDR)) to more faithfully render HDR content.",
+    "subcategory": "Color & Display Tech"
+  },
+  {
+    "term": "Encoding",
+    "definition": "The process of converting an image file into a compressed format requiring less storage space. This is achieved by representing the image data in a more efficient way, typically by discarding or modifying certain information.",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "Entropy Coding",
+    "definition": "A technique used in lossless compression to assign shorter codes to more frequent symbols in the data, resulting in smaller file sizes. JPEG XL uses a combination of techniques like Asymmetrical Numerical Systems (ANS) and LZ77 for efficient entropy coding. Lossy compression in both JPEG and JPEG XL also uses lossless compression to store the part of the image information that is not lost; JPEG XL has more advanced entropy coding techniques than JPEG, which is what allows effective lossless JPEG recompression.",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "Entropy Decoding",
+    "definition": "Procedure which recovers the sequence of symbols from the sequence of bits produced by the entropy encoder",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "EPF (Edge Preserving Filter)",
+    "definition": "One of the coding tools in JPEG XL which is used to reduce DCT artifacts by applying a selective smoothing that does not blur edges but eliminates DCT noise. The strength of this filter is signaled with a fine granularity, allowing an encoder to apply the filter only where needed, avoiding excessive smoothing.",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "Gabor-like/Gaborish Transform",
+    "definition": "A deblocking technique applied in JPEG XL, which helps to avoid the macroblocking artifacts often associated with JPEG compression. It works by applying a sharpening convolution before encoding and a corresponding smoothing convolution after decoding. The net effect is comparable to the quality improvements obtained with lapped transforms, but at a lower computational cost.",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "Frequency Transform",
+    "definition": "A mathematical operation that converts sample values from the spatial domain (a 2D array) to a frequency domain, separating the low frequency information (a blurry, low-resolution version of the image) from the high frequency information (the fine details). The most commonly applied frequency transform is the DCT. In JPEG XL, two frequency transforms are available as coding tools: VarDCT (a generalization of JPEG’s 8x8 DCT) in its main lossy mode, and the Squeeze transform (a reversible, non-linear Haar-like wavelet transform) in its Modular mode.",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "Fuzz Testing",
+    "definition": "Is an automated software testing method that throws unusual data (i.e. malformed or invalid inputs) at a program, looking for crashes or unexpected behavior. Any glitches point to security risks, performance problems, and other hidden bugs, which can then be corrected. JPEG XL has been widely fuzz tested.",
+    "subcategory": "Quality & Metrics"
+  },
+  {
+    "term": "HDR (High Dynamic Range)",
+    "definition": "A technique for capturing and displaying a wider range of brightness levels than standard (SDR) images. This allows a more faithful reproduction of an image, without losing details in the darks or dulling the highlights, which are compromises that have to be made when only standard dynamic range is available. Higher dynamic range requires higher bit depths (e.g. 10 or 12 bits per channel instead of 8) to have enough precision to avoid artifacts. JPEG XL supports HDR and higher bit depth images.",
+    "subcategory": "Color & Display Tech"
+  },
+  {
+    "term": "ICC (International Color Consortium) Profile",
+    "definition": "A file that contains a set of data that characterizes a specific device, like a monitor, printer, or camera, and defines how it interprets colors. ICC profiles are used to ensure color accuracy and consistency across different devices and printing processes. They can be embedded in image files to define the exact color space in which to interpret the image data. JPEG XL handles color space information natively and has special-purpose compression of ICC profiles. Color space information is obligatory in JPEG XL, solving the decades-old problem of image files with an ambiguous interpretation caused by a lack of color space signaling (which is optional in most other image formats, or cannot even be embedded in them).",
+    "subcategory": "Color & Display Tech"
+  },
+  {
+    "term": "IDCT (Inverse Discrete Cosine Transform)",
+    "definition": "Inverse discrete cosine transform reverses the DCT function by performing the opposite mathematical operation. It uses the coefficients to reconstruct the original signal from its constituent frequencies.",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "JND (Just Noticeable Difference)",
+    "definition": "Is the smallest amount that something has to change in order for the difference to be detected 50% of the time. This is the unit used in the Distance parameter of the libjxl encoder for JPEG XL. As a result, the JPEG XL encoder can be configured based on a parameter related to the actual visual quality of the resulting image, as opposed to most other encoders where the configuration is done based on a quantization setting which only poorly correlates with visual quality. This makes JPEG XL more consistent and reliable in practical use cases, since a desired quality target can be selected once and used safely for many images.",
+    "subcategory": "Quality & Metrics"
+  },
+  {
+    "term": "HEIC/HEIF",
+    "definition": "HEIF, or High Efficiency Image File format, is a container for storing individual images and sequences. HEIC, or High Efficiency Image Coding, is a common HEIF implementation of using HEVC compression. While HEIF is the broader term, HEIC is often used interchangeably due to its prominence, especially since Apple’s wide adoption of it in 2017’s iOS 11. Despite offering superior compression to JPEG, HEIF’s widespread usage has been hindered by its many patent encumbrances.",
+    "subcategory": "Formats"
+  },
+  {
+    "term": "HEVC (High Efficiency Video Coding)",
+    "definition": "HEVC, also known as H.265, is the successor to AVC (H.264). HEVC offers improved compression efficiency through variable block sizes and more advanced prediction techniques. Notably, in November 2016, the HEVC consortium relaxed licensing restrictions for software implementations on consumer devices, promoting wider adoption.",
+    "subcategory": "Formats"
+  },
+  {
+    "term": "H.265",
+    "definition": "See HEVC.",
+    "subcategory": "Formats"
+  },
+  {
+    "term": "JPEG (Joint Photographic Experts Group)",
+    "definition": "More formally, Working Group 1 of Subcommittee 29 of the Joint Technical Committee 1 of the International Standardization Organization and the International Electrotechnical Commission, or ISO/IEC JTC 1 / SC 29 / WG 1. This is an international group of experts from industry and academia that created the original JPEG image format, the JPEG 2000 format, and the JPEG XL format.",
+    "subcategory": "Formats"
+  },
+  {
+    "term": "JXL",
+    "definition": "The conventional filename extension for JPEG XL: .jxl.",
+    "subcategory": "Formats"
+  },
+  {
+    "term": "LMS (long, medium, short)",
+    "definition": "A color space that mimics how our eyes perceive color. It uses three channels (L, M, and S) corresponding to the response peaks of the long, medium, and short wavelength cones in our retinas.",
+    "subcategory": "Color & Display Tech"
+  },
+  {
+    "term": "Lossless Compression",
+    "definition": "A compression method that preserves all the information from the original image, resulting in no loss of quality and identical output to the original.",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "Lossy Compression",
+    "definition": "A compression method that discards some information from the original image to achieve a smaller file size. Various trade-offs between image quality and file size are possible, ranging from very low quality with obvious compression artifacts, all the way to visually lossless quality where the image is indistinguishable (with the naked eye) from the original.",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "Lossless JPEG Recompression",
+    "definition": "An existing JPEG file can be converted to a JPEG XL file in such a way that not only is the image information preserved exactly, but also the original JPEG file can be reconstructed bit-exactly from the JPEG XL file. Typically this can be done with a 20% saving in file size. This is a unique feature of JPEG XL and its encoder `cjxl`: in all other new image formats, conversion from JPEG to the new format is lossy (additional compression artifacts will be introduced), can be ineffective (the new file can be larger than the original JPEG file), and is irreversible (the original JPEG file cannot be reconstructed).",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "Luma",
+    "definition": "Brightness information in an image. A grayscale image only contains luma data.",
+    "subcategory": "Fundamentals"
+  },
+  {
+    "term": "Metadata",
+    "definition": "Information embedded within an image file that describes its properties, such as creation date, author, and camera settings. In JPEG XL, a distinction is made between render-impacting metadata (such as color space and image orientation) and non-render-impacting metadata (such as copyright information or GPS coordinates). All render-impacting metadata is stored as part of the core codestream, and cannot be stripped accidentally. All non-render-impacting metadata is stored using standard metadata formats (Exif, XMP, and JUMBF) and is stored at the file format level, in separate boxes (not in the core codestream), allowing easy editing or stripping of this information. JPEG XL also supports optional Brotli compression of metadata.",
+    "subcategory": "Fundamentals"
+  },
+  {
+    "term": "Modular Mode",
+    "definition": "Modular mode handles various encoding tasks in JPEG XL, including efficient lossless compression and supporting lossy or near-lossless options. Additionally, it plays a role within VarDCT, storing data like the DC image and quantization weights.",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "Pareto Front",
+    "definition": "Modern image compression codecs allow various trade-offs between encode effort (amount of CPU resources used) and compression performance. Evaluating compression methods requires considering both file size (compression density) and processing speed (encode speed). A Pareto-optimal method delivers the smallest files achievable within a specific time frame, forming the \"Pareto front\" on a speed vs. compression chart.",
+    "subcategory": "Quality & Metrics"
+  },
+  {
+    "term": "Pixel",
+    "definition": "The smallest element of an image, represented by a single color value consisting of a tuple of sample values (typically three, for RGB).",
+    "subcategory": "Fundamentals"
+  },
+  {
+    "term": "PSNR (Peak Signal-to-Noise Ratio)",
+    "definition": "A metric used to measure the quality of a reconstructed image by comparing an original image to the compressed or processed version, aggregating the numerical difference (distortion error) between the two. It is not an accurate indicator of human perception of an image, so it is widely replaced with more accurate measures like SSIMULACRA2 and Butteraugli.",
+    "subcategory": "Quality & Metrics"
+  },
+  {
+    "term": "Quantization",
+    "definition": "A process used in lossy compression where color and brightness values (or rather, the corresponding coefficients after a frequency transform) are rounded to reduce file size. JPEG XL uses advanced quantization techniques to minimize quality loss.",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "Rec. 2100 PQ/Rec. 2100 HLG",
+    "definition": "BT.2100, more commonly known by the abbreviations Rec. 2100 or BT.2100, introduced high-dynamic-range television (HDR-TV) by recommending the use of the perceptual quantizer (PQ) or hybrid log–gamma (HLG) transfer functions instead of the traditional gamma previously used for SDR-TV. Rec. 2100 PQ uses the perceptual quantizer while Rec. 2100 HLG uses the hybrid log-gamma transfer function. The actual gamut of Rec. 2100 uses the same wide color gamut of Rec. 2020, but the color space itself supports an HDR range.",
+    "subcategory": "Color & Display Tech"
+  },
+  {
+    "term": "PQ (Perceptual Quantization)",
+    "definition": "A modern transfer function designed to accurately represent the vast brightness ranges of High Dynamic Range devices, spanning from 0.0001 to 10,000 nits. Replacing the traditional gamma curve used in SDR applications, PQ is a non-linear transfer function that leverages human visual perception to achieve remarkable results. Notably, PQ enables the representation of its huge brightness range with only 12 bits, producing no visible banding or artifacts. This approach ensures that HDR content is displayed with precision and accuracy.",
+    "subcategory": "Color & Display Tech"
+  },
+  {
+    "term": "HLG (Hybrid Log Gamma)",
+    "definition": "HLG is an HDR format jointly developed by the BBC and NHK, designed for efficient broadcast and streaming. It combines log and gamma encoding, enabling compatibility across both HDR and SDR displays without requiring separate mastering or tone mapping processes.",
+    "subcategory": "Color & Display Tech"
+  },
+  {
+    "term": "Restoration Filters",
+    "definition": "Algorithms applied to compressed images to reduce artifacts and improve visual quality. JPEG XL includes Gabor-like transform and edge-preserving filters.",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "Retina Display",
+    "definition": "A trademarked term for Apple’s high-resolution screens. These displays have high enough pixel densities (around twice that of a standard display) that at typical viewing distances, individual pixels become indistinguishable to the human eye. As a result, Retina displays offer sharper and more detailed images. With its efficient compression, JPEG XL is well-suited for delivering higher pixel density, high-quality images for Retina displays and other high-resolution screens.",
+    "subcategory": "Color & Display Tech"
+  },
+  {
+    "term": "RGB (Red, Gree, Blue)",
+    "definition": "An additive color model where different intensities of red, green, and blue light are combined to create a wide range of colors. These three primary colors of light are combined in various proportions to produce a spectrum of colors that we perceive. RGB is the foundation for color creation on most electronic displays, including TVs, monitors, and smartphones.",
+    "subcategory": "Color & Display Tech"
+  },
+  {
+    "term": "RGB Color Space",
+    "definition": "A color space used to represent colors based on combinations of red, green, and blue. Multiple RGB color spaces exist, depending on the color gamut, white point, and transfer function. Examples include sRGB, Display P3, DCI-P3, Rec.709, Rec.2020, ProPhoto, and Adobe RGB (1998).",
+    "subcategory": "Color & Display Tech"
+  },
+  {
+    "term": "ROI (Region-of-interest) Decoding",
+    "definition": "The ability to decode only specific areas within an image, improving efficiency for tasks like zooming on gigapixel images. JPEG XL supports cropped decoding.",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "SSIMULACRA2",
+    "definition": "An open source, perceptual metric used to evaluate the quality of images. It’s considered a reliable measure of how similar a compressed image appears to the original, focusing on aspects humans perceive visually. It was developed by the JPEG XL team to help deliver optimal compression results. It bests some of the older measures like DSSIM, PSNR, and Butteraugli by more closely representing how a human would judge the quality of an image.",
+    "subcategory": "Quality & Metrics"
+  },
+  {
+    "term": "Subsampling",
+    "definition": "Reducing the resolution of chroma channels (color information) compared to the luma channel (brightness) for smaller file sizes to better match how our eyes perceive such information. Most older compression algorithms make use of some type of subsampling, as it provides a simple (though somewhat blunt) way to remove image information. The most common forms of chroma subsampling are 4:2:0, which applies 2x downsampling to the chroma channels, and 4:2:2, which applies the 2× downsampling only horizontally but not vertically. JPEG XL supports chroma subsampling for the purpose of lossless JPEG recompression, but it does not use it when encoding new images from pixels. Chroma subsampling causes artifacts like color fringing, darkening of red or blue details, and blurring of colorful high-frequency information like colored text. The advanced entropy coding of JPEG XL makes chroma subsampling redundant as a coding tool; instead, high-frequency chroma information can be discarded selectively by an encoder, avoiding visible artifacts.",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "VarDCT (Variable Block-size DCT)",
+    "definition": "A more advanced version of DCT used in JPEG XL that allows for a more precise fit to image features, improving compression efficiency compared to the fixed 8×8 block size used in JPEG. Instead of using a fixed block size, different block sizes ranging from 2×2 to 256×256 can be used in order to better match the image content, avoiding artifacts where needed and improving compression density where possible. Additionally, the quantization factors are also not uniform for the entire image, but can be locally adjusted, allowing adaptive quantization which helps to ensure consistent visual quality.",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "Visually lossless",
+    "definition": "A term used for lossy compression that aims to produce an image that is indistinguishable from the original to the human eye. JPEG XL can achieve visually lossless compression at significantly smaller file sizes compared to JPEG. SSIMULACRA2 scores above 90 are considered visually lossless.",
+    "subcategory": "Compression"
+  },
+  {
+    "term": "WebP",
+    "definition": "Introduced in 2010 by Google, WebP is an image format optimized for web usage. It supports both lossy and lossless compression, as well as animation and alpha transparency, but not HDR or high bit depth images since it is limited to 8-bit precision. Its lossy compression has limited fidelity compared to even JPEG, since the format requires obligatory 4:2:0 chroma subsampling and its YCbCr matrix is using a limited range (as opposed to JPEG which uses full range).",
+    "subcategory": "Formats"
+  },
+  {
+    "term": "Wide Color Gamut (WCG)",
+    "definition": "A color gamut that corresponds to a larger volume of colors than the standard color gamut of sRGB or Rec.709. This allows reproduction of more vivid, saturated colors. Examples of color spaces with a wide color gamut are Display P3, Adobe RGB (1998), ProPhoto (ROMM), and Rec.2020. If the color gamut is significantly wider than the standard gamut, a higher bit depth will be required in order to have enough precision to avoid artifacts like color banding.",
+    "subcategory": "Color & Display Tech"
+  },
+  {
+    "term": "XYB",
+    "definition": "A color space designed for use with the JPEG XL. It is an LMS-based color model inspired by the human visual system, facilitating perceptually uniform quantization. It uses a gamma of 3 for computationally efficient decoding. X is derived from the difference between L and M, Y is an average of L and M (behaves similarly to luminance), and B is derived from the S (‘blue’) channel.",
+    "subcategory": "Color & Display Tech"
+  }
+]
