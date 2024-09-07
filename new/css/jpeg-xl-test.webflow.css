@@ -1818,8 +1818,6 @@ blockquote {
 }
 
 .image-8 {
-  background-color: var(--white);
-  border: 1px #000;
   width: 100%;
   padding: 3rem;
 }
