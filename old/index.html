@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>JPEG XL</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="http://jpegxl.info/" />
+        <meta property="og:title" content="JPEG XL" />
+        <meta property="og:description" content="Community home page for the JPEG XL image format and libjxl" />
+        <meta property="og:image" content="http://jpegxl.info/jxl.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta itemprop="image" content="jxl.png" />
+        <meta name="keywords" content="libjxl, jxl, jpeg, jpeg-xl">
+        <meta name="color-scheme" content="light dark" />
+        <style>
+            h1 { margin-bottom: 0.2em; margin-top: 0.4em; font-family: 'Muli', sans-serif; font-size: 80px; font-weight: 700; font-variant: small-caps; text-align: center; color: #5eb4b2; text-shadow: 1px 1px 5px black;}
+            h2 { margin-bottom: 0.3em; margin-top: 0em; padding-top: 0.4em;  font-family: 'Muli', sans-serif; font-size: 40px; font-weight: 200; font-variant: small-caps; text-align: center; letter-spacing: -0.015em; color: #5eb4b2; }
+            body { display: flex; justify-content: center; flex-wrap: wrap; background: #191611; align-items: flex-start; padding: 0; margin: 0; color: #888; }
+            .boxes { display: flex; justify-content: flex-begin; flex-wrap: wrap; padding: 0; max-width: 100%; }
+            .box {
+                width: 100%;
+                margin: auto;
+                text-align: justify;
+                color: white;
+                font-family: sans-serif;
+                hyphens: auto;
+            }
+            code {
+                hyphens: none;
+            }
+            .light { display: none; }
+            .dark { display: block; }
+            @media screen and (prefers-color-scheme: light) {
+                body { background: #f9f0e9; }
+                .box { color: black; }
+                .light { display: block; }
+                .dark { display: none; }
+            }
+            .bigbox {
+                width: 100%;
+            }
+            .vcenter { margin: auto; }
+            a { font-weight: bold; text-decoration: none; color: #5eb4b2; }
+            a:hover { text-decoration: underline; }
+            p { padding: 0 3em; }
+            li { text-align: left; }
+            ul { list-style-type: square; padding-right: 2em;}
+            @media screen and (min-width: 500px) { .boxes { width: 90%; } }
+            @media screen and (min-width: 700px) {
+                .boxes { width: 80%; }
+                .p { padding: 0 2.5em; }
+            }
+            @media screen and (min-width: 850px) {
+                p { padding: 0 2em; }
+                .box { width: 50%; min-height: 24vw; }
+                .boxes { width: 100%; }
+            }
+            @media screen and (min-width: 1100px) { .boxes { width: 95%; } }
+            @media screen and (min-width: 1250px) { .boxes { width: 90%; } }
+            @media screen and (min-width: 1400px) {
+                .boxes { width: 85%; }
+                .box { width: 33.3333333333%; min-height: 22vw; }
+                .bigbox { width: 50%; }
+            }
+            @media screen and (min-width: 1600px) {
+                .boxes { width: 80%; }
+                .box { min-height: 20vw; }
+            }
+            @media print {
+                .box { color: black; background: none; width: 33.3333%; font-size: 8pt; font-family: Times, serif; }
+                h1 { font-size: 50pt; margin-top: 10pt; margin-bottom: 0;}
+                h2 { font-size: 32pt; margin-top: 30pt; }
+                h3 { font-size: 20pt; }
+                a { color: #000; text-decoration: underline #008 solid; font-weight: normal; }
+                .boxes { width: 100%; }
+                body { background: none; }
+                h2 { border: 0; margin: 0; padding-top: 0; }
+                h1 { border: 0; }
+                p { padding: 0 1em; }
+                .light { display: block; }
+                .dark { display: none; }
+                .ambigram { animation: none; }
+                img {
+                    page-break-before: auto;
+                    page-break-after: auto;
+                    page-break-inside: avoid;
+                    display: block;
+                }
+            }
+            .ambigram {
+                animation: flip 20s linear infinite;
+                max-width: 60vw;
+            }
+            @keyframes flip {
+                0% { transform: rotate(-5deg); }
+                45% { transform: rotate(15deg); }
+                50% { transform: rotate(175deg); }
+                95% { transform: rotate(195deg); }
+                100% { transform: rotate(355deg); }
+            }
+
+        </style>
+        <link href="https://fonts.googleapis.com/css2?family=Muli:wght@200;700&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/svg" href="jxl.svg">
+    </head>
+    <body>
+        <div class="boxes">
+            <div class="box"><div class="vcenter">
+                <div style="text-align:center">
+                    <img src="jxl.svg" alt="JPEG XL logo (jxl ambigram) by Boaz Lederer" width="40%" class="ambigram">
+                </div>
+                <p>
+                    Welcome to the <a href="https://jpeg.org/jpegxl">JPEG XL</a> and <a href="https://github.com/libjxl/libjxl">libjxl</a> community website.
+                    If you don't know what JPEG XL is, <a href="why-jxl.html">check out its key advantages!</a>
+                </p>
+                <p>
+                    Want to update this site? <a href="https://github.com/jxl-community/jxl-community.github.io">Make a pull request!</a>
+                </p>
+            </div></div>
+            <div class="box">
+                <div style="text-align:center">
+                    <picture>
+                        <source srcset="logo.jxl" type="image/jxl">
+                        <img src="fallbacklogo.jpg" alt="JPEG XL logo / browser support test" width="95%">
+                    </picture>
+                </div>
+            </div>
+            <div class="box"><div class="vcenter">
+                <h2>JPEG XL?</h2>
+                <p>
+                    JPEG XL (.jxl) is the next-generation, general-purpose image compression codec by the JPEG committee.
+                    It was based on <a href="https://github.com/google/pik">Google's Pik</a> proposal
+                    and <a href="https://github.com/cloudinary/fuif">Cloudinary's FUIF</a> proposal
+                    (which itself was based on <a href="http://flif.info">FLIF</a>).
+                    But JPEG XL has become much more than 'just' the sum of Pik and FUIF...
+                </p><p>
+                    <a href="https://jpeg.org/jpegxl">Official JPEG XL website</a>
+                    | <a href="https://www.reddit.com/r/jpegxl">Reddit</a>
+                    | <a href="https://discord.gg/DqkQgDRTFu">Discord</a>
+                </p><p>
+                    Media type (formerly known as MIME type): <code>image/jxl</code><br>
+                    <a href="test-page">Test page to check browser support</a>
+                </p><p>
+                    <a href="art">JXL Art!</a> Beauty in a handful of bytes.
+                </p>
+            </div></div>
+            <div class="box"><div class="vcenter">
+                <h2>Key features</h2>
+                <ul>
+                    <li><a href="https://cloudinary.com/blog/what_to_focus_on_in_image_compression_fidelity_or_appeal">High-fidelity</a> lossy image compression</li>
+                    <li><a href="https://docs.google.com/spreadsheets/d/1ju4q1WkaXT7WoxZINmQpf4ElgMD2VMlqeDN2DuZ6yJ8/edit?usp=sharing">Best lossless</a> image compression</li>
+                    <li><a href="https://youtu.be/UphN1_7nP8U">Progressive decoding</a></li>
+                    <li><a href="https://cloudinary.com/blog/legacy_and_transition_creating_a_new_universal_image_codec">Lossless JPEG transcoding</a></li>
+                    <li>Designed for both photographic and synthetic images</li>
+                    <li>Fast software encoding and decoding</li>
+                    <li>Full support for wide gamut and HDR</li>
+                    <li>Perceptually optimizing reference encoder</li>
+                    <li><a href="https://github.com/libjxl/libjxl/blob/main/LICENSE">FOSS and royalty-free</a></li>
+                </ul>
+            </div></div>
+            <div class="box"><div class="vcenter">
+                <h2>Compression</h2>
+                <ul>
+                    <li>Lossy: about 60% smaller than JPEG for same visual quality</li>
+                    <li>Lossless JPEG transcoding: about 20% smaller</li>
+                    <li>Lossless: about 35% smaller than PNG (50% smaller for HDR)</li>
+                </ul>
+                <p>
+                    <a href="https://eclipseo.github.io/image-comparison-web">Compare with your own eyes (by Eclipseo)</a><br>
+                    <a href="https://storage.googleapis.com/demos.webmproject.org/webp/cmp/index.html">Comparisons by WebP2 team</a><br>
+                    Try it: <a href="https://squoosh.app">Squoosh.app</a>
+                </p>
+            </div></div>
+            <div class="box"><div class="vcenter">
+                <h2>Software</h2>
+                <ul>
+                    <li><a href="https://github.com/libjxl/libjxl">JPEG XL C++ reference implementation</a> (libjxl)
+                        <a href="https://artifacts.lucaversari.it/libjxl/libjxl/latest/">(nightly dev builds)</a>
+                    </li>
+                    <li><a href="https://github.com/Traneptora/jxlatte">JPEG XL Java decoder implementation</a> (jxlatte)</li>
+                    <li><a href="https://github.com/tirr-c/jxl-oxide">JPEG XL Rust decoder implementation</a> (jxl-oxide)</li>
+                    <li><a href="https://github.com/awxkee/jxl-coder">JPEG XL C/C++ decode and encode implementation for Android</a> (jxl-coder)</li>
+                    <li><a href="https://www.apple.com/safari/">Safari</a>: supported since version 17 Beta</li>
+                    <li>
+                        <a href="https://www.google.com/chrome">Chrome</a>: behind a flag since M91, removed since M110.
+                        An <a href="https://chrome.google.com/webstore/detail/jpeg-xl-viewer/bkhdlfmkaenamnlbpdfplekldlnghchp">add-on</a> is available.
+                    </li>
+                    <li>
+                        <a href="https://www.mozilla.org/firefox">Firefox</a>: behind a flag in Nightly since version 90.
+                        An <a href="https://addons.mozilla.org/firefox/addon/jxl">add-on</a> is available.
+                    </li>
+                    <li><a href="https://thorium.rocks/">Thorium</a>: enabled by default since M98</li>
+                    <li><a href="https://www.microsoft.com/edge">Edge</a>: behind a flag since version 91, removed since version 110</li>
+                    <li><a href="https://www.opera.com">Opera</a>: behind a flag since version 77, removed since version 96</li>
+                    <li><a href="https://www.palemoon.org">Pale Moon</a>: supported since version 31.4.0</li>
+                    <li><a href="https://www.waterfox.net">Waterfox</a>: supported since version G5.1.2</li>
+                    <li><a href="https://imagemagick.org">ImageMagick</a>: since version 7.0.10-54</li>
+                    <li>A <a href="https://github.com/niutech/jxl.js">JavaScript Polyfill</a>: from the sources of <a href='https://squoosh.app'>Squoosh</a></li>
+                    <li><a href="https://libvips.github.io/libvips">libvips</a>: since version 8.11</li>
+                    <li><a href="https://ffmpeg.org">FFmpeg</a>: since version 5.1</li>
+                    <li><a href="https://www.gimp.org">GIMP</a>: since version 2.10.32, export support since version 2.10.34</li>
+                    <li><a href="https://krita.org">Krita</a>: since version 5.1.0</li>
+                    <li><a href="https://www.darktable.org">darktable</a>: since version 4.2.0</li>
+                    <li><a href="https://helpx.adobe.com/il_en/camera-raw/using/hdr-output.html">Adobe Camera Raw 15</a></li>
+                    <li><a href="https://helpx.adobe.com/lightroom-classic/help/hdr-output.html">Adobe Lightroom Classic 13</a></li>
+                    <li><a href="https://affinity.serif.com">Affinity Photo/Designer 2</a></li>
+                    <li><a href="https://github.com/JacobDev1/xl-converter">XL Converter</a></li>
+                    <li><a href="https://github.com/T8RIN/ImageToolbox">Image Toolbox</a>: supported since version 2.6.0</li>
+                    <li><a href="https://apps.apple.com/app/jpeg-xl-toolbox/id6470681357">JPEG XL Toolbox by SUIKA LTD</a></li>
+                    <li><a href="https://github.com/libjxl/libjxl/blob/main/doc/software_support.md">[ More... ]</a>
+                </ul>
+            </div></div>
+            <div class="box"><div class="vcenter">
+                <h2>Blog posts</h2>
+                <ul>
+                    <li><a href="https://cloudinary.com/blog/jpeg-xl-and-the-pareto-front">JPEG XL and the Pareto Front</a> (February 2024)</li>
+                    <li><a href="https://cloudinary.com/blog/the-case-for-jpeg-xl">The Case for JPEG XL</a> (November 2022)</li>
+                    <li><a href="https://opensource.googleblog.com/2021/09/using-saliency-in-progressive-jpeg-xl-images.html">Using Saliency in progressive JPEG XL images</a> (September 2021)</li>
+                    <li><a href="https://cloudinary.com/blog/time_for_next_gen_codecs_to_dethrone_jpeg">Time for Next-Gen Codecs to Dethrone JPEG</a> (February 2021)</li>
+                    <li><a href="https://cloudinary.com/blog/legacy_and_transition_creating_a_new_universal_image_codec">Legacy and Transition: Creating a New Universal Image Codec</a> (January 2021)</li>
+                    <li><a href="https://cloudinary.com/blog/improve_the_web_experience_with_progressive_image_decoding">Improve the Web Experience With Progressive Image Decoding</a> (January 2021)</li>
+                    <li><a href="https://cloudinary.com/blog/what_to_focus_on_in_image_compression_fidelity_or_appeal">What to Focus on in Image Compression: Fidelity Or Appeal</a> (December 2020)</li>
+                    <li><a href="https://cloudinary.com/blog/cloudinary_supports_jpeg_xl">Cloudinary supports JPEG XL</a> (November 2020)</li>
+                    <li><a href="https://cloudinary.com/blog/how_jpeg_xl_compares_to_other_image_codecs">How JPEG XL compares to other image codecs</a> (May 2020)</li>
+                    <li>FUIF: <a href="https://cloudinary.com/blog/introducing_fuif_responsive_images_by_design">Introducing FUIF</a>,
+                            <a href="https://cloudinary.com/blog/fuif_why_do_we_need_a_new_image_file_format">Why another image format?</a>,
+                            <a href="https://cloudinary.com/blog/fuif_new_legacy_friendly_image_file_format">Legacy friendliness</a> (December 2018)</li>
+                </ul>
+            </div></div>
+            <div class="box"><div class="vcenter">
+                <h2>Presentations</h2>
+                <ul>
+                    <li><a href="https://docs.google.com/presentation/d/1LlmUR0Uoh4dgT3DjanLjhlXrk_5W2nJBDqDAMbhe8v8/edit?usp=sharing">JPEG XL overview</a> (slide deck is kept up-to-date)</li>
+                    <li><a href="http://ds.jpeg.org/whitepapers/jpeg-xl-whitepaper.pdf">JPEG XL White Paper</a>, January 2021</li>
+                    <li><a href="https://youtu.be/t63DBrQCUWc">JPEG XL: The Next Generation "Alien Technology From The Future"</a>, ImageReady, October 2020. </li>
+                    <li><a href="https://youtu.be/YsbsKimR-Fw">JPEG XL: An Update</a>, ImageReady 1.2, October 2021.</li>
+                    <li><a href="https://youtu.be/RYJf7kelYQQ">Next-generation of Image Formats for the Web</a>, ImageCon, May 2019</li>
+                </ul>
+            </div></div>
+            <div class="box"><div class="vcenter">
+                <h2>Contributors</h2>
+                <p>
+                    The following people made key contributions to the JPEG XL project and libjxl:
+                    Jyrki Alakuijala,
+                    Luca Versari,
+                    Jon Sneyers,
+                    Zoltan Szabadka,
+                    Jan Wassenberg,
+                    Lode Vandevenne,
+                    Sami Boukortt,
+                    Alex Deymo,
+                    Alexander Rhatushnyak,
+                    Evgenii Kliuchnikov,
+                    Moritz Firsching,
+                    Thomas Fischbacher,
+                    Martin Bruse,
+                    Renata Khasanova,
+                    Robert Obryk,
+                    Sebastian Gomez-Gonzalez,
+                    Iulia-Maria Comșa,
+                    Krzysztof Potempa,
+                    Pieter Wuille.
+                </p>
+                <p>
+                    We would also like to acknowledge the following persons among JPEG experts who played a role in the development of the JPEG XL standard:
+                    Jan De Cock,
+                    Touradj Ebrahimi,
+                    Walt Husak,
+                    Andy Kuzma,
+                    Fernando Pereira,
+                    Antonio Pinheiro,
+                    Thomas Richter,
+                    Peter Schelkens,
+                    Takaaki Ishikawa,
+                    Seungcheol Choi,
+                    Oh-Jin Kwon,
+                    Gary Sullivan,
+                    Evgeniy Upenik,
+                    Osamu Watanabe.
+                </p>
+            </div></div>
+            <div class="bigbox">
+                <h2>Comparison table</h2>
+                <div style="text-align:center">
+                    <a href="https://cloudinary.com/blog/time_for_next_gen_codecs_to_dethrone_jpeg">
+                    <picture>
+                        <source srcset="comparison.jxl" type="image/jxl">
+                        <source srcset="comparison.webp" type="image/webp">
+                        <img src="comparison.png" alt="Battle of the Codecs: a comparison of JPEG, PNG, J2K, WebP, HEIC, AVIF, and JXL" style="max-height: 100vh; max-width: 100%">
+                    </picture>
+                    </a>
+                </div>
+            </div>
+            <div class="bigbox">
+                <h2>Codec architecture</h2>
+                <img src="jxl-architecture.svg" width="100%" alt="JPEG XL codec architecture diagram" style="max-height: 100vh">
+            </div>
+        </div>
+    </body>
+</html>
