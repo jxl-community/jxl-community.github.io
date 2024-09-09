@@ -1443,7 +1443,12 @@ blockquote {
   z-index: 1;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  background-image: url('../images/kamran-abdullayev-black-background-unsplash.jxl'), url('../images/kamran-abdullayev-black-background-unsplash.webp');
+  background-image: image-set(
+    url('../images/kamran-abdullayev-black-background-unsplash.jxl')
+    type("image/jxl"),
+    url('../images/kamran-abdullayev-black-background-unsplash.webp');
+    type("image/webp"));
+  background-image: , url('../images/kamran-abdullayev-black-background-unsplash.webp');
   background-position: 50% 0;
   background-size: cover;
   flex-flow: column;
