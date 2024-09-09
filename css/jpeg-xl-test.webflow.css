@@ -2431,7 +2431,6 @@ blockquote {
   height: auto;
   margin-top: 0;
   display: flex;
-  position: sticky;
   inset: 0 0% auto;
 }
 
@@ -2518,7 +2517,6 @@ blockquote {
   grid-column-gap: 4rem;
   grid-row-gap: 4rem;
   flex-flow: row;
-  align-items: stretch;
   width: 100%;
   max-width: 1200px;
   height: auto;
@@ -5492,8 +5490,6 @@ blockquote {
     grid-column-gap: 2rem;
     grid-row-gap: 2rem;
     flex-flow: column;
-    padding-left: 3rem;
-    padding-right: 2rem;
   }
 
   .navbar-container-menu-top {
@@ -6291,9 +6287,6 @@ blockquote {
   }
 
   .container-navbar-content {
-    padding-top: 2rem;
-    padding-bottom: 2.5rem;
-    padding-left: 3rem;
   }
 
   .navbar-container-menu-top {
@@ -6917,7 +6910,6 @@ blockquote {
   .container-navbar-content {
     grid-column-gap: 1.5rem;
     grid-row-gap: 1.5rem;
-    padding: 2rem 1.5rem;
   }
 
   .navbar-container-menu-top {
