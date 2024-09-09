@@ -4240,7 +4240,6 @@ blockquote {
 
   .logo-home-large {
     border-radius: var(--radius--xxlarge);
-    box-shadow: 0 12px 32px 8px var(--brand--blue--700);
     width: 250px;
     height: auto;
     position: relative;
