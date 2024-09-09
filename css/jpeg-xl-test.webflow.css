@@ -2609,17 +2609,6 @@ blockquote {
   display: grid;
 }
 
-.container-column-vertical {
-  grid-column-gap: .5rem;
-  grid-row-gap: .5rem;
-  flex-flow: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
-  height: 100%;
-  display: flex;
-}
-
 .container-column-vertical.fullspan {
   justify-content: space-between;
   width: 100%;
@@ -5528,7 +5517,6 @@ blockquote {
     flex-flow: column;
     justify-content: flex-start;
     align-items: flex-start;
-    width: 100%;
     height: auto;
     display: flex;
   }
