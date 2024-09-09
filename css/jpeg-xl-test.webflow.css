@@ -589,8 +589,6 @@ blockquote {
   min-height: 100vh;
   margin-top: 0;
   padding-top: 7rem;
-  display: block;
-  position: absolute;
   inset: 0% 0% auto;
 }
 
@@ -2433,7 +2431,6 @@ blockquote {
   height: auto;
   margin-top: 0;
   display: flex;
-  position: sticky;
   inset: 0 0% auto;
 }
 
@@ -2511,7 +2508,6 @@ blockquote {
   margin-top: 0;
   padding-top: 0;
   padding-bottom: 0;
-  display: none;
   position: relative;
   top: 0;
   overflow: hidden;
@@ -2521,12 +2517,10 @@ blockquote {
   grid-column-gap: 4rem;
   grid-row-gap: 4rem;
   flex-flow: row;
-  align-items: stretch;
   width: 100%;
   max-width: 1200px;
   height: auto;
   min-height: 24px;
-  padding: 3rem 4rem;
   display: flex;
 }
 
@@ -2613,17 +2607,6 @@ blockquote {
   grid-template-columns: 1fr .25fr 1fr;
   grid-auto-columns: 1fr;
   display: grid;
-}
-
-.container-column-vertical {
-  grid-column-gap: .5rem;
-  grid-row-gap: .5rem;
-  flex-flow: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
-  height: 100%;
-  display: flex;
 }
 
 .container-column-vertical.fullspan {
@@ -3715,8 +3698,6 @@ blockquote {
     height: auto;
     min-height: 100dvh;
     padding-top: 7rem;
-    display: block;
-    position: absolute;
     inset: 0% 0% auto;
   }
 
@@ -4276,6 +4257,10 @@ blockquote {
     padding-top: 14rem;
     padding-bottom: 0;
     position: relative;
+  }
+
+  .section-jpeg-xl-hero.gradient-bottom {
+    background-size: 100%;
   }
 
   .image-wave-2560 {
@@ -5498,8 +5483,6 @@ blockquote {
     grid-column-gap: 2rem;
     grid-row-gap: 2rem;
     flex-flow: column;
-    padding-left: 3rem;
-    padding-right: 2rem;
   }
 
   .navbar-container-menu-top {
@@ -5538,7 +5521,6 @@ blockquote {
     flex-flow: column;
     justify-content: flex-start;
     align-items: flex-start;
-    width: 100%;
     height: auto;
     display: flex;
   }
@@ -6297,9 +6279,6 @@ blockquote {
   }
 
   .container-navbar-content {
-    padding-top: 2rem;
-    padding-bottom: 2.5rem;
-    padding-left: 3rem;
   }
 
   .navbar-container-menu-top {
@@ -6923,7 +6902,6 @@ blockquote {
   .container-navbar-content {
     grid-column-gap: 1.5rem;
     grid-row-gap: 1.5rem;
-    padding: 2rem 1.5rem;
   }
 
   .navbar-container-menu-top {

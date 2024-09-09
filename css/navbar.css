@@ -1,0 +1,117 @@
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1em;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+}
+
+#navbar-dropdown {
+  display: none;
+}
+
+.container-navbar-dropdown-content {
+  display: none;
+  position: absolute;
+  top: 7rem;
+}
+
+@media screen and (max-width: 991px) {
+  .container-navbar-dropdown-content {
+    top: 6rem;
+  }
+}
+@media screen and (max-width: 767px) {
+  .container-navbar-dropdown-content {
+    top: 5rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .container-navbar-dropdown-content {
+    top: 5rem;
+  }
+}
+
+#navbar-dropdown:checked ~ .container-navbar-dropdown-content {
+  display: flex;
+  animation: fadein 0.2s;
+}
+
+.container-navbar-content {
+  position: relative;
+  align-items: center;
+}
+
+.button {
+  cursor: pointer;
+}
+
+.navbar-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1em;
+}
+
+#navbar-dropdown:checked ~ * .navbar-toggle::after {
+  content: "close";
+}
+#navbar-dropdown:not(:checked) ~ * .navbar-toggle::after {
+  content: "menu";
+}
+
+.navbar-dropdown-content {
+  width: 100%;
+  padding: 2em;
+  display: flex;
+  flex-direction: row;
+  gap: 3em;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+label.material-icons {
+  margin-bottom: 0;
+}
+
+.container-column-vertical {
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+  flex-direction: column;
+  display: flex;
+  min-width: 12em;
+  flex: 1;
+}
+
+.container-column-vertical > a {
+  font-weight: 400;
+  color: var(--text--color--text-black);
+  font-family: Barlow, sans-serif;
+  line-height: 2em;
+  padding: 0 1em;
+  font-size: 1rem;
+}
+
+.container-column-vertical > a:hover {
+  color: var(--base--white);
+  font-weight: 500;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translatey(-4em);
+  }
+
+  to {
+    opacity: 1;
+    transform: translatey(0);
+  }
+}
