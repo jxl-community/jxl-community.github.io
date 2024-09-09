@@ -4278,6 +4278,10 @@ blockquote {
     position: relative;
   }
 
+  .section-jpeg-xl-hero.gradient-bottom {
+    background-size: 100%;
+  }
+
   .image-wave-2560 {
     width: 100%;
     height: auto;
