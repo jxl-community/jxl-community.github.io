@@ -82,8 +82,12 @@ label.material-icons {
 }
 
 .container-column-vertical {
-  max-width: 0;
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+  flex-direction: column;
+  display: flex;
   min-width: 12em;
+  flex: 1;
 }
 
 .container-column-vertical > a {
