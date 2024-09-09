@@ -1443,13 +1443,6 @@ blockquote {
   z-index: 1;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  background-image: image-set(
-    url('../images/kamran-abdullayev-black-background-unsplash.jxl')
-    type("image/jxl"),
-    url('../images/kamran-abdullayev-black-background-unsplash.webp')
-    type("image/webp"));
-  background-position: 50% 0;
-  background-size: cover;
   flex-flow: column;
   justify-content: flex-start;
   align-items: center;
@@ -1458,22 +1451,18 @@ blockquote {
   min-height: 100px;
   margin-top: -7rem;
   margin-bottom: 0;
-  padding-top: 14rem;
-  padding-bottom: 0;
   display: flex;
   position: relative;
-  overflow: hidden;
 }
 
 .section-jpeg-xl-hero.gradient-bottom {
-  background-image: linear-gradient(180deg, #18191b00 55%, var(--page-black) 95%), background-image: image-set(
+  background-image: linear-gradient(180deg, #18191b00 55%, var(--page-black) 95%), image-set(
     url('../images/kamran-abdullayev-black-background-unsplash.jxl')
     type("image/jxl"),
-    url('../images/kamran-abdullayev-black-background-unsplash.webp');
+    url('../images/kamran-abdullayev-black-background-unsplash.webp')
     type("image/webp"));
   background-position: 0 0, 50% 0;
   background-size: auto, cover;
-  padding-top: 12rem;
   overflow: hidden;
 }
 
@@ -2562,11 +2551,6 @@ blockquote {
 
 .body-6 {
   background-color: var(--page-black);
-  background-image: image-set(
-    url('../images/kamran-abdullayev-black-background-unsplash.jxl')
-    type("image/jxl"),
-    url('../images/kamran-abdullayev-black-background-unsplash.webp')
-    type("image/webp"));
   background-position: 50% 0;
   background-size: cover;
 }
