@@ -2562,7 +2562,11 @@ blockquote {
 
 .body-6 {
   background-color: var(--page-black);
-  background-image: url('../images/kamran-abdullayev-black-background-unsplash.jxl'), url('../images/kamran-abdullayev-black-background-unsplash.webp');
+  background-image: image-set(
+    url('../images/kamran-abdullayev-black-background-unsplash.jxl')
+    type("image/jxl"),
+    url('../images/kamran-abdullayev-black-background-unsplash.webp')
+    type("image/webp"));
   background-position: 50% 0;
   background-size: cover;
 }
@@ -3063,7 +3067,11 @@ blockquote {
 }
 
 .section-hero.hero-fullspan-graphic {
-  background-image: url('../images/kamran-abdullayev-black-background-unsplash.jxl'), url('../images/kamran-abdullayev-black-background-unsplash.webp');
+ background-image: image-set(
+    url('../images/kamran-abdullayev-black-background-unsplash.jxl')
+    type("image/jxl"),
+    url('../images/kamran-abdullayev-black-background-unsplash.webp')
+    type("image/webp"));
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -3079,7 +3087,11 @@ blockquote {
 }
 
 .section-hero.hero-fullspan-graphic.gradient-bottom {
-  background-image: linear-gradient(0deg, var(--page-black) 5%, #18191b00 45%), url('../images/kamran-abdullayev-black-background-unsplash.jxl'), url('../kamran-abdullayev-black-background-unsplash.webp');
+  background-image: linear-gradient(0deg, var(--page-black) 5%, #18191b00 45%), image-set(
+    url('../images/kamran-abdullayev-black-background-unsplash.jxl')
+    type("image/jxl"),
+    url('../images/kamran-abdullayev-black-background-unsplash.webp')
+    type("image/webp"));
   background-position: 0 0, 50% 0;
   background-repeat: repeat, no-repeat;
   background-size: auto, cover;
@@ -3088,7 +3100,11 @@ blockquote {
 }
 
 .section-hero.hero-fullspan-graphic.gradient-bottom.news {
-  background-image: linear-gradient(0deg, var(--page-black) 5%, #18191b00 45%), url('../images/kamran-abdullayev-black-background-unsplash.jxl'), url('../images/kamran-abdullayev-black-background-unsplash.webp');
+  background-image: linear-gradient(0deg, var(--page-black) 5%, #18191b00 45%), image-set(
+    url('../images/kamran-abdullayev-black-background-unsplash.jxl')
+    type("image/jxl"),
+    url('../images/kamran-abdullayev-black-background-unsplash.webp')
+    type("image/webp"));
 }
 
 .wrapper-image-example-transparency {
@@ -4256,7 +4272,11 @@ blockquote {
 
   .section-jpeg-xl-hero {
     z-index: 500;
-    background-image: linear-gradient(180deg, #18191b00 55%, var(--page-black) 95%), url('../images/kamran-abdullayev-black-background-unsplash.jxl'), url('../images/kamran-abdullayev-black-background-unsplash.webp');
+    background-image: linear-gradient(180deg, #18191b00 55%, var(--page-black) 95%), image-set(
+    url('../images/kamran-abdullayev-black-background-unsplash.jxl')
+    type("image/jxl"),
+    url('../images/kamran-abdullayev-black-background-unsplash.webp')
+    type("image/webp"));
     color: var(--page-black);
     background-position: 0 0, 50% 0;
     background-size: auto, cover;
@@ -4758,7 +4778,11 @@ blockquote {
   }
 
   .section-hero.hero-fullspan-graphic.gradient-bottom {
-    background-image: linear-gradient(0deg, var(--page-black) 5%, #18191b00 45%), url('../images/kamran-abdullayev-black-background-unsplash.jxl'), url('../images/kamran-abdullayev-black-background-unsplash.webp');
+    background-image: linear-gradient(0deg, var(--page-black) 5%, #18191b00 45%), image-set(
+    url('../images/kamran-abdullayev-black-background-unsplash.jxl')
+    type("image/jxl"),
+    url('../images/kamran-abdullayev-black-background-unsplash.webp')
+    type("image/webp"));
     background-position: 0 0, 50% 0;
     background-size: auto, cover;
   }
