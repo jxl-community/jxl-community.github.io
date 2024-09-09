@@ -20,12 +20,12 @@ JPEG XL uses more advanced compression techniques compared to JPEG. It uses the 
 - Smaller file sizes: This translates to faster loading times for web pages and reduced storage requirements – often up to 65% smaller.
 - Improved image quality: JPEG XL offers better image fidelity than all current compression algorithms.
 - Support for forward-looking features:
-    - lossless compression
-    - visually lossless compression
-    - transparency
-    - animation, layers & thumbnails
-    - web-friendly progressive encoding and decoding
-    - improved color accuracy and color gamut through HDR (high dynamic range) and high bit depth support
+    1. lossless compression
+    2. visually lossless compression
+    3. transparency
+    4. animation, layers & thumbnails
+    5. web-friendly progressive encoding and decoding
+    6. improved color accuracy and color gamut through HDR (high dynamic range) and high bit depth support
 - - -
 
 ### Is JPEG XL replacing JPEG?
