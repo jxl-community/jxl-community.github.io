@@ -12,6 +12,20 @@
   direction: ltr;
 }
 
+nav {
+  position: fixed;
+}
+
+nav.hidden {
+  visibility: hidden;
+  animation: slideout 0.2s;
+}
+
+nav.visible {
+  visibility: visible;
+  animation: slidein 0.2s;
+}
+
 #navbar-dropdown {
   display: none;
 }
@@ -117,5 +131,29 @@ label.material-icons {
   to {
     opacity: 1;
     transform: translatey(0);
+  }
+}
+
+@keyframes slideout {
+  from {
+    transform: translatey(0em);
+    visibility: visible;
+  }
+
+  to {
+    transform: translatey(-100%);
+    visibility: hidden;
+  }
+}
+
+@keyframes slidein {
+  from {
+    transform: translatey(-100%);
+    visibility: hidden;
+  }
+
+  to {
+    transform: translatey(0em);
+    visibility: visible;
   }
 }
