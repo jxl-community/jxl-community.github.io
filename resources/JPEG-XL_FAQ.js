@@ -54,20 +54,38 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('usage').innerHTML = usageContent;
             document.getElementById('technical').innerHTML = technicalContent;
 
-            // Assign classes and IDs
-            document.querySelectorAll('h3').forEach(el => {
-                el.id = 'question';
-                el.className = 'text-question-faq';
-                const disclosureIcon = document.createElement('span');
-                disclosureIcon.className = 'disclosure-icon';
-                el.appendChild(disclosureIcon);
-            });
 
-            document.querySelectorAll('p, ul').forEach(el => {
-                el.id = 'answer';
-                el.className = 'text-answer-faq';
-                el.style.display = 'none'; // Ensure all answers are hidden by default
-            });
+            let sectionElements = [
+                document.getElementById('general'),
+                document.getElementById('usage'),
+                document.getElementById('technical')
+            ]
+            
+            while (sectionElements.length) {
+                let section = sectionElements.pop();
+                
+                // Assign classes and IDs
+                section.childNodes.forEach(el => {
+                    // ignore text nodes
+                    if (el.nodeType == 3) { return }
+                    
+                    if (el.tagName.toLowerCase() == 'h3') {
+                        el.id = 'question';
+                        el.className = 'text-question-faq';
+                        
+                        const disclosureIcon = document.createElement('span');
+                        disclosureIcon.className = 'disclosure-icon';
+                        el.appendChild(disclosureIcon);
+                        return;
+                    }
+                    
+                    if (['p','ul'].includes(el.tagName.toLowerCase())) {
+                        el.id = 'answer';
+                        el.className = 'text-answer-faq';
+                        el.style.display = 'none'; // answers hidden by default
+                    }
+                });
+            }
         })
         .catch(error => console.error('Error fetching data:', error));
 
@@ -93,16 +111,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (answer.tagName.toLowerCase() === 'hr') {
                 // Always keep hr visible
                 answer.style.display = 'block';
+            }
+            
+            if (answer.style.display === 'none') {
+                answer.style.display = 'block';
+                answer.style.maxHeight = answer.scrollHeight + 'px';
             } else {
-                if (answer.style.display === 'none') {
-                    answer.style.display = 'block';
-                    answer.style.maxHeight = answer.scrollHeight + 'px';
-                } else {
-                    answer.style.maxHeight = '0px';
-                    setTimeout(() => {
-                        answer.style.display = 'none';
-                    }, 300);
-                }
+                answer.style.display = 'none';
+                answer.style.maxHeight = '0px';
             }
         });
     }
