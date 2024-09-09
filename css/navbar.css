@@ -104,6 +104,10 @@ label.material-icons {
   font-weight: 500;
 }
 
+.page-wrapper {
+  position: absolute;
+}
+
 @keyframes fadein {
   from {
     opacity: 0;
