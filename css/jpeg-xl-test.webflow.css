@@ -1464,7 +1464,7 @@ blockquote {
 .section-jpeg-xl-hero.gradient-bottom {
   background-image: linear-gradient(180deg, #18191b00 55%, var(--page-black) 95%), url('../images/kamran-abdullayev-black-background-unsplash.jxl'), url('../images/kamran-abdullayev-black-background-unsplash.webp');
   background-position: 0 0, 50% 0;
-  background-size: cover;
+  background-size: auto, cover;
   padding-top: 12rem;
   overflow: hidden;
 }
@@ -4749,7 +4749,7 @@ blockquote {
   .section-hero.hero-fullspan-graphic.gradient-bottom {
     background-image: linear-gradient(0deg, var(--page-black) 5%, #18191b00 45%), url('../images/kamran-abdullayev-black-background-unsplash.jxl'), url('../images/kamran-abdullayev-black-background-unsplash.webp');
     background-position: 0 0, 50% 0;
-    background-size: cover;
+    background-size: auto, cover;
   }
 
   .container-card-text {
