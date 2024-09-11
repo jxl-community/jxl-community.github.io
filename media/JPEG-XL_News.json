@@ -45,6 +45,23 @@
                 "Adobe DNG"
             ]
         },
+         {
+            "title": "XYB JPEG",
+            "link": "https://giannirosato.com/blog/post/jpegli-xyb/",
+            "date": "2023-07-16",
+            "section": "Blog posts",
+            "Author": "Gianni Rosato",
+            "Publication": "Gianni Rosato Blog",
+            "Summary": "While JXL leads the pack, XYB JPEG outperforms all other JPEG formats and surpasses AVIF at high-fidelity ranges",
+            "Tags": [
+                "JPEG XL",
+                "cjxl",
+                "cjpegli",
+                "XYB color space",
+                "AVIF",
+                "Jpegli"
+            ]
+        },
         {
             "title": "Google’s decision to deprecate JPEG-XL emphasizes the need for browser choice and free formats",
             "link": "https://www.fsf.org/blogs/community/googles-decision-to-deprecate-jpeg-xl-emphasizes-the-need-for-browser-choice-and-free-formats",
