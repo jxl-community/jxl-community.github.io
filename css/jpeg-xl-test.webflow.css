@@ -362,9 +362,9 @@ blockquote {
 .text-xl-light-2.is-centered {
   color: #ffffffa6;
   text-align: center;
-  letter-spacing: -.026em;
+  letter-spacing: -.025em;
   max-width: none;
-  font-size: 20px;
+  font-size: 28px;
   line-height: 1.45em;
 }
 
@@ -2659,7 +2659,7 @@ blockquote {
 }
 
 .wrapper-text.centered.width-rem {
-  max-width: 48rem;
+  max-width: 56rem;
 }
 
 .wrapper-text.gap-2rem {
@@ -3694,7 +3694,7 @@ blockquote {
   }
 
   .text-xl-light-2.is-centered {
-    letter-spacing: -.01em;
+    letter-spacing: -.025em;
     max-width: 1024px;
     font-size: 28px;
     line-height: 1.45em;
@@ -5824,7 +5824,7 @@ blockquote {
 
   .text-xl-light-2.is-centered {
     letter-spacing: 0;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 1.45;
   }
 
