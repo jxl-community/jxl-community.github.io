@@ -71,7 +71,15 @@ While JPEG XL offers numerous benefits, there are some limitations to consider. 
 
 Support for JPEG XL in web browsers is still evolving – many modern browsers offer support, but it’s not yet universally adopted. It’s fully supported in Safari, Thorium, Basilisk, Pale Moon, and Waterfox. Support behind a flag was added in Chromium version 91, but subsequently removed in Chromium version 109. It’s behind a flag in Firefox and Opera. You can check [https://caniuse.com/jpegxl](https://caniuse.com/jpegxl) for the latest browser compatibility information.
 
-Leverage the `<picture>` element and `<source srcset="photo.jxl" type="image/jxl">` to deliver JXL images to browsers that support them, while ensuring fallback for other browsers.
+Leverage the `<picture>` element to deliver JXL images to browsers that support them, while ensuring fallback for other browsers:
+<pre style=display:none>
+<code style=color:white><picture>
+   <source srcset="photo.jxl" type="image/jxl">
+   <source srcset="photo.webp" type="image/webp">
+   <img src="photo.jpg" />
+</picture>
+</code>
+</pre>
 - - -
 
 ### How can I learn more about using JPEG XL?
