@@ -322,6 +322,20 @@
     ],
     "In the News": [
         {
+            "Title": "iPhone 16 Pro Supports JPEG XL Format",
+            "link": "https://www.macrumors.com/2024/09/09/iphone-16-pro-supports-jpeg-xl-format/",
+            "date": "2024-09-09",
+            "Author": "Juli Clover",
+            "Publication": "MacRumors",
+            "Summary": "The iPhone 16 Pro models will support the JPEG XL file format, according to code found in iOS 18..",
+            "Tags": [
+                "JPEG XL",
+                "Rumours",
+                "iOS 18",
+                "Camera Support"
+            ]
+        },
+        {
             "Title": "Mozilla Is Interested In A Rust JPEG-XL Decoder For Firefox & Google Might Develop It",
             "link": "https://www.phoronix.com/news/Mozilla-Interest-JPEG-XL-Rust",
             "date": "2024-09-04",
