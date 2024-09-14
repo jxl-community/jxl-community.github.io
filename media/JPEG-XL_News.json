@@ -332,6 +332,7 @@
                 "JPEG XL",
                 "Rumours",
                 "iOS 18",
+                "iPhone 16 Pro",
                 "Camera Support"
             ]
         },        {
@@ -345,6 +346,22 @@
                 "JPEG XL",
                 "Rumours",
                 "iOS 18",
+                "iPhone 16 Pro",
+                "Camera Support"
+            ]
+        },
+        {
+            "Title": "iPhone 16 Pro to shoot 4K 120fps videos, Camera Button works with third-party apps",
+            "link": "https://www.phoronix.com/news/Mozilla-Interest-JPEG-XL-Rust",
+            "date": "2024-09-06",
+            "Author": "Filipe Espósito",
+            "Publication": "9to5Mac",
+            "Summary": "JPEG XL support rumored for capturing lossy and lossless photos on the iPhone 16 Pro",
+            "Tags": [
+                "JPEG XL",
+                "Rumours",
+                "iOS 18",
+                "iPhone 16 Pro",
                 "Camera Support"
             ]
         },
