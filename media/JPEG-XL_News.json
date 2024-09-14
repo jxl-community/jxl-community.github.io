@@ -15,7 +15,24 @@
                 "AVIF",
                 "WebP"
             ]
-        },       {
+        },
+        {
+            "title": "Level up your images: JPEG XL now supported by Image Optimizer",
+            "link": "https://www.fastly.com/blog/level-up-your-images-jpeg-xl-now-supported-by-image-optimizer/",
+            "date": "2024-07-11",
+            "section": "Blog posts",
+            "Author": "Ping Hu",
+            "Publication": "Fastly",
+            "Summary": "Fastly adds support for JPEG XL in their Image Optimizer Professional platform.",
+            "Tags": [
+                "JPEG XL",
+                "Fastly",
+                "Image Optimizer",
+                "CDN Image Delivery",
+                "WebP"
+            ]
+        },    
+        {
             "title": "JPEG XL and the Pareto Front",
             "link": "https://cloudinary.com/blog/jpeg-xl-and-the-pareto-front",
             "date": "2024-02-28",
