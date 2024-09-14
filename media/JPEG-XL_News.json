@@ -322,12 +322,25 @@
     ],
     "In the News": [
         {
+            "Title": "iPhone 16 Pro lets users capture ProRAW photos in JPEG XL format",
+            "link": "https://9to5mac.com/2024/09/13/iphone-16-pro-lets-users-capture-proraw-photos-in-jpeg-xl-format/",
+            "date": "2024-09-13",
+            "Author": "Filipe Espósito",
+            "Publication": "9to5Mac",
+            "Summary": "Firmware seen by 9to5Mac  for iPhone 16 Pro confirms support for shooting ProRAW photos with JPEG XL compression.",
+            "Tags": [
+                "JPEG XL",
+                "Rumours",
+                "iOS 18",
+                "Camera Support"
+            ]
+        },        {
             "Title": "iPhone 16 Pro Supports JPEG XL Format",
             "link": "https://www.macrumors.com/2024/09/09/iphone-16-pro-supports-jpeg-xl-format/",
             "date": "2024-09-09",
             "Author": "Juli Clover",
             "Publication": "MacRumors",
-            "Summary": "The iPhone 16 Pro models will support the JPEG XL file format, according to code found in iOS 18..",
+            "Summary": "The iPhone 16 Pro models will support the JPEG XL file format, according to code found in iOS 18.",
             "Tags": [
                 "JPEG XL",
                 "Rumours",
