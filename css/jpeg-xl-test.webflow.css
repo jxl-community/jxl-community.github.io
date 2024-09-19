@@ -3656,10 +3656,6 @@ blockquote {
 }
 
 @media screen and (min-width: 1440px) {
-  a {
-    font-size: 1.125rem;
-  }
-
   li {
     font-size: 1.25rem;
   }
@@ -4824,10 +4820,6 @@ blockquote {
 @media screen and (max-width: 991px) {
   p {
     color: var(--text--color--text-white);
-    font-size: 1rem;
-  }
-
-  a {
     font-size: 1rem;
   }
 
