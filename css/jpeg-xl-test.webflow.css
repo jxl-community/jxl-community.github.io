@@ -2924,6 +2924,7 @@ blockquote {
 
 .image-example-animated, .image-example-transparency, .image-example-wide_gamut {
   width: auto;
+  height: auto;
 }
 
 .image-example-comparison {
