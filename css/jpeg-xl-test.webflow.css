@@ -363,7 +363,7 @@ blockquote {
   text-align: center;
   letter-spacing: -.025em;
   max-width: none;
-  font-size: 20px;
+  font-size: 26px;
   line-height: 1.45em;
 }
 
@@ -1053,7 +1053,6 @@ blockquote {
 }
 
 .wrapper-scale_box-animated {
-  border: 1px none var(--white);
   border-radius: 0;
   flex-flow: column;
   justify-content: flex-start;
@@ -1061,6 +1060,8 @@ blockquote {
   width: 100%;
   height: auto;
   display: flex;
+  aspect-ratio: auto; /* we may not need this */
+  object-fit: cover; /* we may not need this */
 }
 
 .section-lossless-compression {
@@ -3932,15 +3933,6 @@ blockquote {
     place-items: start center;
   }
 
-  .wrapper-scale_box-animated {
-    flex-flow: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    height: auto;
-    display: flex;
-  }
-
   .section-lossless-compression, .section-lossless-transcoding {
     padding-top: 0;
     padding-bottom: 0;
@@ -5971,17 +5963,6 @@ blockquote {
     max-width: 480px;
   }
 
-  .wrapper-scale_box-animated {
-    aspect-ratio: auto;
-    object-fit: cover;
-    flex-flow: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    height: auto;
-    display: flex;
-  }
-
   .section-lossless-compression {
     padding: 0;
   }
@@ -6722,12 +6703,6 @@ blockquote {
     place-items: start center;
     width: 100%;
     display: grid;
-  }
-
-  .wrapper-scale_box-animated {
-    aspect-ratio: auto;
-    width: 100%;
-    height: auto;
   }
 
   .section-lossless-compression, .section-lossless-transcoding, .section-wide-gamut-hdr {
