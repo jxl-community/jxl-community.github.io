@@ -1,0 +1,118 @@
+<header>
+  <nav>
+    <input type="checkbox" name="navbar-dropdown" id="navbar-dropdown" />
+    <div class="navbar-top">
+      <div>
+        <.link href={~p"/"}>
+          <img
+            width="63"
+            alt="Jpeg XL Logo"
+            src={~p"/images/Logo-JPEG_XL-horizontal-square-full_color.svg"}
+          />
+        </.link>
+        <div class="navbar-top-items">
+          <label for="navbar-dropdown" class="navbar-toggle material-icons button"></label>
+          <!--
+          <div class="navbar-divider-vertical"></div>
+          <a href="#" class="navbar_link navbar-top w-inline-block"></a>
+          -->
+        </div>
+      </div>
+    </div>
+    <div class="navbar-menu">
+      <div>
+        <div class="navbar-close">
+          <label for="navbar-dropdown" class="navbar-toggle material-icons button"></label>
+        </div>
+        <div class="navbar-content">
+          <div>
+            <div>Resources</div>
+            <.link href={~p"/supported-software"}>Supported Software</.link>
+            <.link href={~p"/battle-of-codecs"}>Battle of the Codecs</.link>
+            <.link href={~p"/faq"}>FAQ</.link>
+            <.link href={~p"/glossary"}>Glossary</.link>
+          </div>
+          <div>
+            <div>Tools</div>
+            <.link href={~p"/distance-vs-effort-visualizer"}>
+              Distance vs. Effort Visualizer
+            </.link>
+            <.link href={~p"/test-page"}>JPEG XL Test Page</.link>
+          </div>
+          <div>
+            <div>About</div>
+            <.link href={~p"/history"}>History</.link>
+            <.link href={~p"/contributors"}>Contributors</.link>
+            <.link href={~p"/photo-credits"}>Photo Credits</.link>
+          </div>
+          <div>
+            <div>Media</div>
+            <.link href={~p"/newsroom"}>Newsroom</.link>
+            <span class="navbar-social-links">
+              <.link href="https://discord.gg/DqkQgDRTFu" target="_blank">
+                <img src="/images/Icon-social-discord-black.svg" loading="lazy" alt="Discord" />
+              </.link>
+              <.link href="https://www.reddit.com/r/jpegxl" target="_blank">
+                <img src="/images/Icon-social-reddit-black.svg" loading="lazy" alt="Reddit" />
+              </.link>
+              <.link href="https://x.com/jpegxl" target="_blank">
+                <img src="/images/Icon-social-x-twitter-black.svg" loading="lazy" alt="X" />
+              </.link>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<main>
+  <%= @inner_content %>
+</main>
+<footer>
+  <.link href={~p"/"}>
+    <img
+      width="63"
+      loading="lazy"
+      alt="JPEG XL Logo"
+      src={~p"/images/Logo-JPEG_XL-vertical-square-full_color.svg"}
+      class="footer-logo"
+    />
+  </.link>
+  <div class="footer-social-links">
+    <.link href="https://discord.gg/DqkQgDRTFu" target="_blank">
+      <img src="/images/Icon-social-discord-black.svg" loading="lazy" alt="Discord" />
+    </.link>
+    <.link href="https://www.reddit.com/r/jpegxl" target="_blank">
+      <img src="/images/Icon-social-reddit-black.svg" loading="lazy" alt="Reddit" />
+    </.link>
+    <.link href="https://x.com/jpegxl" target="_blank">
+      <img src="/images/Icon-social-x-twitter-black.svg" loading="lazy" alt="X" />
+    </.link>
+  </div>
+  <div class="footer-text">
+    <span>©2024 JPEG XL and the JPEG XL Community.</span>
+    <br />
+    <span>
+      Want to contribute to this website?
+      <a href="https://github.com/jxl-community/jxl-community.github.io">
+        Make a pull request!
+      </a>
+    </span>
+    <br />
+    <span>
+      Site created by <a href="https://fractionalxperience.com">Fractional Xperience</a>.
+    </span>
+    <br />
+    <span><a href="old/" class="footer_legal-link">Access to archived website.</a></span>
+    <br />
+    <span>
+      <a href="https://hits.sh/jpegxl.info/">
+        <img
+          alt="Hits"
+          src="https://hits.sh/jpegxl.info.svg?style=plastic&color=3bb6b3"
+          style="width: 3.5em; display: inline; margin-top: 1em;"
+        />
+      </a>
+    </span>
+  </div>
+</footer>

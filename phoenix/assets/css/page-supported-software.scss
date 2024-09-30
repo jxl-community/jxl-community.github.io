@@ -1,0 +1,40 @@
+.section-supported-software {
+  .container-logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3em;
+    justify-content: center;
+    width: 100%;
+
+    img {
+      height: 4em;
+      max-width: 4em;
+      max-height: 4em;
+    }
+
+    .wrapper-logo-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .border-text {
+    text-align: center;
+    border: 1px solid black;
+    width: 100%;
+    border-radius: 1em;
+    padding: 0 2em;
+    color: black;
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+  }
+}

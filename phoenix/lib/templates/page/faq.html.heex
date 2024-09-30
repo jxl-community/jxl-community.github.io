@@ -1,0 +1,54 @@
+<section class="section-hero">
+  <div>
+    <h1>FAQ</h1>
+  </div>
+  <div class="wave">
+    <img src={~p"/images/Ripple-Line2x-50.0s-2560px-371px.svg"} />
+  </div>
+</section>
+
+<section class="section-content section-faq">
+  <input type="radio" name="tab" class="radio-tab" id="tab-radio-general" checked />
+  <input type="radio" name="tab" class="radio-tab" id="tab-radio-usage" />
+  <input type="radio" name="tab" class="radio-tab" id="tab-radio-technical" />
+
+  <div class="tab-labels-outer">
+    <div class="tab-labels">
+      <label class="tab-label tab-label-general" for="tab-radio-general">General</label>
+      <label class="tab-label tab-label-usage" for="tab-radio-usage">Usage</label>
+      <label class="tab-label tab-label-technical" for="tab-radio-technical">Technical</label>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <div class="tab-general">
+      <%= for {{title, content}, i} <- Jpegxl.Faq.general(@conn.assigns) |> Enum.with_index() do %>
+        <div>
+          <input type="checkbox" id={"collapsible-chk-0-#{i}"} class="collapsible-chk" />
+          <label for={"collapsible-chk-0-#{i}"}><%= title %></label>
+          <div class="collapsible-content"><%= content %></div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="tab-usage">
+      <%= for {{title, content}, i} <- Jpegxl.Faq.usage(@conn.assigns) |> Enum.with_index() do %>
+        <div>
+          <input type="checkbox" id={"collapsible-chk-1-#{i}"} class="collapsible-chk" />
+          <label for={"collapsible-chk-1-#{i}"}><%= title %></label>
+          <div class="collapsible-content"><%= content %></div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="tab-technical">
+      <%= for {{title, content}, i} <- Jpegxl.Faq.technical(@conn.assigns) |> Enum.with_index() do %>
+        <div>
+          <input type="checkbox" id={"collapsible-chk-2-#{i}"} class="collapsible-chk" />
+          <label for={"collapsible-chk-2-#{i}"}><%= title %></label>
+          <div class="collapsible-content"><%= content %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
