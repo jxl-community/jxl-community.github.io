@@ -7,9 +7,7 @@ name: Elixir CI
 
 on:
   push:
-    branches: [ "phoenix" ]
-  pull_request:
-    branches: [ "phoenix" ]
+    branches: [ "main" ]
 
 permissions:
   contents: read
