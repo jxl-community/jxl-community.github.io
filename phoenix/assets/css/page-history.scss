@@ -1,0 +1,150 @@
+.section-history {
+  .grid-3col {
+    display: grid;
+    grid-template-columns: 1fr 0.25fr 1fr;
+  }
+
+  .container-photo {
+    border-radius: 100%;
+    height: 5em;
+    width: 5em;
+    overflow: hidden;
+    border: 3px solid var(--white);
+    display: flex;
+    justify-content: center;
+  }
+
+  .photo-round {
+    height: 5em;
+  }
+
+  .number-timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+
+    > div {
+      display: flex;
+      padding: 0.25em 1em;
+      border-radius: 2em;
+      font-weight: 600;
+
+      background: linear-gradient(
+        to bottom,
+        var(--accent--lime--700),
+        var(--accent--lime--700)
+      );
+    }
+  }
+
+  .number-timeline.line::after,
+  .timeline-line::after {
+    content: " ";
+    flex: 1;
+    border-width: 0 0 0 1px;
+    border-style: none none none solid;
+    border-color: gray;
+  }
+
+  .timeline-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 3em;
+  }
+
+  .wrapper-number-timeline {
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 150px;
+    height: 100%;
+    display: flex;
+  }
+
+  .container-content-timeline {
+    grid-column-gap: 0rem;
+    grid-row-gap: 0rem;
+    flex-flow: column;
+    align-items: flex-start;
+    width: 100%;
+    height: auto;
+    min-height: 24px;
+    padding: 2rem;
+    display: flex;
+    gap: 1em;
+  }
+
+  .container-content-timeline.right {
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+    align-items: flex-start;
+  }
+
+  .container-content-timeline.left {
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+    align-items: flex-end;
+  }
+
+  .container-content-timeline.border-1px {
+    border: 1px solid #000;
+    border-radius: 1rem;
+  }
+
+  .container-content-timeline {
+    h3 {
+      margin: 0;
+    }
+
+    h5 {
+      margin: 0;
+      color: var(--brand--teal-bright--600);
+      font-size: 1.4em;
+      font-weight: 600;
+    }
+
+    :first-child {
+      margin-top: 0;
+    }
+
+    :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .wrapper-logo-software {
+    height: 4em;
+    max-width: 14em;
+  }
+
+  .wrapper-logo-software.large {
+    height: 6em;
+  }
+
+  .image-logo-software {
+    height: 100%;
+    width: 100%;
+    object-position: top;
+    object-fit: contain;
+  }
+
+  .container-content-vflex {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  .round-photos {
+    display: flex;
+
+    > :not(:first-child) {
+      margin-left: -1em;
+    }
+  }
+}

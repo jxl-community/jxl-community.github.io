@@ -1,0 +1,46 @@
+.section-history {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2em;
+
+  > div {
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+  }
+
+  .number-timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--page-black);
+    font-weight: 600;
+    font-size: 1.25rem;
+    gap: 1em;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.275rem 1.125rem;
+      border-radius: 999px;
+
+      background-image: linear-gradient(
+        to bottom,
+        var(--accent--lime--700),
+        var(--accent--lime--700)
+      );
+    }
+  }
+
+  .number-timeline.line::after {
+    content: "";
+    position: relative;
+    border-style: none none none solid;
+    border-width: 0 0 0 1px;
+    border-color: var(--white) var(--white) var(--white) #ffffff4d;
+    height: 100%;
+  }
+}
