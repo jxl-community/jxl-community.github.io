@@ -96,7 +96,7 @@
   },
   {
     "term": "Entropy Decoding",
-    "definition": "Procedure which recovers the sequence of symbols from the sequence of bits produced by the entropy encoder",
+    "definition": "Procedure which recovers the sequence of symbols from the sequence of bits produced by the entropy encoder.",
     "subcategory": "Compression"
   },
   {
@@ -116,7 +116,7 @@
   },
   {
     "term": "Fuzz Testing",
-    "definition": "Is an automated software testing method that throws unusual data (i.e. malformed or invalid inputs) at a program, looking for crashes or unexpected behavior. Any glitches point to security risks, performance problems, and other hidden bugs, which can then be corrected. JPEG XL has been widely fuzz tested.",
+    "definition": "An automated software testing method that throws unusual data (i.e. malformed or invalid inputs) at a program, looking for crashes or unexpected behavior. Any glitches point to security risks, performance problems, and other hidden bugs, which can then be corrected. JPEG XL has been widely fuzz tested.",
     "subcategory": "Quality & Metrics"
   },
   {
@@ -136,7 +136,7 @@
   },
   {
     "term": "JND (Just Noticeable Difference)",
-    "definition": "Is the smallest amount that something has to change in order for the difference to be detected 50% of the time. This is the unit used in the Distance parameter of the libjxl encoder for JPEG XL. As a result, the JPEG XL encoder can be configured based on a parameter related to the actual visual quality of the resulting image, as opposed to most other encoders where the configuration is done based on a quantization setting which only poorly correlates with visual quality. This makes JPEG XL more consistent and reliable in practical use cases, since a desired quality target can be selected once and used safely for many images.",
+    "definition": "The smallest amount that something has to change in order for the difference to be detected 50% of the time. This is the unit used in the Distance parameter of the libjxl encoder for JPEG XL. As a result, the JPEG XL encoder can be configured based on a parameter related to the actual visual quality of the resulting image, as opposed to most other encoders where the configuration is done based on a quantization setting which only poorly correlates with visual quality. This makes JPEG XL more consistent and reliable in practical use cases, since a desired quality target can be selected once and used safely for many images.",
     "subcategory": "Quality & Metrics"
   },
   {
@@ -291,7 +291,7 @@
   },
   {
     "term": "XYB",
-    "definition": "A color space designed for use with the JPEG XL. It is an LMS-based color model inspired by the human visual system, facilitating perceptually uniform quantization. It uses a gamma of 3 for computationally efficient decoding. X is derived from the difference between L and M, Y is an average of L and M (behaves similarly to luminance), and B is derived from the S (‘blue’) channel.",
+    "definition": "A color space designed for use with JPEG XL. It is an LMS-based color model inspired by the human visual system, facilitating perceptually uniform quantization. It uses a gamma of 3 for computationally efficient decoding. X is derived from the difference between L and M, Y is an average of L and M (behaves similarly to luminance), and B is derived from the S (‘blue’) channel.",
     "subcategory": "Color & Display Tech"
   }
 ]
