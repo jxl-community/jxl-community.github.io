@@ -20,12 +20,6 @@
   <link href="../images/favicon.png" rel="shortcut icon" type="image/x-icon">
   <link href="../images/webclip.png" rel="apple-touch-icon">
   <style>
-    body {
-      font-family: 'Barlow', sans-serif;
-      background-color: #1e1e1e;
-      color: #ffffff;
-    }
-
     .wrapper {
       text-align: center;
       margin: 20px 0;
@@ -77,17 +71,92 @@
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       cursor: pointer;
-  }
-  
-  .enlarged-image {
+    }
+
+    .enlarged-image {
       display: block;
       max-width: 90vw;
       max-height: 90vh;
       object-fit: contain;
-  }
-  </style>
+    }
+
+    #compute-headroom-button {
+      --x: 50%;
+      --y: 50%;
+      position: relative;
+      margin-top: 20px;
+      padding: .5em 1.9em;
+      color: white;
+      font-family: Barlow, sans-serif;
+      font-size: 18px;
+      text-transform: uppercase;
+      font-weight: 400;
+      cursor: pointer;
+      outline: none;
+      border-radius: 100px;
+      border: 2px solid transparent;
+      background: linear-gradient(#111111, #111111) padding-box, radial-gradient(farthest-corner at var(--x) var(--y), oklch(83.77% 0.1936 191.95), oklch(57.16% 0.2513 261.98)) border-box;
+      transition: all 0.3s ease;
+    }
+
+    #compute-headroom-button:hover {
+      background: linear-gradient(#292929, #222222) padding-box, radial-gradient(farthest-corner at var(--x) var(--y), oklch(83.77% 0.1936 191.95), oklch(57.16% 0.2513 261.98)) border-box;
+    }
+
+    #compute-headroom-button:active {
+      background: linear-gradient(to right, oklch(83.77% 0.1936 191.95), oklch(57.16% 0.2513 261.98)) padding-box, radial-gradient(farthest-corner at var(--x) var(--y), oklch(83.77% 0.1936 191.95), oklch(57.16% 0.2513 261.98)) border-box;
+      color: oklch(13.45% 0 0);
+    }
+
+    .browser-link {
+      cursor: pointer;
+      text-decoration: none;
+      color: oklch(83.77% 0.1936 191.95);
+    }
+    
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 140px;
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 150%;
+      left: 50%;
+      margin-left: -75px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .tooltip .tooltiptext::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #555 transparent transparent transparent;
+    }
+    
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .text-style-small {
+      letter-spacing: .01em;
+    }
   </style>
   <link href="/css/navbar.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -101,8 +170,13 @@
     
             // Check if the factor is a valid number
             if (factor && factor > 0) {
-                let s = "HDR headroom: " + Math.log2(factor).toFixed(3) + 
-                        " (up to " + factor.toFixed(3) + " times SDR white)";
+                // Function to format number and remove trailing zeros
+                function formatNumber(num) {
+                    return parseFloat(num.toFixed(3)).toString();
+                }
+    
+                let s = "HDR headroom: " + formatNumber(Math.log2(factor)) +
+                        " (up to " + formatNumber(factor) + " times SDR white)";
                 document.getElementById("headroom").textContent = s;
             } else {
                 document.getElementById("headroom").textContent = "HDR factor not available or invalid.";
@@ -114,12 +188,12 @@
             console.error("Error getting screen details:", err);
             document.getElementById("headroom").textContent = "Unable to retrieve HDR headroom information.";
         }
-
+    
         // Log factor and ScreenDetails object
         console.log("ScreenDetails object:", sd);
         console.log("HDR headroom factor:", factor);
     }
-</script>
+    </script>
 </head>
 
 <body class="body">
@@ -158,6 +232,7 @@
             </div>
             <a href="/resources/distance-vs-effort-visualizer.html">Distance vs. Effort Visualizer</a>
             <a href="/resources/jpeg-xl-test-page.html">JPEG XL Test Page</a>
+            <a href="/resources/hdr-test-page.html">HDR Test Page</a>
           </div>
           <div class="container-column-vertical">
             <div class="navbar-wrapper-text-section span-with_divider-bottom">
@@ -210,8 +285,10 @@
         <div class="w-layout-blockcontainer container-menu_tabs w-container">
           <div data-figma-id="73:4009" class="size-large-3rem-48px"></div>
           <center>
-            <button onClick="headroom()">Compute headroom</button><br>
-            <div id="headroom">Click the button above (and give permission) to see HDR headroom<br></div>
+            <div id="headroom">Click to give permission to see HDR headroom<br></div>
+            <button id="compute-headroom-button" onClick="headroom()">Compute headroom</button><br><br>
+            <div class="text-style-small">Note this test will run in <span class="browser-link" data-url="chrome://flags/#enable-experimental-web-platform-features" title="Click to copy URL: chrome://flags/#enable-experimental-web-platform-features. Paste into URL bar and select Enable.">Chrome</span> and <span class="browser-link" data-url="edge://flags/#enable-experimental-web-platform-features" title="Click to copy URL: edge://flags/#enable-experimental-web-platform-features. Paste into URL bar and select Enable.">Edge</span> with experimental features enabled.<br>
+              Safari & Firefox do not support this test.</div><br>
             <div class="table-container">
               <table>
                 <tr>
@@ -436,40 +513,77 @@
     type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
     crossorigin="anonymous"></script>
   <script src="/js/webflow.js"></script>
-  <script> 
-    document.addEventListener('DOMContentLoaded', function() {
-        // Create enlarged image container
-        var enlargedContainer = document.createElement('div');
-        enlargedContainer.className = 'enlarged-image-container';
-        enlargedContainer.innerHTML = '<img class="enlarged-image" src="" alt="Enlarged image">';
-        document.body.appendChild(enlargedContainer);
-    
-        var enlargedImg = enlargedContainer.querySelector('.enlarged-image');
-    
-        // Add click event to all images in image-containers
-        var images = document.querySelectorAll('.image-container img');
-        images.forEach(function(img) {
-            img.addEventListener('click', function(event) {
-                event.stopPropagation(); // Prevent the document click event from firing
-                enlargedContainer.style.display = "block";
-                enlargedImg.src = this.src;
-            });
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Create enlarged image container
+      var enlargedContainer = document.createElement('div');
+      enlargedContainer.className = 'enlarged-image-container';
+      enlargedContainer.innerHTML = '<img class="enlarged-image" src="" alt="Enlarged image">';
+      document.body.appendChild(enlargedContainer);
+
+      var enlargedImg = enlargedContainer.querySelector('.enlarged-image');
+
+      // Add click event to all images in image-containers
+      var images = document.querySelectorAll('.image-container img');
+      images.forEach(function (img) {
+        img.addEventListener('click', function (event) {
+          event.stopPropagation(); // Prevent the document click event from firing
+          enlargedContainer.style.display = "block";
+          enlargedImg.src = this.src;
         });
-    
-        // Close the enlarged image when clicking anywhere on the document
-        document.addEventListener('click', function() {
-            if (enlargedContainer.style.display === "block") {
-                enlargedContainer.style.display = "none";
-            }
+      });
+
+      // Close the enlarged image when clicking anywhere on the document
+      document.addEventListener('click', function () {
+        if (enlargedContainer.style.display === "block") {
+          enlargedContainer.style.display = "none";
+        }
+      });
+
+      // Close the enlarged image when pressing the Escape key
+      document.addEventListener('keydown', function (event) {
+        if (event.key === "Escape" && enlargedContainer.style.display === "block") {
+          enlargedContainer.style.display = "none";
+        }
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('compute-headroom-button').onmousemove = e => {
+        const rect = e.target.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        e.target.style.setProperty('--x', `${x}px`);
+        e.target.style.setProperty('--y', `${y}px`);
+      };
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const browserLinks = document.querySelectorAll('.browser-link');
+      
+      browserLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          const url = link.getAttribute('data-url');
+          navigator.clipboard.writeText(url).then(() => {
+            // Create and show tooltip
+            const tooltip = document.createElement('span');
+            tooltip.className = 'tooltiptext';
+            tooltip.textContent = 'Copied!';
+            link.classList.add('tooltip');
+            link.appendChild(tooltip);
+            
+            // Remove tooltip after 2 seconds
+            setTimeout(() => {
+              link.removeChild(tooltip);
+              link.classList.remove('tooltip');
+            }, 2000);
+          });
         });
-    
-        // Close the enlarged image when pressing the Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === "Escape" && enlargedContainer.style.display === "block") {
-                enlargedContainer.style.display = "none";
-            }
-        });
+      });
     });
     </script>
 </body>
+
 </html>
