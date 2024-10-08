@@ -359,7 +359,7 @@ blockquote {
 }
 
 .text-xl-light-2.is-centered {
-  color: #ffffffa6;
+  color: #ffffffb3;
   text-align: center;
   letter-spacing: -.025em;
   max-width: none;
@@ -1731,7 +1731,7 @@ blockquote {
 }
 
 .text-block {
-  color: var(--page-black);
+  color: var(--text--color--text-white);
   font-family: Barlow, sans-serif;
   font-size: 16px;
   font-weight: 600;
@@ -2267,7 +2267,7 @@ blockquote {
 .navbar_dropdown-list {
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
-  background-color: #ffffffa6;
+  background-color: #ffffffb3;
   display: block;
 }
 
@@ -3709,7 +3709,7 @@ blockquote {
   }
 
   .page-wrapper {
-    color: var(--page-black);
+    color: var(--text--color--text-white);
     justify-content: flex-start;
     height: auto;
     min-height: 100dvh;
@@ -4834,7 +4834,7 @@ blockquote {
   }
 
   .text-xl-light-2 {
-    color: #ffffffa6;
+    color: #ffffffb3;
     font-size: 24px;
     line-height: 1.45em;
   }
