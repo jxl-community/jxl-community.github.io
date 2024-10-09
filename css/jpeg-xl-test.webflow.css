@@ -3791,7 +3791,7 @@ blockquote {
   }
 
   .text-xxl-regular {
-    color: var(--page-black);
+    color: var(--text--color--text-white);
     font-size: 40px;
     font-weight: 500;
     line-height: 1.1em;
@@ -3808,7 +3808,7 @@ blockquote {
   }
 
   .text-xxl-regular.white {
-    color: var(--white);
+    color: var(--text--color--text-white);
     letter-spacing: -.014em;
     text-shadow: none;
     font-size: 32px;
