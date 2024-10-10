@@ -7,40 +7,40 @@
 
   <!-- Basic Meta Tags -->
 
-<title>JPEG XL: Superior Image Compression</title>
-<meta name="description"
+  <title>JPEG XL: Superior Image Compression</title>
+  <meta name="description"
     content="Explore JPEG XL, the next-generation image format delivering superior compression, fast encoding/decoding, and seamless JPEG transcoding. The future of image compression is here.">
-<meta name="keywords"
+  <meta name="keywords"
     content="JPEG XL, Image Compression, Encoding, Decoding, Lossless, Visually Lossless, JPEG Transcoding, Wide Gamut, HDR, Progressive Images">
-<meta name="author" content="JPEG XL Community">
-<link rel="canonical" href="https://jpegxl.info">
+  <meta name="author" content="JPEG XL Community">
+  <link rel="canonical" href="https://jpegxl.info">
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://jpegxl.info">
-<meta property="og:title" content="JPEG XL: Superior Image Compression">
-<meta property="og:description"
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jpegxl.info">
+  <meta property="og:title" content="JPEG XL: Superior Image Compression">
+  <meta property="og:description"
     content="Explore JPEG XL, the next-generation image format delivering superior compression, fast encoding/decoding, and seamless JPEG transcoding. The future of image compression is here.">
-<meta property="og:image" content="https://jpegxl.info/images/OG_Image-JPEG_XL-neon-tunnel-glow.webp">
+  <meta property="og:image" content="https://jpegxl.info/images/OG_Image-JPEG_XL-neon-tunnel-glow.webp">
 
-<!-- Twitter/X -->
-<meta property="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@JpegXl">
-<meta property="twitter:url" content="https://jpegxl.info">
-<meta property="twitter:title" content="JPEG XL: Superior Image Compression">
-<meta property="twitter:description"
+  <!-- Twitter/X -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@JpegXl">
+  <meta property="twitter:url" content="https://jpegxl.info">
+  <meta property="twitter:title" content="JPEG XL: Superior Image Compression">
+  <meta property="twitter:description"
     content="Explore JPEG XL, the next-generation image format delivering superior compression, fast encoding/decoding, and seamless JPEG transcoding. The future of image compression is here.">
-<meta property="twitter:image" content="https://jpegxl.info/images/OG_Image-JPEG_XL-neon-tunnel-glow.webp">
+  <meta property="twitter:image" content="https://jpegxl.info/images/OG_Image-JPEG_XL-neon-tunnel-glow.webp">
 
-<!-- Favicon -->
-<link rel="icon" href="/favicon.ico" sizes="32x32">
-<link rel="icon" href="images/Icon-JPEGXL-Square-Full-Colour.svg" type="image/svg+xml">
-<link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
-<link href="images/webclip.png" rel="apple-touch-icon">
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="images/Icon-JPEGXL-Square-Full-Colour.svg" type="image/svg+xml">
+  <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
+  <link href="images/webclip.png" rel="apple-touch-icon">
 
-<!-- Additional SEO -->
-<meta name="robots" content="index, follow">
-<meta name="googlebot" content="index, follow">
+  <!-- Additional SEO -->
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
 
   <link href="css/normalize.css" rel="stylesheet" type="text/css">
   <link href="css/webflow.css" rel="stylesheet" type="text/css">
@@ -821,8 +821,32 @@
     .JPEG-tooltip-content,
     .JXL-tooltip-content {
       flex: 1;
-      /* Equal width for both columns */
     }
+
+    .JPEGCommitte-logo-carousel {
+      width: 200px;
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+  }
+  .JPEGCommitte-logo-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+  }
+  .JPEGCommitte-logo {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      animation: JC-fade 45s infinite; /* Calc 5s per logo */
+      /* Use variable to calculate delay */
+      animation-delay: calc(var(--i) * 5s); 
+  }
+  @keyframes JC-fade {
+      0%, 10%, 100% { opacity: 0; } /* Invisible at the start, for most of the time */
+      2%, 8% { opacity: 1; }         /* Fully visible from 5% to 10% of the cycle */
+  }
 
     /* Media queries */
     @media only screen and (min-width: 766px) and (max-width: 991px) {
@@ -929,7 +953,9 @@
     }
 
     @media only screen and (min-width: 766px) and (max-width: 991px) {
-      #myVideo, #HDRVideo {
+
+      #myVideo,
+      #HDRVideo {
         width: 694px;
       }
     }
@@ -1032,7 +1058,9 @@
     }
 
     @media only screen and (min-width: 478px) and (max-width: 767px) {
-      #myVideo, #HDRVideo {
+
+      #myVideo,
+      #HDRVideo {
         width: 486px;
       }
     }
@@ -1142,7 +1170,9 @@
     }
 
     @media only screen and (min-width: 390px) and (max-width: 477px) {
-      #myVideo, #HDRVideo {
+
+      #myVideo,
+      #HDRVideo {
         width: 378px;
       }
     }
@@ -1242,7 +1272,9 @@
     }
 
     @media only screen and (min-width: 320px) and (max-width: 389px) {
-      #myVideo, #HDRVideo {
+
+      #myVideo,
+      #HDRVideo {
         width: 278px;
       }
     }
@@ -1251,7 +1283,7 @@
       .headline-l-semibold {
         font-size: 1.75rem;
         line-height: 1.25;
-        color: #ffffffb3;
+        color: var(--neutrals--gray--100);
       }
     }
 
@@ -1391,9 +1423,10 @@
       <div class="navbar-2-container">
         <a href="/index.html" aria-current="page" class="navbar_logo-link w-nav-brand w--current"><img width="63"
             loading="lazy" alt="" src="/images/Logo-JPEG_XL-horizontal-square-full_color.svg" class="navbar_logo"></a>
- <!--  <p class="display-l-bold">Community website</p>  -->
+        <!--  <p class="display-l-bold">Community website</p>  -->
         <div class="navbar_menu-items">
-          <label for="navbar-dropdown" class="navbar-toggle navbar_link navbar-top w-inline-block material-icons button"></label>
+          <label for="navbar-dropdown"
+            class="navbar-toggle navbar_link navbar-top w-inline-block material-icons button"></label>
           <div class="navbar-divider-vertical"></div>
           <a href="#" class="navbar_link navbar-top w-inline-block"><img loading="lazy"
               src="/images/Icon-white-Email.svg" alt="" class="navbar-icon-main"></a>
@@ -1402,7 +1435,8 @@
     </div>
     <div class="container-navbar-dropdown-content">
       <div class="container-navbar-content">
-        <div class="navbar-close"><label for="navbar-dropdown" class="navbar-toggle material-icons button"></label></div>
+        <div class="navbar-close"><label for="navbar-dropdown" class="navbar-toggle material-icons button"></label>
+        </div>
         <div class="navbar-dropdown-content">
           <div class="container-column-vertical">
             <div class="navbar-wrapper-text-section span-with_divider-bottom">
@@ -1476,10 +1510,6 @@
               loading="lazy" width="120" height="120" alt="" class="logo-home-large"></div>
         </div>
         <div class="wrapper-text centered width-rem">
-          <p class="text-xl-light-2 is-centered">
-            JPEG&nbsp;XL is a new international standard&ensp;(<a href="https://www.iso.org/standard/85066.html?browse=tc">ISO/IEC 18181</a>)&ensp;created by the <a href="https://jpeg.org/jpegxl/">JPEG committee</a>.
-            This website is an unofficial, <a href="https://github.com/jxl-community/jxl-community.github.io">community-maintained</a> resource promoting the JPEG XL format.
-            The official website can be found at <a href="https://jpeg.org/">jpeg.org</a>.</p>
           <p class="text-xl-light-2 is-centered">
             Unmatched in quality-per-byte, JPEG&nbsp;XL delivers best-of-breed image
             compression from web quality through lossless.</p>
@@ -2284,7 +2314,8 @@
         </div>
         <div class="div-container-code">
           <div class="w-embed">
-            <section class="section-visually-lossless" data-json="VisuallyLosslessImageList.json" data-folder="VisuallyLosslessImages">
+            <section class="section-visually-lossless" data-json="VisuallyLosslessImageList.json"
+              data-folder="VisuallyLosslessImages">
               <div class="container-grouped">
                 <div class="container-2col-span">
                   <div class="container-group-1col left">
@@ -2324,7 +2355,8 @@
         <div data-figma-id="73:4015" class="size-60px"></div>
         <div class="wrapper-text centered width-rem">
           <p class="text-xl-light-2 is-centered">Say goodbye to JPEG artifacts and WebP’s inconsistent results. When
-            quality matters, make it indistinguishable from the original at a fraction of the size &mdash; automatically. JPEG
+            quality matters, make it indistinguishable from the original at a fraction of the size &mdash;
+            automatically. JPEG
             XL is visually lossless at less than half the bits-per-pixel of JPEG.</p>
         </div>
       </div>
@@ -2341,24 +2373,24 @@
         <div data-figma-id="73:4015" class="size-60px"></div>
         <div class="continer-4col">
           <div class="container-content-vflex centered gap-none">
-              <div class="wrapper-scale_box-animated">
-                <div class="code-scale_box-animated w-embed"><svg class="scale-animation-1" width="82" height="82"
-                    viewbox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="1" y="1" width="80" height="80" stroke="white" stroke-width="1.25"></rect>
-                    <rect x="1" y="1" width="80" height="80" fill="white" fill-opacity="0.3"></rect>
-                    <rect x="1" y="1" width="80" height="80" stroke="white"></rect>
-                    <path d="M1.40039 1.40002L80.4 80.4" stroke="white" stroke-width="2" stroke-linecap="round"
-                      stroke-dasharray="0.01 5"></path>
-                    <rect id="green-square-1" x="1" y="1" width="80" height="80" fill="#94B21A" fill-opacity="1"
-                      stroke="white" vector-effect="non-scaling-stroke"></rect>
-                  </svg></div>
-              </div>
-              <div data-figma-id="73:4012" class="size-small-1rem-16px"></div>
-              <div class="div-container-rounded_text_box">
-                <h3 class="label-menu-text">WEBP</h3>
-              </div>
-              <div data-figma-id="73:4012" class="size-small-1rem-16px"></div>
-              <div class="wrapper-text centered">
+            <div class="wrapper-scale_box-animated">
+              <div class="code-scale_box-animated w-embed"><svg class="scale-animation-1" width="82" height="82"
+                  viewbox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="1" y="1" width="80" height="80" stroke="white" stroke-width="1.25"></rect>
+                  <rect x="1" y="1" width="80" height="80" fill="white" fill-opacity="0.3"></rect>
+                  <rect x="1" y="1" width="80" height="80" stroke="white"></rect>
+                  <path d="M1.40039 1.40002L80.4 80.4" stroke="white" stroke-width="2" stroke-linecap="round"
+                    stroke-dasharray="0.01 5"></path>
+                  <rect id="green-square-1" x="1" y="1" width="80" height="80" fill="#94B21A" fill-opacity="1"
+                    stroke="white" vector-effect="non-scaling-stroke"></rect>
+                </svg></div>
+            </div>
+            <div data-figma-id="73:4012" class="size-small-1rem-16px"></div>
+            <div class="div-container-rounded_text_box">
+              <h3 class="label-menu-text">WEBP</h3>
+            </div>
+            <div data-figma-id="73:4012" class="size-small-1rem-16px"></div>
+            <div class="wrapper-text centered">
               <h2 class="display-l-bold">15%</h2>
               <p class="text-xl-light-2 is-centered _2lines">Larger</p>
             </div>
@@ -2443,7 +2475,8 @@
         <div data-figma-id="73:4015" class="size-60px"></div>
         <div class="wrapper-text centered width-rem">
           <p class="text-xl-light-2 is-centered">Unlike its predecessors, JPEG&nbsp;XL delivers best-of-breed lossless
-            compression making pixel-precision smaller than ever &mdash; at up to 32 bits per channel. It handily beats WebP
+            compression making pixel-precision smaller than ever &mdash; at up to 32 bits per channel. It handily beats
+            WebP
             on complex content without the 8-bit and size limitations. AVIF? Not even close.</p>
         </div>
       </div>
@@ -2514,7 +2547,8 @@
         </div>
         <div data-figma-id="73:4015" class="size-60px"></div>
         <div class="wrapper-text centered width-rem">
-          <p class="text-xl-light-2 is-centered">Transcode existing JPEGs to JPEG&nbsp;XL for an average 20% savings. Plus,
+          <p class="text-xl-light-2 is-centered">Transcode existing JPEGs to JPEG&nbsp;XL for an average 20% savings.
+            Plus,
             it’s reversible. Restore original JPEGs with minimal computation &mdash; so fast you can do it on the fly.
           </p>
         </div>
@@ -2542,8 +2576,8 @@
         </div>
         <div data-figma-id="73:4015" class="size-60px"></div>
         <div class="wrapper-text centered width-rem">
-          <p class="text-xl-light-2 is-centered">Your phone and displays have supported wide-gamut and HDR for years &mdash; 
-            shouldn’t your file format too? JPEG&nbsp;XL is specifically designed to handle the rich colors of
+          <p class="text-xl-light-2 is-centered">Your phone and displays have supported wide-gamut and HDR for years
+            &mdash; shouldn’t your file format too? JPEG&nbsp;XL is specifically designed to handle the rich colors of
             high-precision, high-dynamic range images.</p>
         </div>
       </div>
@@ -2574,8 +2608,10 @@
         </div>
         <div data-figma-id="73:4015" class="size-60px"></div>
         <div class="wrapper-text centered width-rem">
-          <p class="text-xl-light-2 is-centered">With JPEG&nbsp;XL’s state-of-the-art progressive encoding and decoding, you’ll see an image sooner than with other formats &mdash; with as little as 15% of the image loaded.
-            It supports both saliency progression (visually important areas of the image delivered first) and reordering (middle data sent first).</p>
+          <p class="text-xl-light-2 is-centered">With JPEG&nbsp;XL’s state-of-the-art progressive encoding and decoding,
+            you’ll see an image sooner than with other formats &mdash; with as little as 15% of the image loaded.
+            It supports both saliency progression (visually important areas of the image delivered first) and reordering
+            (middle data sent first).</p>
         </div>
       </div>
       <div data-figma-id="73:4011" class="size-xxhuge-12rem-192px"></div>
@@ -2609,15 +2645,18 @@
             <div class="slide-nav-2 w-slider-nav w-round"></div>
           </div>
           <div class="spacer-1rem"></div>
-          <p class="text-xl-light-2 is-centered">Graphs adapted from <a
-              href="https://cloudinary.com/blog/jpeg-xl-and-the-pareto-front">JPEG XL and the
-              Pareto Front</a><br>(Jon Sneyers, Cloudinary blog, February 2024).</p>
+        </div>
+        <div class="text-small-regular centered">Graphs adapted from <a
+            href="https://cloudinary.com/blog/jpeg-xl-and-the-pareto-front">JPEG XL and the Pareto Front</a>
+        </div>
+        <div class="text-small-regular centered">(Jon Sneyers, Cloudinary blog, February 2024).
         </div>
         <div data-figma-id="73:4015" class="size-60px"></div>
         <div class="wrapper-text centered width-rem">
-          <p class="text-xl-light-2 is-centered">Nobody likes progress bars. JPEG&nbsp;XL is designed to be blink-of-an-eye
-            fast on today’s systems &mdash; no special hardware required. When comparing image size versus encoding speed,
-            JPEG&nbsp;XL wins hands down for high quality and lossless photo-like content.</p>
+          <p class="text-xl-light-2 is-centered">Nobody likes progress bars. JPEG&nbsp;XL is designed to be
+            blink-of-an-eye fast on today’s systems &mdash; no special hardware required. When comparing image size
+            versus encoding
+            speed, JPEG&nbsp;XL wins hands down for high quality and lossless photo-like content.</p>
         </div>
       </div>
       <div data-figma-id="73:4011" class="size-xxhuge-12rem-192px"></div>
@@ -2636,9 +2675,11 @@
         </div>
         <div data-figma-id="73:4015" class="size-60px"></div>
         <div class="wrapper-text centered width-rem">
-          <p class="text-xl-light-2 is-centered">JPEG&nbsp;XL is the first format to offer optimal performance throughout the
+          <p class="text-xl-light-2 is-centered">JPEG&nbsp;XL is the first format to offer optimal performance
+            throughout the
             entire creative workflow, from capture in high bit-depth, HDR, and wide-gamut formats, through editing, web,
-            and print delivery. Because of its industry-leading lossless and lossy compression, JPEG&nbsp;XL provides the
+            and print delivery. Because of its industry-leading lossless and lossy compression, JPEG&nbsp;XL provides
+            the
             most versatile and efficient solution &mdash; something AVIF can’t do.</p>
         </div>
       </div>
@@ -2653,7 +2694,8 @@
           <div class="container-horizontal add-padding add-background-w_curves border-blur-right">
             <div id="w-node-f2a46d6f-fb7c-446b-3280-fc1fe782d216-8c10331b"
               class="container-text_only fullspan divider-vertical">
-              <p class="text-xxl-regular white">If all current JPEGs were delivered as JPEG&nbsp;XLs (with an average 20%
+              <p class="text-xxl-regular white">If all current JPEGs were delivered as JPEG&nbsp;XLs (with an average
+                20%
                 decrease in file size), we could save:</p>
             </div>
             <div class="container-column-1 centered">
@@ -2691,7 +2733,8 @@
               <h4 class="headline-s-semibold centered white _2line">CMYK &amp; Print Support</h4>
             </div>
             <div data-figma-id="73:4012" class="size-small-1rem-16px"></div>
-            <p class="text-l-medium">JPEG&nbsp;XL streamlines image authoring with features like layer support, up to 4099
+            <p class="text-l-medium">JPEG&nbsp;XL streamlines image authoring with features like layer support, up to
+              4099
               channels for selection masks and spot colors, and CMYK compatibility for print-oriented use cases. It’s
               an ideal format for all creative workflows.</p>
           </div>
@@ -2703,8 +2746,8 @@
             </div>
             <div data-figma-id="73:4012" class="size-small-1rem-16px"></div>
             <p class="text-l-medium">Up to 32 bits per channel for higher precision image representation, enabling more
-              accurate color reproduction &mdash; billions instead of millions of colors. Ensure your images maintain their
-              vibrancy in the most demanding applications.</p>
+              accurate color reproduction &mdash; octillions instead of millions of colors. Perfect for applications
+              that demand the highest fidelity and realism in visual content.</p>
           </div>
           <div id="w-node-_49038c27-f4c2-20fd-2505-b60f1f95e7a4-8c10331b" class="container-text-grid">
             <div class="continer-text-icon vertical centered">
@@ -2736,7 +2779,8 @@
               <h4 class="headline-s-semibold centered white _2line">Automatic Visual Fidelity Targeting</h4>
             </div>
             <div data-figma-id="73:4012" class="size-small-1rem-16px"></div>
-            <p class="text-l-medium">No more JPEG or WebP quality roulette! JPEG&nbsp;XL lets you target visual fidelity, not
+            <p class="text-l-medium">No more JPEG or WebP quality roulette! JPEG&nbsp;XL lets you target visual
+              fidelity, not
               cryptic parameters. It defaults to visually lossless output, ensuring consistent results without the need
               for trial and error.</p>
           </div>
@@ -2747,10 +2791,47 @@
               <h4 class="headline-s-semibold centered white _2line">Photographic &amp; Non-Photographic Images</h4>
             </div>
             <div data-figma-id="73:4012" class="size-small-1rem-16px"></div>
-            <p class="text-l-medium">While best-in-class for compressing photographic images, JPEG&nbsp;XL is even better at
+            <p class="text-l-medium">While best-in-class for compressing photographic images, JPEG&nbsp;XL is even
+              better at
               efficiently compressing and storing non-photographic (synthetic) images such as graphics, illustrations,
               and digital art.</p>
           </div>
+        </div>
+      </div>
+      <div data-figma-id="73:4011" class="size-xxhuge-12rem-192px"></div>
+    </section>
+    <section class="section-JPEG-Committee">
+      <div data-figma-id="73:4011" class="size-xxhuge-12rem-192px"></div>
+      <div class="container-grouped padding-global-sides">
+        <div class="header-subhead">
+          <h2 class="display-l-bold">JPEG Committee</h2>
+          <div data-figma-id="73:4012" class="size-small-1rem-16px"></div>
+          <h3 class="text-xxl-regular centered teal">Building the Future of Image Standards</h3>
+        </div>
+        <div data-figma-id="73:4015" class="size-60px"></div>
+        <div class="container-content-vflex width-page-max centered">
+          <div class="JPEGCommitte-logo-carousel">
+            <div class="JPEGCommitte-logo-container">
+                <object class="JPEGCommitte-logo" style="--i: 0;" data="images/JPEG-Committee-logos/jpegxs-logo.svg" type="image/svg+xml"></object>
+                <object class="JPEGCommitte-logo" style="--i: 1;" data="images/JPEG-Committee-logos/jpegxr-logo.svg" type="image/svg+xml"></object>
+                <object class="JPEGCommitte-logo" style="--i: 2;" data="images/JPEG-Committee-logos/jpeg2000-logo.svg" type="image/svg+xml"></object>
+                <object class="JPEGCommitte-logo" style="--i: 3;" data="images/JPEG-Committee-logos/jpeg-logo.svg" type="image/svg+xml"></object>
+                <object class="JPEGCommitte-logo" style="--i: 4;" data="images/JPEG-Committee-logos/jpegxl-logo.svg" type="image/svg+xml"></object>
+                <object class="JPEGCommitte-logo" style="--i: 5;" data="images/JPEG-Committee-logos/jpegpleno-logo.svg" type="image/svg+xml"></object>
+                <object class="JPEGCommitte-logo" style="--i: 6;" data="images/JPEG-Committee-logos/jpegsystems-logo.svg" type="image/svg+xml"></object>
+                <object class="JPEGCommitte-logo" style="--i: 7;" data="images/JPEG-Committee-logos/jpegai-logo.svg" type="image/svg+xml"></object>
+                <object class="JPEGCommitte-logo" style="--i: 8;" data="images/JPEG-Committee-logos/jpegtrust-logo.svg" type="image/svg+xml"></object>
+            </div>
+        </div>
+        </div>
+        <div data-figma-id="73:4015" class="size-60px"></div>
+        <div class="wrapper-text centered width-rem">
+          <p class="text-xl-light-2 is-centered">
+            JPEG&nbsp;XL is a new international standard&ensp;(<a
+              href="https://www.iso.org/standard/85066.html?browse=tc">ISO/IEC 18181</a>)&ensp;created by the <a
+              href="https://jpeg.org/jpegxl/">JPEG committee</a>. The committee’s work ensures that JPEG XL meets the highest standards 
+              of performance, efficiency, and compatibility, benefiting users across various industries and applications.
+              Learn more about the JPEG Committee’s work at the official website: <a href="https://jpeg.org/">jpeg.org</a>.</p>
         </div>
       </div>
       <div data-figma-id="73:4011" class="size-xxhuge-12rem-192px"></div>
@@ -2761,7 +2842,8 @@
           <div class="padding-section-medium">
             <div class="wrapper-footer-content">
               <a href="index.html" aria-current="page" class="footer-logo-link w-nav-brand w--current"><img width="63"
-                  loading="lazy" alt="" src="images/Logo-JPEG_XL-vertical-square-full_color.svg" class="footer-logo"></a>
+                  loading="lazy" alt="" src="images/Logo-JPEG_XL-vertical-square-full_color.svg"
+                  class="footer-logo"></a>
               <div class="w-layout-grid footer_bottom-wrapper">
                 <div id="w-node-_8e9aaa5d-c4ff-899a-79da-79764703422e-4703421c"
                   class="w-layout-grid footer_social-list">
@@ -2777,12 +2859,18 @@
                   <div id="w-node-fedcfc71-bc17-af3f-285c-68c798bcef4e-4703421c" class="wrapper-text centered">
                     <div id="w-node-_8e9aaa5d-c4ff-899a-79da-79764703423d-4703421c" class="footer_credit-text">
                       ©2024 The JPEG XL Community.<br>
-                      Want to contribute to this website? <a href="https://github.com/jxl-community/jxl-community.github.io" class="footer_legal-link">Make a pull request!</a><br>
-                      Site designed by <a href="https://fractionalxperience.com" class="footer_legal-link">Fractional Xperience</a>.<br><br>
+                      Want to contribute to this website? <a
+                        href="https://github.com/jxl-community/jxl-community.github.io" class="footer_legal-link">Make a
+                        pull request!</a><br>
+                      Site designed by <a href="https://fractionalxperience.com" class="footer_legal-link">Fractional
+                        Xperience</a>.<br><br>
                       This is an unofficial, community-maintained website.<br>
-                      <a href="https://jpeg.org/jpegxl/" class="footer_legal-link">Visit the official JPEG Committee JPEG XL site.</a><br><br>
+                      <a href="https://jpeg.org/jpegxl/" class="footer_legal-link">Visit the official JPEG Committee
+                        JPEG XL site.</a><br><br>
                       <a href="old/" class="footer_legal-link">Access to the archived version of this site.</a><br>
-                      <a href="https://hits.sh/jpegxl.info/"><img alt="Hits" src="https://hits.sh/jpegxl.info.svg?style=plastic&color=3bb6b3" style="width: 3.5em; display: inline; margin-top: 1em;"></a>
+                      <a href="https://hits.sh/jpegxl.info/"><img alt="Hits"
+                          src="https://hits.sh/jpegxl.info.svg?style=plastic&color=3bb6b3"
+                          style="width: 3.5em; display: inline; margin-top: 1em;"></a>
                     </div>
                   </div>
                 </div>
@@ -2794,12 +2882,11 @@
     </div>
   </div>
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6650be52b1fb581f8c103315"
-    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-    crossorigin="anonymous"></script>
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="script.js"></script>
   <script src="JPEGvsJXL.js"></script>
   <script src="AVIFvsJXL.js"></script>
-<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.0.0/pixi.min.js"></script>
+  <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.0.0/pixi.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
   <script>
     const initNoise = async () => {
