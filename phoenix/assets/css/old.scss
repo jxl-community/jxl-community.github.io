@@ -480,7 +480,7 @@ blockquote {
 }
 
 .page-wrapper.background-page_white {
-  background-color: var(--neutrals--gray--50);
+  background-color: var(--neutrals--gray--100);
   background-image: none;
   height: auto;
   min-height: 100dvh;
@@ -669,7 +669,7 @@ blockquote {
 }
 
 .headline-l-semibold.white {
-  color: #ffffffb3;
+  color: var(--neutrals--gray--100);
   letter-spacing: 0.01em;
   font-size: 32px;
   line-height: 1.25;
@@ -1628,7 +1628,7 @@ blockquote {
 }
 
 .div-container-rounded_text_box {
-  border: 1px solid #ffffffb3;
+  border: 1px solid var(--neutrals--gray--100);
   border-radius: 100px;
   justify-content: flex-end;
   align-items: center;
@@ -1637,7 +1637,7 @@ blockquote {
 }
 
 .label-menu-text {
-  color: #ffffffb3;
+  color: var(--neutrals--gray--100);
   letter-spacing: 0.02em;
   white-space: nowrap;
   margin-bottom: 0;
@@ -3344,7 +3344,7 @@ blockquote {
   }
 
   .text-xl-light-2 {
-    color: #ffffffb3;
+    color: var(--neutrals--gray--100);
     letter-spacing: 0;
     font-size: 32px;
     line-height: 1.45em;
@@ -3375,7 +3375,7 @@ blockquote {
   }
 
   .page-wrapper.background-page_white {
-    background-color: var(--neutrals--gray--50);
+    background-color: var(--neutrals--gray--100);
     background-image: none;
     height: auto;
     padding-top: 0;
@@ -3424,7 +3424,7 @@ blockquote {
   }
 
   .headline-l-semibold.white {
-    color: #ffffffb3;
+    color: var(--neutrals--gray--100);
     letter-spacing: 0.01em;
     font-size: 32px;
     line-height: 1.25;
@@ -4166,7 +4166,7 @@ blockquote {
   }
 
   .body-4 {
-    background-color: var(--neutrals--gray--50);
+    background-color: var(--neutrals--gray--100);
   }
 
   .navigation-top_nav {
@@ -4217,7 +4217,7 @@ blockquote {
   .div-container-rounded_text_box {
     background-color: #fff0;
     background-image: none;
-    border: 1px solid #ffffffb3;
+    border: 1px solid var(--neutrals--gray--100);
     border-radius: 100px;
     justify-content: flex-end;
     align-items: center;
@@ -4226,7 +4226,7 @@ blockquote {
   }
 
   .label-menu-text {
-    color: #ffffffb3;
+    color: var(--neutrals--gray--100);
     letter-spacing: 0.01em;
     font-size: 1em;
     font-weight: 700;
