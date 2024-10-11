@@ -49,8 +49,16 @@
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
   <script>
-    WebFont.load({ google: { families: ["Barlow:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic", "Albert Sans:100,200,300,regular,500,600,700,800,900"] } });</script>
-  <script>
+    WebFont.load({
+      google: {
+        families: [
+          "Barlow:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic",
+          "Red Hat Mono:300,400,500,600,700"
+        ]
+      }
+    });
+  </script>
+    <script>
     !function (o, c) { var n = c.documentElement, t = " w-mod-"; n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch") }(window, document);</script>
   <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
   <link href="images/webclip.png" rel="apple-touch-icon">
@@ -553,16 +561,6 @@
       color: #fff;
     }
 
-    .text-xl-light {
-      font-family: barlow, sans-serif;
-      font-weight: 300;
-      font-size: 36px;
-      letter-spacing: -0.02rem;
-      line-height: 1.45rem;
-      color: #fff;
-      margin: 0;
-    }
-
     .heading-desktop-h6 {
       font-family: barlow, sans-serif;
       font-weight: 600;
@@ -610,26 +608,6 @@
       color: #1AE5E0;
       margin: 0;
       text-wrap: nowrap;
-    }
-
-    .headline-l-semibold {
-      font-family: barlow, sans-serif;
-      font-weight: 600;
-      font-size: 3rem;
-      letter-spacing: -0.02rem;
-      line-height: 2.5rem;
-      color: #fff;
-      margin: 0;
-    }
-
-    .headline-s-semibold {
-      font-family: barlow, sans-serif;
-      font-weight: 600;
-      font-size: 2rem;
-      letter-spacing: -0.02em;
-      line-height: 1em;
-      color: #fff;
-      margin: 0;
     }
 
     .text-medium {
@@ -1283,7 +1261,6 @@
       .headline-l-semibold {
         font-size: 1.75rem;
         line-height: 1.25;
-        color: var(--neutrals--gray--100);
       }
     }
 
@@ -1510,7 +1487,7 @@
               loading="lazy" width="120" height="120" alt="" class="logo-home-large"></div>
         </div>
         <div class="wrapper-text centered width-rem">
-          <p class="text-xl-light-2 is-centered">
+          <p class="text-xl-light is-centered">
             Unmatched in quality-per-byte, JPEG&nbsp;XL delivers best-of-breed image
             compression from web quality through lossless.</p>
         </div>
@@ -2354,7 +2331,7 @@
         </div>
         <div data-figma-id="73:4015" class="size-60px"></div>
         <div class="wrapper-text centered width-rem">
-          <p class="text-xl-light-2 is-centered">Say goodbye to JPEG artifacts and WebP’s inconsistent results. When
+          <p class="text-xl-light is-centered">Say goodbye to JPEG artifacts and WebP’s inconsistent results. When
             quality matters, make it indistinguishable from the original at a fraction of the size &mdash;
             automatically. JPEG
             XL is visually lossless at less than half the bits-per-pixel of JPEG.</p>
@@ -2392,7 +2369,7 @@
             <div data-figma-id="73:4012" class="size-small-1rem-16px"></div>
             <div class="wrapper-text centered">
               <h2 class="display-l-bold">15%</h2>
-              <p class="text-xl-light-2 is-centered _2lines">Larger</p>
+              <p class="text-xl-light is-centered _2lines">Larger</p>
             </div>
           </div>
           <div class="container-content-vflex centered gap-none">
@@ -2417,7 +2394,7 @@
             </div>
             <div class="wrapper-text centered">
               <h2 class="display-l-bold">46%</h2>
-              <p class="text-xl-light-2 is-centered _2lines">Larger</p>
+              <p class="text-xl-light is-centered _2lines">Larger</p>
             </div>
           </div>
           <div class="container-content-vflex centered gap-none">
@@ -2442,7 +2419,7 @@
             </div>
             <div class="wrapper-text centered">
               <h2 class="display-l-bold">63%</h2>
-              <p class="text-xl-light-2 is-centered _2lines">Larger</p>
+              <p class="text-xl-light is-centered _2lines">Larger</p>
             </div>
           </div>
           <div id="w-node-ac9aa4ce-76d6-929f-484f-c42e854db7fa-8c10331b"
@@ -2468,13 +2445,13 @@
             </div>
             <div class="wrapper-text centered">
               <h2 class="display-l-bold">75%</h2>
-              <p class="text-xl-light-2 is-centered _2lines">Larger </p>
+              <p class="text-xl-light is-centered _2lines">Larger </p>
             </div>
           </div>
         </div>
         <div data-figma-id="73:4015" class="size-60px"></div>
         <div class="wrapper-text centered width-rem">
-          <p class="text-xl-light-2 is-centered">Unlike its predecessors, JPEG&nbsp;XL delivers best-of-breed lossless
+          <p class="text-xl-light is-centered">Unlike its predecessors, JPEG&nbsp;XL delivers best-of-breed lossless
             compression making pixel-precision smaller than ever &mdash; at up to 32 bits per channel. It handily beats
             WebP
             on complex content without the 8-bit and size limitations. AVIF? Not even close.</p>
@@ -2547,7 +2524,7 @@
         </div>
         <div data-figma-id="73:4015" class="size-60px"></div>
         <div class="wrapper-text centered width-rem">
-          <p class="text-xl-light-2 is-centered">Transcode existing JPEGs to JPEG&nbsp;XL for an average 20% savings.
+          <p class="text-xl-light is-centered">Transcode existing JPEGs to JPEG&nbsp;XL for an average 20% savings.
             Plus,
             it’s reversible. Restore original JPEGs with minimal computation &mdash; so fast you can do it on the fly.
           </p>
@@ -2576,7 +2553,7 @@
         </div>
         <div data-figma-id="73:4015" class="size-60px"></div>
         <div class="wrapper-text centered width-rem">
-          <p class="text-xl-light-2 is-centered">Your phone and displays have supported wide-gamut and HDR for years
+          <p class="text-xl-light is-centered">Your phone and displays have supported wide-gamut and HDR for years
             &mdash; shouldn’t your file format too? JPEG&nbsp;XL is specifically designed to handle the rich colors of
             high-precision, high-dynamic range images.</p>
         </div>
@@ -2608,7 +2585,7 @@
         </div>
         <div data-figma-id="73:4015" class="size-60px"></div>
         <div class="wrapper-text centered width-rem">
-          <p class="text-xl-light-2 is-centered">With JPEG&nbsp;XL’s state-of-the-art progressive encoding and decoding,
+          <p class="text-xl-light is-centered">With JPEG&nbsp;XL’s state-of-the-art progressive encoding and decoding,
             you’ll see an image sooner than with other formats &mdash; with as little as 15% of the image loaded.
             It supports both saliency progression (visually important areas of the image delivered first) and reordering
             (middle data sent first).</p>
@@ -2653,7 +2630,7 @@
         </div>
         <div data-figma-id="73:4015" class="size-60px"></div>
         <div class="wrapper-text centered width-rem">
-          <p class="text-xl-light-2 is-centered">Nobody likes progress bars. JPEG&nbsp;XL is designed to be
+          <p class="text-xl-light is-centered">Nobody likes progress bars. JPEG&nbsp;XL is designed to be
             blink-of-an-eye fast on today’s systems &mdash; no special hardware required. When comparing image size
             versus encoding
             speed, JPEG&nbsp;XL wins hands down for high quality and lossless photo-like content.</p>
@@ -2675,7 +2652,7 @@
         </div>
         <div data-figma-id="73:4015" class="size-60px"></div>
         <div class="wrapper-text centered width-rem">
-          <p class="text-xl-light-2 is-centered">JPEG&nbsp;XL is the first format to offer optimal performance
+          <p class="text-xl-light is-centered">JPEG&nbsp;XL is the first format to offer optimal performance
             throughout the
             entire creative workflow, from capture in high bit-depth, HDR, and wide-gamut formats, through editing, web,
             and print delivery. Because of its industry-leading lossless and lossy compression, JPEG&nbsp;XL provides
@@ -2813,7 +2790,7 @@
           <div class="JPEGCommitte-logo-carousel">
             <div class="JPEGCommitte-logo-container">
                 <object class="JPEGCommitte-logo" style="--i: 0;" data="images/JPEG-Committee-logos/jpegxs-logo.svg" type="image/svg+xml"></object>
-                <object class="JPEGCommitte-logo" style="--i: 1;" data="images/JPEG-Committee-logos/jpegxr-logo.svg" type="image/svg+xml"></object>
+                <object class="JPEGCommitte-logo" style="--i: 1;" data="images/JPEG-Committee-logos/aic-logo.svg" type="image/svg+xml"></object>
                 <object class="JPEGCommitte-logo" style="--i: 2;" data="images/JPEG-Committee-logos/jpeg2000-logo.svg" type="image/svg+xml"></object>
                 <object class="JPEGCommitte-logo" style="--i: 3;" data="images/JPEG-Committee-logos/jpeg-logo.svg" type="image/svg+xml"></object>
                 <object class="JPEGCommitte-logo" style="--i: 4;" data="images/JPEG-Committee-logos/jpegxl-logo.svg" type="image/svg+xml"></object>
@@ -2826,7 +2803,7 @@
         </div>
         <div data-figma-id="73:4015" class="size-60px"></div>
         <div class="wrapper-text centered width-rem">
-          <p class="text-xl-light-2 is-centered">
+          <p class="text-xl-light is-centered">
             JPEG&nbsp;XL is a new international standard&ensp;(<a
               href="https://www.iso.org/standard/85066.html?browse=tc">ISO/IEC 18181</a>)&ensp;created by the <a
               href="https://jpeg.org/jpegxl/">JPEG committee</a>. The committee’s work ensures that JPEG XL meets the highest standards 
