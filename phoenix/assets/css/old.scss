@@ -203,7 +203,7 @@ blockquote {
   font-weight: 700;
 }
 
-.text-xl-light-2 {
+.text-xl-light {
   color: var(--base--white);
   text-align: left;
   letter-spacing: -0.02em;
@@ -216,7 +216,7 @@ blockquote {
   line-height: 1.45em;
 }
 
-.text-xl-light-2.is-centered {
+.text-xl-light.is-centered {
   color: #ffffffa6;
   text-align: center;
   letter-spacing: -0.026em;
@@ -225,7 +225,7 @@ blockquote {
   line-height: 1.45em;
 }
 
-.text-xl-light-2.is-centered._2lines {
+.text-xl-light.is-centered._2lines {
   width: 10ch;
   line-height: 1.2;
 }
@@ -3343,14 +3343,14 @@ blockquote {
     font-weight: 700;
   }
 
-  .text-xl-light-2 {
+  .text-xl-light {
     color: var(--neutrals--gray--100);
     letter-spacing: 0;
     font-size: 32px;
     line-height: 1.45em;
   }
 
-  .text-xl-light-2.is-centered {
+  .text-xl-light.is-centered {
     letter-spacing: -0.01em;
     max-width: 1024px;
     font-size: 28px;
@@ -4501,13 +4501,13 @@ blockquote {
     font-size: 4rem;
   }
 
-  .text-xl-light-2 {
+  .text-xl-light {
     color: #ffffffa6;
     font-size: 24px;
     line-height: 1.45em;
   }
 
-  .text-xl-light-2.is-centered {
+  .text-xl-light.is-centered {
     white-space: normal;
     word-break: keep-all;
     overflow-wrap: normal;
@@ -4516,7 +4516,7 @@ blockquote {
     line-height: 1.45;
   }
 
-  .text-xl-light-2.is-centered._2lines {
+  .text-xl-light.is-centered._2lines {
     width: 10ch;
     font-size: 20px;
     line-height: 1.2;
@@ -5472,18 +5472,18 @@ blockquote {
     font-size: 3rem;
   }
 
-  .text-xl-light-2 {
+  .text-xl-light {
     font-size: 24px;
     line-height: 1.45em;
   }
 
-  .text-xl-light-2.is-centered {
+  .text-xl-light.is-centered {
     letter-spacing: 0;
     font-size: 16px;
     line-height: 1.45;
   }
 
-  .text-xl-light-2.is-centered._2lines {
+  .text-xl-light.is-centered._2lines {
     width: 6em;
   }
 
@@ -6167,12 +6167,12 @@ blockquote {
     font-size: 2.5rem;
   }
 
-  .text-xl-light-2 {
+  .text-xl-light {
     font-size: 18px;
     line-height: 1.45em;
   }
 
-  .text-xl-light-2.is-centered {
+  .text-xl-light.is-centered {
     letter-spacing: 0;
     width: 100%;
     max-width: none;
@@ -6180,7 +6180,7 @@ blockquote {
     line-height: 1.45;
   }
 
-  .text-xl-light-2.is-centered._2lines {
+  .text-xl-light.is-centered._2lines {
     width: 6em;
   }
 

@@ -38,6 +38,8 @@
   --brand--blue--800: #1f3e7b;
   --brand--blue--900: #182f5e;
 
+  --brand--blue--P3--500: oklch(57.16% 0.2518 261.98);
+
   --brand--navy--50: #e7eaee;
   --brand--navy--100: #b6bfcc;
   --brand--navy--200: #92a0b3;
@@ -60,6 +62,8 @@
   --brand--teal-bright--800: #127f7c;
   --brand--teal-bright--900: #0e615f;
 
+  --brand--teal-bright--P3--500: oklch(83.77% 0.1932 191.95);
+
   --brand--teal-dark--50: #ebf8f7;
   --brand--teal-dark--100: #c2e8e7;
   --brand--teal-dark--200: #a5dddc;
@@ -70,6 +74,9 @@
   --brand--teal-dark--700: #2a817f;
   --brand--teal-dark--800: #206462;
   --brand--teal-dark--900: #194c4b;
+
+  --brand--teal-dark--P3--500: oklch(70.94% 0.1625 192.67);
+  --brand--teal-dark--P3--600: oklch(66.29% 0.1523 192.46);
 
   --neutrals--gray--50: #f2f2f2;
   --neutrals--gray--100: #d8d8d8;
@@ -138,7 +145,7 @@
   --line-divider: #494b50;
 
   --text--color--text-black: #18191b;
-  --text--color--text-white: white;
+  --text--color--text-white: var(--neutrals--gray--100);
 
   --transparent: #21e6e100;
 
@@ -149,6 +156,8 @@
   --black: #0000004d;
 
   --font--font-family--barlow: Barlow, sans-serif;
+  --font--font-family--monospace: "Red Hat Mono", ui-monospace, 'DejaVu Sans Mono', 'Bitstream Vera Mono', Inconsolata, 'Fira Mono', monospace;
+
 }
 
 .w-layout-blockcontainer {
@@ -264,9 +273,6 @@ p {
 
 a {
   color: var(--brand--teal-bright--600);
-  font-family: var(--font--font-family--barlow);
-  font-weight: 500;
-  line-height: 1.45em;
   text-decoration: none;
 }
 
@@ -355,8 +361,8 @@ blockquote {
   font-weight: 700;
 }
 
-.text-xl-light-2 {
-  color: var(--base--white);
+.text-xl-light {
+  color: var(--text--color--text-white);
   text-align: left;
   letter-spacing: -.02em;
   max-width: 896px;
@@ -368,17 +374,20 @@ blockquote {
   line-height: 1.45em;
 }
 
-.text-xl-light-2.is-centered {
-  color: var(--neutrals--gray--100);
+.text-xl-light.is-centered {
+  color: var(--text--color--text-white);
   text-align: center;
   letter-spacing: -.025em;
-  max-width: none;
-  font-size: 26px;
+  max-width: none; /* max-width: 1024px; This was from the second definition */
+  font-size: 26px; /* 28px in the second definition, 24px in the third, 20 in the 4th, 16 in the 5th */
   line-height: 1.45em;
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
 
-.text-xl-light-2.is-centered._2lines {
-  width: 10ch;
+.text-xl-light.is-centered._2lines {
+  width: 10ch; /* width: 6em in another */
   line-height: 1.2;
 }
 
@@ -392,7 +401,6 @@ blockquote {
 
 .vector {
   border-style: solid;
-  border-width: undefinedpx;
   border-color: #000;
 }
 
@@ -768,7 +776,7 @@ blockquote {
 }
 
 .display-l-bold {
-  color: var(--text--color--text-white);
+  color: var(--white);
   text-align: center;
   letter-spacing: .01em;
   flex-flow: wrap;
@@ -780,7 +788,7 @@ blockquote {
   font-family: var(--font--font-family--barlow);
   font-size: 48px;
   font-weight: 700;
-  line-height: 1em;
+  line-height: 1.2em;
   display: block;
 }
 
@@ -789,14 +797,14 @@ blockquote {
 }
 
 .headline-l-semibold {
-  color: var(--base--black);
-  letter-spacing: -.02em;
+  color: var(--white);
+  letter-spacing: -0.02rem;
   margin-top: 0;
   margin-bottom: 0;
   font-family: var(--font--font-family--barlow);
   font-size: 3rem;
   font-weight: 600;
-  line-height: 1.2em;
+  line-height: 2.5rem;
 }
 
 .headline-l-semibold.centered {
@@ -804,11 +812,11 @@ blockquote {
 }
 
 .headline-l-semibold.centered.white {
-  color: var(--text--color--text-white);
+  color: var(--white);
 }
 
 .headline-l-semibold.white {
-  color: var(--neutrals--gray--100);
+  color: var(--white);
   letter-spacing: .01em;
   font-size: 32px;
   line-height: 1.25;
@@ -819,13 +827,14 @@ blockquote {
   margin-top: 0;
   margin-bottom: 0;
   font-family: var(--font--font-family--barlow);
-  font-size: 32px;
+  font-size: 28px;
+  line-height: 1.25em;
   font-weight: 600;
-  line-height: 36px;
+  color: var(--white)
 }
 
 .headline-s-semibold.white {
-  color: var(--text--color--text-white);
+  color: var(--white);
 }
 
 .headline-s-semibold.centered {
@@ -837,7 +846,7 @@ blockquote {
 }
 
 .headline-s-semibold.centered.white._2line {
-  font-size: 32px;
+  font-size: 28px;
 }
 
 .headline-s-semibold.lime {
@@ -917,16 +926,17 @@ blockquote {
   width: 100%;
   margin-bottom: 1rem;
   font-family: var(--font--font-family--barlow);
-  font-size: 1.125rem;
+  font-size: 1.25em;
   font-weight: 400;
-  line-height: 1.45;
+  line-height: 1.5em;
+  text-align: left;
 }
 
 .text-l-medium.large {
   color: var(--text--color--text-white);
   text-align: center;
   letter-spacing: -.01em;
-  font-size: 1.5rem;
+  font-size: 1.5em;
   font-weight: 300;
 }
 
@@ -1800,10 +1810,8 @@ blockquote {
 }
 
 .code {
-  color: var(--white);
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.45;
+  color: var(--text--color--text-white);
+  font-family: var(--font--font-family--monospace);
   text-decoration: underline;
 }
 
@@ -1817,7 +1825,7 @@ blockquote {
 }
 
 .label-menu-text {
-  color: var(--neutrals--gray--100);
+  color: var(--text--color--text-white);
   letter-spacing: .02em;
   white-space: nowrap;
   margin-bottom: 0;
@@ -3316,11 +3324,6 @@ blockquote {
   line-height: 1.25em;
 }
 
-.text-xl-light {
-  font-family: var(--font--font-family--barlow);
-  font-weight: 300;
-}
-
 .utility-page-wrap {
   justify-content: center;
   align-items: center;
@@ -3708,20 +3711,6 @@ blockquote {
     font-weight: 700;
   }
 
-  .text-xl-light-2 {
-    color: var(--neutrals--gray--100);
-    letter-spacing: 0;
-    font-size: 32px;
-    line-height: 1.45em;
-  }
-
-  .text-xl-light-2.is-centered {
-    letter-spacing: -.025em;
-    max-width: 1024px;
-    font-size: 28px;
-    line-height: 1.45em;
-  }
-
   .page-wrapper {
     color: var(--text--color--text-white);
     justify-content: flex-start;
@@ -3789,7 +3778,7 @@ blockquote {
   }
 
   .headline-l-semibold.white {
-    color: var(--neutrals--gray--100);
+    color: var(--white);
     letter-spacing: .01em;
     font-size: 32px;
     line-height: 1.25;
@@ -3843,20 +3832,6 @@ blockquote {
   .text-xl-regular.white.reduce-width.bold {
     text-align: center;
     max-width: none;
-  }
-
-  .text-l-medium {
-    text-align: left;
-    width: 100%;
-    margin-bottom: 1rem;
-    font-size: 1.25rem;
-    line-height: 1.45;
-  }
-
-  .text-l-medium.large {
-    color: var(--text--color--text-white);
-    text-align: center;
-    font-size: 1.5rem;
   }
 
   .container-content-fullspan {
@@ -4839,22 +4814,17 @@ blockquote {
     font-size: 4rem;
   }
 
-  .text-xl-light-2 {
-    color: var(--neutrals--gray--100);
+  .text-xl-light {
     font-size: 24px;
     line-height: 1.45em;
   }
 
-  .text-xl-light-2.is-centered {
-    white-space: normal;
-    word-break: keep-all;
-    overflow-wrap: normal;
-    max-width: none;
+  .text-xl-light.is-centered {
     font-size: 24px;
     line-height: 1.45;
   }
 
-  .text-xl-light-2.is-centered._2lines {
+  .text-xl-light.is-centered._2lines {
     width: 10ch;
     font-size: 20px;
     line-height: 1.2;
@@ -5818,18 +5788,18 @@ blockquote {
     font-size: 3rem;
   }
 
-  .text-xl-light-2 {
+  .text-xl-light {
     font-size: 24px;
     line-height: 1.45em;
   }
 
-  .text-xl-light-2.is-centered {
+  .text-xl-light.is-centered {
     letter-spacing: 0;
     font-size: 20px;
-    line-height: 1.45;
+    line-height: 1.45em;
   }
 
-  .text-xl-light-2.is-centered._2lines {
+  .text-xl-light.is-centered._2lines {
     width: 6em;
   }
 
@@ -6515,21 +6485,19 @@ blockquote {
     width: 100%;
     font-size: 2.5rem;
   }
-
-  .text-xl-light-2 {
+  .text-xl-light {
     font-size: 18px;
     line-height: 1.45em;
   }
 
-  .text-xl-light-2.is-centered {
+  .text-xl-light.is-centered {
     letter-spacing: 0;
     width: 100%;
-    max-width: none;
-    font-size: 16px;
-    line-height: 1.45;
+    font-size: 18px;
+    line-height: 1.45em;
   }
 
-  .text-xl-light-2.is-centered._2lines {
+  .text-xl-light.is-centered._2lines {
     width: 6em;
   }
 
@@ -6632,7 +6600,7 @@ blockquote {
   }
 
   .text-l-medium {
-    font-size: 17px;
+    font-size: 18px;
     line-height: 1.4em;
   }
 
