@@ -143,15 +143,15 @@ input[type=range]::-webkit-slider-container {
   margin-top: 30px;
   height: 300px;
   /* Adjust as needed */
-  font-family: barlow;
+  font-family: var(--font--font-family--barlow);
   font-weight: 500;
-  font-size: 12px;
+  font-size: 16px;
   text-transform: uppercase;
   color: #fff;
 }
 
 .effort-slider-labels span {
-  font-size: 14px;
+  font-size: 16px;
   /* Smaller font for the labels */
   margin: 2px 0;
   /* Adjust spacing between labels */
@@ -185,7 +185,7 @@ input[type=range]::-webkit-slider-container {
   justify-content: space-between;
   margin-top: 1.25rem;
   width: 100%;
-  font-family: barlow;
+  font-family: var(--font--font-family--barlow);
   font-weight: 500;
   font-size: 12px;
   text-transform: uppercase;
@@ -193,13 +193,13 @@ input[type=range]::-webkit-slider-container {
 }
 
 .slider-labels span {
-  font-size: 14px;
+  font-size: 16px;
   /* Smaller font for the labels */
 }
 
 .distance-label,
 .effort-label {
-  font-family: barlow, sans-serif;
+  font-family: var(--font--font-family--barlow);
   font-weight: 600;
   font-size: 1.4rem;
   letter-spacing: -0.02em;
@@ -218,38 +218,29 @@ input[type=range]::-webkit-slider-container {
   justify-content: space-between;
   width: 896px;
   text-align: center;
+  font-size: 20px;
+
   /* Center align the content */
 }
 
 .info .label {
-  color: rgba(112, 112, 112, 1);
-  /* 70% grey */
+  color: var(--text--color--text-white);
   width: 100%;
-  font-family: barlow;
+  font-family: var(--font--font-family--barlow);
   font-weight: 500;
-  font-size: 16px;
+  font-size: 20px;
   letter-spacing: .01rem;
-  color: #ffffffb7;
 }
 
 .info span {
-  font-family: barlow;
-    font-weight: 600;
-    font-size: 16px;
+  font-family: var(--font--font-family--barlow);
+    font-weight: 500;
+    font-size: 20px;
     letter-spacing: .01rem;
-    color: #ffffff;
+    color: var(--white);
 }
 
 .no-smoothing {
   image-rendering: pixelated;
   /* for modern browsers */
-}
-
-/* Text Styles */
-
-.text-xl-light {
-  font-family: Barlow, sans-serif;
-  font-size: 28px;
-  letter-spacing: -.065rem;
-  line-height: 120%;
 }

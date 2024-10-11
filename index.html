@@ -147,7 +147,7 @@
     }
 
     .dot.active {
-      background-color: #B4D91F;
+      background-color: var(--accent--lime--P3--600);
     }
 
     /* slider comparison */
@@ -207,11 +207,6 @@
       object-position: left;
     }
 
-    /*  .image-container-1 {
-      width: 832px;
-      height: 418px;
-    }
-*/
     .image1-before {
       position: absolute;
       display: block;
@@ -338,9 +333,9 @@
     .tabs__button_avif::before {
       content: attr(data-tooltip);
       padding: 8px 16px 8px 16px;
-      border-radius: 4px;
-      background-color: #2f2f2f;
-      -webkit-text-fill-color: #fff;
+      border-radius: 8px;
+      background-color: var(--dark--gray);
+      -webkit-text-fill-color: var(--white);
       font-weight: 500;
       opacity: 0;
     }
@@ -471,8 +466,8 @@
       -webkit-appearance: none;
       height: 24px;
       width: 24px;
-      background-color: #22E6E1;
-      border: 1px solid #22E6E1;
+      background-color: var(--brand--teal-bright--P3--600);
+      border: 1px solid var(--brand--teal-dark--P3--600);
       border-radius: 100%;
       box-shadow: inset rgba(0, 0, 0, 0.6) 0px 0px 2px 2px;
     }
@@ -502,11 +497,11 @@
       margin-top: 12px;
       width: 100%;
       padding: 0;
-      font-family: barlow;
+      font-family: var(--font--font-family--barlow);
       font-weight: 500;
       font-size: 12px;
       text-transform: uppercase;
-      -webkit-text-fill-color: #fff;
+      -webkit-text-fill-color: white;
     }
 
     .size-label {
@@ -552,17 +547,11 @@
     }
 
     /* slider label positioning end */
-    /* text styles */
-    .text-all-caps-micro-medium-white {
-      font-family: barlow;
-      font-weight: 500;
-      font-size: 12px;
-      text-transform: uppercase;
-      color: #fff;
-    }
+
+    /* Information (i) text styles */
 
     .heading-desktop-h6 {
-      font-family: barlow, sans-serif;
+      font-family: var(--font--font-family--barlow);
       font-weight: 600;
       font-size: 20px;
       letter-spacing: 0;
@@ -573,17 +562,17 @@
     }
 
     .text-m-regular {
-      font-family: barlow, sans-serif;
+      font-family: var(--font--font-family--barlow);
       font-weight: 600;
       font-size: 16px;
       letter-spacing: 0;
       line-height: 1.45rem;
-      color: #1AE5E0;
+      color: var(var(--brand--teal-bright--P3--600));
       margin: 0;
     }
 
     .text-s-medium {
-      font-family: barlow, sans-serif;
+      font-family: var(--font--font-family--barlow);
       font-weight: 400;
       font-size: 14px;
       letter-spacing: 0.015em;
@@ -598,31 +587,19 @@
       font-weight: 500;
     }
 
-    .text-all-caps-micro-medium {
-      font-family: barlow, sans-serif;
-      font-weight: 500;
-      font-size: .75rem;
-      letter-spacing: 0.08rem;
-      line-height: 1.5rem;
-      text-transform: uppercase;
-      color: #1AE5E0;
-      margin: 0;
-      text-wrap: nowrap;
-    }
-
     .text-medium {
-      font-family: barlow, sans-serif;
+      font-family: var(--font--font-family--barlow);
       font-weight: 500;
       font-size: 1rem;
       letter-spacing: -0.0075rem;
       line-height: 1.45em;
       text-transform: uppercase;
-      color: #fff;
+      color: white;
       margin: 0;
     }
 
     .text-xs-semibold {
-      font-family: barlow, sans-serif;
+      font-family: var(--font--font-family--barlow);
       font-weight: 600;
       font-size: 11px;
       letter-spacing: -.03em;
@@ -668,7 +645,7 @@
 
     .tooltip-content {
       position: absolute;
-      border-radius: 8px;
+      border-radius: 14px;
       background-color: black;
       color: white;
       box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.08);
@@ -745,8 +722,7 @@
       background-color: #808080;
       align-content: center;
       position: relative;
-      pointer-events: none;
-      /* Prevents user interaction */
+      pointer-events: none; /* Prevents user interaction */
     }
 
     .tooltip-slider-reverse {
@@ -759,8 +735,7 @@
       background-color: #808080;
       align-content: center;
       position: relative;
-      pointer-events: none;
-      /* Prevents user interaction */
+      pointer-events: none; /* Prevents user interaction */
       transform: rotate(180deg);
     }
 
@@ -770,7 +745,7 @@
       height: 0;
       border-left: 6px solid transparent;
       border-right: 6px solid transparent;
-      border-top: 12px solid #E56422;
+      border-top: 12px solid var(--accent--orange--P3--500);
       cursor: pointer;
     }
 
@@ -780,7 +755,7 @@
       height: 0;
       border-left: 6px solid transparent;
       border-right: 6px solid transparent;
-      border-bottom: 12px solid #E56422;
+      border-top: 12px solid var(--accent--orange--P3--500);
       cursor: pointer;
     }
 
@@ -791,8 +766,7 @@
 
     .JPEG-tooltip-content,
     .AVIF-tooltip-content {
-      margin-right: 26px;
-      /* Add 20px gap between JPEG and JXL columns */
+      margin-right: 26px; /* Add 26px gap between JPEG and JXL columns */
     }
 
     /* Optional: Ensure both columns have equal width */
