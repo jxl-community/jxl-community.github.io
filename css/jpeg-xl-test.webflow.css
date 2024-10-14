@@ -307,6 +307,11 @@ img {
   height: 100%;
   display: inline-block;
 }
+img.side_image {
+  width: 6em;
+  padding: 0 1em;
+  float: right;
+}
 
 strong {
   letter-spacing: .01em;
@@ -786,6 +791,29 @@ blockquote {
   display: flex;
 }
 
+.navbar_headertext {
+  color: var(--brand--teal-bright--P3--700);
+  background-image: linear-gradient(90deg, var(--brand--teal-bright--P3--500), var(--brand--blue--P3--500));
+  letter-spacing: -.02em;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-align: center;
+  letter-spacing: .01em;
+  flex-flow: wrap;
+  justify-content: center;
+  width: auto;
+  min-width: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: var(--font--font-family--barlow);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1em;
+  display: block;
+}
+
+
 .display-l-bold {
   color: var(--white);
   text-align: center;
@@ -953,7 +981,7 @@ blockquote {
 .container-content-fullspan {
   z-index: 0;
   grid-column-gap: 16px;
-  grid-row-gap: 16px;
+  grid-row-gap: 32px;
   flex-flow: column;
   flex: 0 auto;
   grid-template-rows: auto auto;
@@ -1505,6 +1533,7 @@ blockquote {
   background-position: 0 0, 50% 0;
   background-size: auto, cover;
   overflow: hidden;
+  padding-top: 12rem;
 }
 
 .image-wave-2560 {
@@ -4278,6 +4307,7 @@ blockquote {
 
   .section-jpeg-xl-hero.gradient-bottom {
     background-size: 100%;
+    padding-top: 12rem;
   }
 
   .image-wave-2560 {
@@ -4961,7 +4991,7 @@ blockquote {
 
   .container-content-fullspan {
     grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    grid-row-gap: 32px;
     width: 100%;
     min-width: auto;
     height: auto;
@@ -5795,6 +5825,12 @@ blockquote {
     height: 80px;
   }
 
+  .navbar_headertext {
+    font-size: 4vw;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+  }
+
   .display-xl-bold.fill-gradient {
     letter-spacing: 0;
     margin-bottom: 0;
@@ -5921,7 +5957,6 @@ blockquote {
 
   .container-content-fullspan {
     width: 100%;
-    min-width: 568px;
     height: auto;
   }
 
@@ -6887,8 +6922,8 @@ blockquote {
 
   .navbar-container-menu-top {
     height: 5rem;
-    padding-left: 1.5rem;
-    padding-right: 1rem;
+    padding-left: 0.7rem;
+    padding-right: 0.5rem;
   }
 
   .navbar-icon-main {

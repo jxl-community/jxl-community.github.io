@@ -86,7 +86,7 @@ nav.visible {
   padding: 2em;
   display: flex;
   flex-direction: row;
-  gap: 3em;
+  gap: 2em;
   flex-wrap: wrap;
   justify-content: center;
 }
