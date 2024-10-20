@@ -1,6 +1,24 @@
 {
     "Blog Posts": [
         {
+            "title": "JPEG XL’s Modular Mode Explained",
+            "link": "https://cloudinary.com/blog/jpeg-xls-modular-mode-explained",
+            "date": "2024-10-15",
+            "section": "Blog posts",
+            "Author": "Jon Sneyers",
+            "Publication": "Cloudinary Blog",
+            "Summary": "An exploration of JPEG XL’s lossless modular mode, which is capable of creating impressively small image files.",
+            "Tags": [
+                "JPEG XL",
+                "Lossless",
+                "Modular Mode",
+                "Entropy Coding",
+                "PNG",
+                "WebP",
+                "Predictors"
+            ]
+        },
+        {
             "title": "Linear Color Analysis of Modern Image Formats",
             "link": "https://saklistudio.com/miniblog/modern-image-format-linear-color-analysis/",
             "date": "2024-08-20",
@@ -31,7 +49,7 @@
                 "CDN Image Delivery",
                 "WebP"
             ]
-        },    
+        },
         {
             "title": "JPEG XL and the Pareto Front",
             "link": "https://cloudinary.com/blog/jpeg-xl-and-the-pareto-front",
@@ -62,7 +80,7 @@
                 "Adobe DNG"
             ]
         },
-         {
+        {
             "title": "XYB JPEG",
             "link": "https://giannirosato.com/blog/post/jpegli-xyb/",
             "date": "2023-07-16",
@@ -339,6 +357,21 @@
     ],
     "In the News": [
         {
+            "Title": "Why Apple Uses JPEG XL in the iPhone 16 and What it Means for Your Photos",
+            "link": "https://petapixel.com/2024/09/18/why-apple-uses-jpeg-xl-in-the-iphone-16-and-what-it-means-for-your-photos/",
+            "date": "2024-09-18",
+            "Author": "Jeremy Gray",
+            "Publication": "PetaPixel",
+            "Summary": "Apple’s adoption of JPEG XL in the iPhone 16 enables more efficient compression and may pave the way for wider industry adoption of this next-generation image compression standard.",
+            "Tags": [
+                "JPEG XL",
+                "Apple",
+                "iOS 18",
+                "iPhone 16 Pro",
+                "Camera Support"
+            ]
+        },
+        {
             "Title": "iPhone 16 Pro lets users capture ProRAW photos in JPEG XL format",
             "link": "https://9to5mac.com/2024/09/13/iphone-16-pro-lets-users-capture-proraw-photos-in-jpeg-xl-format/",
             "date": "2024-09-13",
@@ -350,9 +383,11 @@
                 "Rumours",
                 "iOS 18",
                 "iPhone 16 Pro",
+                "Apple",
                 "Camera Support"
             ]
-        },        {
+        },
+        {
             "Title": "iPhone 16 Pro Supports JPEG XL Format",
             "link": "https://www.macrumors.com/2024/09/09/iphone-16-pro-supports-jpeg-xl-format/",
             "date": "2024-09-09",
