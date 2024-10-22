@@ -1,6 +1,22 @@
 {
     "Blog Posts": [
         {
+            "title": "iPhone 16 Adds JPEG XL",
+            "link": "https://mjtsai.com/blog/2024/10/22/iphone-16-adds-jpeg-xl/",
+            "date": "2024-10-22",
+            "section": "Blog posts",
+            "Author": "Michael Tsai",
+            "Publication": "mjtsai.com",
+            "Summary": "Dicussion around what it means to have JPEG XL supported in iPhone 16 Pro DNG conatiners.",
+            "Tags": [
+                "JPEG XL",
+                "Apple",
+                "iOS 18",
+                "iPhone 16 Pro",
+                "Camera Support"
+            ]
+        },
+        {
             "title": "JPEG XL’s Modular Mode Explained",
             "link": "https://cloudinary.com/blog/jpeg-xls-modular-mode-explained",
             "date": "2024-10-15",
