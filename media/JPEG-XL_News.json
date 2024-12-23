@@ -1,6 +1,22 @@
 {
     "Blog Posts": [
         {
+            "title": "Just How Much Space Would JPEG XL Save in Your Photos Library?",
+            "link": "https://www.fractionalxperience.com/ux-ui-graphic-design-blog/how-much-space-would-jpeg-xl-save-photos-library",
+            "date": "2024-12-22",
+            "section": "Blog posts",
+            "Author": "Kelly Thompson",
+            "Publication": "Fractional Xperience Blog",
+            "Summary": "An ATP podcast discussion raises the question: How much space would Apple save by switching to JPEG XL in the Photos app?",
+            "Tags": [
+                "JPEG XL",
+                "Apple",
+                "Apple Photos",
+                "Command line",
+                "Lossless"
+            ]
+        },
+                {
             "title": "iPhone 16 Adds JPEG XL",
             "link": "https://mjtsai.com/blog/2024/10/22/iphone-16-adds-jpeg-xl/",
             "date": "2024-10-22",
