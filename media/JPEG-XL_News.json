@@ -389,6 +389,23 @@
     ],
     "In the News": [
         {
+            "Title": "Is JPEG the Future of Photography? The Results Are Incredible",
+            "link": "https://petapixel.com/2024/09/18/why-apple-uses-jpeg-xl-in-the-iphone-16-and-what-it-means-for-your-photos/",
+            "date": "2024-12-08",
+            "Author": "Alex Armitage",
+            "Publication": "Fstoppers",
+            "Summary": "JPEG XL offers raw-like flexibility at just 10% of the file size, with support for 32-bit color depth, HDR, and wide color gamuts, making it an efficient alternative already integrated into Adobe’s DNG workflow.",
+            "Tags": [
+                "JPEG XL",
+                "Adobe",
+                "RAW",
+                "Adobe DNG",
+                "HDR",
+                "Wide-Gamut",
+                "Panoramas"
+            ]
+        },
+        {
             "Title": "Why Apple Uses JPEG XL in the iPhone 16 and What it Means for Your Photos",
             "link": "https://petapixel.com/2024/09/18/why-apple-uses-jpeg-xl-in-the-iphone-16-and-what-it-means-for-your-photos/",
             "date": "2024-09-18",
