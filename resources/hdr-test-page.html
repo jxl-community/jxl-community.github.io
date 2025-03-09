@@ -26,10 +26,13 @@
   <link href="../images/webclip.png" rel="apple-touch-icon">
   <style>
     .wrapper {
-      text-align: center;
       margin: 20px 0;
     }
-
+    
+    .text-center {
+      text-align: center;
+    }
+    
     .table-container {
       overflow-x: auto;
       position: relative;
@@ -39,36 +42,37 @@
       line-height: normal;
       color: #ffffff;
     }
-
+    
     table {
       border-collapse: separate;
       border-spacing: 0;
       margin: 0 auto;
     }
-
+    
     .image-container {
       margin-top: 10px;
       /* Adds space between text and image */
     }
-
-    .image-container img {
+    
+    .image-container img,
+    .image-container picture {
       max-width: 30vw;
       max-height: 28vh;
       object-fit: contain;
       /* Maintains aspect ratio */
     }
-
+    
     th,
     td {
       padding: 14px;
       vertical-align: top;
       text-align: center;
     }
-
+    
     tr {
       padding-bottom: 8px;
     }
-
+    
     .enlarged-image-container {
       display: none;
       position: fixed;
@@ -79,14 +83,14 @@
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       cursor: pointer;
     }
-
+    
     .enlarged-image {
       display: block;
       max-width: 90vw;
       max-height: 90vh;
       object-fit: contain;
     }
-
+    
     #compute-headroom-button {
       --x: 50%;
       --y: 50%;
@@ -105,16 +109,16 @@
       background: linear-gradient(#111111, #111111) padding-box, radial-gradient(farthest-corner at var(--x) var(--y), oklch(83.77% 0.1936 191.95), oklch(57.16% 0.2513 261.98)) border-box;
       transition: all 0.3s ease;
     }
-
+    
     #compute-headroom-button:hover {
       background: linear-gradient(#292929, #222222) padding-box, radial-gradient(farthest-corner at var(--x) var(--y), oklch(83.77% 0.1936 191.95), oklch(57.16% 0.2513 261.98)) border-box;
     }
-
+    
     #compute-headroom-button:active {
       background: linear-gradient(to right, oklch(83.77% 0.1936 191.95), oklch(57.16% 0.2513 261.98)) padding-box, radial-gradient(farthest-corner at var(--x) var(--y), oklch(83.77% 0.1936 191.95), oklch(57.16% 0.2513 261.98)) border-box;
       color: oklch(13.45% 0 0);
     }
-
+    
     .browser-link {
       cursor: pointer;
       text-decoration: none;
@@ -158,7 +162,7 @@
       visibility: visible;
       opacity: 1;
     }
-
+    
     .text-style-small {
       letter-spacing: .01em;
       color: var(--text--color--text-white);
@@ -286,38 +290,52 @@
             src="../images/Ripple-Line2x-50.0s-1440px-300px.svg" loading="lazy" alt="" class="image-wave-1440"></div>
       </div>
     </section>
-    <div class="section-content-wrapper height-100 centered padding-top_bottom">
+    <div class="section-content-wrapper height-100 padding-top_bottom">
       <main class="container-content-vflex width-page-max">
         <div class="w-layout-blockcontainer container-menu_tabs w-container">
           <div data-figma-id="73:4009" class="size-large-3rem-48px"></div>
-          <center>
+          
+          <div class="text-center">
             <div id="headroom">Click to give permission to see HDR headroom:<br></div>
             <button id="compute-headroom-button" onClick="headroom()">Compute headroom</button><br><br>
-            <div class="text-style-small centered">Note: This test runs in <span class="browser-link" data-url="chrome://flags/#enable-experimental-web-platform-features" title="Click to copy URL: chrome://flags/#enable-experimental-web-platform-features. Paste into URL bar and select Enable.">Chrome</span>, <span class="browser-link" data-url="edge://flags/#enable-experimental-web-platform-features" title="Click to copy URL: edge://flags/#enable-experimental-web-platform-features. Paste into URL bar and select Enable.">Edge</span>, and Chromium-derived browsers with ‘Experimental Web Features’ enabled.<br>
-              Safari & Firefox do not currently support this test.</div><br>
+            
+            <div class="text-style-small text-center">
+              Note: This test runs in <span class="browser-link" data-url="chrome://flags/#enable-experimental-web-platform-features" title="Click to copy URL: chrome://flags/#enable-experimental-web-platform-features. Paste into URL bar and select Enable.">Chrome</span>, <span class="browser-link" data-url="edge://flags/#enable-experimental-web-platform-features" title="Click to copy URL: edge://flags/#enable-experimental-web-platform-features. Paste into URL bar and select Enable.">Edge</span>, and Chromium-derived browsers with 'Experimental Web Features' enabled.<br>
+              Safari & Firefox do not currently support this test.
+            </div><br>
+            
             <div class="table-container">
               <table>
                 <tr>
                   <td>
                     sRGB, JXL:<br>
                     <div class="image-container">
-                      <img src="HDRSample_Images/test_pattern-sRGB.jxl" alt="sRGB JXL test pattern">
+                      <picture>
+                        <source srcset="HDRSample_Images/test_pattern-sRGB.jxl" type="image/jxl">
+                        <img src="HDRSample_Images/test_pattern-no-JXL.webp" alt="sRGB JXL test pattern">
+                      </picture>
                     </div>
                   </td>
                   <td>
                     Rec.2100 HLG, JXL:<br>
                     <div class="image-container">
-                      <img src="HDRSample_Images/test_pattern-HLG.jxl" alt="Rec.2100 HLG JXL test pattern">
+                      <picture>
+                        <source srcset="HDRSample_Images/test_pattern-HLG.jxl" type="image/jxl">
+                        <img src="HDRSample_Images/test_pattern-no-JXL.webp" alt="Rec.2100 HLG JXL test pattern">
+                      </picture>
                     </div>
                   </td>
                   <td>
                     Rec.2100 PQ, JXL:<br>
                     <div class="image-container">
-                      <img src="HDRSample_Images/test_pattern-PQ.jxl" alt="Rec.2100 PQ JXL test pattern">
+                      <picture>
+                        <source srcset="HDRSample_Images/test_pattern-PQ.jxl" type="image/jxl">
+                        <img src="HDRSample_Images/test_pattern-no-JXL.webp" alt="Rec.2100 PQ JXL test pattern">
+                      </picture>
                     </div>
                   </td>
                 </tr>
-
+    
                 <tr>
                   <td>
                     sRGB, PNG:<br>
@@ -338,7 +356,7 @@
                     </div>
                   </td>
                 </tr>
-
+    
                 <tr>
                   <td>
                     sRGB, JPEG:<br>
@@ -359,7 +377,7 @@
                     </div>
                   </td>
                 </tr>
-
+    
                 <tr>
                   <td>
                     sRGB, AVIF:<br>
@@ -391,34 +409,30 @@
                   <td>
                     Rec.2100 HLG, AVIF (using CICP only):<br>
                     <div class="image-container">
-                      <img src="HDRSample_Images/test_pattern-HLG-CICP.avif"
-                        alt="Rec.2100 HLG AVIF test pattern (CICP only)">
+                      <img src="HDRSample_Images/test_pattern-HLG-CICP.avif" alt="Rec.2100 HLG AVIF test pattern (CICP only)">
                     </div>
                   </td>
                   <td>
                     Rec.2100 PQ, AVIF (using CICP only):<br>
                     <div class="image-container">
-                      <img src="HDRSample_Images/test_pattern-PQ-CICP.avif"
-                        alt="Rec.2100 PQ AVIF test pattern (CICP only)">
+                      <img src="HDRSample_Images/test_pattern-PQ-CICP.avif" alt="Rec.2100 PQ AVIF test pattern (CICP only)">
                     </div>
                   </td>
                 </tr>
-
+    
                 <tr>
                   <td>
                     sRGB, JPEG:<br>
                     (global tone mapping, target 200 nits)<br>
                     <div class="image-container">
-                      <img src="HDRSample_Images/sunrise-sRGB-200.jpg"
-                        alt="sRGB JPEG sunrise, global tone mapping 200 nits">
+                      <img src="HDRSample_Images/sunrise-sRGB-200.jpg" alt="sRGB JPEG sunrise, global tone mapping 200 nits">
                     </div>
                   </td>
                   <td>
                     sRGB, JPEG:<br>
                     (global tone mapping, target 500 nits)<br>
                     <div class="image-container">
-                      <img src="HDRSample_Images/sunrise-sRGB-500.jpg"
-                        alt="sRGB JPEG sunrise, global tone mapping 500 nits">
+                      <img src="HDRSample_Images/sunrise-sRGB-500.jpg" alt="sRGB JPEG sunrise, global tone mapping 500 nits">
                     </div>
                   </td>
                   <td>
@@ -429,12 +443,15 @@
                     </div>
                   </td>
                 </tr>
-
+    
                 <tr>
                   <td>
                     Rec.2100 PQ, JXL:<br>
                     <div class="image-container">
-                      <img src="HDRSample_Images/sunrise-PQ.jxl" alt="Rec.2100 PQ JXL sunrise">
+                      <picture>
+                        <source srcset="HDRSample_Images/sunrise-PQ.jxl" type="image/jxl">
+                        <img src="HDRSample_Images/test_pattern-no-JXL.webp" alt="Rec.2100 PQ JXL sunrise">
+                      </picture>
                     </div>
                   </td>
                   <td>
@@ -450,7 +467,7 @@
                     </div>
                   </td>
                 </tr>
-
+    
                 <tr>
                   <td>
                     Rec.2100 PQ, JPEG:<br>
@@ -474,6 +491,7 @@
               </table>
               <div data-figma-id="73:4009" class="size-large-3rem-48px"></div>
             </div>
+          </div>
         </div>
       </main>
     </div>
