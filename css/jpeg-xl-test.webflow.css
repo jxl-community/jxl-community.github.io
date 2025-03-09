@@ -2964,6 +2964,7 @@ blockquote {
 
 .text-small-regular.centered {
   text-align: center;
+  text-wrap: balance;
 }
 
 .text-small-regular.color-black {
