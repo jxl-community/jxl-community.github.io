@@ -389,6 +389,23 @@
     ],
     "In the News": [
         {
+            "Title": "Compression of Spectral Images using Spectral JPEG XL",
+            "link": "https://jcgt.org/published/0014/01/04/",
+            "date": "2025-03-04",
+            "Author": "Alban Fichet & Christoph Peters, Intel Corporation",
+            "Publication": "The Journal of Computer Graphics Techniques",
+            "Summary": "Efficiently compressing spectral images, this new method uses cosine transforms and adaptive JPEG XL encoding to achieve 10–60× smaller file sizes while preserving perceptual quality.",
+            "Tags": [
+                "JPEG XL",
+                "Spectral JPEG XL",
+                "Spectral Images",
+                "Compression",
+                "OpenEXR",
+                "Dynamic Range",
+                "Cosine Transforms"
+            ]
+        },
+        {
             "Title": "Is JPEG the Future of Photography? The Results Are Incredible",
             "link": "https://fstoppers.com/lightroom/jpeg-future-photography-results-are-incredible-686945",
             "date": "2024-12-08",
