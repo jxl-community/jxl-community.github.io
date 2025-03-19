@@ -89,25 +89,30 @@
 
         .fixed-column {
             position: sticky;
+            background-color: #1d1d1d;
             left: 0;
             z-index: 30;
-            /* Increased z-index */
+        }
+
+        td.fixed-column {
+            background-color: #1d1d1d;
+            z-index: 25;
         }
 
         .jpeg-xl {
             position: sticky;
-            left: 152px;
+            left: 213px;
             z-index: 20;
-            /* Increased z-index */
         }
 
         td.jpeg-xl {
-            background-color: #2c2c2c;
-            /* Specific background for JPEG XL column body */
+            background-color: #2c2c2c; /* Specific background for JPEG XL column body */
         }
 
-        /* Ensure the corner cells stay on top */
-        th.fixed-column,
+        th.fixed-column {
+            z-index: 35;
+        }
+        
         th.jpeg-xl {
             z-index: 30;
         }
@@ -306,7 +311,7 @@
                         <tbody>
                             <tr>
                             <tr class="section-header">
-                                <td>Compression (Photos)</td>
+                                <td class="fixed-column">Compression (Photos)</td>
                                 <td class="jpeg-xl">
                                     <div class="star-rating" style="--percent: 93.75%;"></div>
                                 </td>
@@ -331,7 +336,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Low Fidelity</td>
+                                <td class="fixed-column">Low Fidelity</td>
                                 <td class="jpeg-xl">
                                     <div class="progress-bar">
                                         <div class="progress-bar-fill" style="--percent: 75%;"></div>
@@ -370,7 +375,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Medium Fidelity</td>
+                                <td class="fixed-column">Medium Fidelity</td>
                                 <td class="jpeg-xl">
                                     <div class="progress-bar">
                                         <div class="progress-bar-fill" style="--percent: 100%;"></div>
@@ -409,7 +414,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>High Fidelity</td>
+                                <td class="fixed-column">High Fidelity</td>
                                 <td class="jpeg-xl">
                                     <div class="progress-bar">
                                         <div class="progress-bar-fill" style="--percent: 100%;"></div>
@@ -448,7 +453,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Lossless</td>
+                                <td class="fixed-column">Lossless</td>
                                 <td class="jpeg-xl">
                                     <div class="progress-bar">
                                         <div class="progress-bar-fill" style="--percent: 100%;"></div>
@@ -487,7 +492,7 @@
                             </tr>
                             <tr>
                             <tr class="section-header">
-                                <td>Compression (Other Images)</td>
+                                <td class="fixed-column">Compression (Other Images)</td>
                                 <td class="jpeg-xl">
                                     <div class="star-rating" style="--percent: 100%;"></div>
                                 </td>
@@ -512,7 +517,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Lossy non-photographic</td>
+                                <td class="fixed-column">Lossy non-photographic</td>
                                 <td class="jpeg-xl">
                                     <div class="progress-bar">
                                         <div class="progress-bar-fill" style="--percent: 100%;"></div>
@@ -551,7 +556,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Lossless non-photographic</td>
+                                <td class="fixed-column">Lossless non-photographic</td>
                                 <td class="jpeg-xl">
                                     <div class="progress-bar">
                                         <div class="progress-bar-fill" style="--percent: 100%;"></div>
@@ -590,7 +595,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Mixed photo/non-photo</td>
+                                <td class="fixed-column">Mixed photo/non-photo</td>
                                 <td class="jpeg-xl">
                                     <div class="progress-bar">
                                         <div class="progress-bar-fill" style="--percent: 100%;"></div>
@@ -629,7 +634,7 @@
                             </tr>
                             <tr>
                             <tr class="section-header">
-                                <td>Speed</td>
+                                <td class="fixed-column">Speed</td>
                                 <td class="jpeg-xl">
                                     <div class="star-rating" style="--percent: 100%;"></div>
                                 </td>
@@ -654,7 +659,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Single-core encode speed</td>
+                                <td class="fixed-column">Single-core encode speed</td>
                                 <td class="jpeg-xl">
                                     <div class="progress-bar">
                                         <div class="progress-bar-fill" style="--percent: 100%;"></div>
@@ -693,7 +698,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Single-core decode speed</td>
+                                <td class="fixed-column">Single-core decode speed</td>
                                 <td class="jpeg-xl">
                                     <div class="progress-bar">
                                         <div class="progress-bar-fill" style="--percent: 100%;"></div>
@@ -732,7 +737,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Parallelizable</td>
+                                <td class="fixed-column">Parallelizable</td>
                                 <td class="jpeg-xl">
                                     <div class="progress-bar">
                                         <div class="progress-bar-fill" style="--percent: 100%;"></div>
@@ -771,7 +776,7 @@
                             </tr>
                             <tr>
                             <tr class="section-header">
-                                <td>Limits</td>
+                                <td class="fixed-column">Limits</td>
                                 <td class="jpeg-xl">
                                     <div class="star-rating" style="--percent: 100%;"></div>
                                 </td>
@@ -796,7 +801,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Precision Max Depth</td>
+                                <td class="fixed-column">Precision Max Depth</td>
                                 <td class="jpeg-xl">32 bit</td>
                                 <td>8 bit</td>
                                 <td>16 bit</td>
@@ -807,7 +812,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Supports Lossy 4:4:4</td>
+                                <td class="fixed-column">Supports Lossy 4:4:4</td>
                                 <td class="jpeg-xl">
                                     <div class="green-check"><svg>
                                             <use href="#checkmark"></use>
@@ -846,7 +851,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Wide gamut/HDR</td>
+                                <td class="fixed-column">Wide gamut/HDR</td>
                                 <td class="jpeg-xl">
                                     <div class="green-check"><svg>
                                             <use href="#checkmark"></use>
@@ -885,7 +890,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Maximum Number of Channels</td>
+                                <td class="fixed-column">Maximum Number of Channels</td>
                                 <td class="jpeg-xl">4,099</td>
                                 <td>4</td>
                                 <td>4</td>
@@ -896,7 +901,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Maximum Image Dimensions</td>
+                                <td class="fixed-column">Maximum Image Dimensions</td>
                                 <td class="jpeg-xl">1,073,741,823<br>x<br>1,073,741,823</td>
                                 <td>65,535<br>x<br>65,535</td>
                                 <td>2,147,483,647<br>x<br>2,147,483,647</td>
@@ -907,7 +912,7 @@
                             </tr>
                             <tr>
                             <tr class="section-header">
-                                <td>Features</td>
+                                <td class="fixed-column">Features</td>
                                 <td class="jpeg-xl">
                                     <div class="star-rating" style="--percent: 100%;"></div>
                                 </td>
@@ -932,7 +937,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Supports animation</td>
+                                <td class="fixed-column">Supports animation</td>
                                 <td class="jpeg-xl">
                                     <div class="green-check"><svg>
                                             <use href="#checkmark"></use>
@@ -974,7 +979,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Progressive decoding</td>
+                                <td class="fixed-column">Progressive decoding</td>
                                 <td class="jpeg-xl">
                                     <div class="progress-bar">
                                         <div class="progress-bar-fill" style="--percent: 100%;"></div>
@@ -1013,7 +1018,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Alpha transparency</td>
+                                <td class="fixed-column">Alpha transparency</td>
                                 <td class="jpeg-xl">
                                     <div class="green-check"><svg>
                                             <use href="#checkmark"></use>
@@ -1052,7 +1057,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Depth map</td>
+                                <td class="fixed-column">Depth map</td>
                                 <td class="jpeg-xl">
                                     <div class="green-check"><svg>
                                             <use href="#checkmark"></use>
@@ -1091,7 +1096,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Overlays</td>
+                                <td class="fixed-column">Overlays</td>
                                 <td class="jpeg-xl">
                                     <div class="green-check"><svg>
                                             <use href="#checkmark"></use>
@@ -1130,7 +1135,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Authoring workflow suitability</td>
+                                <td class="fixed-column">Authoring workflow suitability</td>
                                 <td class="jpeg-xl">
                                     <div class="progress-bar">
                                         <div class="progress-bar-fill" style="--percent: 100%;"></div>
@@ -1169,7 +1174,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Generational loss resilience</td>
+                                <td class="fixed-column">Generational loss resilience</td>
                                 <td class="jpeg-xl">
                                     <div class="progress-bar">
                                         <div class="progress-bar-fill" style="--percent: 75%;"></div>
@@ -1204,7 +1209,7 @@
                             </tr>
                             <tr>
                             <tr class="sub-row">
-                                <td>Lossless JPEG recompression</td>
+                                <td class="fixed-column">Lossless JPEG recompression</td>
                                 <td class="jpeg-xl">
                                     <div class="green-check"><svg>
                                             <use href="#checkmark"></use>
@@ -1239,7 +1244,7 @@
                             </tr>
                             <tr>
                             <tr class="section-header">
-                                <td>Royalty-free</td>
+                                <td class="fixed-column">Royalty-free</td>
                                 <td class="jpeg-xl">
                                     <div class="green-check"><svg>
                                             <use href="#checkmark"></use>
