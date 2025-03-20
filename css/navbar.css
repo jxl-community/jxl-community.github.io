@@ -14,16 +14,21 @@
 
 nav {
   position: fixed;
+  z-index: 1000;
+  width: 100%;
+  top: 0;
+  transition: transform 0.3s ease;
+  will-change: transform;
 }
 
 nav.hidden {
-  visibility: hidden;
-  animation: slideout 0.2s;
+  transform: translateY(-100%);
+  visibility: visible; /* Keep element in DOM but moved out of view */
 }
 
 nav.visible {
+  transform: translateY(0);
   visibility: visible;
-  animation: slidein 0.2s;
 }
 
 #navbar-dropdown {
@@ -34,6 +39,9 @@ nav.visible {
   display: none;
   position: absolute;
   top: 7rem;
+  left: 0;
+  right: 0;
+  z-index: 999;
 }
 
 @media screen and (max-width: 991px) {
@@ -55,7 +63,7 @@ nav.visible {
 
 #navbar-dropdown:checked ~ .container-navbar-dropdown-content {
   display: flex;
-  animation: fadein 0.2s;
+  animation: fadein 0.3s ease forwards;
 }
 
 .container-navbar-content {
@@ -125,35 +133,28 @@ label.material-icons {
 @keyframes fadein {
   from {
     opacity: 0;
-    transform: translatey(-4em);
+    transform: translateY(-1rem);
   }
-
   to {
     opacity: 1;
-    transform: translatey(0);
+    transform: translateY(0);
   }
 }
 
 @keyframes slideout {
   from {
     transform: translatey(0em);
-    visibility: visible;
   }
-
   to {
     transform: translatey(-100%);
-    visibility: hidden;
   }
 }
 
 @keyframes slidein {
   from {
     transform: translatey(-100%);
-    visibility: hidden;
   }
-
   to {
     transform: translatey(0em);
-    visibility: visible;
   }
 }
