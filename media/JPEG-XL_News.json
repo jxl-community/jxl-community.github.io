@@ -1,6 +1,24 @@
 {
     "Blog Posts": [
         {
+            "title": "JPEG XL: The Storage Solution Apple (and Your Drive) Has Been Waiting For",
+            "link": "https://www.fractionalxperience.com/ux-ui-graphic-design-blog/jpeg-xl-storage-solution-apple-your-drive-waiting-for",
+            "date": "2024-03-22",
+            "section": "Blog posts",
+            "Author": "Kelly Thompson",
+            "Publication": "Fractional Xperience Blog",
+            "Summary": "JPEG XL Is Here – Now Apple Just Needs to Fully Embrace It Across its Development Environment",
+            "Tags": [
+                "JPEG XL",
+                "Apple",
+                "MacOS",
+                "iOS"
+                "XCode",
+                "Mac Developement",
+                "Asset Catalog"
+            ]
+        },
+        {
             "title": "Just How Much Space Would JPEG XL Save in Your Photos Library?",
             "link": "https://www.fractionalxperience.com/ux-ui-graphic-design-blog/how-much-space-would-jpeg-xl-save-photos-library",
             "date": "2024-12-22",
