@@ -407,6 +407,19 @@
     ],
     "In the News": [
         {
+            "Title": "March 2025 Microsoft Photos update now rolling out to Windows Insiders",
+            "link": "https://blogs.windows.com/windows-insider/2025/03/24/march-2025-microsoft-photos-update-now-rolling-out-to-windows-insiders/",
+            "date": "2025-03-24",
+            "Author": "Lydia Ko, Senior Product Manager, Microsoft Photos",
+            "Publication": "Windows Insider Blog",
+            "Summary": "Due to popular requests, the Photos app now supports JXL files.",
+            "Tags": [
+                "JPEG XL",
+                "Windows Insiders",
+                "Microsoft Photos"
+            ]
+        },
+        {
             "Title": "Compression of Spectral Images using Spectral JPEG XL",
             "link": "https://jcgt.org/published/0014/01/04/",
             "date": "2025-03-04",
