@@ -2820,7 +2820,7 @@
                 <div id="w-node-a89a5031-0ff7-675b-f7d6-29d42dd985eb-4703421c" class="container-content-vflex">
                   <div id="w-node-fedcfc71-bc17-af3f-285c-68c798bcef4e-4703421c" class="wrapper-text centered">
                     <div id="w-node-_8e9aaa5d-c4ff-899a-79da-79764703423d-4703421c" class="footer_credit-text">
-                      ©2024 The JPEG XL Community.<br>
+                      ©2024-2025 The JPEG XL Community.<br>
                       Want to contribute to this website? <a
                         href="https://github.com/jxl-community/jxl-community.github.io" class="footer_legal-link">Make a
                         pull request!</a><br>
@@ -2848,64 +2848,6 @@
   <script src="script.js"></script>
   <script src="JPEGvsJXL.js"></script>
   <script src="AVIFvsJXL.js"></script>
-  <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.0.0/pixi.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-  <script>
-    const initNoise = async () => {
-      const noiseColors = [0x3871e0, 0x21e6e1, 0xEA00EA]
-      const app = new PIXI.Application({
-        resizeTo: window,
-        antialias: true,
-        backgroundAlpha: 0
-      })
-      const wrapper = document.querySelector('.noise')
-      wrapper.appendChild(app.view)
-      const addNoise = (x, y) => {
-        const graphics = new PIXI.Graphics()
-        const size = gsap.utils.random(2, 8)
-        const radian = (Math.PI / 180) * gsap.utils.random(0, 360)
-        const radius = gsap.utils.random(0, 200)
-        graphics.beginFill(noiseColors[Math.floor(gsap.utils.random(0, 3))])
-        graphics.drawRect(0, 0, size, size)
-        graphics.endFill()
-        graphics.x = x ? x : Math.cos(radian) * radius + window.innerWidth / 2
-        graphics.y = y ? y : Math.sin(radian) * radius + window.innerHeight / 2
-        app.stage.addChild(graphics)
-        gsap.fromTo(
-          graphics,
-          {
-            alpha: 0.5,
-          },
-          {
-            alpha: 0,
-            x: '+=' + size * Math.floor(gsap.utils.random(-5, 5)),
-            y: '+=' + size * Math.floor(gsap.utils.random(-5, 5)),
-            duration: gsap.utils.random(0.2, 1.2),
-            ease: 'steps(3)',
-            onComplete: () => {
-              app.stage.removeChild(graphics)
-            },
-          }
-        )
-      }
-      setInterval(addNoise, 100)
-      window.addEventListener('mousemove', (event) => {
-        for (let i = 0; i < 6; i++) {
-          const radian = (Math.PI / 180) * gsap.utils.random(0, 360)
-          const radius = gsap.utils.random(0, 100)
-          const x = Math.cos(radian) * radius
-          const y = Math.sin(radian) * radius
-          setTimeout(
-            () => {
-              addNoise(event.pageX + x, event.pageY + y)
-            },
-            gsap.utils.random(0, 600)
-          )
-        }
-      })
-    }
-    // initNoise()
-  </script> -->
   <script src="/js/webflow.js"></script>
 </body>
 
