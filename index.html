@@ -2555,18 +2555,38 @@
           <h3 class="text-xxl-regular centered teal">Responsive By Design</h3>
         </div>
         <div data-figma-id="73:4015" class="size-60px"></div>
+        <div class="container-2col-span-text">
+          <div id="w-node-_6b3ac082-f695-e649-a203-cf78ce46e2a5-8c10331b" class="container-column-1 left">
+            <div class="div-container-rounded_text_box">
+              <h3 class="label-menu-text">JPEG</h3>
+            </div>
+            <div data-figma-id="73:4012" class="size-small-1rem-16px"></div>
+          </div>
+          <div id="w-node-_6b3ac082-f695-e649-a203-cf78ce46e2a9-8c10331b" class="container-column-1 right">
+            <div class="div-container-rounded_text_box">
+              <h3 class="label-menu-text">JPEG XL</h3>
+            </div>
+            <div data-figma-id="73:4012" class="size-small-1rem-16px"></div>
+          </div>
+        </div>
         <div class="div-container-code">
           <div class="w-embed">
-            <video id="myVideo" loop muted autoplay playsinline>
-              <source src="./alex-perez-uGXEEwnvIkQ-unsplash-vsnonprogressive-h265-18.mp4"
-                type="video/mp4; codecs=hvc1">
-              <source src="./alex-perez-uGXEEwnvIkQ-unsplash-vsnonprogressive-h264-18.mp4"
-                type="video/mp4; codecs=mp4v">
-              <source src="./alex-perez-uGXEEwnvIkQ-unsplash-vsnonprogressive-VP9-18.webm"
-                type="video/webm; codecs=vp9">
-              <!--  Fallback for browsers that don't support any of the above codecs  -->
-              <source src="./alex-perez-uGXEEwnvIkQ-unsplash-vsnonprogressive-h264-18.mp4" type="video/mp4">
+            <video id="myVideo" muted autoplay playsinline>
+              <source src="./alex-perez-uGXEEwnvIkQ-unsplash-vsnonprogressive-h265.mp4" type="video/mp4; codecs=hvc1">
+              <source src="./alex-perez-uGXEEwnvIkQ-unsplash-vsnonprogressive-h264.mp4" type="video/mp4; codecs=mp4v">
+              <source src="./alex-perez-uGXEEwnvIkQ-unsplash-vsnonprogressive-VP9.webm" type="video/webm; codecs=vp9">
+              <source src="./alex-perez-uGXEEwnvIkQ-unsplash-vsnonprogressive-h264.mp4" type="video/mp4">
             </video>
+            
+            <script>
+              const video = document.getElementById("myVideo");
+              video.addEventListener("ended", function() {
+                setTimeout(() => {
+                  video.currentTime = 0; // Restart video from beginning
+                  video.play();          // Play again after the delay
+                }, 2000); // Pause for 2 seconds
+              });
+            </script>
           </div>
         </div>
         <div data-figma-id="73:4015" class="size-60px"></div>
