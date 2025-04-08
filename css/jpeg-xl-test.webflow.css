@@ -380,7 +380,7 @@ blockquote {
 .text-xl-light {
   color: var(--text--color--text-white);
   text-align: left;
-  letter-spacing: -.02em;
+  letter-spacing: -.01em;
   max-width: 896px;
   margin-top: 0;
   margin-bottom: 0;
@@ -393,14 +393,15 @@ blockquote {
 .text-xl-light.is-centered {
   color: var(--text--color--text-white);
   text-align: center;
-  letter-spacing: -.025em;
+  letter-spacing: -.01em;
   max-width: none; /* max-width: 1024px; This was from the second definition */
   font-size: 26px; /* 28px in the second definition, 24px in the third, 20 in the 4th, 16 in the 5th */
   line-height: 1.45em;
   white-space: normal;
   word-break: keep-all;
   overflow-wrap: normal;
-  text-wrap: balance;
+  text-wrap: balanced; /* Fallback */
+  text-wrap: pretty; /* Preferred */
 }
 
 .text-xl-light.is-centered._2lines {
@@ -946,7 +947,8 @@ blockquote {
   margin-bottom: 0;
   font-size: 32px;
   line-height: 1.45;
-  text-wrap: balance;
+  text-wrap: balanced; /* Fallback */
+  text-wrap: pretty; /* Preferred */
 }
 
 .text-xl-regular.color-teal {
@@ -978,7 +980,9 @@ blockquote {
   letter-spacing: -.01em;
   font-size: 1.5em;
   font-weight: 300;
-  text-wrap: balance;
+  text-wrap: balanced; /* Fallback */
+  text-wrap: pretty; /* Preferred */
+
 }
 
 .container-content-fullspan {
@@ -2964,7 +2968,9 @@ blockquote {
 
 .text-small-regular.centered {
   text-align: center;
-  text-wrap: balance;
+  text-wrap: balanced; /* Fallback */
+  text-wrap: pretty; /* Preferred */
+
 }
 
 .text-small-regular.color-black {
@@ -4300,7 +4306,6 @@ blockquote {
     type("image/jxl"),
     url('../images/kamran-abdullayev-black-background-unsplash.webp')
     type("image/webp"));
-    color: var(--page-black);
     background-position: 0 0, 50% 0;
     background-size: auto, cover;
     margin-top: -7rem;
