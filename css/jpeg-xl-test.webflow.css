@@ -400,8 +400,7 @@ blockquote {
   white-space: normal;
   word-break: keep-all;
   overflow-wrap: normal;
-  text-wrap: balanced; /* Fallback */
-  text-wrap: pretty; /* Preferred */
+  text-wrap: pretty;
 }
 
 .text-xl-light.is-centered._2lines {
@@ -947,8 +946,7 @@ blockquote {
   margin-bottom: 0;
   font-size: 32px;
   line-height: 1.45;
-  text-wrap: balanced; /* Fallback */
-  text-wrap: pretty; /* Preferred */
+  text-wrap: pretty;
 }
 
 .text-xl-regular.color-teal {
@@ -980,9 +978,7 @@ blockquote {
   letter-spacing: -.01em;
   font-size: 1.5em;
   font-weight: 300;
-  text-wrap: balanced; /* Fallback */
-  text-wrap: pretty; /* Preferred */
-
+  text-wrap: pretty;
 }
 
 .container-content-fullspan {
@@ -2968,9 +2964,7 @@ blockquote {
 
 .text-small-regular.centered {
   text-align: center;
-  text-wrap: balanced; /* Fallback */
-  text-wrap: pretty; /* Preferred */
-
+  text-wrap: pretty;
 }
 
 .text-small-regular.color-black {
