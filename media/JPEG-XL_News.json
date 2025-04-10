@@ -407,6 +407,18 @@
     ],
     "In the News": [
         {
+            "Title": "Ubuntu 25.04 Now Ships With JPEG-XL Support Enabled By Default",
+            "link": "https://www.phoronix.com/news/Ubuntu-25.04-JPEG-XL-Default",
+            "date": "2025-04-09",
+            "Author": "Michael Larab",
+            "Publication": "Phoronix",
+            "Summary": "The Ubuntu 25.04 release shipping this month will now feature JPEG-XL image format support out-of-the-box.",
+            "Tags": [
+                "JPEG XL",
+                "Ubuntu"
+            ]
+        },
+        {
             "Title": "March 2025 Microsoft Photos update now rolling out to Windows Insiders",
             "link": "https://blogs.windows.com/windows-insider/2025/03/24/march-2025-microsoft-photos-update-now-rolling-out-to-windows-insiders/",
             "date": "2025-03-24",
