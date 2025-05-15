@@ -4,92 +4,97 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- Generated Oct 11, 2024 23:09:00 -->
+<!-- Generated May 14, 2025 17:01:00 -->
 
 <url>
   <loc>https://jpegxl.info/</loc>
-  <lastmod>2024-10-11T05:33:58+00:00</lastmod>
+  <lastmod>2025-05-14T23:37:50+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://jpegxl.info/index.html</loc>
-  <lastmod>2024-10-11T05:33:59+00:00</lastmod>
+  <lastmod>2025-05-14T23:37:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://jpegxl.info/resources/supported-software.html</loc>
-  <lastmod>2024-10-11T05:33:58+00:00</lastmod>
+  <lastmod>2025-05-14T23:37:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://jpegxl.info/resources/battle-of-codecs.html</loc>
-  <lastmod>2024-10-11T05:33:59+00:00</lastmod>
+  <lastmod>2025-05-14T23:37:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://jpegxl.info/resources/faqs.html</loc>
-  <lastmod>2024-10-11T05:33:58+00:00</lastmod>
+  <lastmod>2025-05-14T23:37:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://jpegxl.info/resources/glossary.html</loc>
-  <lastmod>2024-10-11T05:33:58+00:00</lastmod>
+  <lastmod>2025-05-14T23:37:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://jpegxl.info/resources/distance-vs-effort-visualizer.html</loc>
-  <lastmod>2024-10-11T05:33:58+00:00</lastmod>
+  <lastmod>2025-05-14T23:37:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://jpegxl.info/resources/jpeg-xl-test-page.html</loc>
-  <lastmod>2024-10-11T05:33:58+00:00</lastmod>
+  <lastmod>2025-05-14T23:37:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://jpegxl.info/resources/hdr-test-page.html</loc>
-  <lastmod>2024-10-11T05:33:58+00:00</lastmod>
+  <lastmod>2025-05-14T23:37:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://jpegxl.info/about/history.html</loc>
-  <lastmod>2024-10-11T05:33:58+00:00</lastmod>
+  <lastmod>2025-05-14T23:37:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://jpegxl.info/about/contributors.html</loc>
-  <lastmod>2024-10-11T05:33:58+00:00</lastmod>
+  <lastmod>2025-05-14T23:37:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://jpegxl.info/about/photo-credits.html</loc>
-  <lastmod>2024-10-11T05:33:58+00:00</lastmod>
+  <lastmod>2025-05-14T23:37:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://jpegxl.info/media/newsroom.html</loc>
-  <lastmod>2024-10-11T05:33:59+00:00</lastmod>
+  <lastmod>2025-05-14T23:37:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://jpegxl.info/old/</loc>
-  <lastmod>2024-10-11T05:33:59+00:00</lastmod>
+  <lastmod>2025-05-14T23:37:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://jpegxl.info/old/why-jxl.html</loc>
-  <lastmod>2024-10-11T05:33:59+00:00</lastmod>
+  <lastmod>2025-05-14T23:37:50+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://jpegxl.info/old/test-page/</loc>
-  <lastmod>2024-10-11T05:33:58+00:00</lastmod>
+  <lastmod>2025-05-14T23:37:50+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://jpegxl.info/old/art/</loc>
-  <lastmod>2024-10-11T05:33:59+00:00</lastmod>
+  <lastmod>2025-05-14T23:37:50+00:00</lastmod>
   <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://jpegxl.info/old/art/2021-04_jon.html</loc>
+  <lastmod>2025-05-14T23:37:50+00:00</lastmod>
+  <priority>0.51</priority>
 </url>
 
 </urlset>
