@@ -1,5 +1,24 @@
 {
     "Blog posts": [
+                {
+            "title": "AIC-3 and HDR image quality assessment",
+            "link": "https://cloudinary.com/labs/aic-3-and-hdr",
+            "date": "2025-05-30",
+            "section": "Blog posts",
+            "Author": "Jon Sneyers",
+            "Publication": "Cloudinary Labs",
+            "Summary": "Researchers applied JPEG AIC-3 methodology to precisely assess HDR image compression quality using JND measurements.",
+            "Tags": [
+                "JPEG XL",
+                "AIC-3",
+                "HDR",
+                "JND",
+                "Metric Bias",
+                "Image Quality Assessment",
+                "Lossy Compression",
+                "JPEG XT"
+            ]
+        },
         {
             "title": "JPEG XL: The Storage Solution Apple (and Your Drive) Has Been Waiting For",
             "link": "https://www.fractionalxperience.com/ux-ui-graphic-design-blog/jpeg-xl-storage-solution-apple-your-drive-waiting-for",
