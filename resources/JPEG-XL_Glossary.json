@@ -21,7 +21,7 @@
   },
   {
     "term": "Bits Per Channel (bpc)",
-    "definition": "Represents the number of bits used to define the intensity or color value for each individual color channel in a pixel. Common values for bpc are 8 (256 possible values) and 16 (65,536 possible values). An image with 8 bits per channel (bpc) for Red, Green, and Blue (RGB) has a total of 24 bits per pixel (bpp) because 8 bpc × 3 channels = 24 bpp.",
+    "definition": "Represents the number of bits used to define the intensity or color value for each individual color channel in a pixel. Common values for bpc are 8 (256 possible values) and 16 (65,536 possible values). An image with 8 bits per channel (bpc) for Red, Green, and Blue (RGB) has a total of 24 bits per pixel (bpp) because 8 bpc × 3 channels = 24 bpp. An image with 10 bits per channel would have 30 bits per pixel.",
     "subcategory": "Fundamentals"
   },
   {
