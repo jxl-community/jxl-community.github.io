@@ -6,12 +6,12 @@
   },
   {
     "term": "AVIF (AV1 Image File Format)",
-    "definition": "A modern image compression standard, developed by the Alliance for Open Media based on the AV1 video compression algorithm. It outperforms JPEG and WebP, but is missing some image-only features like progressive decoding.",
+    "definition": "A modern image compression format, developed by the Alliance for Open Media based on the AV1 video compression algorithm. It outperforms JPEG and WebP, but is missing some image-only features like progressive decoding. It has generally poor performace for lossless compression. It uses HEIF as its underlying container.",
     "subcategory": "Formats"
   },
   {
     "term": "AV1",
-    "definition": "See AVIF.",
+    "definition": "A video compression codec/algorithm developed by the Alliance for Open Media. It's designed primarily for compressing video streams. See AVIF for the AV1 Image File Format.",
     "subcategory": "Formats"
   },
   {
@@ -293,5 +293,10 @@
     "term": "XYB",
     "definition": "A color space designed for use with JPEG XL. It is an LMS-based color model inspired by the human visual system, facilitating perceptually uniform quantization. It uses a gamma of 3 for computationally efficient decoding. X is derived from the difference between L and M, Y is an average of L and M (behaves similarly to luminance), and B is derived from the S (‘blue’) channel.",
     "subcategory": "Color & Display Tech"
+  },
+    {
+    "term": "JPEG AIC-3",
+    "definition": "A new JPEG standardized methodology for fine-grained subjective testing of image compression quality, specifically designed to assess high-fidelity images in the range from good quality to mathematically lossless. It uses Just-Noticeable-Difference (JND) units to create precise quality measurements that can differentiate subtle distortions in the visually lossless range where traditional methods fail.",
+    "subcategory": "Quality & Metrics"
   }
 ]
