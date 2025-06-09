@@ -1,6 +1,6 @@
 {
     "Blog posts": [
-                {
+        {
             "title": "AIC-3 and HDR image quality assessment",
             "link": "https://cloudinary.com/labs/aic-3-and-hdr",
             "date": "2025-05-30",
@@ -53,7 +53,7 @@
                 "Lossless"
             ]
         },
-                {
+        {
             "title": "iPhone 16 Adds JPEG XL",
             "link": "https://mjtsai.com/blog/2024/10/22/iphone-16-adds-jpeg-xl/",
             "date": "2024-10-22",
@@ -360,6 +360,23 @@
         }
     ],
     "Presentations": [
+        {
+            "title": "The JPEG XL Image Coding System: History, Features, Coding Tools, Design Rationale, and Future",
+            "link": "https://docs.google.com/presentation/d/1LlmUR0Uoh4dgT3DjanLjhlXrk_5W2nJBDqDAMbhe8v8/edit?usp=sharing",
+            "date": "2024-05",
+            "Author": "Jon Sneyers, Jyrki Alakuijala, Luca Versari, Zoltán Szabadka, Sami Boukortt, Amnon Cohen-Tidhar, Moritz Firsching, Evgenii Kliuchnikov, Tal Lev-Ami, Eric Portis, Thomas Richter, Osamu Watanabe",
+            "Publication": "JPEG XL",
+            "Summary": "JPEG XL is a new image coding system offering state-of-the-art compression performance, lossless JPEG recompression, and advanced features. It aims to replace JPEG, PNG, GIF, and other formats with a single universal codec. This article provides an overview of JPEG XL, including its history, design rationale, coding tools, and future potential.",
+            "Tags": [
+                "JPEG XL",
+                "Features",
+                "Overview",
+                "Coding Tools",
+                "Design Rationale",
+                "Future",
+                "History"
+            ]
+        },
         {
             "title": "JPEG XL Overview (Slide Deck is Kept Up-to-Date)",
             "link": "https://docs.google.com/presentation/d/1LlmUR0Uoh4dgT3DjanLjhlXrk_5W2nJBDqDAMbhe8v8/edit?usp=sharing",
