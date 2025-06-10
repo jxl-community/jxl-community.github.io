@@ -362,8 +362,8 @@
     "Presentations": [
         {
             "title": "The JPEG XL Image Coding System: History, Features, Coding Tools, Design Rationale, and Future",
-            "link": "https://docs.google.com/presentation/d/1LlmUR0Uoh4dgT3DjanLjhlXrk_5W2nJBDqDAMbhe8v8/edit?usp=sharing",
-            "date": "2024-05",
+            "link": "https://arxiv.org/abs/2506.05987",
+            "date": "2025-06-06",
             "Author": "Jon Sneyers, Jyrki Alakuijala, Luca Versari, Zoltán Szabadka, Sami Boukortt, Amnon Cohen-Tidhar, Moritz Firsching, Evgenii Kliuchnikov, Tal Lev-Ami, Eric Portis, Thomas Richter, Osamu Watanabe",
             "Publication": "JPEG XL",
             "Summary": "JPEG XL is a new image coding system offering state-of-the-art compression performance, lossless JPEG recompression, and advanced features. It aims to replace JPEG, PNG, GIF, and other formats with a single universal codec. This article provides an overview of JPEG XL, including its history, design rationale, coding tools, and future potential.",
