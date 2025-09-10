@@ -443,6 +443,21 @@
     ],
     "In the News": [
         {
+            "Title": "Philips announces digital pathology scanner with native, configurable DICOM JPEG and JPEG XL output in world first",
+            "link": "https://www.philips.com/a-w/about/news/archive/standard/news/articles/2025/philips-announces-digital-pathology-scanner-with-native-configurable-dicom-jpeg-and-jpeg-xl-output-in-world-first.html",
+            "date": "2025-09-08",
+            "Author": "Philips",
+            "Publication": "Philips website",
+            "Summary": "Philips has launched the world’s first digital pathology scanner with native DICOM JPEG XL output, enabling smaller file sizes, scalable storage, and seamless integration for pathology workflows.",
+            "Tags": [
+                "JPEG XL",
+                "DICOM JPEG XL",
+                "Digital Pathology",
+                "Philips",
+                "Medical Imaging"
+            ]
+        },
+                {
             "Title": "Ubuntu 25.04 Now Ships With JPEG-XL Support Enabled By Default",
             "link": "https://www.phoronix.com/news/Ubuntu-25.04-JPEG-XL-Default",
             "date": "2025-04-09",
