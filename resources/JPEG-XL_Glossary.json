@@ -275,7 +275,7 @@
     "subcategory": "Compression"
   },
   {
-    "term": "Visually lossless",
+    "term": "Visually Lossless",
     "definition": "A term used for lossy compression that aims to produce an image that is indistinguishable from the original to the human eye. JPEG XL can achieve visually lossless compression at significantly smaller file sizes compared to JPEG. SSIMULACRA2 scores above 90 are considered visually lossless.",
     "subcategory": "Compression"
   },
@@ -294,9 +294,19 @@
     "definition": "A color space designed for use with JPEG XL. It is an LMS-based color model inspired by the human visual system, facilitating perceptually uniform quantization. It uses a gamma of 3 for computationally efficient decoding. X is derived from the difference between L and M, Y is an average of L and M (behaves similarly to luminance), and B is derived from the S (‘blue’) channel.",
     "subcategory": "Color & Display Tech"
   },
-    {
+  {
     "term": "JPEG AIC-3",
     "definition": "A new JPEG standardized methodology for fine-grained subjective testing of image compression quality, specifically designed to assess high-fidelity images in the range from good quality to mathematically lossless. It uses Just-Noticeable-Difference (JND) units to create precise quality measurements that can differentiate subtle distortions in the visually lossless range where traditional methods fail.",
     "subcategory": "Quality & Metrics"
+  },
+  {
+    "term": "Ultra HDR",
+    "definition": "A specification created by Google for creating backwards-compatible HDR JPEGs. The High Dynamic Range (HDR) effect is achieved using a separate layer, called a gain map. Non-HDR software can decode and display the base SDR image by ignoring the gain map.",
+    "subcategory": "Color & Display Tech"
+  },
+  {
+    "term": "Gain Map",
+    "definition": "A separate data layer or 'secondary image' embedded within a standard image file (see Ultra HDR). Its purpose is to provide the information necessary to convert the image's Standard Dynamic Range (SDR) rendition into its full High Dynamic Range (HDR) rendition.",
+    "subcategory": "Color & Display Tech"
   }
 ]
