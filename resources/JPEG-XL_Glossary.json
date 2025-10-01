@@ -301,7 +301,7 @@
   },
   {
     "term": "Ultra HDR",
-    "definition": "A specification created by Google for creating backwards-compatible HDR JPEGs. The High Dynamic Range (HDR) effect is achieved using a separate layer, called a gain map. Non-HDR software can decode and display the base SDR image by ignoring the gain map.",
+    "definition": "A specification by Google for creating backwards-compatible HDR JPEGs. The High Dynamic Range (HDR) effect is achieved using a separate layer, called a gain map. Non-HDR software can decode and display the base SDR image by ignoring the gain map.",
     "subcategory": "Color & Display Tech"
   },
   {
