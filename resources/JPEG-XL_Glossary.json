@@ -306,7 +306,7 @@
   },
   {
     "term": "Gain Map",
-    "definition": "A separate data layer or 'secondary image' embedded within a standard image file (see Ultra HDR). Its purpose is to provide the information necessary to convert the image's Standard Dynamic Range (SDR) rendition into its full High Dynamic Range (HDR) rendition.",
+    "definition": "A secondary image embedded within a standard image file (see Ultra HDR). Its purpose is to provide the information necessary to convert the image's Standard Dynamic Range (SDR) rendition into its full High Dynamic Range (HDR) rendition and vice versa.",
     "subcategory": "Color & Display Tech"
   }
 ]
