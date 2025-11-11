@@ -133,7 +133,7 @@ JPEG XL supports images up to 1,073,741,823 × 1,073,741,823 in resolution, maki
 JPEG XL achieves an average compression efficiency of 1.3 to 2 times better than JPEG for equivalent quality images. This can vary depending on the type of image.
 - - -
 
-### Does JPEG XL support various color gamut?
+### Does JPEG XL support various color gamuts?
 
 Yes, JPEG XL absolutely supports various color gamuts! This is one of its key advantages over traditional JPEGs (and WebP).
 
@@ -144,7 +144,7 @@ Here’s a breakdown of its capabilities:
 - **Flexibility:** JPEG XL is flexible in handling various color depths with support for bit depths up to 32 bits per channel. 
 - - -
 
-### What is the bit depth supported by JPEG XL?
+### What bit depths are supported by JPEG XL?
 
 JPEG XL can handle images with 8-bit, 10-bit, 16-bit, or even 32-bits per color channel, significantly enhancing color accuracy and dynamic range. This capability makes it ideal for high-dynamic-range (HDR) and wide color gamut images. Its precision makes JPEG XL suitable not only for web delivery but also for authoring workflows.
 - - -
