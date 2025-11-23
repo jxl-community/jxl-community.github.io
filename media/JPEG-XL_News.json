@@ -490,6 +490,24 @@
             ]
         },
                         {
+            "Title": "CAST Introduces JPEG XL Encoder IP Core for High-Quality, On-Camera Still-Image Compression",
+            "link": "https://www.design-reuse.com/news/202529665-cast-introduces-jpeg-xl-encoder-ip-core-for-high-quality-on-camera-still-image-compression/",
+            "date": "2025-11-14",
+            "Author": "CAST",
+            "Publication": "Design & Reuse",
+            "Summary": "CAST has launched the first commercial JPEG XL encoder IP core for camera SoCs, enabling hardware-based real-time compression that delivers superior image quality at smaller file sizes than legacy JPEG while supporting 4K/8K, HDR, and wide color gamut.",
+            "Tags": [
+                "JPEG XL",
+                "IP core",
+                "CAST",
+                "Camera SoC",
+                "HDR",
+                "Wide-Gamut",
+                "Image Signal Processor",
+                "JPEG XL in hardware"
+            ]
+        },
+         {
             "Title": "Another chance for JPEG XL? PDF will support format as ‘preferred solution’",
             "link": "https://www.theregister.com/2025/11/10/another_chance_for_jpeg_xl",
             "date": "2025-11-10",
