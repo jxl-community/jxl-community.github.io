@@ -33,10 +33,14 @@
   <meta property="twitter:image" content="https://jpegxl.info/images/OG_Image-JPEG_XL-neon-tunnel-glow.webp">
 
   <!-- Favicon -->
-  <link rel="icon" href="/favicon.ico" sizes="32x32">
-  <link rel="icon" href="images/Icon-JPEGXL-Square-Full-Colour.svg" type="image/svg+xml">
-  <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
-  <link href="images/webclip.png" rel="apple-touch-icon">
+<!-- Primary favicon (SVG, preferred by modern browsers) -->
+<link rel="icon" href="/images/Icon-JPEGXL-Square-Full-Colour.svg" type="image/svg+xml">
+<!-- Fallback ICO (for old browsers, Windows, legacy) -->
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<!-- PNG fallbacks (recommended for certain browsers & contexts) -->
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+<!-- Apple touch icon -->
+<link rel="apple-touch-icon" href="/images/webclip.png">
 
   <!-- Additional SEO -->
   <meta name="robots" content="index, follow">
