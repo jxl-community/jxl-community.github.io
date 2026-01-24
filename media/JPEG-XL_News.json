@@ -1,5 +1,23 @@
 {
     "Blog posts": [
+       {
+            "title": "Why JPEG XL Ignoring Bit Depth Is Genius (And Why AVIF Can’t Pull It Off)",
+            "link": "https://www.fractionalxperience.com/ux-ui-graphic-design-blog/why-jpeg-xl-ignoring-bit-depth-is-genius",
+            "date": "2025-10-25",
+            "section": "Blog posts",
+            "Author": "Kelly Thompson",
+            "Publication": "Fractional Xperience Blog",
+            "Summary": "JPEG XL’s  approach of ignoring bit depth in favor of floating-point perceptual compression with intensity targets frees it from the rigid integer-based constraints that plague AVIF’s video codec heritage.",
+            "Tags": [
+                "JPEG XL",
+                "AVIF",
+                "HDR",
+                "XYB color space",
+                "Floating-point compression",
+                "YCbCr",
+                "Asset Catalog"
+            ]
+        },
         {
             "title": "AIC-3 and HDR image quality assessment",
             "link": "https://cloudinary.com/labs/aic-3-and-hdr",
@@ -443,6 +461,69 @@
     ],
     "In the News": [
         {
+            "Title": "Google Looks To Bring JPEG-XL Support Back To Chrome / Chromium",
+            "link": "https://www.phoronix.com/news/JPEG-XL-Possible-Chrome-Back",
+            "date": "2025-11-23",
+            "Author": "Michael Larabel",
+            "Publication": "Phoronix",
+            "Summary": "After controversially removing JPEG XL support in 2022, Google is now bringing the modern image format back to Chrome following widespread adoption by Safari and Firefox, and strong developer demand.",
+            "Tags": [
+                "JPEG XL",
+                "Google",
+                "Chrome Chrome",
+                "Browser Support",
+                "jxl-rs"
+            ]
+        },
+                {
+            "Title": "Google Revisits JPEG XL in Chromium After Earlier Removal",
+            "link": "https://windowsreport.com/google-revisits-jpeg-xl-in-chromium-after-earlier-removal/",
+            "date": "2025-11-22",
+            "Author": "Venkat",
+            "Publication": "Windows Report",
+            "Summary": "Google has restarted work on bringing JPEG XL to Chrome, after Safari, Windows 11, and the PDF standard adopted it.",
+            "Tags": [
+                "JPEG XL",
+                "Google",
+                "Chrome Chrome",
+                "Browser Support"
+            ]
+        },
+                        {
+            "Title": "CAST Introduces JPEG XL Encoder IP Core for High-Quality, On-Camera Still-Image Compression",
+            "link": "https://www.design-reuse.com/news/202529665-cast-introduces-jpeg-xl-encoder-ip-core-for-high-quality-on-camera-still-image-compression/",
+            "date": "2025-11-14",
+            "Author": "CAST",
+            "Publication": "Design & Reuse",
+            "Summary": "CAST has launched the first commercial JPEG XL encoder IP core for camera SoCs, enabling hardware-based real-time compression that delivers superior image quality at smaller file sizes than legacy JPEG while supporting 4K/8K, HDR, and wide color gamut.",
+            "Tags": [
+                "JPEG XL",
+                "IP core",
+                "CAST",
+                "Camera SoC",
+                "HDR",
+                "Wide-Gamut",
+                "Image Signal Processor",
+                "JPEG XL in hardware"
+            ]
+        },
+         {
+            "Title": "Another chance for JPEG XL? PDF will support format as ‘preferred solution’",
+            "link": "https://www.theregister.com/2025/11/10/another_chance_for_jpeg_xl",
+            "date": "2025-11-10",
+            "Author": "Tim Anderson",
+            "Publication": "The Register",
+            "Summary": "The PDF Association is adopting JPEG XL as its preferred solution for HDR images despite Google Chrome declaring the format obsolete, potentially reviving mainstream adoption through PDF’s inclusion of the advanced image format that offers superior compression and billion-pixel support.",
+            "Tags": [
+                "JPEG XL",
+                "PDF Association",
+                "PDF specification",
+                "Google Chrome",
+                "HDR",
+                "Wide-Gamut"
+            ]
+        },
+                {
             "Title": "Philips announces digital pathology scanner with native, configurable DICOM JPEG and JPEG XL output in world first",
             "link": "https://www.philips.com/a-w/about/news/archive/standard/news/articles/2025/philips-announces-digital-pathology-scanner-with-native-configurable-dicom-jpeg-and-jpeg-xl-output-in-world-first.html",
             "date": "2025-09-08",

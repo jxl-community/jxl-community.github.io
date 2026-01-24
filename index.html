@@ -33,10 +33,14 @@
   <meta property="twitter:image" content="https://jpegxl.info/images/OG_Image-JPEG_XL-neon-tunnel-glow.webp">
 
   <!-- Favicon -->
-  <link rel="icon" href="/favicon.ico" sizes="32x32">
-  <link rel="icon" href="images/Icon-JPEGXL-Square-Full-Colour.svg" type="image/svg+xml">
-  <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
-  <link href="images/webclip.png" rel="apple-touch-icon">
+<!-- Primary favicon (SVG, preferred by modern browsers) -->
+<link rel="icon" href="/images/Icon-JPEGXL-Square-Full-Colour.svg" type="image/svg+xml">
+<!-- Fallback ICO (for old browsers, Windows, legacy) -->
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<!-- PNG fallbacks (recommended for certain browsers & contexts) -->
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+<!-- Apple touch icon -->
+<link rel="apple-touch-icon" href="/images/webclip.png">
 
   <!-- Additional SEO -->
   <meta name="robots" content="index, follow">
@@ -2319,8 +2323,8 @@
         <div class="wrapper-text centered width-rem">
           <p class="text-xl-light is-centered">Say goodbye to JPEG artifacts and WebP’s inconsistent results. When
             quality matters, make it indistinguishable from the original at a fraction of the size &mdash;
-            automatically. JPEG
-            XL is visually lossless at less than half the bits-per-pixel of JPEG.</p>
+            automatically. JPEG&nbsp;XL 
+            is visually lossless at less than half the bits-per-pixel of JPEG.</p>
         </div>
       </div>
       <div data-figma-id="73:4011" class="size-xxhuge-12rem-192px"></div>
@@ -2529,12 +2533,11 @@
         <div data-figma-id="73:4015" class="size-60px"></div>
         <div class="div-container-code">
           <div class="w-embed">
-            <video id="HDRVideo" loop muted autoplay playsinline
-              poster="images/liquid-abstract-colorful-texture-background-ai-generative.avif">
-              <source src="images/liquid-abstract-colorful-texture-background-ai-generative.mp4"
-                type="video/mp4; codecs=hvc1">
-              <img src="images/liquid-abstract-colorful-texture-background-ai-generative.avif" alt="HDR vs SDR Image">
-            </video>
+            <picture>
+                <source srcset="images/liquid-abstract-colorful-texture-background-ai-generative.jxl" type="image/jxl">
+                <source srcset="images/liquid-abstract-colorful-texture-background-ai-generative.avif" type="image/avif">
+                <img src="images/liquid-abstract-colorful-texture-background-ai-generative.png" alt="Vibrant Liquid Abstract HDR vs SDR Image" loading="lazy">
+              </picture>
           </div>
         </div>
         <div data-figma-id="73:4015" class="size-60px"></div>
@@ -2564,7 +2567,7 @@
           </div>
           <div id="w-node-_6b3ac082-f695-e649-a203-cf78ce46e2a9-8c10331b" class="container-column-1 right">
             <div class="div-container-rounded_text_box">
-              <h3 class="label-menu-text">JPEG XL</h3>
+              <h3 class="label-menu-text">JPEG&nbsp;XL</h3>
             </div>
             <div data-figma-id="73:4012" class="size-small-1rem-16px"></div>
           </div>
@@ -2592,7 +2595,7 @@
         <div data-figma-id="73:4015" class="size-60px"></div>
         <div class="wrapper-text centered width-rem">
           <p class="text-xl-light is-centered">With JPEG&nbsp;XL’s state-of-the-art progressive encoding and decoding,
-            you’ll see an image sooner than with other formats &mdash; with as little as 15% of the image loaded.
+            you’ll see an image sooner than with other formats &mdash; with as little as 1% of the image loaded.
             It supports both saliency progression (visually important areas of the image delivered first) and reordering
             (middle data sent first).</p>
         </div>
