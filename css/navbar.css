@@ -1,3 +1,25 @@
+.skip-nav {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 1001;
+  padding: 0.75rem 1.5rem;
+  background: var(--base--white);
+  color: var(--base--black);
+  font-family: Barlow, sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 0 0 6px 6px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-nav:focus {
+  top: 0;
+  outline: 2px solid var(--brand--blue--500, #3871e0);
+  outline-offset: 2px;
+}
+
 .material-icons {
   font-family: "Material Icons";
   font-weight: normal;
