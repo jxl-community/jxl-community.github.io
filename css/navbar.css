@@ -82,6 +82,32 @@ nav.visible {
   margin: 1em;
 }
 
+.navbar-close .navbar-toggle {
+  animation: none;
+  color: #fff;
+  text-shadow: none;
+}
+
+.navbar-toggle {
+  animation: navbar-icon-glow 4s linear infinite;
+  transition: background 0.3s ease;
+}
+
+.navbar-toggle:hover {
+  animation: none;
+  color: #fff;
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+}
+
+@keyframes navbar-icon-glow {
+  0%   { color: oklch(67% 0.22 262); text-shadow: 0 0 5px oklch(57% 0.18 262 / 0.3); }
+  33%  { color: oklch(75% 0.18 230); text-shadow: 0 0 7px oklch(65% 0.15 230 / 0.35); }
+  66%  { color: oklch(81% 0.14 193); text-shadow: 0 0 8px oklch(71% 0.12 193 / 0.35); }
+  100% { color: oklch(67% 0.22 262); text-shadow: 0 0 5px oklch(57% 0.18 262 / 0.3); }
+}
+
 #navbar-dropdown:checked ~ * .navbar-toggle::after {
   content: "close";
 }
@@ -156,5 +182,13 @@ label.material-icons {
   }
   to {
     transform: translatey(0em);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar-toggle {
+    animation: none;
+    color: oklch(75% 0.18 230);
+    text-shadow: none;
   }
 }
