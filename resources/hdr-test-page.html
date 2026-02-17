@@ -7,7 +7,7 @@
     <meta content="JPEG XL HDR Test Page" property="og:title">
     <meta content="JPEG XL HDR Test Page" property="twitter:title">
     <meta name="description"
-        content="Test your browser and display's HDR capabilities with our interactive HDR test page. Compare JXL, PNG, JPEG & AVIF formats across various transfer functions.">
+        content="Test your browser and display’s HDR capabilities with our interactive HDR test page. Compare JXL, PNG, JPEG & AVIF formats across various transfer functions.">
     <meta name="keywords"
         content="JPEG XL, HDR, High Dynamic Range, Test Patterns, HLG, Hybrid Log Gamma, PQ, Perceptual quantizer, CICP, Tone Mapping, Rec.2100, Nits, Coding-independent code points">
     <meta name="author" content="JPEG XL Community">
@@ -389,7 +389,7 @@
                             <span class="browser-link"
                                 data-url="edge://flags/#enable-experimental-web-platform-features"
                                 title="Click to copy URL: edge://flags/#enable-experimental-web-platform-features. Paste into URL bar and select Enable.">Edge</span>,
-                            and Chromium-derived browsers with 'Experimental Web Features' enabled.<br>
+                            and Chromium-derived browsers with ‘Experimental Web Features’ enabled.<br>
                             Safari & Firefox do not currently support this test.
                         </div><br>
 
@@ -674,7 +674,7 @@
                 img.addEventListener('click', function (event) {
                     event.stopPropagation(); // Prevent the document click event from firing
                     enlargedContainer.style.display = "block";
-                    enlargedImg.src = this.src;
+                    enlargedImg.src = this.currentSrc || this.src;
                 });
             });
 

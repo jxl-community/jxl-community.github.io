@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let imagesData = [];
         let currentIndex = 0;
         let interval;
+        let isTransitioning = false;
 
         fetch(imagesDataPath)
             .then(response => response.json())
@@ -12,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 imagesData = data;
                 preloadImages(imagesData, imagesFolder, () => {
                     initializeDots(section);
-                    showImages(currentIndex, section, imagesData, imagesFolder);
+                    showImages(currentIndex, section, imagesData, imagesFolder, false);
                     startAutoChange(section, imagesData, imagesFolder, offset);
                 });
             })
@@ -25,6 +26,10 @@ document.addEventListener('DOMContentLoaded', function () {
             imagesData.forEach(image => {
                 const img = new Image();
                 img.src = `./${imagesFolder}/${image.FileName}`;
+                if (image.FallbackFile) {
+                    const fallback = new Image();
+                    fallback.src = `./${imagesFolder}/${image.FallbackFile}`;
+                }
                 img.onload = img.onerror = () => {
                     loadedCount++;
                     if (loadedCount === totalImages) {
@@ -41,8 +46,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 const dot = document.createElement('span');
                 dot.classList.add('dot');
                 dot.addEventListener('click', () => {
+                    if (isTransitioning) return;
                     currentIndex = index;
-                    showImages(currentIndex, section, imagesData, imagesFolder);
+                    showImages(currentIndex, section, imagesData, imagesFolder, true);
                     resetAutoChange(section, imagesData, imagesFolder, offset);
                 });
                 dotsContainer.appendChild(dot);
@@ -50,32 +56,76 @@ document.addEventListener('DOMContentLoaded', function () {
             updateDots(section, currentIndex);
         }
 
-        function showImages(index, section, imagesData, imagesFolder) {
+        function showImages(index, section, imagesData, imagesFolder, animate) {
             const uniqueTitles = [...new Set(imagesData.map(image => image.Title))];
             const jpegImage = imagesData.find(image => image.Title === uniqueTitles[index] && image.Type === "JPEG");
             const jxlImage = imagesData.find(image => image.Title === uniqueTitles[index] && image.Type === "JXL");
 
-            if (jpegImage && jxlImage) {
-                const jpegElement = section.querySelector('.jpeg-image');
-                const jxlPicture = section.querySelector('.jxl-image');
+            if (!jpegImage || !jxlImage) return;
 
-                const jpegFileSizeKB = (jpegImage["File Size"] / 1024).toFixed(1);
-                const jxlFileSizeKB = (jxlImage["File Size"] / 1024).toFixed(1);
+            const jpegElement = section.querySelector('.jpeg-image');
+            const jxlPicture = section.querySelector('.jxl-image');
 
+            const jpegFileSizeKB = (jpegImage["File Size"] / 1024).toFixed(1);
+            const jxlFileSizeKB = (jxlImage["File Size"] / 1024).toFixed(1);
+
+            if (!animate) {
                 jpegElement.src = `./${imagesFolder}/${jpegImage.FileName}`;
-                setFileSize(section.querySelector('.jpeg-file-size'), jpegFileSizeKB);
-                section.querySelector('.jpeg-bpp').textContent = `BPP: ${jpegImage["BPP"].toFixed(2)}`;
-
-                jxlPicture.innerHTML = `
-                    <source srcset="./${imagesFolder}/${jxlImage.FileName}" type="image/jxl">
-                    <img src="./${imagesFolder}/${jxlImage.FallbackFile || jpegImage.FileName}" alt="${jxlImage.Title}">
-                `;
-                setFileSize(section.querySelector('.jxl-file-size'), jxlFileSizeKB);
-                section.querySelector('.jxl-bpp').textContent = `BPP: ${jxlImage["BPP"].toFixed(2)}`;
-                section.querySelector('.size-reduction').textContent = jxlImage.Smaller ? `${jxlImage.Smaller} Smaller` : '';
+                jpegElement.alt = jpegImage.Title;
+                updatePicture(jxlPicture, imagesFolder, jxlImage, jpegImage);
+                updateMetadata(section, jpegImage, jxlImage, jpegFileSizeKB, jxlFileSizeKB);
+                updateDots(section, index);
+                return;
             }
 
+            // Crossfade: fade out, swap while hidden, fade in
+            isTransitioning = true;
+            jpegElement.classList.add('fade');
+            jxlPicture.classList.add('fade');
+
+            setTimeout(() => {
+                jpegElement.src = `./${imagesFolder}/${jpegImage.FileName}`;
+                jpegElement.alt = jpegImage.Title;
+                updatePicture(jxlPicture, imagesFolder, jxlImage, jpegImage);
+                updateMetadata(section, jpegImage, jxlImage, jpegFileSizeKB, jxlFileSizeKB);
+
+                requestAnimationFrame(() => {
+                    jpegElement.classList.remove('fade');
+                    jxlPicture.classList.remove('fade');
+                    setTimeout(() => {
+                        isTransitioning = false;
+                    }, 600);
+                });
+            }, 600);
+
             updateDots(section, index);
+        }
+
+        function updatePicture(pictureEl, folder, jxlImage, jpegImage) {
+            let source = pictureEl.querySelector('source');
+            let img = pictureEl.querySelector('img');
+
+            if (!source) {
+                source = document.createElement('source');
+                source.type = 'image/jxl';
+                pictureEl.prepend(source);
+            }
+            if (!img) {
+                img = document.createElement('img');
+                pictureEl.append(img);
+            }
+
+            source.srcset = `./${folder}/${jxlImage.FileName}`;
+            img.src = `./${folder}/${jxlImage.FallbackFile || jpegImage.FileName}`;
+            img.alt = jxlImage.Title;
+        }
+
+        function updateMetadata(section, jpegImage, jxlImage, jpegSizeKB, jxlSizeKB) {
+            setFileSize(section.querySelector('.jpeg-file-size'), jpegSizeKB);
+            section.querySelector('.jpeg-bpp').textContent = `BPP: ${jpegImage["BPP"].toFixed(2)}`;
+            setFileSize(section.querySelector('.jxl-file-size'), jxlSizeKB);
+            section.querySelector('.jxl-bpp').textContent = `BPP: ${jxlImage["BPP"].toFixed(2)}`;
+            section.querySelector('.size-reduction').textContent = jxlImage.Smaller ? `${jxlImage.Smaller} Smaller` : '';
         }
 
         function setFileSize(element, sizeKB) {
@@ -91,8 +141,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         function startAutoChange(section, imagesData, imagesFolder, offset) {
             interval = setInterval(() => {
-                currentIndex = (currentIndex + 1) % (imagesData.length / 2); // Each pair of images (JPEG and JXL) has the same title
-                showImages(currentIndex, section, imagesData, imagesFolder);
+                if (isTransitioning) return;
+                currentIndex = (currentIndex + 1) % (imagesData.length / 2);
+                showImages(currentIndex, section, imagesData, imagesFolder, true);
             }, 6000 + offset);
         }
 
@@ -104,9 +155,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const sections = document.querySelectorAll('section');
     sections.forEach((section, index) => {
-        // Check if the section has the necessary data attributes
         if (section.dataset.json && section.dataset.folder) {
-            loadImagesData(section, index * 3000); // 3 second offset
+            loadImagesData(section, index * 3000);
         }
     });
 });
