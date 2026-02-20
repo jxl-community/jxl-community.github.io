@@ -23,6 +23,13 @@
             text-align: center;
             margin: 20px 0;
         }
+        .filter-and-tabs {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
         .tabs {
             font-size: 15px;
             padding: 0px;
@@ -39,13 +46,29 @@
             text-decoration: none;
             color: #18191B;
             padding: 10px 20px;
-            display: inline-block;
+            display: inline-flex;
+            flex-direction: row;
+            align-items: baseline;
             position: relative;
             z-index: 1;
             transition-duration: 0.6s;
         }
         .tabs a.active {
             color: #fff;
+        }
+        .tabs .tab-count {
+                margin-left: 5px;
+            }
+        @media (max-width: 768px) {
+            .tabs a {
+                flex-direction: column;
+                align-items: center;
+                padding: 8px 14px;
+            }
+            .tabs .tab-count {
+                display: block;
+                margin-top: 0px;
+            }
         }
         .tabs .selector {
             height: 100%;
@@ -80,44 +103,130 @@
             border-bottom: 1px solid #333;
             padding-bottom: 20px;
         }
-        .news-item h3 {
+        .news-item-heading-link {
+            text-decoration: none;
+            color: #1AE5E0;
+            display: inline-block;
+            margin-top: 1.5em;
+        }
+        .news-item-heading-link:hover {
+            color: #3871e0;
+        }
+        .news-item-heading-link .news-item-title {
+            color: inherit;
+        }
+        .news-item:first-child .news-item-heading-link {
+            margin-top: 0;
+        }
+        .news-item-title {
             font-size: 1.2em;
             font-weight: 500;
-            margin-top: 1.5em;
+            margin-bottom: 0.25em;
+        }
+        .news-item-byline {
+            font-size: 0.85em;
+            color: rgba(224, 224, 224, 0.75);
             margin-bottom: 0.5em;
-            color: #1AE5E0;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between; /* Space between title+link and icon */
-            align-items: center;
         }
-        .title-link-wrapper {
-            display: flex;
-            align-items: center;
-        }
-        .link-icon {
-            margin-left: 15px; /* Small margin to separate the link from the title */
-            color: #1AE5E0;
-            text-decoration: none;
-            font-size: 1.2em;
-        }
-        .news-item h3 a {
-            color: #1AE5E0;
+        .news-item-byline a {
+            color: rgba(224, 224, 224, 0.85);
             text-decoration: none;
         }
-        .news-item h3 a:hover {
-            color: #3871e0;
+        .news-item-byline a:hover {
+            color: #1AE5E0;
+            text-decoration: underline;
         }
         .news-item-details {
             margin-top: 0;
-            margin-bottom: 1.5em;
-            display: none;
+            margin-bottom: 0;
         }
-        .news-item .tags {
+        .news-item-summary {
             font-style: italic;
+            margin: 0.5em 0;
+            color: rgba(224, 224, 224, 0.9);
         }
-        .news-item .tags .detail-header {
-            font-style: normal;
+        .news-item-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 0.35em;
+            line-height: 1.2;
+        }
+        .news-item-tag {
+            font-size: 0.7em;
+            padding: 1px 6px;
+            background: rgba(26, 229, 224, 0.15);
+            border: 1px solid rgba(26, 229, 224, 0.35);
+            border-radius: 10px;
+            color: rgba(224, 224, 224, 0.9);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .news-item-tag:hover {
+            background: rgba(26, 229, 224, 0.25);
+            color: #1AE5E0;
+        }
+        .filter-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .filter-box-outer {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            height: 40px;
+            clip-path: polygon(5% 0, 95% 0, 90% 100%, 10% 100%);
+            background: rgba(26, 229, 224, 0.4);
+        }
+        .filter-box {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            height: 38px;
+            margin: 1px;
+            padding: 0 44px 0 32px;
+            clip-path: polygon(5% 0, 95% 0, 90% 100%, 10% 100%);
+            background: rgba(30, 30, 30, 0.95);
+            box-sizing: border-box;
+        }
+        .filter-tag-label {
+            font-size: 15px;
+            line-height: 1.2;
+            color: rgba(224, 224, 224, 0.8);
+        }
+        .filter-tag-chip {
+            line-height: 1.2;
+            font-size: 15px;
+            padding: 1px 6px;
+            background: rgba(26, 229, 224, 0.15);
+            border: 1px solid rgba(26, 229, 224, 0.35);
+            border-radius: 10px;
+            color: rgba(224, 224, 224, 0.9);
+            display: inline-block;
+        }
+        .filter-tag-clear {
+            position: absolute;
+            top: 0px;
+            right: 22px;
+            background: none;
+            border: none;
+            color: rgba(224, 224, 224, 0.95);
+            cursor: pointer;
+            padding: 0;
+            font-size: 22px;
+            line-height: 1;
+            font-weight: 300;
+        }
+        .filter-tag-clear:hover {
+            color: #fff;
+        }
+        .tab-count {
+            opacity: 0.85;
+            font-size: 0.9em;
         }
         #loading {
             text-align: center;
@@ -128,44 +237,127 @@
             color: #ff4444;
             text-align: center;
         }
-        .disclosure-icon {
-            width: 20px;
-            height: 20px;
-            background-color: #4da6ff;
-            border-radius: 50%;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.3s ease;
+        .newsroom-layout {
+            display: grid;
+            grid-template-columns: 1fr minmax(300px, 900px) 1fr;
+            gap: 24px;
+            align-items: start;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
-        .disclosure-icon::before,
-        .disclosure-icon::after {
-            content: '';
-            position: absolute;
-            background-color: white;
-            transition: transform 0.3s ease;
+        .newsroom-sidebar {
+            grid-column: 1;
+            justify-self: center;
+            width: 220px;
+            position: sticky;
+            top: 24px;
         }
-        .disclosure-icon::before {
-            width: 2px;
-            height: 10px;
+        .newsroom-main {
+            grid-column: 2;
+            min-width: 0;
         }
-        .disclosure-icon::after {
-            width: 10px;
-            height: 2px;
+        .tag-menu-toggle {
+            display: none;
         }
-        .news-item h3.active .disclosure-icon {
-            transform: rotate(180deg);
+        .tag-menu-header {
+            display: none;
         }
-        .news-item h3.active .disclosure-icon::before {
-            transform: rotate(90deg);
+        @media (max-width: 1100px) {
+            .newsroom-layout {
+                display: flex;
+                flex-direction: row;
+                grid-template-columns: unset;
+                gap: 24px;
+                align-items: flex-start;
+                max-width: 100%;
+            }
+            .newsroom-sidebar {
+                grid-column: unset;
+                justify-self: unset;
+                flex: 0 0 220px;
+            }
+            .newsroom-main {
+                grid-column: unset;
+                flex: 1;
+                min-width: 0;
+            }
         }
-        .news-item-details p {
-            margin: 5px 0;
+        @media (max-width: 900px) {
+            .newsroom-layout {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .newsroom-sidebar {
+                position: static;
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 100%;
+                border: 1px solid rgba(26, 229, 224, 0.3);
+                border-radius: 10px;
+                padding: 12px;
+                background: rgba(30, 30, 30, 0.6);
+            }
+            .tag-menu-toggle:checked ~ .tag-menu-content {
+                display: block;
+            }
+            .tag-menu-content {
+                display: none;
+            }
+            .tag-menu-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                cursor: pointer;
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: rgba(26, 229, 224, 0.95);
+                user-select: none;
+            }
+            .tag-menu-header .tag-menu-arrow {
+                display: inline-block;
+                margin-left: 6px;
+                font-size: 0.7em;
+                opacity: 0.8;
+                transition: transform 0.2s ease;
+            }
+            .tag-menu-toggle:checked ~ .tag-menu-header .tag-menu-arrow {
+                transform: rotate(-180deg);
+            }
         }
-        .detail-header {
+        .tag-menu-section {
+            margin-bottom: 1rem;
+        }
+        .tag-menu-section-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(26, 229, 224, 0.9);
+            margin-bottom: 0.35rem;
+            padding-bottom: 0.2rem;
+            border-bottom: 1px solid rgba(26, 229, 224, 0.25);
+        }
+        .tag-menu-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        .tag-menu-tags a {
+            font-size: 0.7em;
+            padding: 1px 6px;
+            line-height: 1.2;
+            background: rgba(26, 229, 224, 0.15);
+            border: 1px solid rgba(26, 229, 224, 0.35);
+            border-radius: 10px;
+            color: rgba(224, 224, 224, 0.9);
+            text-decoration: none;
             display: inline-block;
-            color: rgba(224, 224, 224, 0.6);
-            margin-right: 5px;
+        }
+        .tag-menu-tags a:hover {
+            background: rgba(26, 229, 224, 0.25);
+            color: #1AE5E0;
+        }
         }
     </style>
   <link href="/css/navbar.css" rel="stylesheet" type="text/css">
@@ -252,15 +444,106 @@
     <div class="section-content-wrapper height-100 centered padding-top_bottom">
       <main class="container-content-vflex width-page-max centered">
         <div class="wrapper-content">
-          <div class="code-tab_menu-animated w-embed">
-            <div id="loading">Loading news data…</div>
-            <div id="error" style="display: none;"></div>
-            <div class="wrapper">
-              <nav class="tabs" id="tab-bar" style="display: inline-block;">
-                <div class="selector"></div>
-              </nav>
+          <div class="newsroom-layout">
+            <aside class="newsroom-sidebar" id="tag-sidebar" aria-label="Filter by tag">
+              <input type="checkbox" id="tag-menu-toggle" class="tag-menu-toggle" aria-hidden="true">
+              <label for="tag-menu-toggle" class="tag-menu-header">Filter by tag<span class="tag-menu-arrow">▼</span></label>
+              <div class="tag-menu-content">
+              <div class="tag-menu-section">
+                <div class="tag-menu-section-title">File formats</div>
+                <div class="tag-menu-tags">
+                  <a href="#" data-tag="JPEG XL">JPEG XL</a>
+                  <a href="#" data-tag="AVIF">AVIF</a>
+                  <a href="#" data-tag="WebP">WebP</a>
+                  <a href="#" data-tag="JPEG">JPEG</a>
+                  <a href="#" data-tag="PNG">PNG</a>
+                  <a href="#" data-tag="FUIF">FUIF</a>
+                  <a href="#" data-tag="Jpegli">Jpegli</a>
+                  <a href="#" data-tag="DNG">DNG</a>
+                  <a href="#" data-tag="PDF">PDF</a>
+                </div>
+              </div>
+              <div class="tag-menu-section">
+                <div class="tag-menu-section-title">Topics</div>
+                <div class="tag-menu-tags">
+                  <a href="#" data-tag="Overview">Overview</a>
+                  <a href="#" data-tag="History">History</a>
+                  <a href="#" data-tag="Lossy">Lossy</a>
+                  <a href="#" data-tag="Lossless">Lossless</a>
+                  <a href="#" data-tag="Compression">Compression</a>
+                  <a href="#" data-tag="Image Quality Assessment">Image Quality Assessment</a>                  
+                  <a href="#" data-tag="Benchmarking">Benchmarking</a>
+                  <a href="#" data-tag="Progressive">Progressive</a>
+                  <a href="#" data-tag="Modular Mode">Modular Mode</a>
+                  <a href="#" data-tag="Technical deep-dive">Technical deep-dive</a>
+                  <a href="#" data-tag="Sustainability">Sustainability</a>
+                </div>
+              </div>
+              <div class="tag-menu-section">
+                <div class="tag-menu-section-title">Color</div>
+                <div class="tag-menu-tags">
+                  <a href="#" data-tag="HDR">HDR</a>
+                  <a href="#" data-tag="Wide-Gamut">Wide-Gamut</a>
+                  <a href="#" data-tag="XYB color space">XYB</a>
+                </div>
+              </div>
+              <div class="tag-menu-section">
+                <div class="tag-menu-section-title">Adoption</div>
+                <div class="tag-menu-tags">
+                  <a href="#" data-tag="Browser Support">Browser Support</a>
+                  <a href="#" data-tag="App Support">App Support</a>
+                  <a href="#" data-tag="OS Support">OS Support</a>
+                  <a href="#" data-tag="Hardware Support">Hardware Support</a>
+                  <a href="#" data-tag="Camera Support">Camera Support</a>
+                  <a href="#" data-tag="Chrome">Chrome</a>
+                  <a href="#" data-tag="Firefox">Firefox</a>
+                  <a href="#" data-tag="Safari">Safari</a>
+                  <a href="#" data-tag="Apple">Apple</a>
+                  <a href="#" data-tag="Google">Google</a>
+                  <a href="#" data-tag="Microsoft">Microsoft</a>
+                  <a href="#" data-tag="Adobe">Adobe</a>
+                  <a href="#" data-tag="Samsung">Samsung</a>
+                </div>
+              </div>
+              <div class="tag-menu-section">
+                <div class="tag-menu-section-title">Use cases</div>
+                <div class="tag-menu-tags">
+                  <a href="#" data-tag="Use Cases & Requirements">Use Cases & Requirements</a>
+                  <a href="#" data-tag="Photography">Photography</a>                  
+                  <a href="#" data-tag="Web delivery">Web delivery</a>
+                  <a href="#" data-tag="Image CDN">Image CDN</a>
+                  <a href="#" data-tag="Medical Imaging">Medical Imaging</a>
+                  <a href="#" data-tag="Multispectral Imaging">Multispectral Imaging</a>
+                </div>
+              </div>
+              </div>
+            </aside>
+            <div class="newsroom-main">
+              <div class="code-tab_menu-animated w-embed">
+                <div id="loading">Loading news data…</div>
+                <div id="error" style="display: none;"></div>
+                <div class="wrapper">
+                  <div class="filter-and-tabs">
+                    <div class="filter-bar" id="filter-bar" style="display: none;">
+                      <div class="filter-box-outer">
+                        <div class="filter-box">
+                          <button type="button" class="filter-tag-clear" id="filter-clear" aria-label="Clear filter">×</button>
+                          <span class="filter-tag-label">Filter: </span>
+                          <span class="filter-tag-label" id="filter-type-label"></span>
+                          <span class="filter-tag-chip" id="filter-chip">
+                            <span id="filter-value"></span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <nav class="tabs" id="tab-bar" style="display: inline-block;">
+                      <div class="selector"></div>
+                    </nav>
+                  </div>
+                </div>
+                <div id="news-content" class="news-content"></div>
+              </div>
             </div>
-            <div id="news-content" class="news-content"></div>
           </div>
         </div>
       </main>
@@ -294,25 +577,149 @@
   <script>
         let newsData = [];
         let categories = [];
+        let currentTabIndex = 0;
+        let currentTagFilter = null;
+        let currentAuthorFilter = null;
+        let currentPublicationFilter = null;
+
+        function getAuthors(item) {
+            const a = item.Author;
+            if (Array.isArray(a)) return a.map(s => (s || '').trim()).filter(Boolean);
+            if (typeof a === 'string') return [(a || '').trim()].filter(Boolean);
+            return [];
+        }
+
+        function getFilteredData(category, tag, author, publication) {
+            const items = newsData[category] || [];
+            if (tag) return items.filter(item => item.Tags && item.Tags.includes(tag));
+            if (author) return items.filter(item => getAuthors(item).some(name => name.trim() === author.trim()));
+            if (publication) return items.filter(item => (item.Publication || '').trim() === publication.trim());
+            return items;
+        }
+
+        function getCount(category) {
+            return getFilteredData(category, currentTagFilter, currentAuthorFilter, currentPublicationFilter).length;
+        }
+
+        function readStateFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            const tabParam = params.get('tab');
+            const tagParam = params.get('tag');
+            const authorParam = params.get('author');
+            const publicationParam = params.get('publication');
+            let index = 0;
+            if (tabParam && categories.indexOf(tabParam) >= 0) {
+                index = categories.indexOf(tabParam);
+            }
+            return { tabIndex: index, tag: tagParam || null, author: authorParam || null, publication: publicationParam || null };
+        }
+
+        function updateUrl() {
+            const params = new URLSearchParams();
+            if (categories[currentTabIndex]) params.set('tab', categories[currentTabIndex]);
+            if (currentTagFilter) params.set('tag', currentTagFilter);
+            if (currentAuthorFilter) params.set('author', currentAuthorFilter);
+            if (currentPublicationFilter) params.set('publication', currentPublicationFilter);
+            const query = params.toString();
+            const url = query ? window.location.pathname + '?' + query : window.location.pathname;
+            window.history.pushState({ tabIndex: currentTabIndex, tag: currentTagFilter, author: currentAuthorFilter, publication: currentPublicationFilter }, '', url);
+        }
+
+        function updateFilterBar() {
+            const bar = document.getElementById('filter-bar');
+            const typeEl = document.getElementById('filter-type-label');
+            const valueEl = document.getElementById('filter-value');
+            if (currentTagFilter) {
+                bar.style.display = 'flex';
+                typeEl.textContent = 'tag = ';
+                valueEl.textContent = currentTagFilter;
+            } else if (currentAuthorFilter) {
+                bar.style.display = 'flex';
+                typeEl.textContent = 'author = ';
+                valueEl.textContent = currentAuthorFilter;
+            } else if (currentPublicationFilter) {
+                bar.style.display = 'flex';
+                typeEl.textContent = 'publication = ';
+                valueEl.textContent = currentPublicationFilter;
+            } else {
+                bar.style.display = 'none';
+            }
+        }
+
+        function setTagFilter(tag) {
+            currentTagFilter = tag;
+            currentAuthorFilter = null;
+            currentPublicationFilter = null;
+            updateUrl();
+            updateFilterBar();
+            createTabs();
+            switchTab(currentTabIndex, false);
+        }
+
+        function setAuthorFilter(author) {
+            currentTagFilter = null;
+            currentAuthorFilter = author;
+            currentPublicationFilter = null;
+            updateUrl();
+            updateFilterBar();
+            createTabs();
+            switchTab(currentTabIndex, false);
+        }
+
+        function setPublicationFilter(publication) {
+            currentTagFilter = null;
+            currentAuthorFilter = null;
+            currentPublicationFilter = publication;
+            updateUrl();
+            updateFilterBar();
+            createTabs();
+            switchTab(currentTabIndex, false);
+        }
+
+        function clearFilter() {
+            currentTagFilter = null;
+            currentAuthorFilter = null;
+            currentPublicationFilter = null;
+            updateUrl();
+            updateFilterBar();
+            createTabs();
+            switchTab(currentTabIndex, false);
+        }
+
         function createTabs() {
             const tabBar = document.getElementById('tab-bar');
             tabBar.innerHTML = '<div class="selector"></div>';
             categories.forEach((category, index) => {
+                const count = getCount(category);
                 const tab = document.createElement('a');
                 tab.href = '#';
-                tab.textContent = category;
-                tab.onclick = (e) => { e.preventDefault(); switchTab(index); };
+                tab.setAttribute('data-index', index);
+                const labelSpan = document.createElement('span');
+                labelSpan.className = 'tab-label';
+                labelSpan.textContent = category;
+                const countSpan = document.createElement('span');
+                countSpan.className = 'tab-count';
+                countSpan.textContent = ' (' + count + ')';
+                tab.appendChild(labelSpan);
+                tab.appendChild(countSpan);
+                tab.onclick = (e) => { e.preventDefault(); switchTab(index, true); };
                 tabBar.appendChild(tab);
             });
         }
-        function switchTab(index) {
+
+        function switchTab(index, updateHistory) {
+            currentTabIndex = index;
+            if (updateHistory) updateUrl();
             const tabs = document.querySelectorAll('.tabs a');
             tabs.forEach((tab, i) => {
                 tab.classList.toggle('active', i === index);
             });
             const selector = document.querySelector('.selector');
-            selector.style.width = tabs[index].offsetWidth + 'px';
-            selector.style.left = tabs[index].offsetLeft + 'px';
+            const activeTab = tabs[index];
+            if (activeTab) {
+                selector.style.width = activeTab.offsetWidth + 'px';
+                selector.style.left = activeTab.offsetLeft + 'px';
+            }
             const content = document.getElementById('news-content');
             content.classList.add('fade-out');
             setTimeout(() => {
@@ -320,89 +727,102 @@
                 content.classList.remove('fade-out');
             }, 300);
         }
+
         function formatDate(dateString) {
-            const date = new Date(dateString);
             const monthNames = ["January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December"
             ];
+            const monthOnly = /^\d{4}-\d{2}$/.test(String(dateString).trim());
+            if (monthOnly) {
+                const date = new Date(dateString);
+                const month = monthNames[date.getMonth()];
+                const year = date.getFullYear();
+                return `${month} ${year}`;
+            }
+            const date = new Date(dateString);
             const month = monthNames[date.getMonth()];
             const year = date.getFullYear();
             const day = date.getDate();
             if (isNaN(day)) {
-                return `${month}, ${year}`;
-            } else {
-                return `${month} ${day}, ${year}`;
+                return `${month} ${year}`;
             }
+            return `${month} ${day}, ${year}`;
         }
+
         function sortNewsByDate(newsArray) {
-            return newsArray.sort((a, b) => {
+            return [...newsArray].sort((a, b) => {
                 const dateA = new Date(a.date);
                 const dateB = new Date(b.date);
-                return dateB - dateA;  // Newest to oldest
+                return dateB - dateA;
             });
         }
-        function toggleDetails(event) {
-            const titleWrapper = event.currentTarget;
-            const details = titleWrapper.nextElementSibling;
-            titleWrapper.classList.toggle('active');
-            if (details.style.display === 'none' || details.style.display === '') {
-                details.style.display = 'block';
-                details.style.maxHeight = details.scrollHeight + 'px';
-            } else {
-                details.style.maxHeight = '0px';
-                setTimeout(() => {
-                    details.style.display = 'none';
-                }, 300);
-            }
-        }
+
         function displayNews(category) {
             const newsContent = document.getElementById('news-content');
             newsContent.innerHTML = '';
-            const filteredData = newsData[category];
+            const filteredData = getFilteredData(category, currentTagFilter, currentAuthorFilter, currentPublicationFilter);
             const sortedData = sortNewsByDate(filteredData);
             sortedData.forEach(item => {
                 const newsItem = document.createElement('div');
                 newsItem.className = 'news-item';
-                const titleWrapper = document.createElement('h3');
-                const titleLinkContainer = document.createElement('div');
-                titleLinkContainer.className = 'title-link-wrapper';
-                const title = document.createElement('span');
-                title.textContent = item.title || item.Title; // Handle both 'title' and 'Title'
-                const link = document.createElement('a');
-                link.href = item.link;
-                link.className = 'link-icon';
-                link.target = '_blank';
-                link.textContent = '🔗'; // Link icon or text
-                titleLinkContainer.appendChild(title);
-                titleLinkContainer.appendChild(link);
-                const disclosureIcon = document.createElement('span');
-                disclosureIcon.className = 'disclosure-icon';
-                titleWrapper.appendChild(titleLinkContainer);
-                titleWrapper.appendChild(disclosureIcon);
-                titleWrapper.addEventListener('click', toggleDetails);
-                newsItem.appendChild(titleWrapper);
+                const headingLink = document.createElement('a');
+                headingLink.href = item.link;
+                headingLink.className = 'news-item-heading-link';
+                headingLink.target = '_blank';
+                headingLink.rel = 'noopener noreferrer';
+                const title = document.createElement('h3');
+                title.className = 'news-item-title';
+                title.textContent = item.title || item.Title;
+                headingLink.appendChild(title);
+                newsItem.appendChild(headingLink);
+                const byline = document.createElement('div');
+                byline.className = 'news-item-byline';
+                const authors = getAuthors(item);
+                const publication = (item.Publication || '').trim();
+                const dateStr = formatDate(item.date);
+                if (authors.length > 0) {
+                    authors.forEach((name, i) => {
+                        if (i > 0) byline.appendChild(document.createTextNode(', '));
+                        const authorLink = document.createElement('a');
+                        authorLink.href = '#';
+                        authorLink.textContent = name;
+                        authorLink.onclick = (e) => { e.preventDefault(); e.stopPropagation(); setAuthorFilter(name); };
+                        byline.appendChild(authorLink);
+                    });
+                }
+                if (publication) {
+                    if (authors.length > 0) byline.appendChild(document.createTextNode(', '));
+                    const pubLink = document.createElement('a');
+                    pubLink.href = '#';
+                    pubLink.textContent = publication;
+                    pubLink.onclick = (e) => { e.preventDefault(); e.stopPropagation(); setPublicationFilter(publication); };
+                    byline.appendChild(pubLink);
+                }
+                if (authors.length > 0 || publication) byline.appendChild(document.createTextNode(' (' + dateStr + ')'));
+                else byline.appendChild(document.createTextNode(dateStr));
+                newsItem.appendChild(byline);
                 const details = document.createElement('div');
                 details.className = 'news-item-details';
                 const summary = document.createElement('p');
-                summary.innerHTML = '<span class="detail-header">Summary:</span>' + item.Summary;
+                summary.className = 'news-item-summary';
+                summary.textContent = item.Summary;
                 details.appendChild(summary);
-                const date = document.createElement('p');
-                date.innerHTML = '<span class="detail-header">Date:</span>' + formatDate(item.date);
-                details.appendChild(date);
-                const author = document.createElement('p');
-                author.innerHTML = '<span class="detail-header">Author:</span>' + item.Author;
-                details.appendChild(author);
-                const publication = document.createElement('p');
-                publication.innerHTML = '<span class="detail-header">Publication:</span>' + item.Publication;
-                details.appendChild(publication);
-                const tags = document.createElement('p');
-                tags.className = 'tags';
-                tags.innerHTML = '<span class="detail-header">Tags:</span><span class="tag-content">' + item.Tags.join(', ') + '</span>';
-                details.appendChild(tags);
+                const tagsContainer = document.createElement('div');
+                tagsContainer.className = 'news-item-tags';
+                (item.Tags || []).forEach(tagText => {
+                    const tag = document.createElement('a');
+                    tag.href = '#';
+                    tag.className = 'news-item-tag';
+                    tag.textContent = tagText;
+                    tag.onclick = (e) => { e.preventDefault(); e.stopPropagation(); setTagFilter(tagText); };
+                    tagsContainer.appendChild(tag);
+                });
+                details.appendChild(tagsContainer);
                 newsItem.appendChild(details);
                 newsContent.appendChild(newsItem);
             });
         }
+
         function loadNews() {
             fetch('JPEG-XL_News.json')
                 .then(response => {
@@ -417,10 +837,26 @@
                         newsData[category] = sortNewsByDate(newsData[category]);
                     }
                     categories = Object.keys(newsData);
+                    const state = readStateFromUrl();
+                    currentTabIndex = state.tabIndex;
+                    currentTagFilter = state.tag;
+                    currentAuthorFilter = state.author;
+                    currentPublicationFilter = state.publication;
                     document.getElementById('loading').style.display = 'none';
                     document.getElementById('tab-bar').style.display = 'inline-block';
                     createTabs();
-                    switchTab(0);
+                    switchTab(currentTabIndex, false);
+                    updateFilterBar();
+                    document.getElementById('filter-clear').onclick = (e) => { e.preventDefault(); clearFilter(); };
+                    document.getElementById('tag-sidebar').addEventListener('click', function(e) {
+                        const a = e.target.closest('a[data-tag]');
+                        if (a) {
+                            e.preventDefault();
+                            setTagFilter(a.getAttribute('data-tag'));
+                            const toggle = document.getElementById('tag-menu-toggle');
+                            if (toggle && window.matchMedia('(max-width: 900px)').matches) toggle.checked = false;
+                        }
+                    });
                 })
                 .catch(error => {
                     console.error('Error fetching JSON:', error);
@@ -430,6 +866,18 @@
                     errorElement.style.display = 'block';
                 });
         }
+
+        window.addEventListener('popstate', function() {
+            const state = readStateFromUrl();
+            currentTabIndex = state.tabIndex;
+            currentTagFilter = state.tag;
+            currentAuthorFilter = state.author;
+            currentPublicationFilter = state.publication;
+            updateFilterBar();
+            createTabs();
+            switchTab(currentTabIndex, false);
+        });
+
         window.onload = loadNews;
     </script>
     <script src="/js/webflow.js"></script>
