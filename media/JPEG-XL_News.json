@@ -760,6 +760,41 @@
     ],
     "News": [
         {
+            "Title": "Interop 2026 JPEG XL Investigation",
+            "link": "https://github.com/web-platform-tests/interop-jpegxl",
+            "date": "2026-02-12",
+            "Author": "Interop Team",
+            "Publication": "Interop 2026",
+            "Summary": "Interop investigation to make browser support for the JPEG XL image format testable, including defining requirements for progressive rendering.",
+            "Tags": [
+                "JPEG XL",
+                "Browser Support",
+                "Progressive",
+                "Web delivery",
+                "Chrome",
+                "Firefox",
+                "Safari",
+                "Edge",
+                "Google",
+                "Apple",
+                "Microsoft"
+            ]
+        },
+        {
+            "Title": "AWS HealthImaging adds JPEG XL support",
+            "link": "https://aws.amazon.com/about-aws/whats-new/2026/01/aws-healthimaging-adds-jpeg-xl/",
+            "date": "2026-02-02",
+            "Author": "AWS",
+            "Publication": "AWS What's New",
+            "Summary": "AWS HealthImaging announces support for storing and retrieving JPEG XL encoded DICOM.",
+            "Tags": [
+                "JPEG XL",
+                "Medical Imaging",
+                "DICOM",
+                "AWS"
+            ]
+        },
+        {
             "Title": "Google's Chromium team decides it will add JPEG XL support, reverses 'obsolete' declaration",
             "link": "https://devclass.com/2025/11/24/googles-chromium-team-decides-it-will-add-jpeg-xl-support-reverses-obsolete-declaration/",
             "date": "2025-11-24",
