@@ -1352,6 +1352,47 @@
       /* Maintain aspect ratio while scaling */
     }
 
+    /* Sitemap / nav section above footer */
+    .sitemap-section {
+      background-image: linear-gradient(180deg, #17a3a040 10%, #000000ff 100%);
+      padding-bottom: 3em; 
+      width: 100%;
+    }
+    .sitemap-section a {
+      color: var(--brand--teal-bright--200, #99f4f1);
+      text-decoration: none;
+      display: block;
+      padding: 0.25rem 0;
+      font-size: 1rem;
+    }
+    .sitemap-section a:hover {
+      color: var(--brand--teal-bright--400, #4debe7);
+      text-decoration: underline;
+    }
+    .sitemap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .sitemap-heading {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #f2f2f2;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid rgba(77, 235, 231, 0.3);
+    }
+    @media (max-width: 767px) {
+      .sitemap-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+
   </style>
   <link href="/css/navbar.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -1378,8 +1419,9 @@
         <div class="navbar-dropdown-content">
           <div class="container-column-vertical">
             <div class="navbar-wrapper-text-section span-with_divider-bottom">
-              <div class="text-navbar-menu_section">Resources</div>
+              <div class="text-navbar-menu_section">Information</div>
             </div>
+            <a href="/media/newsroom.html">Articles &amp; Coverage</a>
             <a href="/resources/supported-software.html">Software Support</a>
             <a href="/resources/battle-of-codecs.html">Battle of the Codecs</a>
             <a href="/resources/faqs.html">FAQs</a>
@@ -1387,11 +1429,12 @@
           </div>
           <div class="container-column-vertical">
             <div class="navbar-wrapper-text-section span-with_divider-bottom">
-              <div class="text-navbar-menu_section">Tools</div>
+              <div class="text-navbar-menu_section">Demo pages</div>
             </div>
-            <a href="/resources/distance-vs-effort-visualizer.html">Distance vs. Effort Visualizer</a>
             <a href="/resources/jpeg-xl-test-page.html">JPEG XL Test Page</a>
+            <a href="/resources/distance-vs-effort-visualizer.html">Distance vs. Effort Visualizer</a>
             <a href="/resources/hdr-test-page.html">HDR Test Page</a>
+            <a href="/art/">JXL Art Gallery</a>
           </div>
           <div class="container-column-vertical">
             <div class="navbar-wrapper-text-section span-with_divider-bottom">
@@ -1400,12 +1443,6 @@
             <a href="/about/history.html">History</a>
             <a href="/about/contributors.html">Contributors</a>
             <a href="/about/photo-credits.html">Photo Credits</a>
-          </div>
-          <div class="container-column-vertical">
-            <div class="navbar-wrapper-text-section span-with_divider-bottom">
-              <div class="text-navbar-menu_section">Media</div>
-            </div>
-            <a href="/media/newsroom.html">Newsroom</a>
             <div>
               <div class="w-layout-grid navbar-social-links">
                 <a href="https://discord.gg/DqkQgDRTFu" target="_blank" rel="noopener noreferrer" class="social-link w-inline-block"><img
@@ -2806,6 +2843,38 @@
       <div data-figma-id="73:4011" class="size-xxhuge-12rem-192px"></div>
     </section>
     </main>
+
+    <section class="sitemap-section" aria-label="Site navigation">
+      <div class="padding-global width-1200">
+        <div class="container-large">
+          <div class="padding-section-medium">
+            <div class="sitemap-grid">
+              <div class="sitemap-column">
+                <div class="sitemap-heading">Information</div>
+                <a href="/media/newsroom.html">Articles &amp; Coverage</a>
+                <a href="/resources/supported-software.html">Software Support</a>
+                <a href="/resources/battle-of-codecs.html">Battle of the Codecs</a>
+                <a href="/resources/faqs.html">FAQs</a>
+                <a href="/resources/glossary.html">Glossary</a>
+              </div>
+              <div class="sitemap-column">
+                <div class="sitemap-heading">Demo pages</div>
+                <a href="/resources/jpeg-xl-test-page.html">JPEG XL Test Page</a>
+                <a href="/resources/distance-vs-effort-visualizer.html">Distance vs. Effort Visualizer</a>
+                <a href="/resources/hdr-test-page.html">HDR Test Page</a>
+                <a href="/art/">JXL Art Gallery</a>
+              </div>
+              <div class="sitemap-column">
+                <div class="sitemap-heading">About</div>
+                <a href="/about/history.html">History</a>
+                <a href="/about/contributors.html">Contributors</a>
+                <a href="/about/photo-credits.html">Photo Credits</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <div class="footer_component blend-teal centered">
       <div class="padding-global width-1200">
