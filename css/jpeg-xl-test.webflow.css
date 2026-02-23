@@ -6961,7 +6961,7 @@ blockquote {
   }
 
   .wrapper-text.centered.width-rem {
-    max-width: 24em;
+    padding: 0 4%;
   }
 
   .container-wave-animated {
