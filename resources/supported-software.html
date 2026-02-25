@@ -34,6 +34,11 @@
   <link rel="apple-touch-icon" href="../images/webclip.png">
   <link href="../css/navbar.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script type="module" src="https://caniuse-embed.vercel.app/embed.js"></script>
+  <style>
+    #ciu-embed-wrap { width: 100%; min-width: 0; }
+    #ciu-embed-wrap .ciu-embed, #ciu-embed-wrap iframe { width: 100% !important; max-width: 100%; min-width: 0; }
+  </style>
 </head>
 
 <body class="body">
@@ -142,8 +147,6 @@
                       class="link-text-body-underline">jxlatte:</a> Java decoder<br>‍
                     <a href="https://github.com/tirr-c/jxl-oxide" target="_blank" rel="noopener noreferrer"
                       class="link-text-body-underline">jxl-oxide:‍</a> Rust decoder<br>
-                    <a href="https://github.com/awxkee/jxl-coder" target="_blank" rel="noopener noreferrer"
-                      class="link-text-body-underline">jxl-coder:‍</a> C/C++ Android encoder & decoder<br>
                   </div>
                 </div>
               </div>
@@ -215,6 +218,7 @@
             <div class="spacer-2rem"></div>
             <div class="group-container">
               <div class="text-xl-regular color-black">Browser Support</div>
+              <p class="text-small-regular color-black">These browsers support JPEG XL by default:</p>
               <div class="container-logos">
                 <div class="wrapper-logo-text">
                   <a href="https://www.apple.com/ca/safari/" target="_blank" rel="noopener noreferrer"
@@ -234,13 +238,6 @@
                       loading="lazy" width="139.61538696289062" height="120" alt="Waterfox Icon"
                       class="image-logo-software"></a>
                   <div class="text-regular-semibold wrap-none centered color-black">Waterfox</div>
-                </div>
-                <div class="wrapper-logo-text">
-                  <a href="https://www.mozilla.org/en-CA/firefox/channel/desktop/" target="_blank" rel="noopener noreferrer"
-                    class="wrapper-logo-software-link w-inline-block"><img src="../images/sw_firefox_nightly.svg"
-                      loading="lazy" width="120" height="120" alt="Firefox Nightly Logo"
-                      class="image-logo-software"></a>
-                  <div class="text-regular-semibold wrap-none centered color-black">Firefox Nightly</div>
                 </div>
                 <div class="wrapper-logo-text">
                   <a href="https://www.palemoon.org" target="_blank" rel="noopener noreferrer" class="wrapper-logo-software-link w-inline-block">
@@ -276,12 +273,25 @@
                   </a>
                   <div class="text-regular-semibold wrap-none centered color-black">Orion</div>
                 </div>
+                <div class="wrapper-logo-text">
+                  <a href="https://ladybird.org/" target="_blank" rel="noopener noreferrer"
+                    class="wrapper-logo-software-link w-inline-block"><img src="../images/sw_ladybird.png"
+                      loading="lazy" width="120" height="120" alt="Ladybird Logo" class="image-logo-software"></a>
+                  <div class="text-regular-semibold wrap-none centered color-black">Ladybird</div>
+                </div>
+                <div class="wrapper-logo-text">
+                  <a href="https://zen-browser.app/" target="_blank" rel="noopener noreferrer"
+                    class="wrapper-logo-software-link w-inline-block"><img src="../images/sw_zen.svg"
+                      loading="lazy" width="120" height="120" alt="Zen Browser Logo" class="image-logo-software"></a>
+                  <div class="text-regular-semibold wrap-none centered color-black">Zen</div>
+                </div>
               </div>
-              <div class="container-text-shaded centered">
-                <p class="text-small-regular color-black centered">For an overview of browser support and to monitor
-                  their progress, visit
-                  <a href="https://caniuse.com/jpegxl" target="_blank" rel="noopener noreferrer" class="link-text-body-underline">Can I Use</a>.
-                </p>
+              <div id="ciu-embed-wrap">
+                <p class="text-small-regular color-black">Chrome and Firefox are implementing JPEG XL but it's not available by default yet.
+                  You can enable JPEG XL support in Chrome via a flag: <code>chrome://flags/#enable-jxl-image-format</code>.
+                  The current state of support in major browsers is as follows: 
+                  </p>
+                    <p class="ciu-embed" data-feature="jpegxl" data-past="2" data-future="3" data-theme="auto"></p>
               </div>
             </div>
             <div class="spacer-2rem"></div>
