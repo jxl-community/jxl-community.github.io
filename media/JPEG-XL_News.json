@@ -715,6 +715,18 @@
             ]
         },
         {
+            "title": "JPEG XL art explained",
+            "link": "https://www.youtube.com/watch?v=FIG3I8Sp2qQ",
+            "date": "2022-09-08",
+            "Author": ["HellMood", "psenough", "Jon Sneyers"],
+            "Publication": "YouTube",
+            "Summary": "Discussion on JPEG XL art in the context of the Inércia Demoparty 2022.",
+            "Tags": [
+                "JPEG XL",
+                "JXL Art"
+            ]
+        },
+        {
             "title": "JPEG XL: The Next Generation ‘Alien Technology From The Future’ (ImageReady)",
             "link": "https://youtu.be/t63DBrQCUWc",
             "date": "2020-10",
