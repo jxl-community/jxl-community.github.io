@@ -1,6 +1,29 @@
 {
     "Blog posts": [
         {
+            "title": "2026, the Year of JPEG XL",
+            "link": "https://cloudinary.com/blog/2026-the-year-of-jpeg-xl",
+            "date": "2026-03-19",
+            "Author": "Jon Sneyers",
+            "Publication": "Cloudinary Blog",
+            "Summary": "Short recap of browser history, ecosystem adoption (DNG, PDF, DICOM, GDAL, tools, OSes), Chrome M145 + flag, Interop 2026, and 2026 as the year of JPEG XL.",
+            "Tags": [
+                "JPEG XL",
+                "Browser Support",
+                "Chrome",
+                "Firefox",
+                "Safari",
+                "Interop",
+                "Cloudinary",
+                "Web delivery",
+                "Photography",
+                "DICOM",
+                "PDF",
+                "Overview",
+                "History"
+            ]
+        },
+        {
             "title": "JPEG XL and Core Web Vitals: what you need to know now that Chrome ships it",
             "link": "https://www.corewebvitals.io/pagespeed/jpeg-xl-core-web-vitals-support",
             "date": "2026-02-17",
@@ -695,6 +718,20 @@
                 "Progressive",
                 "Modular Mode",
                 "Progressive"
+            ]
+        },
+        {
+            "title": "SPDY STREAM 024 | The JPEG XL with Jon Sneyers of Cloudinary",
+            "link": "https://www.youtube.com/watch?v=3t2wYYnLctU",
+            "date": "2026-03",
+            "Author": ["Jon Sneyers", "Henri Helvetica"],
+            "Publication": "YouTube",
+            "Summary": "SPDY Stream interview with Jon Sneyers on JPEG XL (Henri Helvetica).",
+            "Tags": [
+                "JPEG XL",
+                "Interview",
+                "Overview",
+                "Cloudinary"
             ]
         },
         {
