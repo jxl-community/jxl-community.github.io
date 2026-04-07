@@ -137,12 +137,40 @@ nav.visible {
   content: "menu";
 }
 
+.navbar-top-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  flex-wrap: wrap;
+  font-family: Barlow, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+.navbar-top-links a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.9;
+}
+.navbar-top-links a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+.navbar-top-sep {
+  opacity: 0.6;
+  user-select: none;
+}
+@media screen and (max-width: 900px) {
+  .navbar-top-links {
+    display: none;
+  }
+}
+
 .navbar-dropdown-content {
   width: 100%;
   padding: 2em;
   display: flex;
   flex-direction: row;
-  gap: 2em;
+  gap: 1em;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -153,7 +181,7 @@ label.material-icons {
 
 .container-column-vertical {
   grid-column-gap: 0.5rem;
-  grid-row-gap: 0.5rem;
+  grid-row-gap: 0.1rem;
   flex-direction: column;
   display: flex;
   min-width: 12em;
