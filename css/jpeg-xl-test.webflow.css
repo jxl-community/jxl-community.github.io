@@ -1099,7 +1099,7 @@ blockquote {
   display: flex;
 }
 
-.continer-4col {
+.container-4col {
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   grid-template-rows: auto;
@@ -1208,7 +1208,7 @@ blockquote {
   box-shadow: inset 0 2px 3px #ffffff1a;
 }
 
-.continer-text-icon {
+.container-text-icon {
   grid-column-gap: var(--sizing--spacing--xsmall);
   grid-row-gap: var(--sizing--spacing--xsmall);
   flex-flow: column;
@@ -1217,11 +1217,11 @@ blockquote {
   display: flex;
 }
 
-.continer-text-icon.vertical {
+.container-text-icon.vertical {
   flex-flow: column;
 }
 
-.continer-text-icon.vertical.centered {
+.container-text-icon.vertical.centered {
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   justify-content: flex-start;
@@ -3965,7 +3965,7 @@ blockquote {
     padding-bottom: 0;
   }
 
-  .continer-4col {
+  .container-4col {
     place-items: start center;
   }
 
@@ -5032,7 +5032,7 @@ blockquote {
     padding: 0;
   }
 
-  .continer-4col {
+  .container-4col {
     justify-content: center;
     place-items: start center;
     max-width: 600px;
@@ -5982,7 +5982,7 @@ blockquote {
     padding-right: 0;
   }
 
-  .continer-4col {
+  .container-4col {
     max-width: 480px;
   }
 
@@ -6703,7 +6703,7 @@ blockquote {
     padding: 0;
   }
 
-  .continer-4col {
+  .container-4col {
     grid-column-gap: 2em;
     grid-row-gap: 2em;
     flex-flow: column;
