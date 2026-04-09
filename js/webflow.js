@@ -55,72 +55,29 @@ Webflow.require('ix2').init(
 );
 
 (function() {
-  // Variables
-  let lastScrollY = window.scrollY;
+  const SCROLL_THRESHOLD = 80; // px from top before shrinking
   let ticking = false;
   const nav = document.querySelector('nav');
   const dropdownCheckbox = document.getElementById('navbar-dropdown');
-  
-  // Apply initial state
-  nav.classList.add("visible");
-  
-  // Main scroll handler with debouncing
+
+  function updateNavbar() {
+    if (window.scrollY > SCROLL_THRESHOLD) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+    ticking = false;
+  }
+
   function onScroll() {
     if (!ticking) {
-      window.requestAnimationFrame(function() {
-        // Don't process if dropdown is open
-        if (dropdownCheckbox && dropdownCheckbox.checked) {
-          // Always ensure navbar is visible when dropdown is open
-          showNavbar();
-          ticking = false;
-          return;
-        }
-        
-        // Determine scroll direction and handle navbar
-        if (window.scrollY > lastScrollY + 5) { // Add threshold to prevent minor movements
-          hideNavbar();
-        } else if (window.scrollY < lastScrollY - 5) {
-          showNavbar();
-        }
-        
-        lastScrollY = window.scrollY;
-        ticking = false;
-      });
-      
+      window.requestAnimationFrame(updateNavbar);
       ticking = true;
     }
   }
-  
-  // Helper functions to show/hide navbar
-  function showNavbar() {
-    nav.classList.remove("hidden");
-    nav.classList.add("visible");
-  }
-  
-  function hideNavbar() {
-    nav.classList.remove("visible");
-    nav.classList.add("hidden");
-  }
-  
-  // Ensure navbar stays visible when dropdown is open
-  function onDropdownChange() {
-    if (this.checked) {
-      showNavbar();
-    }
-  }
-  
-  // Event listeners
+
+  // Apply correct state immediately on load
+  updateNavbar();
+
   window.addEventListener('scroll', onScroll, { passive: true });
-  
-  if (dropdownCheckbox) {
-    dropdownCheckbox.addEventListener('change', onDropdownChange);
-  }
-  
-  // Keep navbar visible when dropdown content is being interacted with
-  const dropdownContent = document.querySelector('.container-navbar-dropdown-content');
-  if (dropdownContent) {
-    dropdownContent.addEventListener('mouseenter', function() {
-      showNavbar();
-    });
-  }
 })();
