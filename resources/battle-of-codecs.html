@@ -212,80 +212,127 @@
 
 <body class="body">
   <a href="#main-content" class="skip-nav">Skip to main content</a>
-    <!-- SVG definitions -->
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-        <symbol id="checkmark" viewBox="0 0 24 24">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-                d="M12 1.25C6.06294 1.25 1.25 6.06294 1.25 12C1.25 17.9371 6.06294 22.75 12 22.75C17.9371 22.75 22.75 17.9371 22.75 12C22.75 6.06294 17.9371 1.25 12 1.25ZM7.53044 11.9697C7.23755 11.6768 6.76268 11.6768 6.46978 11.9697C6.17689 12.2626 6.17689 12.7374 6.46978 13.0303L9.46978 16.0303C9.76268 16.3232 10.2376 16.3232 10.5304 16.0303L17.5304 9.03033C17.8233 8.73744 17.8233 8.26256 17.5304 7.96967C17.2375 7.67678 16.7627 7.67678 16.4698 7.96967L10.0001 14.4393L7.53044 11.9697Z"
-                fill="#94B21A" />
-        </symbol>
-        <symbol id="cross" viewBox="0 0 24 24">
-            <path d="M6.75735 17.2426L12 12M17.2426 6.75736L12 12M12 12L6.75735 6.75736M12 12L17.2426 17.2426"
-                stroke="#C50B0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </symbol>
-    </svg>
-    <nav class="navbar-2-component">
-        <input type="checkbox" name="navbar-dropdown" id="navbar-dropdown">
-        <div class="navbar-container-menu-top">
-            <div class="navbar-2-container">
-                <a href="../index.html" aria-current="page" class="navbar_logo-link w-nav-brand w--current"><img
-                        width="63" loading="lazy" alt="" src="../images/Logo-JPEG_XL-horizontal-square-full_color.svg"
-                        class="navbar_logo"></a>
-                <div class="navbar_menu-items">
-                    <label for="navbar-dropdown"
-                        class="navbar-toggle navbar_link navbar-top w-inline-block material-icons button"></label>
-                </div>
+  <nav class="navbar-2-component">
+    <input type="checkbox" name="navbar-dropdown" id="navbar-dropdown">
+    <div class="navbar-container-menu-top">
+      <div class="navbar-2-container">
+        <a href="../index.html" class="navbar_logo-link w-nav-brand"><img width="63"
+            loading="lazy" alt="JPEG XL" src="../images/Logo-JPEG_XL-horizontal-square-full_color.svg" class="navbar_logo"></a>
+
+        <!-- Desktop navigation -->
+        <div class="navbar-desktop-items" role="menubar" aria-label="Main navigation">
+
+          <div class="navbar-desktop-item" role="none">
+            <button type="button" class="navbar-desktop-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">
+              Information <span class="material-icons navbar-chevron" aria-hidden="true">expand_more</span>
+            </button>
+            <div class="navbar-desktop-dropdown" role="menu" aria-label="Information">
+              <div class="navbar-desktop-section-label" aria-hidden="true">Information</div>
+              <hr class="navbar-desktop-divider">
+              <a href="../media/newsroom.html" role="menuitem">Articles &amp; Coverage</a>
+              <a href="../resources/supported-software.html" role="menuitem">Software Support</a>
+              <a href="../resources/battle-of-codecs.html" role="menuitem">Battle of the Codecs</a>
+              <a href="../resources/faqs.html" role="menuitem">FAQs</a>
+              <a href="../resources/glossary.html" role="menuitem">Glossary</a>
             </div>
-        </div>
-        <div class="container-navbar-dropdown-content">
-            <div class="container-navbar-content">
-                <div class="navbar-close"><label for="navbar-dropdown"
-                        class="navbar-toggle material-icons button"></label></div>
-                <div class="navbar-dropdown-content">
-                    <div class="container-column-vertical">
-                        <div class="navbar-wrapper-text-section span-with_divider-bottom">
-                            <div class="text-navbar-menu_section">Information</div>
-                        </div>
-                        <a href="../media/newsroom.html">Articles &amp; Coverage</a>
-                        <a href="../resources/supported-software.html">Software Support</a>
-                        <a href="../resources/battle-of-codecs.html">Battle of the Codecs</a>
-                        <a href="../resources/faqs.html">FAQs</a>
-                        <a href="../resources/glossary.html">Glossary</a>
-                    </div>
-                    <div class="container-column-vertical">
-                        <div class="navbar-wrapper-text-section span-with_divider-bottom">
-                            <div class="text-navbar-menu_section">Demo pages</div>
-                        </div>
-                        <a href="../resources/jpeg-xl-test-page.html">JPEG XL Test Page</a>
-                        <a href="../resources/distance-vs-effort-visualizer.html">Distance vs. Effort Visualizer</a>
-                        <a href="../resources/hdr-test-page.html">HDR Test Page</a>
-                        <a href="../art/">JXL Art Gallery</a>
-                    </div>
-                    <div class="container-column-vertical">
-                        <div class="navbar-wrapper-text-section span-with_divider-bottom">
-                            <div class="text-navbar-menu_section">About</div>
-                        </div>
-                        <a href="../about/history.html">History</a>
-                        <a href="../about/contributors.html">Contributors</a>
-                        <a href="../about/photo-credits.html">Photo Credits</a>
-                        <div>
-                            <div class="w-layout-grid navbar-social-links">
-                                <a href="https://discord.gg/DqkQgDRTFu" target="_blank" rel="noopener noreferrer"
-                                    class="social-link w-inline-block"><img src="../images/Icon-social-discord-black.svg"
-                                        loading="lazy" alt="JPEG XL on Discord" class="icon-social"></a>
-                                <a href="https://www.reddit.com/r/jpegxl" target="_blank" rel="noopener noreferrer"
-                                    class="social-link w-inline-block"><img src="../images/Icon-social-reddit-black.svg"
-                                        loading="lazy" alt="JPEG XL on Reddit" class="icon-social"></a>
-                                <a href="https://x.com/jpegxl" target="_blank" rel="noopener noreferrer" class="social-link w-inline-block"><img
-                                        src="../images/Icon-social-x-twitter-black.svg" loading="lazy"
-                                        alt="JPEG XL on X (Twitter)" class="icon-social"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          </div>
+
+          <div class="navbar-desktop-item" role="none">
+            <button type="button" class="navbar-desktop-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">
+              Explore <span class="material-icons navbar-chevron" aria-hidden="true">expand_more</span>
+            </button>
+            <div class="navbar-desktop-dropdown" role="menu" aria-label="Explore">
+              <div class="navbar-desktop-section-label" aria-hidden="true">Explore</div>
+              <hr class="navbar-desktop-divider">
+              <a href="../resources/jpeg-xl-test-page.html" role="menuitem">JPEG XL Test Page</a>
+              <a href="../resources/distance-vs-effort-visualizer.html" role="menuitem">Distance vs. Effort Visualizer</a>
+              <a href="../resources/hdr-test-page.html" role="menuitem">HDR Test Page</a>
+              <a href="../art/" role="menuitem">JXL Art Gallery</a>
             </div>
+          </div>
+
+          <div class="navbar-desktop-item" role="none">
+            <button type="button" class="navbar-desktop-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">
+              About <span class="material-icons navbar-chevron" aria-hidden="true">expand_more</span>
+            </button>
+            <div class="navbar-desktop-dropdown" role="menu" aria-label="About">
+              <div class="navbar-desktop-section-label" aria-hidden="true">About</div>
+              <hr class="navbar-desktop-divider">
+              <a href="../about/history.html" role="menuitem">History</a>
+              <a href="../about/contributors.html" role="menuitem">Contributors</a>
+              <a href="../about/photo-credits.html" role="menuitem">Photo Credits</a>
+              <hr class="navbar-desktop-divider">
+              <div class="navbar-desktop-social">
+                <a href="https://discord.gg/DqkQgDRTFu" target="_blank" rel="noopener noreferrer" role="menuitem" aria-label="JPEG XL on Discord">
+                  <img src="../images/Icon-social-discord-black.svg" loading="lazy" alt="Discord">
+                </a>
+                <a href="https://www.reddit.com/r/jpegxl" target="_blank" rel="noopener noreferrer" role="menuitem" aria-label="JPEG XL on Reddit">
+                  <img src="../images/Icon-social-reddit-black.svg" loading="lazy" alt="Reddit">
+                </a>
+                <a href="https://x.com/jpegxl" target="_blank" rel="noopener noreferrer" role="menuitem" aria-label="JPEG XL on X (Twitter)">
+                  <img src="../images/Icon-social-x-twitter-black.svg" loading="lazy" alt="X (Twitter)">
+                </a>
+              </div>
+            </div>
+          </div>
+
         </div>
-    </nav>
+
+        <!-- Mobile hamburger toggle -->
+        <div class="navbar_menu-items navbar-mobile-toggle">
+          <label for="navbar-dropdown"
+            class="navbar-toggle navbar_link navbar-top w-inline-block material-icons button"></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile full-screen dropdown -->
+    <div class="container-navbar-dropdown-content">
+      <div class="container-navbar-content">
+        <div class="navbar-close"><label for="navbar-dropdown" class="navbar-toggle material-icons button"></label>
+        </div>
+        <div class="navbar-dropdown-content">
+          <div class="container-column-vertical">
+            <div class="navbar-wrapper-text-section span-with_divider-bottom">
+              <div class="text-navbar-menu_section">Information</div>
+            </div>
+            <a href="../media/newsroom.html">Articles &amp; Coverage</a>
+            <a href="../resources/supported-software.html">Software Support</a>
+            <a href="../resources/battle-of-codecs.html">Battle of the Codecs</a>
+            <a href="../resources/faqs.html">FAQs</a>
+            <a href="../resources/glossary.html">Glossary</a>
+          </div>
+          <div class="container-column-vertical">
+            <div class="navbar-wrapper-text-section span-with_divider-bottom">
+              <div class="text-navbar-menu_section">Explore</div>
+            </div>
+            <a href="../resources/jpeg-xl-test-page.html">JPEG XL Test Page</a>
+            <a href="../resources/distance-vs-effort-visualizer.html">Distance vs. Effort Visualizer</a>
+            <a href="../resources/hdr-test-page.html">HDR Test Page</a>
+            <a href="../art/">JXL Art Gallery</a>
+          </div>
+          <div class="container-column-vertical">
+            <div class="navbar-wrapper-text-section span-with_divider-bottom">
+              <div class="text-navbar-menu_section">About</div>
+            </div>
+            <a href="../about/history.html">History</a>
+            <a href="../about/contributors.html">Contributors</a>
+            <a href="../about/photo-credits.html">Photo Credits</a>
+            <div>
+              <div class="w-layout-grid navbar-social-links">
+                <a href="https://discord.gg/DqkQgDRTFu" target="_blank" rel="noopener noreferrer" class="social-link w-inline-block"><img
+                    src="../images/Icon-social-discord-black.svg" loading="lazy" alt="JPEG XL on Discord" class="icon-social"></a>
+                <a href="https://www.reddit.com/r/jpegxl" target="_blank" rel="noopener noreferrer" class="social-link w-inline-block"><img
+                    src="../images/Icon-social-reddit-black.svg" loading="lazy" alt="JPEG XL on Reddit" class="icon-social"></a>
+                <a href="https://x.com/jpegxl" target="_blank" rel="noopener noreferrer" class="social-link w-inline-block"><img
+                    src="../images/Icon-social-x-twitter-black.svg" loading="lazy" alt="JPEG XL on X (Twitter)" class="icon-social"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
     <div class="page-wrapper background-black">
         <section id="main-content" class="section-hero hero-fullspan-graphic gradient-bottom">
             <div class="container-content-vflex centered">
