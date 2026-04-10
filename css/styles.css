@@ -1448,7 +1448,6 @@ blockquote {
 .slider-graphs {
   background-color: #ddd0;
   width: 100%;
-  height: 100%;
 }
 
 .slide-3-3 {
@@ -1457,7 +1456,7 @@ blockquote {
 
 .mask-3 {
   width: 100%;
-  padding-bottom: 60px;
+  padding-bottom: 0;
 }
 
 .icon-social {
@@ -4212,12 +4211,12 @@ blockquote {
   }
 
   .slide-nav-2 {
-    margin-top: 40px;
+    margin-top: 0;
   }
 
   .mask-3 {
     flex: 0 auto;
-    padding-bottom: 30px;
+    padding-bottom: 0;
     position: relative;
     overflow: hidden;
   }
