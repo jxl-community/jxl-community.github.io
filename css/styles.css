@@ -3615,8 +3615,9 @@ blockquote {
 
 .footer-logo {
   vertical-align: middle;
-  width: 100%;
+  width: auto; /* Safari: prevent flex from squishing aspect ratio */
   height: 5rem;
+  flex-shrink: 0;
   margin-top: -5px;
   margin-bottom: 0;
   padding-bottom: 0;
