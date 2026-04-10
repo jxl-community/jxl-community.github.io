@@ -602,3 +602,55 @@ label.material-icons {
 .navbar-social-links .social-link:hover .icon-social {
   filter: invert(1) brightness(1);
 }
+
+/* ===== SIMPLE SLIDER (replaces Webflow slider JS) ===== */
+
+.w-slider {
+  position: relative;
+  height: auto !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.w-slider-mask {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.w-slide {
+  display: none;
+  width: 100%;
+}
+
+.w-slide.is-active {
+  display: block;
+}
+
+.w-slider-nav {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.375rem 0 0;
+}
+
+.w-slider-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.w-slider-dot:hover {
+  background: rgba(255, 255, 255, 0.55);
+  transform: scale(1.2);
+}
+
+.w-slider-dot.is-active {
+  background: rgba(255, 255, 255, 0.85);
+  transform: scale(1.15);
+}
