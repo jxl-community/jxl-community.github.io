@@ -1,3 +1,11 @@
+/* Hidden SVG symbol container */
+.svg-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
 .skip-nav {
   position: absolute;
   top: -100%;
