@@ -46,6 +46,8 @@ nav {
 /* Override webflow.css fixed 5rem — make the img always fill its link container */
 .navbar_logo {
   height: 100%;
+  width: auto; /* Safari: prevent flex from squishing aspect ratio */
+  flex-shrink: 0;
   margin-top: 0;
 }
 
