@@ -39,18 +39,64 @@ nav {
   z-index: 1000;
   width: 100%;
   top: 0;
-  transition: transform 0.3s ease;
-  will-change: transform;
 }
 
-nav.hidden {
-  transform: translateY(-100%);
-  visibility: visible; /* Keep element in DOM but moved out of view */
+/* ===== SHRINK-ON-SCROLL ===== */
+
+/* Override webflow.css fixed 5rem — make the img always fill its link container */
+.navbar_logo {
+  height: 100%;
+  margin-top: 0;
 }
 
-nav.visible {
-  transform: translateY(0);
-  visibility: visible;
+/* Smooth transitions on the bar and logo link */
+.navbar-container-menu-top {
+  transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar_logo-link,
+.navbar_logo-link.w--current {
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  padding-top: 0.75rem;
+  padding-bottom: 0.875rem;
+  box-sizing: border-box;
+  transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Keep tablet/mobile logo at its existing size */
+@media screen and (max-width: 991px) {
+  .navbar_logo-link,
+  .navbar_logo-link.w--current {
+    height: 4rem;
+  }
+}
+
+/* Scrolled (compact) state — match the feel of the mobile small logo */
+nav.scrolled .navbar-container-menu-top {
+  height: 4rem;
+}
+
+nav.scrolled .navbar_logo-link,
+nav.scrolled .navbar_logo-link.w--current {
+  height: 3rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.625rem;
+}
+
+/* On tablet/mobile the bar is already shorter */
+@media screen and (max-width: 991px) {
+  nav.scrolled .navbar-container-menu-top {
+    height: 3.5rem;
+  }
+  nav.scrolled .navbar_logo-link,
+  nav.scrolled .navbar_logo-link.w--current {
+    height: 2.5rem;
+    padding-top: 0.375rem;
+    padding-bottom: 0.5rem;
+  }
 }
 
 #navbar-dropdown {
@@ -204,8 +250,8 @@ nav.visible {
   left: 50%;
   transform: translateX(-50%) translateY(-10px);
   min-width: 215px;
-  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   background-color: rgba(15, 18, 22, 0.9);
   background-image: linear-gradient(150deg, rgba(27, 163, 160, 0.18) 0%, transparent 55%);
   border-radius: 13px;
@@ -364,6 +410,104 @@ label.material-icons {
 .container-column-vertical > a:hover {
   color: var(--base--white);
   font-weight: 500;
+}
+
+/* ===== SITEMAP FOOTER ===== */
+
+.sitemap-section {
+  display: flex;
+  justify-content: center;
+}
+
+.sitemap-section .padding-global {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.sitemap-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 4rem;
+  justify-content: center;
+}
+
+.sitemap-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 10rem;
+}
+
+.sitemap-heading {
+  color: rgba(255, 255, 255, 0.38);
+  font-family: Barlow, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Update "Demo pages" label to match navbar */
+.sitemap-heading:nth-child(1) { /* already handled by text content */ }
+
+.sitemap-column a {
+  color: rgba(255, 255, 255, 0.62);
+  font-family: Barlow, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  text-decoration: none;
+  padding: 0.3rem 0;
+  border-radius: 6px;
+  transition: color 0.15s ease;
+}
+
+.sitemap-column a:hover {
+  color: white;
+}
+
+@media screen and (max-width: 991px) {
+  .sitemap-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .sitemap-column {
+    width: 12rem;
+  }
+}
+
+/* ===== MISSING WEBFLOW TYPE CLASS ===== */
+
+.text-l-regular {
+  font-family: Barlow, sans-serif;
+  font-size: 1.375rem; /* 22px — proportional to text-xxl-regular siblings */
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.text-l-regular.centered {
+  text-align: center;
+}
+
+.text-l-regular.teal {
+  color: var(--base--white);
+}
+
+@media screen and (max-width: 991px) {
+  .text-l-regular { font-size: 1.25rem; } /* 20px */
+}
+
+@media screen and (max-width: 767px) {
+  .text-l-regular { font-size: 1.125rem; } /* 18px */
+}
+
+@media screen and (max-width: 479px) {
+  .text-l-regular { font-size: 1rem; } /* 16px floor */
 }
 
 .page-wrapper {
