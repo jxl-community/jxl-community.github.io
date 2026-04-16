@@ -211,7 +211,7 @@ h1 {
   margin-top: 0;
   margin-bottom: 1rem;
   font-family: var(--font--font-family--barlow);
-  font-size: 3.5rem;
+  font-size: clamp(1.75rem, calc(1.134rem + 2.629vw), 3.5rem);
   font-weight: 700;
   line-height: 1.1em;
 }
@@ -223,7 +223,7 @@ h2 {
   margin-top: 0;
   margin-bottom: 1rem;
   font-family: var(--font--font-family--barlow);
-  font-size: 3rem;
+  font-size: clamp(1.5rem, calc(0.972rem + 2.254vw), 3rem);
   font-weight: 700;
   line-height: 1.2em;
 }
@@ -234,7 +234,7 @@ h3 {
   margin-top: 0;
   margin-bottom: 1rem;
   font-family: var(--font--font-family--barlow);
-  font-size: 2rem;
+  font-size: clamp(1.125rem, calc(0.817rem + 1.315vw), 2rem);
   font-weight: 700;
   line-height: 1.2em;
 }
@@ -245,7 +245,7 @@ h4 {
   margin-top: 0;
   margin-bottom: 1rem;
   font-family: var(--font--font-family--barlow);
-  font-size: 1.75rem;
+  font-size: clamp(1.125rem, calc(0.905rem + 0.939vw), 1.75rem);
   font-weight: 600;
   line-height: 1.2em;
 }
@@ -256,7 +256,7 @@ h5 {
   margin-top: 0;
   margin-bottom: 1rem;
   font-family: var(--font--font-family--barlow);
-  font-size: 1.375rem;
+  font-size: clamp(1rem, calc(0.868rem + 0.563vw), 1.375rem);
   font-weight: 600;
   line-height: 1.2em;
 }
@@ -277,7 +277,7 @@ p {
   color: var(--text--color--text-white);
   letter-spacing: -.01em;
   margin-bottom: .5rem;
-  font-size: 1.125rem;
+  font-size: clamp(0.9375rem, calc(0.872rem + 0.282vw), 1.125rem);
   font-weight: 300;
   line-height: 1.45em;
 }
@@ -296,7 +296,7 @@ li {
   color: var(--text--color--text-white);
   letter-spacing: -.01em;
   margin-bottom: .5rem;
-  font-size: 1.125rem;
+  font-size: clamp(0.9375rem, calc(0.828rem + 0.469vw), 1.25rem);
   font-weight: 300;
   line-height: 1.45em;
 }
@@ -324,7 +324,7 @@ blockquote {
   margin-bottom: 2rem;
   padding: 1rem 2rem;
   font-family: var(--font--font-family--barlow);
-  font-size: 24px;
+  font-size: clamp(1.125rem, calc(0.993rem + 0.563vw), 1.5rem);
   font-weight: 500;
   line-height: 1.45em;
 }
@@ -355,7 +355,7 @@ blockquote {
   margin-bottom: 16px;
   padding-bottom: 20px;
   font-family: var(--font--font-family--barlow);
-  font-size: 5rem;
+  font-size: clamp(2.5rem, calc(1.620rem + 3.756vw), 5rem);
   font-weight: 700;
   line-height: 1em;
 }
@@ -385,7 +385,7 @@ blockquote {
   margin-top: 0;
   margin-bottom: 0;
   font-family: var(--font--font-family--barlow);
-  font-size: 1.25rem;
+  font-size: clamp(1rem, calc(0.824rem + 0.751vw), 1.5rem);
   font-weight: 400;
   line-height: 1.45em;
 }
@@ -395,7 +395,7 @@ blockquote {
   text-align: center;
   letter-spacing: -.01em;
   max-width: none; /* max-width: 1024px; This was from the second definition */
-  font-size: 26px; /* 28px in the second definition, 24px in the third, 20 in the 4th, 16 in the 5th */
+  font-size: clamp(1rem, calc(0.812rem + 0.939vw), 1.625rem);
   line-height: 1.45em;
   white-space: normal;
   word-break: keep-all;
@@ -826,7 +826,7 @@ blockquote {
   margin-top: 0;
   margin-bottom: 0;
   font-family: var(--font--font-family--barlow);
-  font-size: 48px;
+  font-size: clamp(2rem, calc(1.384rem + 2.629vw), 3.75rem);
   font-weight: 700;
   line-height: 1.2em;
   display: block;
@@ -842,7 +842,7 @@ blockquote {
   margin-top: 0;
   margin-bottom: 0;
   font-family: var(--font--font-family--barlow);
-  font-size: 3rem;
+  font-size: clamp(1.625rem, calc(1.141rem + 2.066vw), 3rem);
   font-weight: 600;
   line-height: 2.5rem;
 }
@@ -858,7 +858,7 @@ blockquote {
 .headline-l-semibold.white {
   color: var(--white);
   letter-spacing: .01em;
-  font-size: 32px;
+  font-size: clamp(1.5rem, calc(1.226rem + 0.751vw), 2rem);
   line-height: 1.25;
 }
 
@@ -867,7 +867,7 @@ blockquote {
   margin-top: 0;
   margin-bottom: 0;
   font-family: var(--font--font-family--barlow);
-  font-size: 28px;
+  font-size: clamp(1.25rem, calc(1.074rem + 0.751vw), 1.75rem);
   line-height: 1.25em;
   font-weight: 600;
   color: var(--white)
@@ -902,7 +902,7 @@ blockquote {
   margin-top: 0;
   margin-bottom: 0;
   font-family: var(--font--font-family--barlow);
-  font-size: 56px;
+  font-size: clamp(2.25rem, calc(1.898rem + 1.502vw), 3.25rem);
   font-weight: 400;
   line-height: 1.2em;
 }
@@ -917,21 +917,21 @@ blockquote {
   text-transform: none;
   align-self: center;
   width: 100%;
-  font-size: 36px;
+  font-size: clamp(1.375rem, calc(0.891rem + 2.066vw), 2.75rem);
   font-weight: 400;
   line-height: 1.1;
 }
 
 .text-xxl-regular.white {
   color: var(--white);
-  font-size: 32px;
+  font-size: clamp(1.25rem, calc(0.986rem + 1.127vw), 2rem);
   line-height: 1.45;
 }
 
 .text-xl-regular {
   letter-spacing: -.03em;
   font-family: var(--font--font-family--barlow);
-  font-size: 2rem;
+  font-size: clamp(1.375rem, calc(1.155rem + 0.939vw), 2rem);
   font-weight: 400;
   line-height: 1.2em;
 }
@@ -966,7 +966,7 @@ blockquote {
   width: 100%;
   margin-bottom: 1rem;
   font-family: var(--font--font-family--barlow);
-  font-size: 1.25em;
+  font-size: clamp(1rem, calc(0.912rem + 0.376vw), 1.25rem);
   font-weight: 400;
   line-height: 1.5em;
   text-align: left;
@@ -976,7 +976,7 @@ blockquote {
   color: var(--text--color--text-white);
   text-align: center;
   letter-spacing: -.01em;
-  font-size: 1.5em;
+  font-size: clamp(1.125rem, calc(0.993rem + 0.563vw), 1.5rem);
   font-weight: 300;
   text-wrap: pretty;
 }
@@ -3735,9 +3735,6 @@ blockquote {
 }
 
 @media screen and (min-width: 1440px) {
-  li {
-    font-size: 1.25rem;
-  }
 
   img {
     order: 0;
@@ -3764,7 +3761,6 @@ blockquote {
   .display-xl-bold.fill-gradient {
     letter-spacing: -.02em;
     align-self: center;
-    font-size: 5rem;
     font-weight: 700;
   }
 
@@ -3827,23 +3823,19 @@ blockquote {
   .display-l-bold {
     letter-spacing: -.01em;
     margin-bottom: 0;
-    font-size: 60px;
   }
   .headline-l-semibold.white {
     color: var(--white);
     letter-spacing: .01em;
-    font-size: 32px;
     line-height: 1.25;
   }
 
   .headline-s-semibold.centered.white._2line {
     max-width: 10em;
-    font-size: 28px;
   }
 
   .text-xxl-regular {
     color: var(--text--color--text-white);
-    font-size: 40px;
     font-weight: 500;
     line-height: 1.1em;
   }
@@ -3852,7 +3844,6 @@ blockquote {
     letter-spacing: -.03em;
     text-transform: none;
     column-count: auto;
-    font-size: 44px;
     font-weight: 300;
     line-height: 1.1em;
   }
@@ -3861,7 +3852,6 @@ blockquote {
     color: var(--text--color--text-white);
     letter-spacing: -.014em;
     text-shadow: none;
-    font-size: 32px;
     font-weight: 400;
     line-height: 1.45em;
   }
@@ -3873,7 +3863,6 @@ blockquote {
 
   .text-xl-regular.white.reduce-width {
     max-width: 16em;
-    font-size: 32px;
   }
 
   .text-xl-regular.white.reduce-width.bold {
@@ -4848,32 +4837,24 @@ blockquote {
 @media screen and (max-width: 991px) {
   p {
     color: var(--text--color--text-white);
-    font-size: 1rem;
   }
 
-  li {
-    font-size: 1.125rem;
-  }
 
   .display-xl-bold.fill-gradient {
     letter-spacing: -.02em;
     max-width: none;
-    font-size: 4rem;
   }
 
   .text-xl-light {
-    font-size: 24px;
     line-height: 1.45em;
   }
 
   .text-xl-light.is-centered {
-    font-size: 24px;
     line-height: 1.45;
   }
 
   .text-xl-light.is-centered._2lines {
     width: 10ch;
-    font-size: 20px;
     line-height: 1.2;
   }
 
@@ -4941,11 +4922,9 @@ blockquote {
     letter-spacing: 0;
     width: 100%;
     margin-bottom: 0;
-    font-size: 46px;
   }
 
   .headline-l-semibold.centered.white {
-    font-size: 44px;
     font-weight: 500;
     line-height: 1.1em;
   }
@@ -4953,20 +4932,17 @@ blockquote {
   .headline-s-semibold.centered.white._2line {
     letter-spacing: 0;
     width: 10em;
-    font-size: 28px;
     line-height: 1.15em;
   }
 
   .text-xxl-regular {
     margin-bottom: 16px;
-    font-size: 40px;
     line-height: 44px;
   }
 
   .text-xxl-regular.centered.teal {
     letter-spacing: -.025em;
     margin-bottom: 0;
-    font-size: 36px;
     font-weight: 400;
     line-height: 1.15;
   }
@@ -4975,20 +4951,15 @@ blockquote {
     margin-bottom: 0;
   }
 
-  .text-xl-regular.color-black {
-    font-size: 1.75rem;
-  }
 
   .text-l-medium {
     color: var(--text--color--text-white);
-    font-size: 1.125rem;
     font-weight: 400;
     line-height: 1.45em;
   }
 
   .text-l-medium.large {
     margin-bottom: 0;
-    font-size: 1.25rem;
     font-weight: 300;
   }
 
@@ -5812,12 +5783,10 @@ blockquote {
 
   h4 {
     letter-spacing: 0;
-    font-size: 1.5rem;
   }
 
   h5 {
     letter-spacing: 0;
-    font-size: 1.255rem;
   }
 
  /*  p, a, li {
@@ -5838,17 +5807,14 @@ blockquote {
     letter-spacing: 0;
     margin-bottom: 0;
     padding-bottom: 10px;
-    font-size: 3rem;
   }
 
   .text-xl-light {
-    font-size: 24px;
     line-height: 1.45em;
   }
 
   .text-xl-light.is-centered {
     letter-spacing: 0;
-    font-size: 20px;
     line-height: 1.45em;
   }
 
@@ -5912,40 +5878,31 @@ blockquote {
   }
 
   .display-l-bold {
-    font-size: 40px;
     line-height: 1.1;
   }
 
   .headline-l-semibold.centered.white {
-    font-size: 32px;
     line-height: 1.1em;
   }
 
   .headline-l-semibold.white {
-    font-size: 28px;
     line-height: 1.25;
   }
 
   .headline-s-semibold.centered.white._2line {
-    font-size: 24px;
     line-height: 1.15;
   }
 
   .text-xxl-regular.centered.teal {
     letter-spacing: -.02em;
     margin-bottom: 0;
-    font-size: 28px;
     font-weight: 400;
     line-height: 1.15em;
   }
 
-  .text-xxl-regular.white {
-    font-size: 24px;
-  }
 
   .text-xl-regular.white.reduce-width.bold {
     margin-bottom: 0;
-    font-size: 24px;
   }
 
   .text-l-medium {
@@ -5954,7 +5911,6 @@ blockquote {
   }
 
   .text-l-medium.large {
-    font-size: 1.125rem;
     font-weight: 300;
   }
 
@@ -6534,17 +6490,14 @@ blockquote {
 
   .display-xl-bold.fill-gradient {
     width: 100%;
-    font-size: 2.5rem;
   }
   .text-xl-light {
-    font-size: 18px;
     line-height: 1.45em;
   }
 
   .text-xl-light.is-centered {
     letter-spacing: 0;
     width: 100%;
-    font-size: 18px;
     line-height: 1.45em;
   }
 
@@ -6609,13 +6562,11 @@ blockquote {
   .display-l-bold {
     letter-spacing: .01em;
     width: 100%;
-    font-size: 32px;
     line-height: 1.05;
   }
 
   .headline-l-semibold.centered.white {
     letter-spacing: -.016em;
-    font-size: 32px;
   }
 
   .headline-s-semibold.centered.white {
@@ -6633,7 +6584,6 @@ blockquote {
     letter-spacing: -.03em;
     width: 100%;
     max-width: none;
-    font-size: 22px;
     font-weight: 400;
     line-height: 1.15em;
   }
@@ -6647,18 +6597,12 @@ blockquote {
     white-space: normal;
     word-break: keep-all;
     overflow-wrap: normal;
-    font-size: 1.5rem;
   }
 
   .text-l-medium {
-    font-size: 18px;
     line-height: 1.4em;
   }
 
-  .text-l-medium.large {
-    font-size: 1.125rem;
-    font-weight: 300;
-  }
 
   .container-content-fullspan {
     width: 100%;
