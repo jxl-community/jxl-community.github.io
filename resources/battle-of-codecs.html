@@ -22,16 +22,37 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
+        :root {
+            --first-col-width: 213px;
+            --jxl-col-width: 120px;
+            --other-col-width: 110px;
+        }
+
+        /* Prevent the wide table from pushing the flex ancestors past the viewport,
+           which would cause the whole page to scroll horizontally instead of just the table. */
+        #main-content {
+            width: 100%;
+            min-width: 0;
+            max-width: 100%;
+        }
+        #main-content .section-content-wrapper,
+        #main-content .container-content-vflex {
+            min-width: 0;
+            max-width: 100%;
+        }
+
         .table-container {
             width: 100%;
+            max-width: 100%;
             overflow-x: auto;
             position: relative;
             font-size: 14px;
             font-weight: 300;
             display: block;
-            /* Ensure the container behaves properly for scrolling */
             line-height: normal;
             color: #ffffff;
+            overscroll-behavior-x: contain;
+            touch-action: pan-x pan-y;
         }
 
         table {
@@ -48,13 +69,18 @@
 
         th:not(:first-child),
         td:not(:first-child) {
-            width: 100px;
             word-wrap: break-word;
             text-align: center;
         }
 
+        th:not(:first-child):not(.jpeg-xl),
+        td:not(:first-child):not(.jpeg-xl) {
+            width: var(--other-col-width);
+            min-width: var(--other-col-width);
+        }
+
         th {
-            background-color: transparent;
+            background-color: #1d1d1d;
             position: sticky;
             top: 0;
             z-index: 10;
@@ -93,6 +119,11 @@
             background-color: #1d1d1d;
             left: 0;
             z-index: 30;
+            width: var(--first-col-width);
+            min-width: var(--first-col-width);
+            max-width: var(--first-col-width);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         td.fixed-column {
@@ -102,13 +133,17 @@
 
         .jpeg-xl {
             position: sticky;
-            left: 213px;
+            left: var(--first-col-width);
             z-index: 20;
+            width: var(--jxl-col-width);
+            min-width: var(--jxl-col-width);
+            max-width: var(--jxl-col-width);
+            /* Right-edge shadow to visually communicate that other columns slide under this one. */
+            box-shadow: 4px 0 6px -2px rgba(0, 0, 0, 0.5);
         }
 
         td.jpeg-xl {
             background-color: #2c2c2c;
-            /* Specific background for JPEG XL column body */
         }
 
         th.fixed-column {
@@ -192,6 +227,53 @@
             font-weight: 400;
             margin-left: 4px;
             vertical-align: middle;
+        }
+
+        @media (max-width: 991px) {
+            :root {
+                --first-col-width: 180px;
+                --jxl-col-width: 110px;
+                --other-col-width: 100px;
+            }
+
+            /* Cap container height so vertical scroll happens INSIDE the table.
+               This gives the sticky <th> headers a real scroll context to anchor
+               to — without it, sticky top: 0 has nothing to react to on page scroll. */
+            .table-container {
+                max-height: 75vh;
+                overflow-y: auto;
+            }
+        }
+
+        @media (max-width: 767px) {
+            :root {
+                --first-col-width: 140px;
+                --jxl-col-width: 105px;
+                --other-col-width: 95px;
+            }
+            .table-container {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 479px) {
+            :root {
+                --first-col-width: 118px;
+                --jxl-col-width: 95px;
+                --other-col-width: 88px;
+            }
+            .table-container {
+                font-size: 12px;
+            }
+
+            th,
+            td {
+                padding: 6px 4px;
+            }
+
+            .star-rating::before {
+                letter-spacing: 4px;
+            }
         }
     </style>
 </head>
