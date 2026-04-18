@@ -29,16 +29,24 @@
         }
 
         /* Prevent the wide table from pushing the flex ancestors past the viewport,
-           which would cause the whole page to scroll horizontally instead of just the table. */
-        #main-content {
-            width: 100%;
-            min-width: 0;
-            max-width: 100%;
-        }
+           which would cause the whole page to scroll horizontally instead of just the table.
+           min-width: 0 lets flex items shrink below their content size. */
+        #main-content,
         #main-content .section-content-wrapper,
         #main-content .container-content-vflex {
             min-width: 0;
-            max-width: 100%;
+        }
+
+        /* Below the 1200px page-max cap, also enforce max-width: 100% so the
+           container can't stretch past the viewport when its inner table is wide.
+           Above 1200px the page-max class's own max-width: 1200px keeps things
+           centered inside the normal page bounds — don't override it here. */
+        @media (max-width: 1199px) {
+            #main-content,
+            #main-content .section-content-wrapper,
+            #main-content .container-content-vflex {
+                max-width: 100%;
+            }
         }
 
         .table-container {
