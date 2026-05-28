@@ -721,6 +721,19 @@
             ]
         },
         {
+            "title": "JPEG XL: a deep dive",
+            "link": "https://www.youtube.com/watch?v=4Yz5OnEjpqM",
+            "date": "2026-05",
+            "Author": ["Jon Sneyers"],
+            "Publication": "NLUUG",
+            "Summary": "A technical deep dive on JPEG XL at the NLUUG Spring conference",
+            "Tags": [
+                "JPEG XL",
+                "Overview",
+                "Technical deep-dive",
+            ]
+        },
+        {
             "title": "SPDY STREAM 024 | The JPEG XL with Jon Sneyers of Cloudinary",
             "link": "https://www.youtube.com/watch?v=3t2wYYnLctU",
             "date": "2026-03",
