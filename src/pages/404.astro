@@ -1,0 +1,232 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Page not found – JPEG XL';
+const description = 'The requested JPEG XL Community Website page could not be found.';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical="https://jpegxl.info/404.html"
+  robots="noindex, follow"
+>
+  <main id="main-content" class="not-found">
+    <div class="not-found__glow" aria-hidden="true"></div>
+      <div class="not-found__content">
+      <p class="not-found__eyebrow">ERROR 404 · MISSING ROUTE</p>
+      <div class="not-found__code" aria-hidden="true">404</div>
+      <h1>This page isn’t here.</h1>
+      <p class="not-found__message">
+        The address may be outdated, or the page may have moved. Choose a destination below  or use the search box above to keep exploring JPEG&nbsp;XL.
+      </p>
+      <div class="not-found__actions" role="navigation" aria-label="Helpful destinations">
+        <a class="not-found__link not-found__link--primary" href="/">JPEG XL Home</a>
+        <a class="not-found__link" href="/resources/faqs.html">Browse the FAQs</a>
+      </div>
+    </div>
+  </main>
+
+  <style is:inline>
+    .not-found {
+      position: relative;
+      display: grid;
+      min-height: min(44rem, calc(100svh - 8rem));
+      padding: clamp(5rem, 12vw, 9rem) clamp(1.25rem, 5vw, 4rem);
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--brand--blue--900) 52%, var(--page-black)) 0%, transparent 48%),
+        var(--page-black);
+      place-items: center;
+      isolation: isolate;
+    }
+
+    .not-found::before {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        linear-gradient(color-mix(in srgb, var(--brand--teal-bright--500) 12%, transparent) 1px, transparent 1px),
+        linear-gradient(90deg, color-mix(in srgb, var(--brand--teal-bright--500) 12%, transparent) 1px, transparent 1px);
+      background-size: 2rem 2rem;
+      mask-image: linear-gradient(90deg, transparent, black 20%, black 80%, transparent);
+      content: '';
+      opacity: 0.42;
+    }
+
+    .not-found__glow {
+      position: absolute;
+      z-index: -1;
+      width: min(42rem, 88vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, color-mix(in srgb, var(--brand--teal-bright--500) 25%, transparent), transparent 68%);
+      filter: blur(1rem);
+      transform: translateY(-12%);
+    }
+
+    .not-found__content {
+      display: grid;
+      width: min(100%, 43rem);
+      justify-items: center;
+      text-align: center;
+    }
+
+    .not-found__eyebrow {
+      margin: 0 0 clamp(1.25rem, 3vw, 2rem);
+      color: var(--brand--teal-bright--300);
+      font-family: var(--font--font-family--monospace);
+      font-size: clamp(0.6875rem, 1.5vw, 0.8125rem);
+      font-weight: 600;
+      letter-spacing: 0.14em;
+    }
+
+    .not-found__code {
+      display: flex;
+      align-items: center;
+      color: transparent;
+      background: linear-gradient(135deg, var(--brand--teal-bright--P3--500), var(--brand--blue--P3--500));
+      -webkit-background-clip: text;
+      background-clip: text;
+      font-family: var(--font--font-family--barlow);
+      font-size: clamp(7rem, 29vw, 14rem);
+      font-weight: 700;
+      letter-spacing: -0.06em;
+      line-height: 0.82;
+      padding-inline: 0.08em;
+      user-select: none;
+      animation: not-found-glitch 8s steps(1, end) infinite;
+      will-change: filter, transform;
+    }
+
+    @keyframes not-found-glitch {
+      0%,
+      68%,
+      100% {
+        font-family: var(--font--font-family--barlow);
+        text-shadow: none;
+        transform: translate(0);
+        filter: none;
+      }
+
+      69% {
+        font-family: var(--font--font-family--monospace);
+        text-shadow: -0.05em 0 var(--brand--teal-bright--500), 0.05em 0 var(--brand--blue--500);
+        transform: translate(-0.025em, 0.01em) skewX(-2deg);
+        filter: brightness(1.25);
+      }
+
+      71% {
+        font-family: var(--font--font-family--monospace);
+        text-shadow: 0.05em 0 var(--brand--teal-bright--500), -0.05em 0 var(--brand--blue--500);
+        transform: translate(0.035em, -0.01em) skewX(2deg);
+        filter: brightness(1.1);
+      }
+
+      73% {
+        font-family: var(--font--font-family--monospace);
+        text-shadow: none;
+        transform: translate(-0.01em, 0);
+        filter: none;
+      }
+
+      74% {
+        font-family: var(--font--font-family--barlow);
+        text-shadow: none;
+        transform: translate(0);
+        filter: none;
+      }
+    }
+
+    .not-found h1 {
+      max-width: 18ch;
+      margin: clamp(1.5rem, 4vw, 2.75rem) 0 0;
+      color: var(--text--color--text-white);
+      font-family: var(--font--font-family--barlow);
+      font-size: clamp(2.25rem, 6vw, 4.25rem);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 0.98;
+    }
+
+    .not-found__message {
+      max-width: 36rem;
+      margin: 1.25rem 0 0;
+      color: color-mix(in srgb, var(--text--color--text-white) 82%, transparent);
+      font-size: clamp(1rem, 2vw, 1.1875rem);
+      line-height: 1.55;
+      text-wrap: pretty;
+    }
+
+    .not-found__actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: clamp(2rem, 5vw, 3rem);
+    }
+
+    .not-found__link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.9rem;
+      padding: 0.7rem 1.15rem;
+      border: 1px solid color-mix(in srgb, var(--brand--teal-bright--500) 48%, var(--line-divider));
+      border-radius: var(--radius--button--round);
+      color: var(--text--color--text-white);
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+
+    .not-found__link:hover {
+      border-color: var(--brand--teal-bright--400);
+      background: color-mix(in srgb, var(--brand--teal-bright--500) 15%, transparent);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .not-found__link--primary {
+      border-color: transparent;
+      background: linear-gradient(120deg, var(--brand--teal-bright--500), var(--brand--blue--500));
+      color: var(--text--color--text-black);
+    }
+
+    .not-found__link--primary:hover {
+      border-color: transparent;
+      background: linear-gradient(120deg, var(--brand--teal-bright--300), var(--brand--blue--400));
+      color: var(--text--color--text-black);
+    }
+
+    .not-found__link:focus-visible {
+      outline: 3px solid var(--brand--teal-bright--300);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 34rem) {
+      .not-found {
+        min-height: min(38rem, calc(100svh - 6rem));
+      }
+
+      .not-found__actions,
+      .not-found__link {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .not-found__link {
+        transition: none;
+      }
+
+      .not-found__code {
+        animation: none;
+      }
+
+      .not-found__link:hover {
+        transform: none;
+      }
+    }
+  </style>
+</BaseLayout>

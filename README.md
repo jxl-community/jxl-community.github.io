@@ -55,6 +55,36 @@ The production URL and sitemap behavior are configured in
 [`astro.config.mjs`](astro.config.mjs). Keep the configured URL format in mind
 when adding pages so canonical links and sitemap entries stay correct.
 
+## JPEG XL WASM decoder
+
+Selected image-heavy pages provide a locally hosted WebAssembly fallback for
+browsers without native JPEG XL support. The fallback uses a customized
+[JXL.js](https://github.com/niutech/jxl.js) wrapper and a decoder rebuilt from
+libjxl. The homepage probes for native JPEG XL support and loads the fallback
+only when that probe fails.
+
+The wrapper at [`public/resources/jxl.min.js`](public/resources/jxl.min.js)
+detects SIMD support and loads either the SIMD decoder or the scalar fallback:
+
+- `public/resources/jxl_decoder_simd.min.js` and
+  `public/resources/jxl_decoder_simd.wasm`
+- `public/resources/jxl_decoder.min.js` and `public/resources/jxl_decoder.wasm`
+
+The decoder needs cross-origin isolation for its threaded WebAssembly runtime.
+[`public/serviceworker.min.js`](public/serviceworker.min.js) supplies the
+required COOP/COEP headers only for pages that use the fallback. On first use,
+the service worker may reload the page once before decoding begins.
+
+To enable the fallback on a new page, pass `usesJxlWasmFallback` to
+`BaseLayout`, load `/serviceworker.min.js` and `/resources/jxl.min.js` in the
+page's head, and add the route to `ISOLATED_PAGES` in
+`public/serviceworker.min.js`. Pages with embedded `data:image/jxl` images must
+also load `/resources/jxl-mark-embedded.js` before the decoder wrapper.
+
+The wrapper contains site-specific reliability and HDR handling. Do not replace
+the decoder assets with an upstream build without reviewing the notes at the top
+of `jxl.min.js` and testing the affected galleries and comparison pages.
+
 ## Deployment
 
 The site is publicly deployed to [jpegxl.info](https://jpegxl.info) through

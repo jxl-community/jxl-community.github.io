@@ -19,6 +19,7 @@ type Props = {
   ogType?: string;
   keywords?: string;
   author?: string;
+  robots?: string;
   footerVariant?: 'compact' | 'full';
   usesJxlWasmFallback?: boolean;
 };
@@ -31,6 +32,7 @@ const {
   ogType = 'website',
   keywords,
   author,
+  robots = 'index, follow',
   footerVariant = 'compact',
   usesJxlWasmFallback = false,
 } = Astro.props;
@@ -72,8 +74,8 @@ const ogImageUrl = new URL(ogImage, Astro.site).href;
     <link rel="icon" href="/images/Icon-JPEGXL-Square-Full-Colour.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/images/webclip.png" />
 
-    <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow" />
+    <meta name="robots" content={robots} />
+    <meta name="googlebot" content={robots} />
 
     <slot name="head" />
   </head>

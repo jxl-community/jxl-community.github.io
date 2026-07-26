@@ -807,7 +807,7 @@ blockquote {
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  height: 6rem;
+  height: clamp(2rem, 6.5vw + 3.5rem, 5.5rem);
   display: flex;
 }
 
@@ -4899,10 +4899,6 @@ blockquote {
     height: 48px;
   }
 
-  .size-xxhuge-12rem-192px {
-    height: 120px;
-  }
-
   .headline-l-semibold.centered.white {
     font-weight: 500;
     line-height: 1.1em;
@@ -5796,10 +5792,6 @@ blockquote {
     height: 32px;
   }
 
-  .size-xxhuge-12rem-192px {
-    height: 80px;
-  }
-
   .headline-l-semibold.centered.white {
     line-height: 1.1em;
   }
@@ -6431,10 +6423,6 @@ blockquote {
     height: 32px;
   }
 
-  .size-xxhuge-12rem-192px {
-    height: 80px;
-  }
-
   .headline-l-semibold.centered.white {
     letter-spacing: -.016em;
   }
@@ -6911,6 +6899,61 @@ blockquote {
 
   .heading {
     font-size: 1.125rem;
+  }
+}
+
+/* Shared site footer: center the compact and full variants, including on narrow screens. */
+.site-footer .wrapper-footer-content,
+.site-footer .footer_bottom-wrapper,
+.site-footer .container-content-vflex,
+.site-footer .wrapper-text,
+.site-footer .footer_social-list {
+  align-items: center;
+}
+
+.site-footer .footer_bottom-wrapper,
+.site-footer .footer_social-list {
+  display: flex;
+  justify-content: center;
+}
+
+.site-footer .footer_bottom-wrapper {
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.site-footer .container-content-vflex,
+.site-footer .wrapper-text {
+  width: 100%;
+}
+
+.site-footer .footer_credit-text {
+  width: min(100%, 65ch);
+  margin-inline: auto;
+  text-align: center;
+  text-wrap: pretty;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.site-footer .footer_legal-link {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+@media screen and (max-width: 479px) {
+  .site-footer .padding-global {
+    padding-inline: 1rem;
+  }
+
+  .site-footer .footer_bottom-wrapper,
+  .site-footer .footer_social-list {
+    width: 100%;
+  }
+
+  .site-footer .footer_credit-text {
+    font-size: clamp(0.75rem, 3.5vw, 0.875rem);
   }
 }
 
