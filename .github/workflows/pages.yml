@@ -36,6 +36,9 @@ jobs:
       - name: Build production site
         run: npm run build
 
+      - name: Preserve legacy sitemap URL
+        run: cp dist/sitemap-index.xml dist/sitemap.xml
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
