@@ -2925,6 +2925,10 @@ blockquote {
   padding: 100px 20px;
 }
 
+.section-creative_workflow {
+  padding-top: 0;
+}
+
 .section-creative_workflow.padding-global-sides, .section-JPEG-Committee.padding-global-sides {
   padding-left: 0;
   padding-right: 0;
