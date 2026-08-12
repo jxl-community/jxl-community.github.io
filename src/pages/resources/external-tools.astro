@@ -1,0 +1,241 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+
+const title = 'External Tools – JPEG XL';
+const description = 'Explore independently built tools and demos for JPEG XL.';
+
+type Contributor = {
+  name: string;
+  href: string;
+};
+
+type Tool = {
+  name: string;
+  eyebrow: string;
+  description: string;
+  href: string;
+  url: string;
+  contributor?: Contributor;
+};
+
+const tools: Tool[] = [
+  {
+    name: 'jxl-rs',
+    eyebrow: 'Rust decoder',
+    description:
+      'A work-in-progress JPEG XL decoder written in Rust, with a focus on conformance, safety, and speed.',
+    href: 'https://github.com/libjxl/jxl-rs',
+    url: 'github.com/libjxl/jxl-rs',
+    contributor: {
+      name: 'Helmut Januschka',
+      href: 'https://www.januschka.com/',
+    },
+  },
+  {
+    name: 'JXL Tests',
+    eyebrow: 'Browser test suite',
+    description: 'A collection of practical JPEG XL tests to explore in your browser.',
+    href: 'https://saklistudio.com/jxltests/',
+    url: 'saklistudio.com/jxltests',
+    contributor: {
+      name: 'Kampidh',
+      href: 'https://saklistudio.com/',
+    },
+  },
+  {
+    name: 'Attention Center',
+    eyebrow: 'Progressive JPEG XL demo',
+    description: 'See how a JPEG XL image develops as more of its data is loaded.',
+    href: 'https://google.github.io/attention-center/',
+    url: 'google.github.io/attention-center',
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical="https://jpegxl.info/resources/external-tools.html"
+>
+  <Fragment slot="head">
+    <style is:inline>
+      .tool-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+        gap: 1.25rem;
+        width: 100%;
+      }
+
+      .tool-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: clamp(1.25rem, 2.5vw, 1.75rem);
+        border: 1px solid color-mix(in srgb, var(--brand--teal-bright--500) 24%, var(--line-divider));
+        border-radius: var(--radius--medium);
+        background: var(--surface--elevated);
+        transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      }
+
+      .tool-card:hover {
+        border-color: var(--brand--teal-bright--P3--500);
+        box-shadow: 0 0.75rem 2.25rem rgb(33 230 225 / 12%);
+        transform: translateY(-2px);
+      }
+
+      .tool-card-eyebrow {
+        margin: 0 0 1rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 10px;
+        background: color-mix(in srgb, var(--brand--teal-bright--500) 15%, transparent);
+        color: var(--text--color--text-white);
+        font-size: 0.75rem;
+        line-height: 1.2;
+      }
+
+      .tool-card h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.35rem;
+        font-weight: 500;
+        letter-spacing: -0.015em;
+      }
+
+      .tool-card-title-link {
+        color: var(--brand--teal-bright--500);
+        text-decoration: none;
+      }
+
+      .tool-card:hover .tool-card-title-link {
+        color: var(--brand--blue--500);
+      }
+
+      /* Stretch the title link over the whole card. */
+      .tool-card-title-link::after {
+        position: absolute;
+        inset: 0;
+        border-radius: var(--radius--medium);
+        content: '';
+      }
+
+      .tool-card-title-link:focus-visible {
+        outline: none;
+      }
+
+      .tool-card-title-link:focus-visible::after {
+        outline: 2px solid var(--brand--teal-bright--P3--500);
+        outline-offset: 4px;
+      }
+
+      .tool-card-description {
+        margin: 0 0 1.25rem;
+        color: var(--neutrals--gray--200);
+        font-size: 1rem;
+        font-weight: 300;
+        line-height: 1.5;
+      }
+
+      .tool-card-url {
+        margin: auto 0 0;
+        color: var(--brand--teal-bright--P3--500);
+        font-family: var(--font--font-family--monospace);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        overflow-wrap: anywhere;
+      }
+
+      .tool-card-contributor {
+        width: 100%;
+        margin: 1.25rem 0 0;
+        padding-top: 1rem;
+        border-top: 1px solid var(--line-divider);
+        color: var(--neutrals--gray--300);
+        font-size: 0.875rem;
+        font-weight: 300;
+        line-height: 1.5;
+      }
+
+      .tool-card-contributor a {
+        position: relative;
+        z-index: 1;
+        color: var(--text--color--text-white);
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+      }
+
+      .tool-card-contributor a:hover {
+        color: var(--brand--teal-bright--P3--500);
+      }
+
+      .tool-card-contributor a:focus-visible {
+        outline: 2px solid var(--brand--teal-bright--P3--500);
+        outline-offset: 2px;
+      }
+
+      .tool-grid-note {
+        margin: 2rem 0 0;
+        color: var(--neutrals--gray--400);
+        font-size: 0.875rem;
+        font-weight: 300;
+        text-align: center;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .tool-card {
+          transition: none;
+        }
+
+        .tool-card:hover {
+          transform: none;
+        }
+      }
+    </style>
+  </Fragment>
+
+  <PageHero
+    title="External Tools"
+    subtitle={"Explore community-built projects, demos, and test pages that bring JPEG XL to life"}
+  />
+
+  <div class="section-content-wrapper height-100 centered padding-top_bottom">
+    <main class="container-content-vflex width-page-max centered">
+      <div class="container-content-vflex centered">
+        <div class="wrapper-content centered">
+          <section class="tool-grid" aria-label="External JPEG XL tools">
+            {tools.map((tool) => (
+              <article class="tool-card">
+                <p class="tool-card-eyebrow">{tool.eyebrow}</p>
+                <h3>
+                  <a
+                    class="tool-card-title-link"
+                    href={tool.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {tool.name}
+                  </a>
+                </h3>
+                <p class="tool-card-description">{tool.description}</p>
+                <p class="tool-card-url" aria-hidden="true">{tool.url}</p>
+                {tool.contributor && (
+                  <p class="tool-card-contributor">
+                    Contributor:{' '}
+                    <a href={tool.contributor.href} target="_blank" rel="noopener noreferrer">
+                      {tool.contributor.name}
+                    </a>
+                  </p>
+                )}
+              </article>
+            ))}
+          </section>
+          <p class="tool-grid-note">
+            These projects are independently developed and maintained by the community.
+          </p>
+        </div>
+      </div>
+    </main>
+  </div>
+</BaseLayout>
