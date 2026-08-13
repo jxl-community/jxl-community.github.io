@@ -16,7 +16,8 @@ type Tool = {
   description: string;
   href: string;
   url: string;
-  contributor?: Contributor;
+  contributors?: Contributor[];
+  etAl?: boolean;
 };
 
 const tools: Tool[] = [
@@ -27,10 +28,17 @@ const tools: Tool[] = [
       'A work-in-progress JPEG XL decoder written in Rust, with a focus on conformance, safety, and speed.',
     href: 'https://github.com/libjxl/jxl-rs',
     url: 'github.com/libjxl/jxl-rs',
-    contributor: {
-      name: 'Helmut Januschka',
-      href: 'https://www.januschka.com/',
-    },
+    contributors: [
+      {
+        name: 'Luca Versari',
+        href: 'https://github.com/veluca93',
+      },
+      {
+        name: 'Helmut Januschka',
+        href: 'https://www.januschka.com/',
+      },
+    ],
+    etAl: true,
   },
   {
     name: 'jxl-oxide',
@@ -39,10 +47,12 @@ const tools: Tool[] = [
       'A spec-conforming JPEG XL decoder written in pure Rust, usable as a library or through its command-line tool.',
     href: 'https://github.com/tirr-c/jxl-oxide',
     url: 'github.com/tirr-c/jxl-oxide',
-    contributor: {
-      name: 'tirr-c',
-      href: 'https://github.com/tirr-c',
-    },
+    contributors: [
+      {
+        name: 'tirr-c',
+        href: 'https://github.com/tirr-c',
+      },
+    ],
   },
   {
     name: 'JXL Tests',
@@ -50,10 +60,12 @@ const tools: Tool[] = [
     description: 'A collection of practical JPEG XL tests to explore in your browser.',
     href: 'https://saklistudio.com/jxltests/',
     url: 'saklistudio.com/jxltests',
-    contributor: {
-      name: 'Kampidh',
-      href: 'https://saklistudio.com/',
-    },
+    contributors: [
+      {
+        name: 'Kampidh',
+        href: 'https://saklistudio.com/',
+      },
+    ],
   },
   {
     name: 'Attention Center',
@@ -69,10 +81,12 @@ const tools: Tool[] = [
       'Crop, rotate, and adjust a JPEG XL image in your browser through reversible transforms that leave the original bitstream intact.',
     href: 'https://sneyers.info/jxltran/',
     url: 'sneyers.info/jxltran',
-    contributor: {
-      name: 'Jon Sneyers',
-      href: 'https://sneyers.info',
-    },
+    contributors: [
+      {
+        name: 'Jon Sneyers',
+        href: 'https://sneyers.info',
+      },
+    ],
   },
   {
     name: 'JXL Art',
@@ -81,10 +95,12 @@ const tools: Tool[] = [
       'Write compact JPEG XL bitstreams in the browser and watch the artwork they decode to. Export as JXL or PNG.',
     href: 'https://www.januschka.com/jxl-art/',
     url: 'januschka.com/jxl-art',
-    contributor: {
-      name: 'Helmut Januschka',
-      href: 'https://www.januschka.com/',
-    },
+    contributors: [
+      {
+        name: 'Helmut Januschka',
+        href: 'https://www.januschka.com/',
+      },
+    ],
   },
 ];
 ---
@@ -256,12 +272,18 @@ const tools: Tool[] = [
                 </h3>
                 <p class="tool-card-description">{tool.description}</p>
                 <p class="tool-card-url" aria-hidden="true">{tool.url}</p>
-                {tool.contributor && (
+                {tool.contributors && tool.contributors.length > 0 && (
                   <p class="tool-card-contributor">
-                    Contributor:{' '}
-                    <a href={tool.contributor.href} target="_blank" rel="noopener noreferrer">
-                      {tool.contributor.name}
-                    </a>
+                    {tool.contributors.length > 1 || tool.etAl ? 'Contributors:' : 'Contributor:'}{' '}
+                    {tool.contributors.map((contributor, index) => (
+                      <Fragment>
+                        {index > 0 && ', '}
+                        <a href={contributor.href} target="_blank" rel="noopener noreferrer">
+                          {contributor.name}
+                        </a>
+                      </Fragment>
+                    ))}
+                    {tool.etAl && ', et al.'}
                   </p>
                 )}
               </article>
