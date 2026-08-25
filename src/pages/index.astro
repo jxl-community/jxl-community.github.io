@@ -181,6 +181,12 @@ const keywords =
         object-fit: cover;
       }
     </style>
+
+    <!-- Gate the "And Much More" tile reveal on JS being available, set before
+         first paint so the tiles never flash in and then hide. -->
+    <script is:inline>
+      document.documentElement.classList.add('js-reveal');
+    </script>
   </Fragment>
 
   <main id="main-content">
@@ -853,6 +859,39 @@ const keywords =
         </div>
       </div>
     </section>
+
+  <script is:inline>
+    (() => {
+      const tiles = document.querySelectorAll(
+        '.section-more-features .container-grid > .container-text-grid'
+      );
+      if (!tiles.length) return;
+
+      const reveal = (tile) => tile.classList.add('is-revealed');
+
+      // No observer, or motion turned down: show everything immediately.
+      if (
+        !('IntersectionObserver' in window) ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      ) {
+        tiles.forEach(reveal);
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            reveal(entry.target);
+            observer.unobserve(entry.target);
+          });
+        },
+        { rootMargin: '0px 0px -12% 0px' }
+      );
+
+      tiles.forEach((tile) => observer.observe(tile));
+    })();
+  </script>
 
   <script is:inline src="/script.js"></script>
   <script is:inline src="/JPEGvsJXL.js"></script>

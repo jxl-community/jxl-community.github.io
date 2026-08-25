@@ -1803,3 +1803,31 @@ main > .section-lossless-transcoding {
     letter-spacing: 0.01em;
   }
 }
+
+
+/* "And Much More" tiles: scroll-triggered entry reveal.
+   The hidden state is scoped to .js-reveal (set by an inline head script), so
+   with JS off — or if the observer never runs — the tiles render normally and
+   can never get stranded at opacity 0. No display toggling, so the grid keeps
+   its height and nothing shifts. */
+@media (prefers-reduced-motion: no-preference) {
+  .js-reveal .section-more-features .container-grid > .container-text-grid {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease;
+    will-change: opacity, transform;
+  }
+
+  /* Trail the second column so each row lands as a pair, not a slab. */
+  .js-reveal .section-more-features .container-grid > .container-text-grid:nth-child(2n) {
+    transition-delay: 90ms;
+  }
+
+  .js-reveal .section-more-features .container-grid > .container-text-grid.is-revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    will-change: auto;
+  }
+}
