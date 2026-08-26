@@ -81,7 +81,13 @@ native JPEG XL never download it.
 
 To enable the fallback on a new page, pass `usesJxlWasmFallback` to `BaseLayout`
 (this shows the nav's decoder-info notice) and load `/resources/jxl-rs.js` in the
-page's head. Pages with embedded `data:image/jxl` images must also load
+page's head.
+
+Only load it where it is actually needed. A page whose every `.jxl` sits in a
+`<picture>` behind a renderable `.webp` fallback never invokes the polyfill —
+the browser takes the fallback — so the script is 13 KB and a document-wide
+MutationObserver for no effect. Photo Credits is exactly that case and
+deliberately does not load it. Pages with embedded `data:image/jxl` images must also load
 `/resources/jxl-mark-embedded.js` first, which tags those URLs so the polyfill
 recognises them.
 

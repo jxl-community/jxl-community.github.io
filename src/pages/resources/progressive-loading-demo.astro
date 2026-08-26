@@ -84,9 +84,12 @@ const asset = (file: string) => ({
    and a source without an entry fails the build rather than falling back to a
    filename. */
 function credit(source: string) {
-  const entry = (demoImages.images as Record<string, { title: string; photographer: string; url: string }>)[
-    source
-  ];
+  const entry = (
+    demoImages.images as Record<
+      string,
+      { title: string; photographer: string; url: string; portfolio: string }
+    >
+  )[source];
   if (!entry) {
     throw new Error(
       `${source} has no entry in src/data/progressive-demo-images.json — add its title, photographer and Unsplash link.`,

@@ -7,43 +7,54 @@
     "replaced wholesale on the next run, which would take these names with it.",
     "The build merges the two and fails if a source listed in the CSV has no",
     "entry here, so a new encode surfaces the gap instead of silently falling",
-    "back to a filename."
+    "back to a filename.",
+    "",
+    "`url` is the photo; `portfolio` is the photographer. Both are needed: the",
+    "credit line links the name to the photographer and the site to the photo,",
+    "which is the attribution Unsplash asks for."
   ],
   "images": {
     "anto-meneghini-IrohWzafmmA-unsplash.png": {
       "title": "Poke bowl",
       "photographer": "Anto Meneghini",
-      "url": "https://unsplash.com/photos/vegetable-salad-on-black-ceramic-bowl-IrohWzafmmA"
+      "url": "https://unsplash.com/photos/vegetable-salad-on-black-ceramic-bowl-IrohWzafmmA",
+      "portfolio": "https://unsplash.com/@antomeneghini"
     },
     "calvin-xy-wang-FUNWLd_5_oI-unsplash.png": {
       "title": "Granite peak",
       "photographer": "Calvin XY Wang",
-      "url": "https://unsplash.com/photos/granite-peak-in-huangshan-china-FUNWLd_5_oI"
+      "url": "https://unsplash.com/photos/granite-peak-in-huangshan-china-FUNWLd_5_oI",
+      "portfolio": "https://unsplash.com/@calw_px"
     },
     "dibakar-roy-HNT6EehPZoI-unsplash.png": {
       "title": "Holi festival",
       "photographer": "Dibakar Roy",
-      "url": "https://unsplash.com/photos/crowd-celebrating-holi-festival-with-colored-powder-HNT6EehPZoI"
+      "url": "https://unsplash.com/photos/crowd-celebrating-holi-festival-with-colored-powder-HNT6EehPZoI",
+      "portfolio": "https://unsplash.com/@dibakar16roy"
     },
     "gustavo-leighton-9qJ3Kp4pLQE-unsplash.png": {
       "title": "Quechua woman",
       "photographer": "Gustavo Leighton",
-      "url": "https://unsplash.com/photos/a-woman-wearing-a-colorful-hat-standing-in-a-field-9qJ3Kp4pLQE"
+      "url": "https://unsplash.com/photos/a-woman-wearing-a-colorful-hat-standing-in-a-field-9qJ3Kp4pLQE",
+      "portfolio": "https://unsplash.com/@g_leighton"
     },
     "kristaps-ungurs-xRkLHDRWPac-unsplash.png": {
       "title": "Single sunflower",
       "photographer": "Kristaps Ungurs",
-      "url": "https://unsplash.com/photos/sunflower-in-golden-hour-light-xRkLHDRWPac"
+      "url": "https://unsplash.com/photos/sunflower-in-golden-hour-light-xRkLHDRWPac",
+      "portfolio": "https://unsplash.com/@kristapsungurs"
     },
     "rob-potter-qzBYyChPj1s-unsplash.png": {
       "title": "Nicobar pigeon",
       "photographer": "Rob Potter",
-      "url": "https://unsplash.com/photos/a-close-up-of-a-colorful-bird-on-a-black-background-qzBYyChPj1s"
+      "url": "https://unsplash.com/photos/a-close-up-of-a-colorful-bird-on-a-black-background-qzBYyChPj1s",
+      "portfolio": "https://unsplash.com/@robpotter"
     },
     "thom-masat-b40crbTDmkU-unsplash.png": {
       "title": "Kathmandu pigments",
       "photographer": "Thom Masat",
-      "url": "https://unsplash.com/photos/a-group-of-colorful-squares-b40crbTDmkU"
+      "url": "https://unsplash.com/photos/a-group-of-colorful-squares-b40crbTDmkU",
+      "portfolio": "https://unsplash.com/@tomterifx"
     }
   }
 }

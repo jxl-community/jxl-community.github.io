@@ -11,11 +11,18 @@ const description = 'Image credits for jpegxl.info.';
   title={title}
   description={description}
   canonical="https://jpegxl.info/about/photo-credits.html"
-  usesJxlWasmFallback
 >
   <Fragment slot="head">
-    <!-- Local JXL.js fallback renderer for browsers without native JPEG XL support. -->
-    <script is:inline src="/resources/jxl-rs.js"></script>
+    {/* No JXL fallback decoder here, deliberately. Every image on this page is a
+        <picture> whose .jxl sits in a <source> with a .webp on the <img>, so a
+        browser without native JPEG XL takes the webp and the polyfill has
+        nothing to do — measured: 0 images touched, 0 decoded, 0 broken. Loading
+        it anyway cost 13 KB and a document-wide MutationObserver for no effect.
+
+        If a JXL-only image is ever added here (an <img src="*.jxl"> with no
+        fallback, or a CSS background), add `/resources/jxl-rs.js` back and put
+        `usesJxlWasmFallback` on BaseLayout, or it will silently fail to render
+        in Chrome and Firefox. */}
     <style is:inline>
       .gallery {
         display: grid;

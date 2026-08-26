@@ -654,7 +654,15 @@
     stopPlayback();
     current = manifest.images.find((i) => i.key === key) || manifest.images[0];
     updateMeta();
-    el.credit.innerHTML = `“${current.title}” by <a href="${current.url}" target="_blank" rel="noopener noreferrer">${current.photographer}</a> on Unsplash`;
+    /* Two links, the way Unsplash asks for attribution: the photographer's name
+       goes to their portfolio, "Unsplash" goes to the photo itself. Previously
+       the name pointed at the photo, which credited the picture but not the
+       person. */
+    const link = (href, text) =>
+      `<a href="${href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+    el.credit.innerHTML =
+      `“${current.title}” by ${link(current.portfolio, current.photographer)} ` +
+      `on ${link(current.url, 'Unsplash')}`;
     // Never on the <img> itself: alt text is drawn whenever there are no
     // pixels, which is most of what this pane does.
     el.srcStage.setAttribute(
