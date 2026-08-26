@@ -204,6 +204,15 @@ Scrubbing is unaffected either way, since only one stream is open at a time.
 It is not CPU contention with the JPEG XL pane: blocking the wasm decoder
 entirely changes nothing.
 
+The untried fix is paint detection: knowing the moment the incoming element
+actually has pixels, so the outgoing stream can be closed exactly then — late
+enough that WebP keeps its picture, early enough that requests do not pile up.
+No reliable signal was found. `naturalWidth` turns non-zero in WebKit as soon as
+an AVIF header parses, well before any pixels exist, and `drawImage` is a no-op
+for an in-flight image so the canvas cannot be sampled. Something along the
+lines of `requestVideoFrameCallback`, or sampling the composited pane, is where
+to look next.
+
 ### What each format does with a partial download
 
 Measured in the page itself, as a percentage of the pane showing image:
