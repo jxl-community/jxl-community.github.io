@@ -1,6 +1,6 @@
-// JXL.js detects URLs ending in .jxl. Mark embedded data:image/jxl payloads
+// The JXL polyfill detects URLs ending in .jxl. Mark embedded data:image/jxl payloads
 // with a URL fragment so the renderer also handles inline gallery images.
-// Load this before /resources/jxl.min.js, as an inline head script.
+// Load this before /resources/jxl-rs.js, as an inline head script.
 (() => {
   const markEmbeddedJxl = (node) => {
     if (!(node instanceof HTMLImageElement)) return;

@@ -22,48 +22,12 @@ const keywords =
   usesJxlWasmFallback
 >
   <Fragment slot="head">
-    <!-- JXL.js WASM fallback for the comparison sliders, gated on a native-JXL
-         probe (same probe + sessionStorage key as the nav's decoder (i) icon).
-         Native-JXL browsers skip the COOP/COEP service worker entirely so the
-         homepage stays un-isolated and the footer hits.sh badge keeps working;
-         other browsers register the worker (one-time reload) and then load the
-         decoder once the page is cross-origin isolated. -->
-    <script is:inline>
-      (() => {
-        const load = (src) => {
-          const script = document.createElement('script');
-          script.src = src;
-          document.head.appendChild(script);
-        };
-        const boot = (nativeJxl) => {
-          if (nativeJxl) return;
-          load('/serviceworker.min.js');
-          if (window.crossOriginIsolated) load('/resources/jxl.min.js');
-        };
-        let cached = null;
-        try {
-          cached = window.sessionStorage.getItem('jxl-native');
-        } catch {}
-        if (cached !== null) return boot(cached === '1');
-
-        const probe = new Image();
-        let settled = false;
-        const finish = (supported, remember) => {
-          if (settled) return;
-          settled = true;
-          if (remember) {
-            try {
-              window.sessionStorage.setItem('jxl-native', supported ? '1' : '0');
-            } catch {}
-          }
-          boot(supported);
-        };
-        probe.onload = () => finish(true, true);
-        probe.onerror = () => finish(false, true);
-        probe.src = '/images/jxl-probe.jxl';
-        window.setTimeout(() => finish(false, false), 4000);
-      })();
-    </script>
+    <!-- JPEG XL fallback decoder for the comparison sliders. No probe and no
+         service worker any more: jxl-rs needs no cross-origin isolation, and
+         the polyfill only steps in for images the browser failed to decode
+         itself, so native-JXL visitors never even fetch the wasm. That also
+         restores the un-isolated page the footer hits.sh badge needs. -->
+    <script is:inline src="/resources/jxl-rs.js"></script>
 
     <style is:inline>
       .JPEGCommitte-logo-carousel {
@@ -845,6 +809,7 @@ const keywords =
                 <a href="/resources/jpeg-xl-test-page.html">JPEG XL Test Page</a>
                 <a href="/resources/distance-vs-effort-visualizer.html">Distance vs. Effort Visualizer</a>
                 <a href="/resources/hdr-test-page.html">HDR Test Page</a>
+                <a href="/resources/progressive-loading-demo.html">Progressive Loading Demo</a>
                 <a href="/art/">JXL Art Gallery</a>
                 <a href="/resources/external-tools.html">External Tools</a>
               </div>

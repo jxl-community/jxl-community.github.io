@@ -1,0 +1,26 @@
+[package]
+name = "jxl-wasm"
+version = "0.1.0"
+edition = "2024"
+description = "Streaming JPEG XL decoder for the browser, wrapping jxl-rs over a flat C ABI"
+license = "BSD-3-Clause"
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+path = "src/lib.rs"
+
+[dependencies]
+# Pinned: jxl-rs is pre-1.0 and its typestate API can still churn.
+jxl = "=0.6.0"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+# wasm32-unknown-unknown cannot unwind, so "unwind" here would silently behave as
+# abort anyway and make catch_unwind dead code. Stated explicitly instead. The
+# upside: the module needs no wasm exception-handling feature, so it runs on
+# older browsers -- which is the whole audience for a JXL fallback decoder.
+panic = "abort"
+strip = true

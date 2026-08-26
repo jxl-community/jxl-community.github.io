@@ -57,33 +57,81 @@ when adding pages so canonical links and sitemap entries stay correct.
 
 ## JPEG XL WASM decoder
 
-Selected image-heavy pages provide a locally hosted WebAssembly fallback for
-browsers without native JPEG XL support. The fallback uses a customized
-[JXL.js](https://github.com/niutech/jxl.js) wrapper and a decoder rebuilt from
-libjxl. The homepage probes for native JPEG XL support and loads the fallback
-only when that probe fails.
+Pages that display `.jxl` images ship a WebAssembly fallback for browsers
+without native JPEG XL support. The decoder is
+[jxl-rs](https://github.com/libjxl/jxl-rs) — the same implementation Chrome and
+Firefox use — wrapped for the browser by [`tools/jxl-wasm`](tools/jxl-wasm),
+whose README covers building it and the verification against libjxl.
 
-The wrapper at [`public/resources/jxl.min.js`](public/resources/jxl.min.js)
-detects SIMD support and loads either the SIMD decoder or the scalar fallback:
+Two pieces are served:
 
-- `public/resources/jxl_decoder_simd.min.js` and
-  `public/resources/jxl_decoder_simd.wasm`
-- `public/resources/jxl_decoder.min.js` and `public/resources/jxl_decoder.wasm`
+- [`public/resources/jxl-rs.js`](public/resources/jxl-rs.js) — the polyfill. It
+  watches for `<img>`, `<source srcset>` and CSS `background-image` values
+  ending in `.jxl` and decodes the ones the browser could not.
+- `public/resources/jxl_decoder_rs_simd.wasm` and `jxl_decoder_rs.wasm` — the
+  decoder itself. The polyfill picks the SIMD build where wasm SIMD is
+  supported.
 
-The decoder needs cross-origin isolation for its threaded WebAssembly runtime.
-[`public/serviceworker.min.js`](public/serviceworker.min.js) supplies the
-required COOP/COEP headers only for pages that use the fallback. On first use,
-the service worker may reload the page once before decoding begins.
+The wasm module has **no imports**: no JS glue, no emscripten runtime, and no
+threads. That means no `SharedArrayBuffer`, so pages need no cross-origin
+isolation and there is no service worker and no first-visit reload. It also
+means no native-support probe — the polyfill only acts on images the browser
+itself failed to decode, and the module is fetched lazily, so browsers with
+native JPEG XL never download it.
 
-To enable the fallback on a new page, pass `usesJxlWasmFallback` to
-`BaseLayout`, load `/serviceworker.min.js` and `/resources/jxl.min.js` in the
-page's head, and add the route to `ISOLATED_PAGES` in
-`public/serviceworker.min.js`. Pages with embedded `data:image/jxl` images must
-also load `/resources/jxl-mark-embedded.js` before the decoder wrapper.
+To enable the fallback on a new page, pass `usesJxlWasmFallback` to `BaseLayout`
+(this shows the nav's decoder-info notice) and load `/resources/jxl-rs.js` in the
+page's head. Pages with embedded `data:image/jxl` images must also load
+`/resources/jxl-mark-embedded.js` first, which tags those URLs so the polyfill
+recognises them.
 
-The wrapper contains site-specific reliability and HDR handling. Do not replace
-the decoder assets with an upstream build without reviewing the notes at the top
-of `jxl.min.js` and testing the affected galleries and comparison pages.
+The polyfill carries several site-specific behaviours that each fixed a real
+bug — a serialised decode queue for gallery pages, `<picture>` fallback
+detection, an HDR path that emits a cICP-tagged 16-bit PNG so Rec.2100 PQ/HLG
+survives, and CacheStorage handling. Read the notes at the top of `jxl-rs.js`
+before changing it.
+
+### Retiring the old service worker
+
+`public/serviceworker.min.js` is no longer referenced. It supplied the COOP/COEP
+headers libjxl's threaded build required. Because a stale registration would
+keep injecting those headers — which is what blocks cross-origin embeds such as
+the hits.sh badge — `BaseLayout.astro` unregisters it on every page load. The
+file can be deleted once traffic has cycled through.
+
+## Progressive loading demo
+
+[`/resources/progressive-loading-demo.html`](src/pages/resources/progressive-loading-demo.astro)
+compares what JPEG and JPEG XL can put on screen from a partial download.
+
+Both files are fetched in full, then the slider hands each decoder only the
+first *N* bytes — the same prefix a browser would hold part-way through a
+download. The counter is absolute bytes, not a percentage, so both panes always
+show the same amount of transfer; the smaller file simply finishes first.
+
+Switching the JPEG pane between **Baseline** and **Progressive** swaps in a
+different encoding of the same picture. Baseline arrives strictly top to bottom;
+progressive fills the whole frame coarsely and then sharpens.
+
+Both panes paint into a `<canvas>`. The JPEG side decodes the truncated prefix
+in a detached `<img>` — browsers render a truncated JPEG scanline by scanline,
+which is the effect being demonstrated — and blits it once `img.decode()`
+resolves. Waiting for `decode()` rather than `load` matters: `load` fires before
+the frame is rasterised, and drawing then copies nothing. Swapping two stacked
+`<img>` buffers instead of using a canvas produces horizontal bands of image
+separated by empty stage, because a hidden `<img>` is not rasterised and
+revealing one shows whichever compositor tiles happen to be ready.
+
+The JPEG XL side drives `tools/jxl-wasm` directly, feeding it the prefix and
+calling `jxl_flush` to pull out whatever partial image exists. Unlike the rest of
+the site this pane is not conditional on native support — every browser runs the
+wasm decoder, because Safari decodes JPEG XL natively but not progressively and
+would otherwise show a finished image next to a partial one.
+
+The three pairs are matched on quality rather than size: the cjxl distance was
+picked per image so the JPEG XL file scores at or above the JPEG on ssimulacra2,
+which makes the remaining difference in byte counts real compression rather than
+a quality handicap.
 
 ## Deployment
 

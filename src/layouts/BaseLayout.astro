@@ -78,6 +78,24 @@ const ogImageUrl = new URL(ogImage, Astro.site).href;
     <meta name="googlebot" content={robots} />
 
     <slot name="head" />
+
+    <!-- Retire the COOP/COEP service worker. It existed only so libjxl's
+         pthreads wasm build could use SharedArrayBuffer; jxl-rs needs no
+         isolation, and a stale registration would keep injecting the headers,
+         which is what blocks cross-origin embeds like the hits.sh badge. The
+         page it runs on keeps its isolation for this load; the next navigation
+         is clean. Safe to delete once traffic has cycled through. -->
+    <script is:inline>
+      navigator.serviceWorker?.getRegistrations?.().then(
+        (regs) => {
+          for (const reg of regs) {
+            const url = reg.active?.scriptURL || reg.installing?.scriptURL || '';
+            if (url.includes('serviceworker.min.js')) reg.unregister();
+          }
+        },
+        () => {},
+      );
+    </script>
   </head>
   <body class="body">
     <a href="#main-content" class="skip-nav">Skip to main content</a>

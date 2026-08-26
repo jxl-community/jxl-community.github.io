@@ -1,0 +1,359 @@
+/* Progressive loading demo (/resources/progressive-loading-demo.html).
+   Two panes render partially-downloaded files, so the undecoded region has to
+   read as "nothing has arrived yet" rather than as image content: both panes
+   sit on the same neutral backdrop and the media on top is transparent where
+   the decoder produced no pixels. */
+
+/* Local copy: the shared stylesheets do not define it, and this page needs a
+   label for the slider that only screen readers see. */
+.pd-shell .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.pd-shell {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 62rem;
+  margin: 0 auto;
+  padding-inline: 1rem;
+}
+
+.pd-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1.25rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.pd-control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pd-control-label {
+  color: rgba(255, 255, 255, 0.55);
+  font-family: Barlow, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.pd-select {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  color: #fff;
+  font-family: Barlow, sans-serif;
+  font-size: 0.9375rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.pd-select option {
+  color: initial;
+}
+
+.pd-select:focus-visible,
+.pd-toggle:focus-visible,
+.pd-play:focus-visible,
+.pd-slider:focus-visible {
+  outline: 2px solid #3bb6b3;
+  outline-offset: 2px;
+}
+
+.pd-toggle-group {
+  display: inline-flex;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.pd-toggle {
+  background: transparent;
+  border: 0;
+  color: rgba(255, 255, 255, 0.62);
+  cursor: pointer;
+  font-family: Barlow, sans-serif;
+  font-size: 0.9375rem;
+  padding: 0.5rem 0.9rem;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.pd-toggle + .pd-toggle {
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.pd-toggle:hover {
+  color: #fff;
+}
+
+.pd-toggle.is-selected {
+  background: rgba(59, 182, 179, 0.22);
+  color: #fff;
+}
+
+.pd-play {
+  background: #3bb6b3;
+  border: 0;
+  border-radius: 8px;
+  color: #05252a;
+  cursor: pointer;
+  font-family: Barlow, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  min-width: 6rem;
+  padding: 0.55rem 1.4rem;
+}
+
+.pd-play:hover {
+  background: #4fd0cd;
+}
+
+/* ----- panes ----- */
+
+.pd-panes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.pd-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.pd-pane-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.pd-pane-title {
+  color: #fff;
+  font-family: Barlow, sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.pd-pane-badge {
+  color: rgba(255, 255, 255, 0.45);
+  font-family: Barlow, sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* The stage is the "nothing received yet" surface. Both panes keep the source
+   aspect ratio so the two images stay the same size as bytes arrive; the ratio
+   is set per image from the manifest, with a portrait default for first paint. */
+.pd-panes {
+  --pd-aspect: 896 / 1080;
+}
+
+.pd-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--pd-aspect);
+  background: #6f7175;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.pd-stage canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* A canvas with no flushable pixels yet must not cover the backdrop with an
+   opaque cleared surface, so it only becomes visible once something is drawn. */
+.pd-stage canvas {
+  visibility: hidden;
+}
+
+.pd-stage canvas.is-painted {
+  visibility: visible;
+}
+
+.pd-readout {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-height: 3rem;
+}
+
+.pd-bytes {
+  color: #fff;
+  font-family: Barlow, sans-serif;
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.pd-state {
+  color: rgba(255, 255, 255, 0.55);
+  font-family: Barlow, sans-serif;
+  font-size: 0.875rem;
+}
+
+/* ----- transport ----- */
+
+.pd-transport {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.pd-slider {
+  appearance: none;
+  background: transparent;
+  flex: 1;
+  height: 1.5rem;
+  margin: 0;
+}
+
+.pd-slider::-webkit-slider-runnable-track {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  height: 0.375rem;
+}
+
+.pd-slider::-moz-range-track {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  height: 0.375rem;
+}
+
+.pd-slider::-webkit-slider-thumb {
+  appearance: none;
+  background: #3bb6b3;
+  border: 0;
+  border-radius: 50%;
+  height: 1.125rem;
+  width: 1.125rem;
+  margin-top: -0.375rem;
+}
+
+.pd-slider::-moz-range-thumb {
+  background: #3bb6b3;
+  border: 0;
+  border-radius: 50%;
+  height: 1.125rem;
+  width: 1.125rem;
+}
+
+.pd-received {
+  color: #fff;
+  font-family: Barlow, sans-serif;
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+  min-width: 11rem;
+  text-align: right;
+}
+
+.pd-status {
+  color: #ffd479;
+  font-family: Barlow, sans-serif;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.pd-note {
+  color: rgba(255, 255, 255, 0.55);
+  font-family: Barlow, sans-serif;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  margin: 1.5rem auto 0;
+  max-width: 42rem;
+  text-align: center;
+}
+
+.pd-credit {
+  color: rgba(255, 255, 255, 0.45);
+  font-family: Barlow, sans-serif;
+  font-size: 0.8125rem;
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.pd-credit a {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.pd-notes {
+  max-width: 46rem;
+  margin: 3rem auto 0;
+}
+
+.pd-notes h2 {
+  color: #fff;
+  font-family: Barlow, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+}
+
+.pd-notes p {
+  color: rgba(255, 255, 255, 0.62);
+  font-family: Barlow, sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin: 0 0 1rem;
+}
+
+.pd-notes code {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  font-size: 0.875em;
+  padding: 0.1em 0.35em;
+}
+
+@media screen and (max-width: 767px) {
+  .pd-panes {
+    gap: 0.6rem;
+  }
+
+  .pd-pane-title {
+    font-size: 0.9375rem;
+  }
+
+  .pd-bytes {
+    font-size: 0.8125rem;
+  }
+
+  .pd-state {
+    font-size: 0.75rem;
+  }
+
+  .pd-transport {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pd-received {
+    min-width: 0;
+    text-align: center;
+  }
+}

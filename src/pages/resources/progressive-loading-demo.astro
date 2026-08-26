@@ -1,0 +1,213 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/progressive-loading-demo.css';
+import Wave from '../../components/Wave.astro';
+
+const title = 'Progressive Loading Demo – JPEG XL';
+const description =
+  'Scrub through a partially downloaded JPEG and JPEG XL file and watch what each format can actually put on screen, decoded live in your browser.';
+
+// The first three pairs were encoded from one 8-bit master with `magick
+// -quality 85 -sampling-factor 2x2` and `cjxl -e 7 -p --group_order=1`, the
+// cjxl distance picked per image so the JXL scores at or above the JPEG on
+// ssimulacra2. The homepage-video pair is the site's existing asset shown as
+// supplied, so its byte counts are not a matched-quality comparison — `note`
+// says so on the page rather than letting the numbers imply otherwise.
+const IMAGES = [
+  {
+    key: 'portrait',
+    label: 'Portrait',
+    title: 'Young Man, Round Glasses',
+    photographer: 'Nicolas Ladino Silva',
+    photographerUrl: 'https://unsplash.com/@nicolasladinosilva',
+    files: {
+      jpeg: 'portrait.jpg',
+      progressiveJpeg: 'portrait-progressive.jpg',
+      jxl: 'portrait.jxl',
+    },
+    note: 'Matched quality: ssimulacra2 79.9 (JPEG) vs 80.0 (JPEG XL).',
+  },
+  {
+    key: 'macro',
+    label: 'Macro',
+    title: 'Fly, Extreme Close-Up',
+    photographer: 'Ekamelev',
+    photographerUrl: 'https://unsplash.com/@ekamelev',
+    files: {
+      jpeg: 'macro.jpg',
+      progressiveJpeg: 'macro-progressive.jpg',
+      jxl: 'macro.jxl',
+    },
+    note: 'Matched quality: ssimulacra2 78.2 (JPEG) vs 78.5 (JPEG XL).',
+  },
+  {
+    key: 'aurora',
+    label: 'Aurora',
+    title: 'Aurora Lights',
+    photographer: 'Lightscape',
+    photographerUrl: 'https://unsplash.com/@lightscape',
+    files: {
+      jpeg: 'aurora.jpg',
+      progressiveJpeg: 'aurora-progressive.jpg',
+      jxl: 'aurora.jxl',
+    },
+    note: 'Matched quality: ssimulacra2 69.7 (JPEG) vs 70.5 (JPEG XL).',
+  },
+];
+
+const DIR = 'ProgressiveDemoImages';
+const filePath = (file: string) => path.join('public', DIR, file);
+const asset = (file: string) => ({
+  url: `/${DIR}/${file}`,
+  size: fs.statSync(filePath(file)).size,
+});
+
+/* Pixel dimensions come from the JPEG's SOF marker so each pane can reserve the
+   right aspect ratio before anything decodes. Walking the segment lengths is
+   enough — no image library needed for a handful of build-time reads. */
+function jpegSize(file: string) {
+  const d = fs.readFileSync(filePath(file));
+  let i = 2;
+  while (i < d.length - 1 && d[i] === 0xff) {
+    const marker = d[i + 1];
+    if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {
+      return { height: d.readUInt16BE(i + 5), width: d.readUInt16BE(i + 7) };
+    }
+    i += 2 + d.readUInt16BE(i + 2);
+  }
+  throw new Error(`no SOF marker in ${file}`);
+}
+
+const manifest = {
+  images: IMAGES.map(({ files, ...image }) => ({
+    ...image,
+    ...jpegSize(files.jpeg),
+    jpeg: asset(files.jpeg),
+    progressiveJpeg: asset(files.progressiveJpeg),
+    jxl: asset(files.jxl),
+  })),
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical="https://jpegxl.info/resources/progressive-loading-demo.html"
+>
+  <section id="main-content" class="section-hero hero-fullspan-graphic gradient-bottom">
+    <div class="container-content-vflex width-page-max centered">
+      <div class="wrapper-text color-gradient _40em">
+        <h1 class="display-xl-bold fill-gradient">Progressive Loading Demo</h1>
+      </div>
+      <div class="wrapper-text width-small">
+        <h2 class="text-l-medium large">
+          Drag the slider to partially download an image and see what each format can put on screen
+          with only those bytes, decoded live in the browser.
+        </h2>
+      </div>
+    </div>
+    <div class="container-wave-animated">
+      <div class="wrapper-content-wave centered align-middle height-cropped-width-full">
+        <Wave />
+      </div>
+    </div>
+  </section>
+
+  <div class="section-content-wrapper height-100 centered padding-top_bottom">
+    <main class="container-content-vflex width-page-max centered">
+      <div id="progressive-demo" class="pd-shell">
+        <div class="pd-controls">
+          <div class="pd-control">
+            <label class="pd-control-label" for="pd-image-picker">Image</label>
+            <select id="pd-image-picker" class="pd-select">
+              {manifest.images.map((image) => <option value={image.key}>{image.label}</option>)}
+            </select>
+          </div>
+          <div class="pd-control">
+            <span class="pd-control-label" id="pd-jpeg-mode-label">JPEG encoding</span>
+            <div class="pd-toggle-group" role="group" aria-labelledby="pd-jpeg-mode-label">
+              <button
+                type="button"
+                class="pd-toggle is-selected"
+                data-jpeg-mode="baseline"
+                aria-pressed="true"
+              >
+                Baseline
+              </button>
+              <button
+                type="button"
+                class="pd-toggle"
+                data-jpeg-mode="progressive"
+                aria-pressed="false"
+              >
+                Progressive
+              </button>
+            </div>
+          </div>
+          <div class="pd-control">
+            <span class="pd-control-label">Playback</span>
+            <button type="button" id="pd-play" class="pd-play" aria-pressed="false">Play</button>
+          </div>
+        </div>
+
+        <div class="pd-panes" id="pd-panes">
+          <div class="pd-pane">
+            <div class="pd-pane-head">
+              <h3 class="pd-pane-title" id="pd-jpeg-label">JPEG</h3>
+              <span class="pd-pane-badge pd-dimensions"></span>
+            </div>
+            <!-- The prefix decodes in a detached <img> (browsers paint a
+                 truncated JPEG scanline by scanline) and is blitted here once
+                 decode() resolves. Stacked <img> buffers trading visibility
+                 band badly: a hidden image is not rasterized, so revealing one
+                 shows whichever compositor tiles happen to be ready. -->
+            <div class="pd-stage">
+              <canvas id="pd-jpeg-canvas" width="896" height="1080" role="img" aria-label=""
+              ></canvas>
+            </div>
+            <div class="pd-readout">
+              <span class="pd-bytes" id="pd-jpeg-bytes"></span>
+              <span class="pd-state" id="pd-jpeg-state"></span>
+            </div>
+          </div>
+
+          <div class="pd-pane">
+            <div class="pd-pane-head">
+              <h3 class="pd-pane-title">JPEG&nbsp;XL</h3>
+              <span class="pd-pane-badge pd-dimensions"></span>
+            </div>
+            <div class="pd-stage">
+              <canvas id="pd-jxl-canvas" width="896" height="1080" role="img" aria-label=""
+              ></canvas>
+            </div>
+            <div class="pd-readout">
+              <span class="pd-bytes" id="pd-jxl-bytes"></span>
+              <span class="pd-state" id="pd-jxl-state"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pd-transport">
+          <label class="visually-hidden" for="pd-slider">Bytes received</label>
+          <input type="range" id="pd-slider" class="pd-slider" min="0" max="100" value="0" />
+          <span class="pd-received" id="pd-received"></span>
+        </div>
+
+        <p class="pd-status" id="pd-status" hidden></p>
+        <p class="pd-note" id="pd-note"></p>
+        <p class="pd-credit" id="pd-credit"></p>
+      </div>
+
+    </main>
+  </div>
+
+  <script
+    type="application/json"
+    id="progressive-demo-data"
+    is:inline
+    set:html={JSON.stringify(manifest)}
+  />
+  <script is:inline src="/resources/ProgressiveLoadingDemo.js"></script>
+</BaseLayout>
