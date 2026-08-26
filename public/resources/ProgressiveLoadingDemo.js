@@ -201,7 +201,6 @@
     jpeg.lastStart = performance.now();
     releaseJpegUrl();
     jpeg.url = URL.createObjectURL(new Blob([bytes.subarray(0, take)], { type: 'image/jpeg' }));
-    jpegLoader.src = jpeg.url;
 
     const settle = (ok) => {
       if (jpeg.pending !== take) return; // superseded by a reset or a newer prefix
@@ -232,17 +231,32 @@
       scheduleJpeg();
     };
 
-    const ready =
-      typeof jpegLoader.decode === 'function'
-        ? jpegLoader.decode()
-        : new Promise((resolve, reject) => {
-            jpegLoader.onload = resolve;
-            jpegLoader.onerror = reject;
-          });
-    ready.then(
-      () => settle(true),
-      () => settle(false),
-    );
+    /* Wait for `load`, then treat `decode()` as best effort rather than as the
+       gate.
+
+       Both steps are needed, for different engines. Drawing at `load` alone
+       copies nothing in Chromium — the frame is not rasterised yet — which is
+       why decode() is awaited at all. But Firefox rejects decode() on a
+       truncated JPEG even though it fires `load` and renders the partial
+       scanlines quite happily, so treating a rejection as failure blanked the
+       pane there while Chrome and Safari were fine.
+
+       So: `load` decides whether a frame exists, decode() only improves the
+       odds that it is ready to copy, and its rejection is swallowed. */
+    jpegLoader.onload = null;
+    jpegLoader.onerror = null;
+    new Promise((resolve) => {
+      jpegLoader.onload = () => resolve(true);
+      jpegLoader.onerror = () => resolve(false);
+      jpegLoader.src = jpeg.url;
+    })
+      .then(async (loaded) => {
+        if (loaded && typeof jpegLoader.decode === 'function') {
+          await jpegLoader.decode().catch(() => {});
+        }
+        return loaded;
+      })
+      .then((loaded) => settle(loaded && jpegLoader.naturalWidth > 0));
   }
 
   /* ---------- JPEG XL pane ---------- */

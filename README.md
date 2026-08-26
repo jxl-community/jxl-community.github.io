@@ -125,6 +125,12 @@ the frame is rasterised, and drawing then copies nothing. Swapping two stacked
 separated by empty stage, because a hidden `<img>` is not rasterised and
 revealing one shows whichever compositor tiles happen to be ready.
 
+The `decode()` step is best effort, not a gate. Firefox rejects `decode()` on a
+truncated JPEG even though it fires `load` and renders the partial scanlines, so
+treating a rejection as failure blanks the pane there while Chromium and WebKit
+are unaffected. `load` decides whether a frame exists; `decode()` only improves
+the chance it is ready to copy.
+
 The JPEG XL side drives `tools/jxl-wasm` directly, feeding it the prefix and
 calling `jxl_flush` to pull out whatever partial image exists. Unlike the rest of
 the site this pane is not conditional on native support — every browser runs the
