@@ -40,6 +40,12 @@ const description = 'Image credits for jpegxl.info.';
         object-position: center;
         display: block;
       }
+      /* Some photographs put their subject high in the frame, where a centre
+         crop into the 2:1 card cuts it off. Those are tagged `crop: "top"` in
+         photo-credits.json. */
+      .card-photo_credit img.crop-top {
+        object-position: top;
+      }
       .card-photo_credit picture {
         display: block;
         width: 100%;
@@ -81,7 +87,12 @@ const description = 'Image credits for jpegxl.info.';
                     <div class="wrapper-image-photo_credit">
                       <picture>
                         <source srcset={`${imgPath}.jxl`} type="image/jxl" />
-                        <img src={`${imgPath}.webp`} alt={image.image_name} loading="lazy" />
+                        <img
+                          src={`${imgPath}.webp`}
+                          alt={image.image_name}
+                          loading="lazy"
+                          class={image.crop === 'top' ? 'crop-top' : undefined}
+                        />
                       </picture>
                     </div>
                     <div class="container-card-text">
