@@ -155,8 +155,9 @@ const manifest = {
         <div class="pd-panes" id="pd-panes">
           <div class="pd-pane">
             <div class="pd-pane-head">
-              <h3 class="pd-pane-title" id="pd-jpeg-label">JPEG</h3>
-              <span class="pd-pane-badge pd-dimensions"></span>
+              <div class="div-container-rounded_text_box">
+                <h3 class="label-menu-text" id="pd-jpeg-label">JPEG</h3>
+              </div>
             </div>
             <!-- The prefix decodes in a detached <img> (browsers paint a
                  truncated JPEG scanline by scanline) and is blitted here once
@@ -167,24 +168,35 @@ const manifest = {
               <canvas id="pd-jpeg-canvas" width="896" height="1080" role="img" aria-label=""
               ></canvas>
             </div>
-            <div class="pd-readout">
-              <span class="pd-bytes" id="pd-jpeg-bytes"></span>
-              <span class="pd-state" id="pd-jpeg-state"></span>
+            <div class="pd-readout" id="pd-jpeg-readout">
+              <div class="pd-figure">
+                <p class="headline-l-semibold pd-received-value" id="pd-jpeg-bytes">0</p>
+                <p class="headline-s-semibold pd-received-unit">B</p>
+              </div>
+              <p class="pd-total" id="pd-jpeg-total"></p>
+              <p class="pd-state" id="pd-jpeg-state"></p>
             </div>
           </div>
 
           <div class="pd-pane">
-            <div class="pd-pane-head">
-              <h3 class="pd-pane-title">JPEG&nbsp;XL</h3>
-              <span class="pd-pane-badge pd-dimensions"></span>
+            <!-- Mirrored, so the two pills sit at the outer edges of the pair
+                 the way the homepage comparison labels do. -->
+            <div class="pd-pane-head is-mirrored">
+              <div class="div-container-rounded_text_box">
+                <h3 class="label-menu-text">JPEG&nbsp;XL</h3>
+              </div>
             </div>
             <div class="pd-stage">
               <canvas id="pd-jxl-canvas" width="896" height="1080" role="img" aria-label=""
               ></canvas>
             </div>
-            <div class="pd-readout">
-              <span class="pd-bytes" id="pd-jxl-bytes"></span>
-              <span class="pd-state" id="pd-jxl-state"></span>
+            <div class="pd-readout is-mirrored" id="pd-jxl-readout">
+              <div class="pd-figure">
+                <p class="headline-l-semibold pd-received-value" id="pd-jxl-bytes">0</p>
+                <p class="headline-s-semibold pd-received-unit">B</p>
+              </div>
+              <p class="pd-total" id="pd-jxl-total"></p>
+              <p class="pd-state" id="pd-jxl-state"></p>
             </div>
           </div>
         </div>
@@ -196,6 +208,7 @@ const manifest = {
         </div>
 
         <p class="pd-status" id="pd-status" hidden></p>
+        <p class="pd-meta"><span class="pd-dimensions"></span></p>
         <p class="pd-note" id="pd-note"></p>
         <p class="pd-credit" id="pd-credit"></p>
       </div>

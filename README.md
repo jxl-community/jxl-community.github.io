@@ -88,8 +88,11 @@ recognises them.
 The polyfill carries several site-specific behaviours that each fixed a real
 bug — a serialised decode queue for gallery pages, `<picture>` fallback
 detection, an HDR path that emits a cICP-tagged 16-bit PNG so Rec.2100 PQ/HLG
-survives, and CacheStorage handling. Read the notes at the top of `jxl-rs.js`
-before changing it.
+survives, CacheStorage handling, and re-attaching the source ICC profile to the
+encoded output. That last one matters because the decode goes through a canvas,
+and `putImageData` + `toBlob` drops the profile and tags the result sRGB, so
+wide-gamut images came out visibly wrong wherever the fallback ran. Read the
+notes at the top of `jxl-rs.js` before changing it.
 
 ### Retiring the old service worker
 

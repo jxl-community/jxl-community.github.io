@@ -31,7 +31,12 @@
        non-JXL fallback is left alone. Rewriting it made the browser prefer our
        SDR decode over an HDR-capable AVIF on the homepage.
     5. CacheStorage reads/writes are skipped for data: URIs, which the Cache API
-       rejects. */
+       rejects.
+    6. The source ICC profile is re-attached to the encoded output. The canvas
+       round-trip drops it — worse, Chrome's toBlob tags the result sRGB — so a
+       wide-gamut or display-referred image came out visibly wrong wherever the
+       fallback ran. Only non-sRGB profiles are re-attached; plain sRGB is what
+       an untagged JPEG already means. */
 (() => {
   'use strict';
 
@@ -164,6 +169,67 @@
     );
   }
 
+  /* Re-attach the source colour profile to the JPEG the canvas produced.
+
+     putImageData + toBlob throws the profile away: the canvas holds bare RGBA
+     and the encoder tags nothing, so a wide-gamut or display-referred image
+     gets reinterpreted as sRGB and the colours shift. Browsers with native JXL
+     never see this because the polyfill does not run for them, which is why it
+     shows up only where the fallback is in use.
+
+     cICP cannot express these profiles — the ones on this site report
+     "unspecified" primaries and transfer — so the actual ICC bytes go into an
+     APP2 segment, the standard place for them in a JPEG. */
+  const ICC_TAG = [0x49, 0x43, 0x43, 0x5f, 0x50, 0x52, 0x4f, 0x46, 0x49, 0x4c, 0x45, 0x00];
+  const APP2_MAX = 65519; // 65533 byte segment limit, less the 14 byte header
+
+  function attachJpegIcc(jpeg, icc) {
+    /* Walk the header segments, keeping everything except an ICC_PROFILE the
+       encoder already wrote. Chrome's toBlob tags its output with the canvas
+       colour space (an sRGB profile), and simply appending ours after it leaves
+       two ICC profiles in one file — decoders take the first, so the image would
+       still be read as sRGB and the colours would still be wrong. */
+    const keep = [];
+    let at = 2; // past SOI
+    while (at < jpeg.length - 1 && jpeg[at] === 0xff) {
+      const marker = jpeg[at + 1];
+      if (marker === 0xda) break; // start of scan: headers are done
+      const len = (jpeg[at + 2] << 8) | jpeg[at + 3];
+      const isIcc =
+        marker === 0xe2 &&
+        ICC_TAG.every((b, i) => jpeg[at + 4 + i] === b);
+      if (!isIcc) keep.push(jpeg.subarray(at, at + 2 + len));
+      at += 2 + len;
+    }
+    const tail = jpeg.subarray(at); // SOS onward
+
+    const count = Math.ceil(icc.length / APP2_MAX);
+    const segments = [];
+    for (let i = 0; i < count; i++) {
+      const part = icc.subarray(i * APP2_MAX, (i + 1) * APP2_MAX);
+      const seg = new Uint8Array(18 + part.length);
+      const len = 16 + part.length; // the length field counts itself
+      seg[0] = 0xff;
+      seg[1] = 0xe2;
+      seg[2] = len >> 8;
+      seg[3] = len & 0xff;
+      seg.set(ICC_TAG, 4);
+      seg[16] = i + 1; // 1-based sequence number
+      seg[17] = count;
+      seg.set(part, 18);
+      segments.push(seg);
+    }
+    /* Order matters: APPn segments belong at the front of the header, right
+       after the JFIF APP0. Appending them after SOF/DHT is legal but unusual,
+       and parsers that stop scanning at SOF would never see the profile. */
+    const jfif =
+      keep.length && keep[0][1] === 0xe0 ? [keep[0]] : [];
+    const rest = keep.slice(jfif.length);
+    return new Blob([jpeg.subarray(0, 2), ...jfif, ...segments, ...rest, tail], {
+      type: 'image/jpeg',
+    });
+  }
+
   /* ---------- element handling ---------- */
 
   let cache = null;
@@ -221,7 +287,7 @@
 
   // Turn decoded pixels into something the element can show. Blobs go straight
   // on; ImageData goes through a canvas, and that encode is what gets cached.
-  function present(el, payload, isBackground, isSource) {
+  function present(el, payload, isBackground, isSource, icc) {
     const key = el.dataset.jxlSrc;
     if (payload instanceof Blob) {
       apply(el, URL.createObjectURL(payload), isBackground, isSource);
@@ -231,11 +297,19 @@
     canvas.width = payload.width;
     canvas.height = payload.height;
     canvas.getContext('2d').putImageData(payload, 0, 0);
-    canvas.toBlob((blob) => {
+    canvas.toBlob(async (blob) => {
       if (!blob) return;
-      apply(el, URL.createObjectURL(blob), isBackground, isSource);
+      let out = blob;
+      if (icc && icc.length && opts.imageType === 'jpeg') {
+        try {
+          out = attachJpegIcc(new Uint8Array(await blob.arrayBuffer()), icc);
+        } catch {
+          out = blob; // a tagged-but-broken image would be worse than an untagged one
+        }
+      }
+      apply(el, URL.createObjectURL(out), isBackground, isSource);
       if (opts.useCache && cache && key && !key.startsWith('data:')) {
-        cache.put(key, new Response(blob)).catch(() => {});
+        cache.put(key, new Response(out)).catch(() => {});
       }
     }, 'image/' + opts.imageType);
   }
@@ -255,7 +329,7 @@
 
     if (opts.useCache && !WANT_HDR) {
       try {
-        cache = cache || (await caches.open('jxl'));
+        cache = cache || (await caches.open('jxl-v2'));
       } catch {}
       const hit =
         cache && !src.startsWith('data:') && (await cache.match(src).catch(() => undefined));
@@ -359,13 +433,22 @@
     const w = X.jxl_width(ctx);
     const h = X.jxl_height(ctx);
     if (!w || !h) return;
+    /* Only tag what needs tagging. Plain sRGB is what an untagged JPEG already
+       means, so re-attaching it would cost bytes for nothing; anything else
+       has to carry its profile or the colours shift. */
+    const iccLen = X.jxl_icc_len(ctx);
+    const plainSrgb = X.jxl_cicp_primaries(ctx) === 1 && X.jxl_cicp_transfer(ctx) === 13;
+    const icc =
+      iccLen && !plainSrgb
+        ? new Uint8Array(new Uint8Array(X.memory.buffer, X.jxl_icc_ptr(ctx), iccLen))
+        : null;
     // Copy out of wasm memory before yielding: the heap can be replaced when it
     // grows, leaving any view pointing at a dead buffer.
     const px = new Uint8ClampedArray(
       new Uint8Array(X.memory.buffer, X.jxl_pixels(ctx), w * h * 4),
     );
     const image = new ImageData(px, w, h);
-    requestAnimationFrame(() => present(el, image, isBackground, isSource));
+    requestAnimationFrame(() => present(el, image, isBackground, isSource, icc));
   }
 
   /* ---------- bootstrap ---------- */

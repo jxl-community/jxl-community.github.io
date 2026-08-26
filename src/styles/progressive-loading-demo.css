@@ -139,25 +139,32 @@
 
 .pd-pane-head {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
 }
 
-.pd-pane-title {
-  color: #fff;
-  font-family: Barlow, sans-serif;
-  font-size: 1.0625rem;
-  font-weight: 600;
-  margin: 0;
+/* The JPEG XL head is reversed so its pill lands against the outer edge of the
+   pair, mirroring the left/right comparison labels on the homepage. */
+.pd-pane-head.is-mirrored {
+  flex-direction: row-reverse;
 }
 
-.pd-pane-badge {
-  color: rgba(255, 255, 255, 0.45);
-  font-family: Barlow, sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+/* Same pill as the homepage comparison labels. `.div-container-rounded_text_box`
+   in styles.css supplies the shape, but its glassy fill lives in
+   homepage-inline.css, which this page does not load — so that part is repeated
+   here rather than pulling in the whole homepage stylesheet. */
+.pd-pane-head .div-container-rounded_text_box {
+  display: inline-flex;
+  background-color: rgba(48, 54, 62, 0.42);
+  -webkit-backdrop-filter: blur(10px) saturate(125%);
+  backdrop-filter: blur(10px) saturate(125%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* `.label-menu-text` sizes itself in `em`, so it needs a concrete size here. */
+.pd-pane-head .label-menu-text {
+  font-size: 1.0625rem;
 }
 
 /* The stage is the "nothing received yet" surface. Both panes keep the source
@@ -195,25 +202,93 @@
   visibility: visible;
 }
 
+/* Shaped like the homepage comparison readouts: a large figure with its unit
+   beside it, the total underneath in the smaller face, and the pair pushed to
+   the outer edges of the images. The typography classes (headline-l-semibold,
+   headline-s-semibold) come from styles.css; only the layout is repeated here,
+   since the homepage's .label-left / .label-icon-left live in
+   homepage-inline.css, which this page does not load. */
 .pd-readout {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.1rem;
   min-height: 3rem;
+  align-items: flex-start;
+  text-align: left;
 }
 
-.pd-bytes {
-  color: #fff;
-  font-family: Barlow, sans-serif;
-  font-size: 1rem;
+/* The JPEG XL side mirrors, so the two readouts sit against the outer edges the
+   way the pane pills above them do. */
+.pd-readout.is-mirrored {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.pd-figure {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.pd-received-value {
   font-variant-numeric: tabular-nums;
-  font-weight: 600;
+  line-height: 1.1;
+}
+
+.pd-received-unit {
+  color: #fff;
+}
+
+/* Matches `.text-medium`, the class the homepage's jxl-bpp line uses. That rule
+   lives in homepage-inline.css, which this page does not load, so its values are
+   repeated rather than pulling in the whole homepage stylesheet. */
+.pd-total {
+  color: #fff;
+  font-family: var(--font--font-family--barlow), Barlow, sans-serif;
+  font-size: 1rem;
+  /* Proportional, unlike the figure above it: this line never changes while the
+     slider moves, so it has nothing to hold still for and reads better set
+     normally. */
+  font-variant-numeric: proportional-nums;
+  font-weight: 500;
+  letter-spacing: -0.0075rem;
+  line-height: 1.45em;
+  margin: 0;
 }
 
 .pd-state {
   color: rgba(255, 255, 255, 0.55);
   font-family: Barlow, sans-serif;
   font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0.15rem 0 0;
+}
+
+/* The whole readout turns teal once the file has fully arrived, rather than
+   picking out individual parts — a finished pane reads as one block, and the
+   two panes can be compared at a glance. How much slider is left when JPEG XL
+   flips is the point of the demo.
+
+   Hex first: the P3 token is an oklch() value, and a browser that cannot parse
+   it drops the whole declaration rather than falling back to the var()'s
+   default, which would leave the pane with no completion cue at all. */
+.pd-readout .pd-received-value,
+.pd-readout .pd-received-unit,
+.pd-readout .pd-total,
+.pd-readout .pd-state {
+  transition: color 0.25s ease;
+}
+
+.pd-readout.is-complete .pd-received-value,
+.pd-readout.is-complete .pd-received-unit,
+.pd-readout.is-complete .pd-total,
+.pd-readout.is-complete .pd-state {
+  color: #21e6e1;
+  color: var(--brand--teal-bright--P3--500, #21e6e1);
+}
+
+.pd-readout.is-complete .pd-state {
+  font-weight: 600;
 }
 
 /* ----- transport ----- */
@@ -280,6 +355,16 @@
   text-align: center;
 }
 
+.pd-meta {
+  color: rgba(255, 255, 255, 0.45);
+  font-family: Barlow, sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  margin: 1.25rem 0 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 .pd-note {
   color: rgba(255, 255, 255, 0.55);
   font-family: Barlow, sans-serif;
@@ -335,12 +420,26 @@
     gap: 0.6rem;
   }
 
-  .pd-pane-title {
+  .pd-pane-head .label-menu-text {
     font-size: 0.9375rem;
   }
 
-  .pd-bytes {
-    font-size: 0.8125rem;
+  /* The pill's 1.5em side padding is a lot of the width once the panes narrow. */
+  .pd-pane-head .div-container-rounded_text_box {
+    padding: 0.4em 1em;
+  }
+
+  /* The big figure would otherwise dominate a narrow pane. */
+  .pd-received-value {
+    font-size: 1.5rem;
+  }
+
+  .pd-received-unit {
+    font-size: 1rem;
+  }
+
+  .pd-total {
+    font-size: 0.875rem;
   }
 
   .pd-state {

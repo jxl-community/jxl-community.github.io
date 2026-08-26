@@ -62,8 +62,12 @@
     jxlCanvas: root.querySelector('#pd-jxl-canvas'),
     jpegLabel: root.querySelector('#pd-jpeg-label'),
     jpegBytes: root.querySelector('#pd-jpeg-bytes'),
+    jpegTotal: root.querySelector('#pd-jpeg-total'),
+    jpegReadout: root.querySelector('#pd-jpeg-readout'),
     jpegState: root.querySelector('#pd-jpeg-state'),
     jxlBytes: root.querySelector('#pd-jxl-bytes'),
+    jxlTotal: root.querySelector('#pd-jxl-total'),
+    jxlReadout: root.querySelector('#pd-jxl-readout'),
     jxlState: root.querySelector('#pd-jxl-state'),
     received: root.querySelector('#pd-received'),
     status: root.querySelector('#pd-status'),
@@ -491,19 +495,25 @@
     const meta = jpegMeta(current, jpegMode);
     const shown = Math.min(bytesReceived, meta.size);
     el.jpegLabel.textContent = jpegMode === 'progressive' ? 'Progressive JPEG' : 'JPEG';
-    el.jpegBytes.textContent = `${fmt.format(shown)} / ${fmt.format(meta.size)} bytes`;
-    el.jpegState.textContent =
-      shown >= meta.size
-        ? 'Complete'
-        : jpegMode === 'progressive'
-          ? `Coarse passes only — ${pct(shown, meta.size)}% received`
-          : `Top of the image only — ${pct(shown, meta.size)}% received`;
+    el.jpegBytes.textContent = fmt.format(shown);
+    el.jpegTotal.textContent = `of ${fmt.format(meta.size)} B`;
+    const jpegDone = shown >= meta.size;
+    // Complete here means "every byte has arrived", which is what this block
+    // counts — not whether the decoder has finished its last refinement pass.
+    el.jpegReadout.classList.toggle('is-complete', jpegDone);
+    el.jpegState.textContent = jpegDone
+      ? 'Complete'
+      : jpegMode === 'progressive'
+        ? `Coarse passes only — ${pct(shown, meta.size)}% received`
+        : `Top of the image only — ${pct(shown, meta.size)}% received`;
   }
 
   function updateJxlReadout() {
     const total = current.jxl.size;
     const shown = Math.min(bytesReceived, total);
-    el.jxlBytes.textContent = `${fmt.format(shown)} / ${fmt.format(total)} bytes`;
+    el.jxlBytes.textContent = fmt.format(shown);
+    el.jxlTotal.textContent = `of ${fmt.format(total)} B`;
+    el.jxlReadout.classList.toggle('is-complete', shown >= total);
     el.jxlState.textContent = jxl.done
       ? 'Complete'
       : jxl.painted
