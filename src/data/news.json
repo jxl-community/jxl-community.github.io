@@ -1,6 +1,23 @@
 {
     "Blog posts": [
         {
+            "title": "Intent to Ship: JPEG XL",
+            "link": "https://hacks.mozilla.org/2026/08/intent-to-ship-jpeg-xl/",
+            "date": "2026-08-24",
+            "Author": "Jake Archibald",
+            "Publication": "Mozilla Hacks",
+            "Summary": "Mozilla outlines Firefox's planned JPEG XL support, powered by the Rust-based jxl-rs decoder, including progressive rendering.",
+            "Tags": [
+                "JPEG XL",
+                "Firefox",
+                "Browser Support",
+                "Rust",
+                "jxl-rs",
+                "Progressive",
+                "Web delivery"
+            ]
+        },
+        {
             "title": "2026, the Year of JPEG XL",
             "link": "https://cloudinary.com/blog/2026-the-year-of-jpeg-xl",
             "date": "2026-03-19",
@@ -808,6 +825,37 @@
         }
     ],
     "News": [
+        {
+            "Title": "Firefox rattrape Safari avec une nouveauté très attendue par les utilisateurs",
+            "link": "https://www.clubic.com/actualite-626848-firefox-rattrape-safari-avec-une-nouveaute-tres-attendue-par-les-utilisateurs.html",
+            "date": "2026-08-26",
+            "Author": "Charles Gouin-Peyrot",
+            "Publication": "Clubic",
+            "Summary": "Firefox 157 is expected to enable JPEG XL support by default, extending the format's availability in major browsers.",
+            "Tags": [
+                "JPEG XL",
+                "Firefox",
+                "Browser Support",
+                "Safari",
+                "Rust",
+                "jxl-rs",
+                "Progressive",
+                "Web delivery"
+            ]
+        },
+        {
+            "Title": "Firefox 157 will include JPEG XL by default on all platforms",
+            "link": "https://news.ycombinator.com/item?id=49437946",
+            "date": "2026-08-26",
+            "Publication": "Hacker News",
+            "Summary": "Hacker News discussion of Firefox 157 enabling JPEG XL by default on all platforms.",
+            "Tags": [
+                "JPEG XL",
+                "Firefox",
+                "Browser Support",
+                "Web delivery"
+            ]
+        },
         {
             "Title": "Interop 2026 JPEG XL Investigation",
             "link": "https://github.com/web-platform-tests/interop-jpegxl",

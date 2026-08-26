@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import demoImages from '../../data/progressive-demo-images.json';
 import '../../styles/progressive-loading-demo.css';
 import Wave from '../../components/Wave.astro';
 
@@ -9,60 +10,52 @@ const title = 'Progressive Loading Demo – JPEG XL';
 const description =
   'Scrub through a partially downloaded JPEG and JPEG XL file and watch what each format can actually put on screen, decoded live in your browser.';
 
-// The first three pairs were encoded from one 8-bit master with `magick
-// -quality 85 -sampling-factor 2x2` and `cjxl -e 7 -p --group_order=1`, the
-// cjxl distance picked per image so the JXL scores at or above the JPEG on
-// ssimulacra2. The homepage-video pair is the site's existing asset shown as
-// supplied, so its byte counts are not a matched-quality comparison — `note`
-// says so on the page rather than letting the numbers imply otherwise.
-const IMAGES = [
-  {
-    key: 'portrait',
-    label: 'Portrait',
-    title: 'Young Man, Round Glasses',
-    photographer: 'Nicolas Ladino Silva',
-    photographerUrl: 'https://unsplash.com/@nicolasladinosilva',
-    files: {
-      jpeg: 'portrait.jpg',
-      progressiveJpeg: 'portrait-progressive.jpg',
-      jxl: 'portrait.jxl',
-    },
-    note: 'Matched quality: ssimulacra2 79.9 (JPEG) vs 80.0 (JPEG XL).',
-  },
-  {
-    key: 'macro',
-    label: 'Macro',
-    title: 'Fly, Extreme Close-Up',
-    photographer: 'Ekamelev',
-    photographerUrl: 'https://unsplash.com/@ekamelev',
-    files: {
-      jpeg: 'macro.jpg',
-      progressiveJpeg: 'macro-progressive.jpg',
-      jxl: 'macro.jxl',
-    },
-    note: 'Matched quality: ssimulacra2 78.2 (JPEG) vs 78.5 (JPEG XL).',
-  },
-  {
-    key: 'aurora',
-    label: 'Aurora',
-    title: 'Aurora Lights',
-    photographer: 'Lightscape',
-    photographerUrl: 'https://unsplash.com/@lightscape',
-    files: {
-      jpeg: 'aurora.jpg',
-      progressiveJpeg: 'aurora-progressive.jpg',
-      jxl: 'aurora.jxl',
-    },
-    note: 'Matched quality: ssimulacra2 69.7 (JPEG) vs 70.5 (JPEG XL).',
-  },
-];
+/* The image set is generated, not hand-listed: `ssimu2-85/results.csv` is the
+   output of the encode run, one row per source/codec/mode, every file tuned to
+   land at ssimulacra2 85. Reading it at build time keeps the page and the encode
+   in step — re-run the encoder, drop in a new CSV, and the picker follows.
 
+   Codecs differ in which modes they even have, which is the point of the mode
+   control being per-codec rather than a global toggle:
+
+     JPEG      sequential | progressive
+     JPEGli    sequential | progressive-level-2
+     AVIF      standard   | progressive
+     WebP      standard only
+     JPEG XL   progressive only (the comparison pane)
+
+   Worth knowing before reading the AVIF numbers: its "progressive" file really
+   is layered (an `a1lx` box, base layer complete at 2.5% of the file), but no
+   current browser paints that base layer — Chrome and Safari both show nothing
+   until the final byte, exactly like the standard AVIF. The demo reports that
+   rather than hiding it. */
+const CSV = 'ssimu2-85/results.csv';
 const DIR = 'ProgressiveDemoImages';
 const filePath = (file: string) => path.join('public', DIR, file);
-const asset = (file: string) => ({
-  url: `/${DIR}/${file}`,
-  size: fs.statSync(filePath(file)).size,
-});
+
+type Row = {
+  source: string;
+  codec: string;
+  mode: string;
+  ssimulacra2: string;
+  bytes: string;
+  file: string;
+};
+
+function readCsv(): Row[] {
+  const text = fs.readFileSync(filePath(CSV), 'utf8').trim();
+  const [head, ...lines] = text.split(/\r?\n/);
+  const cols = head.split(',');
+  return lines.map((line) => {
+    // The `parameter` column contains semicolons but no commas, so a plain
+    // split is safe here; assert the shape rather than trusting it.
+    const cells = line.split(',');
+    if (cells.length !== cols.length) {
+      throw new Error(`${CSV}: expected ${cols.length} columns, got ${cells.length}`);
+    }
+    return Object.fromEntries(cols.map((c, i) => [c, cells[i]])) as Row;
+  });
+}
 
 /* Pixel dimensions come from the JPEG's SOF marker so each pane can reserve the
    right aspect ratio before anything decodes. Walking the segment lengths is
@@ -80,15 +73,96 @@ function jpegSize(file: string) {
   throw new Error(`no SOF marker in ${file}`);
 }
 
-const manifest = {
-  images: IMAGES.map(({ files, ...image }) => ({
-    ...image,
-    ...jpegSize(files.jpeg),
-    jpeg: asset(files.jpeg),
-    progressiveJpeg: asset(files.progressiveJpeg),
-    jxl: asset(files.jxl),
-  })),
+const asset = (file: string) => ({
+  url: `/${DIR}/${file}`,
+  size: fs.statSync(filePath(file)).size,
+});
+
+/* Titles, photographer names and photo links are authored, not derived: the
+   filename carries a slug and an id but no title, and guessing either would put
+   invented text on the page. `src/data/progressive-demo-images.json` holds them,
+   and a source without an entry fails the build rather than falling back to a
+   filename. */
+function credit(source: string) {
+  const entry = (demoImages.images as Record<string, { title: string; photographer: string; url: string }>)[
+    source
+  ];
+  if (!entry) {
+    throw new Error(
+      `${source} has no entry in src/data/progressive-demo-images.json — add its title, photographer and Unsplash link.`,
+    );
+  }
+  return entry;
+}
+
+// Codec -> the two modes it is offered under, and which CSV mode backs each.
+// `label` is what the mode control says; a codec with one entry gets no choice.
+/* Modes per codec. What each one does with a partial download is left to the
+   browser to demonstrate rather than declared here — the answers differ by
+   engine (Chrome paints a layered AVIF from its base layer, Safari does not)
+   and an earlier hardcoded capability flag simply got it wrong. */
+const CODECS = [
+  { key: 'jpeg', label: 'JPEG', modes: [
+      { key: 'sequential', label: 'Sequential', csv: 'sequential' },
+      { key: 'progressive', label: 'Progressive', csv: 'progressive' },
+    ] },
+  { key: 'jpegli', label: 'JPEGli', modes: [
+      { key: 'sequential', label: 'Sequential', csv: 'sequential' },
+      { key: 'progressive', label: 'Progressive', csv: 'progressive-level-2' },
+    ] },
+  { key: 'avif', label: 'AVIF', modes: [
+      { key: 'sequential', label: 'Standard', csv: 'standard' },
+      { key: 'progressive', label: 'Progressive', csv: 'progressive' },
+    ] },
+  { key: 'webp', label: 'WebP', modes: [
+      { key: 'sequential', label: 'Standard', csv: 'standard' },
+    ] },
+];
+
+const CSV_CODEC: Record<string, string> = {
+  jpeg: 'JPEG',
+  jpegli: 'JPEGli',
+  avif: 'AVIF',
+  webp: 'WebP',
 };
+
+const rows = readCsv();
+const sources = [...new Set(rows.map((r) => r.source))].sort();
+
+const images = sources.map((source) => {
+  const mine = rows.filter((r) => r.source === source);
+  const pick = (codec: string, mode: string) =>
+    mine.find((r) => r.codec === codec && r.mode === mode);
+
+  // JPEG XL is the fixed comparison pane. Its mode name varies across the set
+  // (`progressive` or `progressive-center-first`), so match on codec alone.
+  const jxlRow = mine.find((r) => r.codec === 'JPEG XL');
+  if (!jxlRow) throw new Error(`${source}: no JPEG XL row`);
+
+  const variants: Record<string, { url: string; size: number; ssimulacra2: number }> = {};
+  for (const codec of CODECS) {
+    for (const mode of codec.modes) {
+      const row = pick(CSV_CODEC[codec.key], mode.csv);
+      if (!row) throw new Error(`${source}: no ${codec.label} / ${mode.csv} row`);
+      const rel = row.file.replace(/^ssimu2-85\//, 'ssimu2-85/');
+      variants[`${codec.key}:${mode.key}`] = {
+        ...asset(rel),
+        ssimulacra2: Number(row.ssimulacra2),
+      };
+    }
+  }
+
+  const jpegRef = pick('JPEG', 'sequential');
+  return {
+    key: source.replace(/\.png$/, ''),
+    ...credit(source),
+    ...jpegSize(jpegRef!.file.replace(/^ssimu2-85\//, 'ssimu2-85/')),
+    variants,
+    jxl: { ...asset(jxlRow.file.replace(/^ssimu2-85\//, 'ssimu2-85/')), ssimulacra2: Number(jxlRow.ssimulacra2) },
+  };
+});
+
+const manifest = { codecs: CODECS, images };
 ---
 
 <BaseLayout
@@ -122,26 +196,34 @@ const manifest = {
           <div class="pd-control">
             <label class="pd-control-label" for="pd-image-picker">Image</label>
             <select id="pd-image-picker" class="pd-select">
-              {manifest.images.map((image) => <option value={image.key}>{image.label}</option>)}
+              {manifest.images.map((image) => (
+                <option value={image.key}>{image.title}</option>
+              ))}
             </select>
           </div>
           <div class="pd-control">
-            <span class="pd-control-label" id="pd-jpeg-mode-label">JPEG encoding</span>
-            <div class="pd-toggle-group" role="group" aria-labelledby="pd-jpeg-mode-label">
+            <label class="pd-control-label" for="pd-codec-picker">Compare against</label>
+            <select id="pd-codec-picker" class="pd-select">
+              {manifest.codecs.map((codec) => <option value={codec.key}>{codec.label}</option>)}
+            </select>
+          </div>
+          {/* Buttons are written for the widest case and relabelled per codec:
+              JPEG and JPEGli call it Sequential/Progressive, AVIF calls it
+              Standard/Progressive, and WebP has only one mode so the whole
+              control is disabled rather than offering a choice that does
+              nothing. */}
+          <div class="pd-control">
+            <span class="pd-control-label" id="pd-mode-label">Encoding</span>
+            <div class="pd-toggle-group" role="group" aria-labelledby="pd-mode-label">
               <button
                 type="button"
                 class="pd-toggle is-selected"
-                data-jpeg-mode="baseline"
+                data-mode="sequential"
                 aria-pressed="true"
               >
-                Baseline
+                Sequential
               </button>
-              <button
-                type="button"
-                class="pd-toggle"
-                data-jpeg-mode="progressive"
-                aria-pressed="false"
-              >
+              <button type="button" class="pd-toggle" data-mode="progressive" aria-pressed="false">
                 Progressive
               </button>
             </div>
@@ -159,14 +241,21 @@ const manifest = {
                 <h3 class="label-menu-text" id="pd-jpeg-label">JPEG</h3>
               </div>
             </div>
-            <!-- The prefix decodes in a detached <img> (browsers paint a
-                 truncated JPEG scanline by scanline) and is blitted here once
-                 decode() resolves. Stacked <img> buffers trading visibility
-                 band badly: a hidden image is not rasterized, so revealing one
-                 shows whichever compositor tiles happen to be ready. -->
-            <div class="pd-stage">
-              <canvas id="pd-jpeg-canvas" width="896" height="1080" role="img" aria-label=""
-              ></canvas>
+            <!-- A single <img> fed by a streaming response from
+                 pd-stream-sw.js, not a canvas. The download is deliberately
+                 left in flight, and drawImage is a no-op for an image whose
+                 load has not completed — so the element has to do the drawing.
+                 Its src only changes when the stream restarts (a backwards
+                 drag), so there is no per-frame swap to band. -->
+            <!-- The description lives on the stage, not on the <img>, and the
+                 image is marked decorative. An <img> renders its alt text
+                 whenever it has no pixels — which here is every codec switch and
+                 every restart — so a real alt string put a line of text and a
+                 broken-image icon across the pane. A canvas never did that,
+                 which is why this only appeared once the pane became an <img>. -->
+            <div class="pd-stage" id="pd-src-stage" role="img" aria-label="">
+              <img id="pd-src-img" class="pd-src-img" alt=""
+                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
             </div>
             <div class="pd-readout" id="pd-jpeg-readout">
               <div class="pd-figure">
@@ -208,8 +297,7 @@ const manifest = {
         </div>
 
         <p class="pd-status" id="pd-status" hidden></p>
-        <p class="pd-meta"><span class="pd-dimensions"></span></p>
-        <p class="pd-note" id="pd-note"></p>
+        <p class="pd-meta" id="pd-meta"></p>
         <p class="pd-credit" id="pd-credit"></p>
       </div>
 

@@ -26,7 +26,10 @@
   padding-inline: 1rem;
 }
 
+/* Every control in the row is this tall. The selects used to size themselves
+   from their padding and came out ~6px shorter than the buttons beside them. */
 .pd-controls {
+  --pd-control-height: 2.75rem;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
@@ -50,14 +53,29 @@
   text-transform: uppercase;
 }
 
+/* The chevron is drawn here rather than by the browser. A native <select>
+   ignores author padding in WebKit — it computes to 0 on every side and the
+   control chrome is positioned by the engine — so there is no way to give the
+   arrow breathing room in Safari while leaving `appearance: auto`. Supplying
+   the arrow as a background image puts its inset under our control and makes
+   the two pickers look the same in every browser. */
 .pd-select {
-  background: rgba(255, 255, 255, 0.06);
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: rgba(255, 255, 255, 0.06);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1.25 1.75 6 6.25l4.75-4.5' fill='none' stroke='rgba(255,255,255,0.62)' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-position: right 0.9rem center;
+  background-repeat: no-repeat;
+  background-size: 12px 8px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 8px;
+  box-sizing: border-box;
   color: #fff;
+  cursor: pointer;
   font-family: Barlow, sans-serif;
   font-size: 0.9375rem;
-  padding: 0.5rem 0.75rem;
+  height: var(--pd-control-height);
+  padding: 0 2.4rem 0 0.9rem;
 }
 
 .pd-select option {
@@ -76,17 +94,24 @@
   display: inline-flex;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 8px;
+  box-sizing: border-box;
+  height: var(--pd-control-height);
   overflow: hidden;
 }
 
+/* Fill the group rather than sitting content-width inside it. `.pd-control` is
+   a stretching flex column, so the group takes the width of the label above it
+   — with a single mode (WebP) that left the one button short of the group's
+   right edge. */
 .pd-toggle {
   background: transparent;
   border: 0;
+  flex: 1 0 auto;
   color: rgba(255, 255, 255, 0.62);
   cursor: pointer;
   font-family: Barlow, sans-serif;
   font-size: 0.9375rem;
-  padding: 0.5rem 0.9rem;
+  padding: 0 0.9rem;
   transition:
     background 0.15s ease,
     color 0.15s ease;
@@ -109,13 +134,15 @@
   background: #3bb6b3;
   border: 0;
   border-radius: 8px;
+  box-sizing: border-box;
   color: #05252a;
   cursor: pointer;
   font-family: Barlow, sans-serif;
   font-size: 0.9375rem;
   font-weight: 600;
+  height: var(--pd-control-height);
   min-width: 6rem;
-  padding: 0.55rem 1.4rem;
+  padding: 0 1.4rem;
 }
 
 .pd-play:hover {
@@ -183,6 +210,7 @@
   overflow: hidden;
 }
 
+.pd-stage img,
 .pd-stage canvas {
   position: absolute;
   inset: 0;
@@ -192,8 +220,14 @@
   object-fit: cover;
 }
 
-/* A canvas with no flushable pixels yet must not cover the backdrop with an
-   opaque cleared surface, so it only becomes visible once something is drawn. */
+/* The JPEG XL canvas is hidden until it has pixels, so an empty cleared surface
+   never covers the backdrop.
+
+   The source <img> is deliberately NOT gated that way. Chrome does not rasterise
+   a hidden element, so an image hidden while its bytes arrive never decodes them
+   — and because the stream then stalls on purpose, revealing it later brings no
+   further data to trigger a decode, leaving the pane permanently blank. It stays
+   visible and the stage shows through wherever nothing has decoded yet. */
 .pd-stage canvas {
   visibility: hidden;
 }
@@ -355,14 +389,16 @@
   text-align: center;
 }
 
+/* Sits directly above the credit as a pair: the size and both quality scores,
+   then whose photograph it is. Not uppercased — it carries mixed-case names like
+   "JPEG XL ssimu2" that read badly shouted. */
 .pd-meta {
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.5);
   font-family: Barlow, sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.06em;
-  margin: 1.25rem 0 0;
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  margin: 1.5rem 0 0;
   text-align: center;
-  text-transform: uppercase;
 }
 
 .pd-note {
@@ -379,7 +415,7 @@
   color: rgba(255, 255, 255, 0.45);
   font-family: Barlow, sans-serif;
   font-size: 0.8125rem;
-  margin-top: 0.75rem;
+  margin-top: 0.35rem;
   text-align: center;
 }
 

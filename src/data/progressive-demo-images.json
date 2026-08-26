@@ -1,0 +1,49 @@
+{
+  "_comment": [
+    "Human-authored metadata for the progressive loading demo, keyed by the",
+    "`source` column in public/ProgressiveDemoImages/ssimu2-85/results.csv.",
+    "",
+    "Kept out of the CSV on purpose: that file is the encoder's output and gets",
+    "replaced wholesale on the next run, which would take these names with it.",
+    "The build merges the two and fails if a source listed in the CSV has no",
+    "entry here, so a new encode surfaces the gap instead of silently falling",
+    "back to a filename."
+  ],
+  "images": {
+    "anto-meneghini-IrohWzafmmA-unsplash.png": {
+      "title": "Poke bowl",
+      "photographer": "Anto Meneghini",
+      "url": "https://unsplash.com/photos/vegetable-salad-on-black-ceramic-bowl-IrohWzafmmA"
+    },
+    "calvin-xy-wang-FUNWLd_5_oI-unsplash.png": {
+      "title": "Granite peak",
+      "photographer": "Calvin XY Wang",
+      "url": "https://unsplash.com/photos/granite-peak-in-huangshan-china-FUNWLd_5_oI"
+    },
+    "dibakar-roy-HNT6EehPZoI-unsplash.png": {
+      "title": "Holi festival",
+      "photographer": "Dibakar Roy",
+      "url": "https://unsplash.com/photos/crowd-celebrating-holi-festival-with-colored-powder-HNT6EehPZoI"
+    },
+    "gustavo-leighton-9qJ3Kp4pLQE-unsplash.png": {
+      "title": "Quechua woman",
+      "photographer": "Gustavo Leighton",
+      "url": "https://unsplash.com/photos/a-woman-wearing-a-colorful-hat-standing-in-a-field-9qJ3Kp4pLQE"
+    },
+    "kristaps-ungurs-xRkLHDRWPac-unsplash.png": {
+      "title": "Single sunflower",
+      "photographer": "Kristaps Ungurs",
+      "url": "https://unsplash.com/photos/sunflower-in-golden-hour-light-xRkLHDRWPac"
+    },
+    "rob-potter-qzBYyChPj1s-unsplash.png": {
+      "title": "Nicobar pigeon",
+      "photographer": "Rob Potter",
+      "url": "https://unsplash.com/photos/a-close-up-of-a-colorful-bird-on-a-black-background-qzBYyChPj1s"
+    },
+    "thom-masat-b40crbTDmkU-unsplash.png": {
+      "title": "Kathmandu pigments",
+      "photographer": "Thom Masat",
+      "url": "https://unsplash.com/photos/a-group-of-colorful-squares-b40crbTDmkU"
+    }
+  }
+}

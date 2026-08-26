@@ -105,42 +105,147 @@ file can be deleted once traffic has cycled through.
 ## Progressive loading demo
 
 [`/resources/progressive-loading-demo.html`](src/pages/resources/progressive-loading-demo.astro)
-compares what JPEG and JPEG XL can put on screen from a partial download.
+compares what each image format can put on screen from a partial download.
 
 Both files are fetched in full, then the slider hands each decoder only the
 first *N* bytes — the same prefix a browser would hold part-way through a
 download. The counter is absolute bytes, not a percentage, so both panes always
 show the same amount of transfer; the smaller file simply finishes first.
 
-Switching the JPEG pane between **Baseline** and **Progressive** swaps in a
-different encoding of the same picture. Baseline arrives strictly top to bottom;
-progressive fills the whole frame coarsely and then sharpens.
+The left pane is chosen with three controls — image, codec, and encoding mode —
+and is always compared against JPEG XL on the right.
 
-Both panes paint into a `<canvas>`. The JPEG side decodes the truncated prefix
-in a detached `<img>` — browsers render a truncated JPEG scanline by scanline,
-which is the effect being demonstrated — and blits it once `img.decode()`
-resolves. Waiting for `decode()` rather than `load` matters: `load` fires before
-the frame is rasterised, and drawing then copies nothing. Swapping two stacked
-`<img>` buffers instead of using a canvas produces horizontal bands of image
-separated by empty stage, because a hidden `<img>` is not rasterised and
-revealing one shows whichever compositor tiles happen to be ready.
+### The image set
 
-The `decode()` step is best effort, not a gate. Firefox rejects `decode()` on a
-truncated JPEG even though it fires `load` and renders the partial scanlines, so
-treating a rejection as failure blanks the pane there while Chromium and WebKit
-are unaffected. `load` decides whether a frame exists; `decode()` only improves
-the chance it is ready to copy.
+`public/ProgressiveDemoImages/ssimu2-85/` holds seven photographs, each encoded
+five ways, every file tuned to land at **ssimulacra2 85** so the byte counts are
+a compression result rather than a quality handicap. `results.csv` in that
+folder is the encoder's own output and is the source of truth: the page reads it
+at build time and derives the pickers, file paths, sizes and scores from it.
+Re-run the encoder, drop in a new CSV, and the page follows.
 
-The JPEG XL side drives `tools/jxl-wasm` directly, feeding it the prefix and
-calling `jxl_flush` to pull out whatever partial image exists. Unlike the rest of
-the site this pane is not conditional on native support — every browser runs the
-wasm decoder, because Safari decodes JPEG XL natively but not progressively and
-would otherwise show a finished image next to a partial one.
+Codecs differ in which modes they even have, which is why the mode control is
+per-codec rather than a global toggle:
 
-The three pairs are matched on quality rather than size: the cjxl distance was
-picked per image so the JPEG XL file scores at or above the JPEG on ssimulacra2,
-which makes the remaining difference in byte counts real compression rather than
-a quality handicap.
+| codec | modes | paints from a partial file? |
+| --- | --- | --- |
+| JPEG | sequential, progressive | yes |
+| JPEGli | sequential, progressive-level-2 | yes |
+| AVIF | standard, progressive | only the layered one, and only in Chrome |
+| WebP | standard only | Chrome only |
+| JPEG XL | progressive (the comparison pane) | yes, from ~1–2% |
+
+### Simulating a partial download
+
+The slider does not hand the pane a truncated file. It asks
+[`public/resources/pd-stream-sw.js`](public/resources/pd-stream-sw.js) for a
+response that carries the first *N* bytes and is then **left open**, so the
+browser sees a download still in progress.
+
+That distinction decides what gets drawn, and getting it wrong is easy:
+
+| what the browser is given | JPEG | AVIF (layered) | WebP |
+| --- | --- | --- | --- |
+| complete response, truncated bytes | paints | **nothing** | **nothing** |
+| response still open, N bytes sent | paints | **paints (Chrome)** | paints (Chrome) |
+
+Only the second row is what an interrupted download actually looks like. A
+`Blob` of the first N bytes is the first row — it reads as a corrupt whole file,
+and an earlier version of this page used it and concluded, wrongly, that
+browsers cannot render partial AVIF at all.
+
+There is no way to hand a streaming `Response` to an `<img>` from the page,
+which is why a service worker is involved. It caches nothing and touches no
+other request.
+
+Two consequences shape the implementation:
+
+- **Each slider position opens its own stream.** Feeding more bytes into an
+  already-open response is the tidier model and is what a real download does,
+  but only JPEG re-decodes as they trickle in — Chrome decodes an AVIF once,
+  when data first arrives, and ignores later chunks on the same response.
+  Measured: 7% of the pane filled when advancing an open stream, 100% when
+  opening a fresh one at the same byte count.
+- **Each stream gets a brand new `<img>`.** Reassigning `src` aborts the
+  previous load, and these loads are streams that never finish by design;
+  aborting one leaves the element unable to paint progressively from the next,
+  so the pane stays blank while the bytes arrive perfectly well.
+- **Restarts are throttled, not debounced, and old elements retire on a timer.**
+  Playback advances the target every frame, so a debounce is reset by each one
+  and never fires until playback stops — which froze the pane until you hit
+  pause. A fresh stream also takes 300-500 ms to put pixels on screen, so the
+  element it replaces has to stay in place for a grace period rather than being
+  dropped at the next restart, or neither it nor its replacement has painted.
+
+### Known limitation: WebP during playback
+
+WebP paints correctly when the slider is dragged or set, but its pane stays
+empty while Play runs. The cause is understood and the fix costs more than it
+buys.
+
+Restarting a stream closes the outgoing one, and a closed response is a
+*complete* file as far as the browser is concerned. A complete truncated WebP
+renders nothing, so closing throws away the partial picture it was already
+showing. A truncated JPEG survives that, which is why only WebP is affected:
+during playback the visible element is always either the incoming one (not yet
+decoded, ~300–500 ms) or the outgoing one (just closed, pixels discarded).
+
+Keeping streams open past their replacement does fix WebP — and breaks
+everything else, because it leaves more never-completing requests in flight than
+the browser will run at once, so nothing loads at all. Confirmed by trying it.
+Scrubbing is unaffected either way, since only one stream is open at a time.
+
+It is not CPU contention with the JPEG XL pane: blocking the wasm decoder
+entirely changes nothing.
+
+### What each format does with a partial download
+
+Measured in the page itself, as a percentage of the pane showing image:
+
+| | 10% | 50% | notes |
+| --- | --- | --- | --- |
+| JPEG sequential | 9% | 47% | top-down, both engines |
+| JPEG progressive | full | full | coarse then sharpens |
+| JPEGli sequential | 8% | 46% | as JPEG |
+| JPEGli progressive | full | full | as JPEG |
+| **AVIF standard** | **0%** | **0%** | single layer: needs the whole file |
+| **AVIF progressive** | **full (Chrome)** | **full (Chrome)** | base layer complete at 2.5% of the file; Safari paints none of it |
+| WebP | 5% (Chrome) | 44% (Chrome) | scrubbing only — see the limitation above; Safari paints none of it |
+| JPEG XL | full | full | from ~1–2% |
+
+The AVIF pair is worth keeping precisely because the two differ: the layered
+file carries an `a1lx` box whose base layer is complete at 2.5%, and Chrome
+paints a full-frame preview from it while the standard file shows nothing. That
+the same toggle changes nothing in Safari is part of what the page shows.
+
+The state line under each pane therefore describes how the *file* is laid out
+rather than claiming what is on screen. There is no reliable way to ask the
+latter: `naturalWidth` turns non-zero in WebKit as soon as an AVIF header
+parses, well before any pixels exist, and `drawImage` is a no-op for an
+in-flight image so the canvas cannot be sampled either.
+
+### How the panes decode
+
+The left pane is a plain `<img>` fed by the stream above. It cannot blit into a
+canvas: `drawImage` is a no-op for an image whose load has not completed, which
+is every in-flight frame. The element draws itself, and the stage shows through
+wherever nothing has decoded yet.
+
+It is also deliberately not hidden until it looks painted. Chrome does not
+rasterise a hidden element, so an image hidden while its bytes arrive never
+decodes them — and because the stream then stalls on purpose, revealing it later
+brings no further data to trigger a decode.
+
+The JPEG XL side is different: it drives `tools/jxl-wasm` directly, feeding it
+the prefix and calling `jxl_flush` to pull out whatever partial image exists,
+then painting that into a canvas. Unlike the rest of the site this pane is not
+conditional on native support — every browser runs the wasm decoder, because
+Safari decodes JPEG XL natively but not progressively and would otherwise show a
+finished image next to a partial one.
+
+Without a service worker (private browsing blocks them) the left pane cannot
+simulate a partial download at all; the page says so and the JPEG XL pane still
+works.
 
 ## Deployment
 

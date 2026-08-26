@@ -1,0 +1,57 @@
+source,codec,mode,parameter,ssimulacra2,difference_from_target,bytes,file
+anto-meneghini-IrohWzafmmA-unsplash.png,JPEG XL,progressive-center-first,d=0.876271;e=7;progressive;group_order=1,84.995018,0.004982,350448,ssimu2-85/anto-meneghini-IrohWzafmmA-unsplash/anto-meneghini-IrohWzafmmA-unsplash-progressive.jxl
+anto-meneghini-IrohWzafmmA-unsplash.png,JPEG,sequential,quality=100,84.611451,0.388549,922947,ssimu2-85/anto-meneghini-IrohWzafmmA-unsplash/anto-meneghini-IrohWzafmmA-unsplash-jpeg-sequential.jpg
+anto-meneghini-IrohWzafmmA-unsplash.png,JPEG,progressive,quality=100,84.611451,0.388549,886230,ssimu2-85/anto-meneghini-IrohWzafmmA-unsplash/anto-meneghini-IrohWzafmmA-unsplash-jpeg-progressive.jpg
+anto-meneghini-IrohWzafmmA-unsplash.png,JPEGli,sequential,d=0.834248;p=0,84.998950,0.001050,430156,ssimu2-85/anto-meneghini-IrohWzafmmA-unsplash/anto-meneghini-IrohWzafmmA-unsplash-jpegli-sequential.jpg
+anto-meneghini-IrohWzafmmA-unsplash.png,JPEGli,progressive-level-2,d=0.834248;p=2,84.998950,0.001050,414782,ssimu2-85/anto-meneghini-IrohWzafmmA-unsplash/anto-meneghini-IrohWzafmmA-unsplash-jpegli-progressive.jpg
+anto-meneghini-IrohWzafmmA-unsplash.png,WebP,standard,q=100;method=6,83.616606,1.383394,579098,ssimu2-85/anto-meneghini-IrohWzafmmA-unsplash/anto-meneghini-IrohWzafmmA-unsplash.webp
+anto-meneghini-IrohWzafmmA-unsplash.png,AVIF,standard,q=79;speed=6,84.830400,0.169600,275470,ssimu2-85/anto-meneghini-IrohWzafmmA-unsplash/anto-meneghini-IrohWzafmmA-unsplash.avif
+anto-meneghini-IrohWzafmmA-unsplash.png,AVIF,progressive,q=79;speed=6,84.813027,0.186973,280147,ssimu2-85/anto-meneghini-IrohWzafmmA-unsplash/anto-meneghini-IrohWzafmmA-unsplash-progressive.avif
+calvin-xy-wang-FUNWLd_5_oI-unsplash.png,JPEG XL,progressive-center-first,d=0.662643;e=7;progressive;group_order=1,85.002107,0.002107,287656,ssimu2-85/calvin-xy-wang-FUNWLd_5_oI-unsplash/calvin-xy-wang-FUNWLd_5_oI-unsplash-progressive.jxl
+calvin-xy-wang-FUNWLd_5_oI-unsplash.png,JPEG,sequential,quality=94,85.331760,0.331760,367417,ssimu2-85/calvin-xy-wang-FUNWLd_5_oI-unsplash/calvin-xy-wang-FUNWLd_5_oI-unsplash-jpeg-sequential.jpg
+calvin-xy-wang-FUNWLd_5_oI-unsplash.png,JPEG,progressive,quality=94,85.331760,0.331760,339756,ssimu2-85/calvin-xy-wang-FUNWLd_5_oI-unsplash/calvin-xy-wang-FUNWLd_5_oI-unsplash-jpeg-progressive.jpg
+calvin-xy-wang-FUNWLd_5_oI-unsplash.png,JPEGli,sequential,d=0.663643;p=0,85.032353,0.032353,351405,ssimu2-85/calvin-xy-wang-FUNWLd_5_oI-unsplash/calvin-xy-wang-FUNWLd_5_oI-unsplash-jpegli-sequential.jpg
+calvin-xy-wang-FUNWLd_5_oI-unsplash.png,JPEGli,progressive-level-2,d=0.663643;p=2,85.032353,0.032353,335308,ssimu2-85/calvin-xy-wang-FUNWLd_5_oI-unsplash/calvin-xy-wang-FUNWLd_5_oI-unsplash-jpegli-progressive.jpg
+calvin-xy-wang-FUNWLd_5_oI-unsplash.png,WebP,standard,q=92.5;method=6,84.890842,0.109158,298554,ssimu2-85/calvin-xy-wang-FUNWLd_5_oI-unsplash/calvin-xy-wang-FUNWLd_5_oI-unsplash.webp
+calvin-xy-wang-FUNWLd_5_oI-unsplash.png,AVIF,standard,q=86;speed=6,84.589023,0.410977,260563,ssimu2-85/calvin-xy-wang-FUNWLd_5_oI-unsplash/calvin-xy-wang-FUNWLd_5_oI-unsplash.avif
+calvin-xy-wang-FUNWLd_5_oI-unsplash.png,AVIF,progressive,q=86;speed=6,84.626676,0.373324,264601,ssimu2-85/calvin-xy-wang-FUNWLd_5_oI-unsplash/calvin-xy-wang-FUNWLd_5_oI-unsplash-progressive.avif
+dibakar-roy-HNT6EehPZoI-unsplash.png,JPEG XL,progressive-center-first,d=1.356809;e=7;progressive;group_order=1,85.004893,0.004893,220647,ssimu2-85/dibakar-roy-HNT6EehPZoI-unsplash/dibakar-roy-HNT6EehPZoI-unsplash-progressive.jxl
+dibakar-roy-HNT6EehPZoI-unsplash.png,JPEG,sequential,quality=93,84.723273,0.276727,364253,ssimu2-85/dibakar-roy-HNT6EehPZoI-unsplash/dibakar-roy-HNT6EehPZoI-unsplash-jpeg-sequential.jpg
+dibakar-roy-HNT6EehPZoI-unsplash.png,JPEG,progressive,quality=93,84.723273,0.276727,343832,ssimu2-85/dibakar-roy-HNT6EehPZoI-unsplash/dibakar-roy-HNT6EehPZoI-unsplash-jpeg-progressive.jpg
+dibakar-roy-HNT6EehPZoI-unsplash.png,JPEGli,sequential,d=1.241238;p=0,84.975685,0.024315,275244,ssimu2-85/dibakar-roy-HNT6EehPZoI-unsplash/dibakar-roy-HNT6EehPZoI-unsplash-jpegli-sequential.jpg
+dibakar-roy-HNT6EehPZoI-unsplash.png,JPEGli,progressive-level-2,d=1.241238;p=2,84.975685,0.024315,268732,ssimu2-85/dibakar-roy-HNT6EehPZoI-unsplash/dibakar-roy-HNT6EehPZoI-unsplash-jpegli-progressive.jpg
+dibakar-roy-HNT6EehPZoI-unsplash.png,WebP,standard,q=94;method=6,85.002711,0.002711,327796,ssimu2-85/dibakar-roy-HNT6EehPZoI-unsplash/dibakar-roy-HNT6EehPZoI-unsplash.webp
+dibakar-roy-HNT6EehPZoI-unsplash.png,AVIF,standard,q=75;speed=6,85.117962,0.117962,204363,ssimu2-85/dibakar-roy-HNT6EehPZoI-unsplash/dibakar-roy-HNT6EehPZoI-unsplash.avif
+dibakar-roy-HNT6EehPZoI-unsplash.png,AVIF,progressive,q=74;speed=6,84.754431,0.245569,201206,ssimu2-85/dibakar-roy-HNT6EehPZoI-unsplash/dibakar-roy-HNT6EehPZoI-unsplash-progressive.avif
+gustavo-leighton-9qJ3Kp4pLQE-unsplash.png,JPEG XL,progressive-center-first,d=1.133582;e=7;progressive;group_order=1,85.003957,0.003957,210335,ssimu2-85/gustavo-leighton-9qJ3Kp4pLQE-unsplash/gustavo-leighton-9qJ3Kp4pLQE-unsplash-progressive.jxl
+gustavo-leighton-9qJ3Kp4pLQE-unsplash.png,JPEG,sequential,quality=100,81.991269,3.008731,755810,ssimu2-85/gustavo-leighton-9qJ3Kp4pLQE-unsplash/gustavo-leighton-9qJ3Kp4pLQE-unsplash-jpeg-sequential.jpg
+gustavo-leighton-9qJ3Kp4pLQE-unsplash.png,JPEG,progressive,quality=100,81.991269,3.008731,704894,ssimu2-85/gustavo-leighton-9qJ3Kp4pLQE-unsplash/gustavo-leighton-9qJ3Kp4pLQE-unsplash-jpeg-progressive.jpg
+gustavo-leighton-9qJ3Kp4pLQE-unsplash.png,JPEGli,sequential,d=0.768957;p=0,84.999913,0.000087,315818,ssimu2-85/gustavo-leighton-9qJ3Kp4pLQE-unsplash/gustavo-leighton-9qJ3Kp4pLQE-unsplash-jpegli-sequential.jpg
+gustavo-leighton-9qJ3Kp4pLQE-unsplash.png,JPEGli,progressive-level-2,d=0.768957;p=2,84.999913,0.000087,303092,ssimu2-85/gustavo-leighton-9qJ3Kp4pLQE-unsplash/gustavo-leighton-9qJ3Kp4pLQE-unsplash-jpegli-progressive.jpg
+gustavo-leighton-9qJ3Kp4pLQE-unsplash.png,WebP,standard,q=98.5;method=6,80.373619,4.626381,380728,ssimu2-85/gustavo-leighton-9qJ3Kp4pLQE-unsplash/gustavo-leighton-9qJ3Kp4pLQE-unsplash.webp
+gustavo-leighton-9qJ3Kp4pLQE-unsplash.png,AVIF,standard,q=83;speed=6,84.890930,0.109070,206443,ssimu2-85/gustavo-leighton-9qJ3Kp4pLQE-unsplash/gustavo-leighton-9qJ3Kp4pLQE-unsplash.avif
+gustavo-leighton-9qJ3Kp4pLQE-unsplash.png,AVIF,progressive,q=83;speed=6,85.056346,0.056346,212065,ssimu2-85/gustavo-leighton-9qJ3Kp4pLQE-unsplash/gustavo-leighton-9qJ3Kp4pLQE-unsplash-progressive.avif
+kristaps-ungurs-xRkLHDRWPac-unsplash.png,JPEG XL,progressive-center-first,d=1.472879;e=7;progressive;group_order=1,85.001785,0.001785,63284,ssimu2-85/kristaps-ungurs-xRkLHDRWPac-unsplash/kristaps-ungurs-xRkLHDRWPac-unsplash-progressive.jxl
+kristaps-ungurs-xRkLHDRWPac-unsplash.png,JPEG,sequential,quality=92,84.769624,0.230376,129811,ssimu2-85/kristaps-ungurs-xRkLHDRWPac-unsplash/kristaps-ungurs-xRkLHDRWPac-unsplash-jpeg-sequential.jpg
+kristaps-ungurs-xRkLHDRWPac-unsplash.png,JPEG,progressive,quality=92,84.769624,0.230376,125327,ssimu2-85/kristaps-ungurs-xRkLHDRWPac-unsplash/kristaps-ungurs-xRkLHDRWPac-unsplash-jpeg-progressive.jpg
+kristaps-ungurs-xRkLHDRWPac-unsplash.png,JPEGli,sequential,d=1.113412;p=0,85.012405,0.012405,99672,ssimu2-85/kristaps-ungurs-xRkLHDRWPac-unsplash/kristaps-ungurs-xRkLHDRWPac-unsplash-jpegli-sequential.jpg
+kristaps-ungurs-xRkLHDRWPac-unsplash.png,JPEGli,progressive-level-2,d=1.113412;p=2,85.012405,0.012405,97119,ssimu2-85/kristaps-ungurs-xRkLHDRWPac-unsplash/kristaps-ungurs-xRkLHDRWPac-unsplash-jpegli-progressive.jpg
+kristaps-ungurs-xRkLHDRWPac-unsplash.png,WebP,standard,q=96.3;method=6,84.980610,0.019390,129754,ssimu2-85/kristaps-ungurs-xRkLHDRWPac-unsplash/kristaps-ungurs-xRkLHDRWPac-unsplash.webp
+kristaps-ungurs-xRkLHDRWPac-unsplash.png,AVIF,standard,q=79;speed=6,84.834307,0.165693,57963,ssimu2-85/kristaps-ungurs-xRkLHDRWPac-unsplash/kristaps-ungurs-xRkLHDRWPac-unsplash.avif
+kristaps-ungurs-xRkLHDRWPac-unsplash.png,AVIF,progressive,q=81;speed=6,84.870996,0.129004,65407,ssimu2-85/kristaps-ungurs-xRkLHDRWPac-unsplash/kristaps-ungurs-xRkLHDRWPac-unsplash-progressive.avif
+rob-potter-qzBYyChPj1s-unsplash.png,JPEG XL,progressive,d=1.329041;e=7;progressive,85.000766,0.000766,118849,ssimu2-85/rob-potter-qzBYyChPj1s-unsplash/rob-potter-qzBYyChPj1s-unsplash-progressive.jxl
+rob-potter-qzBYyChPj1s-unsplash.png,JPEG,sequential,quality=93,85.042137,0.042137,202733,ssimu2-85/rob-potter-qzBYyChPj1s-unsplash/rob-potter-qzBYyChPj1s-unsplash-jpeg-sequential.jpg
+rob-potter-qzBYyChPj1s-unsplash.png,JPEG,progressive,quality=93,85.042137,0.042137,192205,ssimu2-85/rob-potter-qzBYyChPj1s-unsplash/rob-potter-qzBYyChPj1s-unsplash-jpeg-progressive.jpg
+rob-potter-qzBYyChPj1s-unsplash.png,JPEGli,sequential,d=0.841248;p=0,84.986691,0.013309,198755,ssimu2-85/rob-potter-qzBYyChPj1s-unsplash/rob-potter-qzBYyChPj1s-unsplash-jpegli-sequential.jpg
+rob-potter-qzBYyChPj1s-unsplash.png,JPEGli,progressive-level-2,d=0.841248;p=2,84.986691,0.013309,191633,ssimu2-85/rob-potter-qzBYyChPj1s-unsplash/rob-potter-qzBYyChPj1s-unsplash-jpegli-progressive.jpg
+rob-potter-qzBYyChPj1s-unsplash.png,WebP,standard,q=97.6;method=6,84.981261,0.018739,232132,ssimu2-85/rob-potter-qzBYyChPj1s-unsplash/rob-potter-qzBYyChPj1s-unsplash.webp
+rob-potter-qzBYyChPj1s-unsplash.png,AVIF,standard,q=81;speed=6,84.981967,0.018033,120376,ssimu2-85/rob-potter-qzBYyChPj1s-unsplash/rob-potter-qzBYyChPj1s-unsplash.avif
+rob-potter-qzBYyChPj1s-unsplash.png,AVIF,progressive,q=79;speed=6,84.938971,0.061029,120375,ssimu2-85/rob-potter-qzBYyChPj1s-unsplash/rob-potter-qzBYyChPj1s-unsplash-progressive.avif
+thom-masat-b40crbTDmkU-unsplash.png,JPEG XL,progressive,d=1.053633;e=7;progressive,85.025814,0.025814,262669,ssimu2-85/thom-masat-b40crbTDmkU-unsplash/thom-masat-b40crbTDmkU-unsplash-progressive.jxl
+thom-masat-b40crbTDmkU-unsplash.png,JPEG,sequential,quality=100,84.785178,0.214822,850864,ssimu2-85/thom-masat-b40crbTDmkU-unsplash/thom-masat-b40crbTDmkU-unsplash-jpeg-sequential.jpg
+thom-masat-b40crbTDmkU-unsplash.png,JPEG,progressive,quality=100,84.785178,0.214822,816024,ssimu2-85/thom-masat-b40crbTDmkU-unsplash/thom-masat-b40crbTDmkU-unsplash-jpeg-progressive.jpg
+thom-masat-b40crbTDmkU-unsplash.png,JPEGli,sequential,d=0.927051;p=0,84.989033,0.010967,330718,ssimu2-85/thom-masat-b40crbTDmkU-unsplash/thom-masat-b40crbTDmkU-unsplash-jpegli-sequential.jpg
+thom-masat-b40crbTDmkU-unsplash.png,JPEGli,progressive-level-2,d=0.927051;p=2,84.989033,0.010967,321479,ssimu2-85/thom-masat-b40crbTDmkU-unsplash/thom-masat-b40crbTDmkU-unsplash-jpegli-progressive.jpg
+thom-masat-b40crbTDmkU-unsplash.png,WebP,standard,q=98.4;method=6,83.889609,1.110391,502054,ssimu2-85/thom-masat-b40crbTDmkU-unsplash/thom-masat-b40crbTDmkU-unsplash.webp
+thom-masat-b40crbTDmkU-unsplash.png,AVIF,standard,q=82;speed=6,85.276423,0.276423,251081,ssimu2-85/thom-masat-b40crbTDmkU-unsplash/thom-masat-b40crbTDmkU-unsplash.avif
+thom-masat-b40crbTDmkU-unsplash.png,AVIF,progressive,q=82;speed=6,85.207987,0.207987,254783,ssimu2-85/thom-masat-b40crbTDmkU-unsplash/thom-masat-b40crbTDmkU-unsplash-progressive.avif
