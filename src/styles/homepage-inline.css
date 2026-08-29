@@ -437,12 +437,27 @@
   height: auto;
 }
 
+/* The video links to the Progressive Loading Demo. `display: contents` keeps
+   the anchor out of the box tree, so the layout is byte-for-byte what it was
+   before the wrapper existed — the click still activates the link, since it
+   bubbles up from the video. The focus ring has to be drawn on the video for
+   the same reason: the anchor itself has no box to outline. */
+.link-video-progressive {
+  display: contents;
+}
+
 #myVideo {
   display: block;
   width: 100%;
   max-width: 896px;
   height: auto;
   margin-inline: auto;
+  cursor: pointer;
+}
+
+.link-video-progressive:focus-visible #myVideo {
+  outline: 2px solid var(--brand--teal-bright--P3--700);
+  outline-offset: 4px;
 }
 
 /* Let the progressive section go wider so the video can breathe */

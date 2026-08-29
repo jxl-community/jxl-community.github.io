@@ -526,12 +526,18 @@ const keywords =
           </div>
           <div class="div-container-code">
             <div class="w-embed">
-              <video id="myVideo" muted autoplay playsinline>
-                <source src="/alex-perez-uGXEEwnvIkQ-unsplash-vsnonprogressive-h265.mp4" type="video/mp4; codecs=hvc1" />
-                <source src="/alex-perez-uGXEEwnvIkQ-unsplash-vsnonprogressive-h264.mp4" type="video/mp4; codecs=mp4v" />
-                <source src="/alex-perez-uGXEEwnvIkQ-unsplash-vsnonprogressive-VP9.webm" type="video/webm; codecs=vp9" />
-                <source src="/alex-perez-uGXEEwnvIkQ-unsplash-vsnonprogressive-h264.mp4" type="video/mp4" />
-              </video>
+              <a
+                href="/resources/progressive-loading-demo.html"
+                class="link-video-progressive"
+                aria-label="Progressive Loading Demo"
+              >
+                <video id="myVideo" muted autoplay playsinline>
+                  <source src="/alex-perez-uGXEEwnvIkQ-unsplash-vsnonprogressive-h265.mp4" type="video/mp4; codecs=hvc1" />
+                  <source src="/alex-perez-uGXEEwnvIkQ-unsplash-vsnonprogressive-h264.mp4" type="video/mp4; codecs=mp4v" />
+                  <source src="/alex-perez-uGXEEwnvIkQ-unsplash-vsnonprogressive-VP9.webm" type="video/webm; codecs=vp9" />
+                  <source src="/alex-perez-uGXEEwnvIkQ-unsplash-vsnonprogressive-h264.mp4" type="video/mp4" />
+                </video>
+              </a>
 
               <script is:inline>
                 const video = document.getElementById('myVideo');
@@ -549,7 +555,7 @@ const keywords =
           <div class="size-60px"></div>
           <div class="wrapper-text centered width-rem">
             <p class="text-xl-light is-centered">
-              With JPEG&nbsp;XL’s state-of-the-art progressive encoding and decoding, you’ll see an image sooner than with other formats &mdash; with as little as 1% of the image loaded. It supports both saliency progression (visually important areas of the image delivered first) and reordering (middle data sent first).
+              With JPEG&nbsp;XL’s state-of-the-art progressive encoding and decoding, you’ll see an image sooner than with other formats &mdash; with as little as 1% of the image loaded. It supports both saliency progression&ensp;(visually important areas of the image delivered first)&ensp;and reordering&ensp;(middle data sent first). Try for yourself in the <a href="/resources/progressive-loading-demo.html">Progressive Loading Demo</a>&nbsp;and compare it to other formats.
             </p>
           </div>
         </div>
