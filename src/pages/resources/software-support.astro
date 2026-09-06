@@ -884,4 +884,22 @@ const description =
       </section>
     </div>
   </main>
+  <script>
+    const embed = document.querySelector('#ciu-embed-wrap .ciu-embed');
+
+    if (embed) {
+      // The third-party module may insert its frame before or after this script.
+      const observer = new MutationObserver(labelFrame);
+
+      function labelFrame() {
+        const frame = embed?.querySelector('iframe');
+        if (!frame) return;
+        frame.title = 'JPEG XL browser support';
+        observer.disconnect();
+      }
+
+      observer.observe(embed, { childList: true, subtree: true });
+      labelFrame();
+    }
+  </script>
 </BaseLayout>

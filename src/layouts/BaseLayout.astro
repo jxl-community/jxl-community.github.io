@@ -42,6 +42,7 @@ const {
 // passing an already-absolute canonical leaves it unchanged.
 const canonicalUrl = new URL(canonical ?? Astro.url.pathname, Astro.site).href;
 const ogImageUrl = new URL(ogImage, Astro.site).href;
+const searchable = !robots.toLowerCase().split(/[\s,]+/).includes('noindex');
 ---
 
 <!doctype html>
@@ -100,7 +101,10 @@ const ogImageUrl = new URL(ogImage, Astro.site).href;
   <body class="body">
     <a href="#main-content" class="skip-nav">Skip to main content</a>
     <Nav />
-    <div class="page-wrapper">
+    <!-- Opt current pages into search. Pagefind skips unmarked legacy HTML;
+         this includes hero copy and main content, and excludes the global nav.
+         Semantic footers are ignored by Pagefind automatically. -->
+    <div class="page-wrapper" data-pagefind-body={searchable ? '' : undefined}>
       <slot />
       {footerVariant === 'full' ? <FooterFull /> : <FooterCompact />}
     </div>

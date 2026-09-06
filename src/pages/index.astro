@@ -139,6 +139,36 @@ const keywords =
         }
       }
 
+      @media (prefers-reduced-motion: reduce) {
+        /* Keep one logo visible instead of leaving the carousel transparent. */
+        .JPEGCommitte-logo {
+          animation: none;
+          display: none;
+        }
+        .JPEGCommitte-logo[data-static-logo] {
+          display: block;
+          opacity: 1;
+        }
+
+        /* Preserve each diagram's compressed state and its size comparison. */
+        .scale-animation-1 #green-square-1 {
+          animation: none;
+          transform: scale(0.8696);
+        }
+        .scale-animation-2 #green-square-2 {
+          animation: none;
+          transform: scale(0.684) translate(-0.5px, -0.5px);
+        }
+        .scale-animation-3 #green-square-3 {
+          animation: none;
+          transform: scale(0.6135) translate(-0.5px, -0.5px);
+        }
+        .scale-animation-4 #green-square-4 {
+          animation: none;
+          transform: scale(0.5714) translate(-0.5px, -0.5px);
+        }
+      }
+
       #myVideo,
       #HDRVideo {
         max-width: 896px;
@@ -778,7 +808,7 @@ const keywords =
                 <img class="JPEGCommitte-logo" style="--i: 1;" src="/images/JPEG-Committee-logos/aic-logo.svg" alt="AIC" />
                 <img class="JPEGCommitte-logo" style="--i: 2;" src="/images/JPEG-Committee-logos/jpeg2000-logo.svg" alt="JPEG 2000" />
                 <img class="JPEGCommitte-logo" style="--i: 3;" src="/images/JPEG-Committee-logos/jpeg-logo.svg" alt="JPEG" />
-                <img class="JPEGCommitte-logo" style="--i: 4;" src="/images/JPEG-Committee-logos/jpegxl-logo.svg" alt="JPEG XL" />
+                <img class="JPEGCommitte-logo" data-static-logo style="--i: 4;" src="/images/JPEG-Committee-logos/jpegxl-logo.svg" alt="JPEG XL" />
                 <img class="JPEGCommitte-logo" style="--i: 5;" src="/images/JPEG-Committee-logos/jpegpleno-logo.svg" alt="JPEG Pleno" />
                 <img class="JPEGCommitte-logo" style="--i: 6;" src="/images/JPEG-Committee-logos/jpegsystems-logo.svg" alt="JPEG Systems" />
                 <img class="JPEGCommitte-logo" style="--i: 7;" src="/images/JPEG-Committee-logos/jpegai-logo.svg" alt="JPEG AI" />
@@ -797,7 +827,7 @@ const keywords =
       </section>
     </main>
 
-  <section class="sitemap-section" aria-label="Site navigation">
+  <section class="sitemap-section" aria-label="Site navigation" data-pagefind-ignore>
       <div class="padding-global width-1200">
         <div class="container-large">
           <div class="padding-section-medium">

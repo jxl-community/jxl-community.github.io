@@ -55,6 +55,22 @@ The production URL and sitemap behavior are configured in
 [`astro.config.mjs`](astro.config.mjs). Keep the configured URL format in mind
 when adding pages so canonical links and sitemap entries stay correct.
 
+## Site search
+
+`npm run build` generates the Pagefind index after Astro builds the site.
+`BaseLayout.astro` opts current pages into indexing with `data-pagefind-body`
+on the content wrapper, including each page's hero and main content. Pages
+with `robots="noindex, follow"`, such as the 404 page, are not opted in.
+Unmarked standalone HTML, including archived or obsolete pages and redirect
+stubs, is excluded from search. This does not remove those files or change
+their URLs.
+
+Pagefind ignores semantic navigation and footers. Use `data-pagefind-ignore`
+for other navigation, repeated controls, or demo placeholder values that
+should not appear in excerpts. Keep descriptive headings and editorial
+content searchable. Preview the production build to test the complete index;
+the development server uses the navigation-based search fallback.
+
 ## JPEG XL WASM decoder
 
 Pages that display `.jxl` images ship a WebAssembly fallback for browsers

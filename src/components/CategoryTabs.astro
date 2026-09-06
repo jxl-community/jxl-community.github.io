@@ -14,7 +14,7 @@ interface Props {
 const { ariaLabel, categories, idPrefix, orientation = 'horizontal' } = Astro.props;
 ---
 
-<div class:list={['category-tabs-control', `category-tabs-control--${orientation}`]}>
+<div class:list={['category-tabs-control', `category-tabs-control--${orientation}`]} data-pagefind-ignore>
   <div
     class="category-tabs"
     id={`${idPrefix}-tabs`}
