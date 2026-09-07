@@ -310,7 +310,13 @@ fn advance(ctx: &mut Ctx) -> i32 {
                         let mut dec = result;
                         capture_image_info(ctx, &dec);
                         let fmt = ctx.pixel_format();
-                        dec.set_pixel_format(fmt);
+                        // jxl-rs only accepts a format change between basic info
+                        // and the first frame header, which is exactly here, so
+                        // this cannot fail -- surfaced rather than ignored so a
+                        // future reorder of this arm is loud instead of silent.
+                        if let Err(e) = dec.set_pixel_format(fmt) {
+                            return ctx.fail(&format!("pixel format: {e}"));
+                        }
                         capture_profiles(ctx, &dec);
                         ctx.state = Some(State::Info(dec));
                     }

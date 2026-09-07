@@ -25,7 +25,7 @@ imports** — no JS glue, no emscripten runtime, no `SharedArrayBuffer`:
 const { instance } = await WebAssembly.instantiate(bytes);   // that's all
 ```
 
-| | libjxl `wasm_demo` (current) | jxl-rs 0.6.0 (here) |
+| | libjxl `wasm_demo` (current) | jxl-rs 0.7.1 (here) |
 | --- | --- | --- |
 | wasm imports | emscripten runtime | **none** |
 | threads / `SharedArrayBuffer` | yes | no |
@@ -33,9 +33,9 @@ const { instance } = await WebAssembly.instantiate(bytes);   // that's all
 | first pixels, `portrait.jxl` | ~25–30 % of file | **2 % (1 381 B)** |
 | first pixels, 1 MB pair | ~25 % | **1 % (8 698 B)** |
 | HDR | tone-mapped to SDR at 100 nits | PQ data and ICC passed through |
-| payload | 1 062 KB wasm + 24 KB JS | 1 210 KB wasm, no glue |
+| payload | 1 062 KB wasm + 24 KB JS | 1 326 KB wasm, no glue |
 
-It is ~123 KB larger, against removing a JS glue file, a service worker, and a
+It is ~240 KB larger, against removing a JS glue file, a service worker, and a
 full page reload.
 
 ## Building
@@ -126,16 +126,39 @@ find public -name '*.jxl' > /tmp/all.txt
 node scripts/compare-vs-libjxl.mjs /tmp/all.txt
 ```
 
-Run against every `.jxl` in `public/` (7 425 files) versus djxl 0.12.0:
+Run against every `.jxl` in `public/` (7 435 files) versus djxl 0.12.0, on
+jxl-rs 0.7.1:
 
 | | |
 | --- | --- |
-| compared | 7 425 |
-| bit-identical | 70 |
-| within 2/255 | 7 355 |
-| **differing by more than 2/255** | **0** |
+| compared | 7 435 |
+| bit-identical | 67 |
+| within 2/255 | 7 366 |
+| **differing by more than 2/255** | **2** (the same file twice — see below) |
 | size mismatches | 0 |
 | failures (either decoder) | 0 |
+
+### The one file that does not match
+
+`images/art/2021-08_monad.jxl` (and its copy under `old/art/`) decodes wrong on
+jxl-rs 0.7.1: the right-hand region comes out as black/white banding instead of
+a clean wedge, at `maxDelta=255`, 13.8 dB PSNR. djxl 0.12.0 and jxl-rs **0.6.0**
+agree with each other exactly, so this is a 0.7.x change, not a long-standing
+gap. Both the SIMD and scalar modules are affected identically, so it is not a
+lane-width bug in the SIMD path.
+
+The likely cause is the 16-bit modular buffers added in 0.7.0:
+`Frame::modular_storage` selects `ModularStorage::I16` whenever the bitstream
+sets `modular_16bit_sufficient`, and the banding is what wraparound looks like.
+jxl-art files exist precisely to push modular arithmetic to its limits, so they
+are the files that would expose it. jxl-rs's own `allow_16bit_modular_buffers`
+escape hatch is `#[cfg(test)]`-only, so this wrapper cannot opt out of it.
+
+The rest of the art directory is unaffected beyond rounding: the other six
+files differ from 0.6.0 by at most 1/255. It was shipped anyway, as one wrong
+image on the art page against 0.7.x's progressive-rendering work, memory
+reductions, and several decoder panic fixes. Recheck it on the next jxl-rs
+release: it is the canary for this whole class of bug.
 
 Nothing in the corpus decodes visibly differently. The 2/255 band is ordinary
 rounding divergence between two independent implementations.
@@ -165,4 +188,6 @@ decoding untrusted images should re-instantiate the module when a call traps.
 - Extra channels beyond alpha (spot colour, depth, selection masks) are parsed
   and counted, but not exposed.
 - jxl-rs is pre-1.0 and its typestate API can still churn, so the dependency is
-  pinned to `=0.6.0`.
+  pinned to `=0.7.1`. 0.7.1 broke `set_pixel_format`'s signature (it returns
+  `Result` now), which is the kind of churn the pin exists for.
+- One jxl-art file decodes wrong on 0.7.1 — see [Verification](#verification).
