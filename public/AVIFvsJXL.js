@@ -137,8 +137,11 @@ const getSliderValueAVIF = (scrollValue, type) => {
 function createDotsAVIF(count) {
     elementsAVIF.imageDots_AVIF.innerHTML = '';
     for (let i = 0; i < count; i++) {
-        const dot = document.createElement('div');
+        const dot = document.createElement('button');
+        dot.type = 'button';
         dot.classList.add('dot');
+        const title = Object.keys(imagesSizeArrayAVIF[i])[0];
+        dot.setAttribute('aria-label', `Show image ${i + 1} of ${count}: ${title}`);
         dot.addEventListener('click', () => {
             imageIndexAVIF = i;
             updateDotsAVIF();
@@ -154,6 +157,7 @@ function updateDotsAVIF() {
     const dots = elementsAVIF.imageDots_AVIF.children;
     for (let i = 0; i < dots.length; i++) {
         dots[i].classList.toggle('active', i === imageIndexAVIF);
+        dots[i].setAttribute('aria-pressed', String(i === imageIndexAVIF));
     }
 }
 

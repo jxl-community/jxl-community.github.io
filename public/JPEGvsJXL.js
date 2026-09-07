@@ -134,8 +134,11 @@ const getSliderValue = (scrollValue, type) => {
 function createDots(count) {
     elements.imageDots.innerHTML = '';
     for (let i = 0; i < count; i++) {
-        const dot = document.createElement('div');
+        const dot = document.createElement('button');
+        dot.type = 'button';
         dot.classList.add('dot');
+        const title = Object.keys(imagesSizeArray[i])[0];
+        dot.setAttribute('aria-label', `Show image ${i + 1} of ${count}: ${title}`);
         dot.addEventListener('click', () => {
             imageIndex = i;
             updateDots();
@@ -150,6 +153,7 @@ function updateDots() {
     const dots = elements.imageDots.children;
     for (let i = 0; i < dots.length; i++) {
         dots[i].classList.toggle('active', i === imageIndex);
+        dots[i].setAttribute('aria-pressed', String(i === imageIndex));
     }
 }
 /* Load Data */

@@ -479,6 +479,18 @@
   background-color: var(--accent--lime--P3--600);
 }
 
+/* Native buttons retain the original dots' size, spacing, and colors. */
+button.dot {
+  appearance: none;
+  padding: 0;
+  border: 0;
+}
+
+button.dot:focus-visible {
+  outline: 2px solid var(--brand--teal-bright--P3--600);
+  outline-offset: 2px;
+}
+
 /* slider comparison */
 .section-container {
   display: flex;
