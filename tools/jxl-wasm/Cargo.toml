@@ -12,7 +12,7 @@ path = "src/lib.rs"
 
 [dependencies]
 # Pinned: jxl-rs is pre-1.0 and its typestate API can still churn.
-jxl = "=0.7.1"
+jxl = "=0.7.2"
 
 [profile.release]
 opt-level = 3
