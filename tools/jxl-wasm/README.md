@@ -25,7 +25,7 @@ imports** — no JS glue, no emscripten runtime, no `SharedArrayBuffer`:
 const { instance } = await WebAssembly.instantiate(bytes);   // that's all
 ```
 
-| | libjxl `wasm_demo` (current) | jxl-rs 0.7.2 (here) |
+| | libjxl `wasm_demo` (current) | jxl-rs 0.7.3 (here) |
 | --- | --- | --- |
 | wasm imports | emscripten runtime | **none** |
 | threads / `SharedArrayBuffer` | yes | no |
@@ -33,9 +33,9 @@ const { instance } = await WebAssembly.instantiate(bytes);   // that's all
 | first pixels, `portrait.jxl` | ~25–30 % of file | **2 % (1 381 B)** |
 | first pixels, 1 MB pair | ~25 % | **1 % (8 698 B)** |
 | HDR | tone-mapped to SDR at 100 nits | PQ data and ICC passed through |
-| payload | 1 062 KB wasm + 24 KB JS | 1 330 KB wasm, no glue |
+| payload | 1 062 KB wasm + 24 KB JS | 1 329 KB wasm, no glue |
 
-It is ~244 KB larger, against removing a JS glue file, a service worker, and a
+It is ~243 KB larger, against removing a JS glue file, a service worker, and a
 full page reload.
 
 ## Building
@@ -127,8 +127,9 @@ node scripts/compare-vs-libjxl.mjs /tmp/all.txt
 ```
 
 Run against every `.jxl` in `public/` (7 435 files) versus djxl 0.12.0, on
-jxl-rs 0.7.2. 0.7.2 is pixel-for-pixel identical to 0.7.1 here — every file in
-the corpus decodes to the same bytes — so these are also the 0.7.1 numbers:
+jxl-rs 0.7.3. Every 0.7.x release so far decodes this corpus to identical
+bytes — 0.7.1, 0.7.2 and 0.7.3 agree pixel-for-pixel on all 7 435 files — so
+these numbers cover all three:
 
 | | |
 | --- | --- |
@@ -146,9 +147,10 @@ jxl-rs 0.7.x: the right-hand region comes out as black/white banding instead of
 a clean wedge, at `maxDelta=255`, 13.8 dB PSNR. djxl 0.12.0 and jxl-rs **0.6.0**
 agree with each other exactly, so this is a 0.7.x change, not a long-standing
 gap. Both the SIMD and scalar modules are affected identically, so it is not a
-lane-width bug in the SIMD path. **0.7.2 did not fix it** — that release is a
-bugfix pass over bounds checks, squeeze division-by-zero, and ICC validation,
-and touches nothing in the modular buffer path.
+lane-width bug in the SIMD path. **Neither 0.7.2 nor 0.7.3 fixed it** — both
+are bugfix releases (bounds checks, squeeze division-by-zero, ICC validation;
+then end-of-codestream-box handling and a stack-usage reduction) and neither
+touches the modular buffer path.
 
 The likely cause is the 16-bit modular buffers added in 0.7.0:
 `Frame::modular_storage` selects `ModularStorage::I16` whenever the bitstream
@@ -196,7 +198,7 @@ decoding untrusted images should re-instantiate the module when a call traps.
 - Extra channels beyond alpha (spot colour, depth, selection masks) are parsed
   and counted, but not exposed.
 - jxl-rs is pre-1.0 and its typestate API can still churn, so the dependency is
-  pinned to `=0.7.2`. 0.7.1 broke `set_pixel_format`'s signature (it returns
-  `Result` now), which is the kind of churn the pin exists for; 0.7.2 needed no
-  source changes.
+  pinned to `=0.7.3`. 0.7.1 broke `set_pixel_format`'s signature (it returns
+  `Result` now), which is the kind of churn the pin exists for; 0.7.2 and 0.7.3
+  needed no source changes.
 - One jxl-art file decodes wrong on 0.7.x — see [Verification](#verification).
