@@ -10,6 +10,12 @@ progressive-loading demo drives this module directly.
 
 Ship `dist/jxl_decoder_rs{,_simd}.wasm` to `public/resources/` after building.
 
+The nav's "this page is using a local WebAssembly decoder (jxl-rs vX.Y.Z)"
+notice is labelled from the `jxl` pin in `Cargo.toml`: `astro.config.mjs` parses
+it and Vite bakes it in (see `src/lib/jxl-decoder-version.ts`). Bumping the pin
+is the only edit needed — there is no version string to update by hand, and the
+site build fails loudly if the pin cannot be parsed.
+
 ## Why replace libjxl's wasm build
 
 The current decoder (`public/resources/jxl_decoder*.wasm` + its 24 KB JS glue)
@@ -136,45 +142,39 @@ files — so these numbers cover all four:
 | compared | 7 435 |
 | bit-identical | 67 |
 | within 2/255 | 7 366 |
-| **differing by more than 2/255** | **2** (the same file twice — see below) |
+| **differing by more than 2/255** | **2** (one invalid file, counted twice — see below) |
 | size mismatches | 0 |
 | failures (either decoder) | 0 |
 
 ### The one file that does not match
 
-`images/art/2021-08_monad.jxl` (and its copy under `old/art/`) decodes wrong on
-jxl-rs 0.7.x: the right-hand region comes out as black/white banding instead of
-a clean wedge, at `maxDelta=255`, 13.8 dB PSNR. djxl 0.12.0 and jxl-rs **0.6.0**
-agree with each other exactly, so this is a 0.7.x change, not a long-standing
-gap. Both the SIMD and scalar modules are affected identically, so it is not a
-lane-width bug in the SIMD path. **No 0.7.x release since has fixed it** —
-0.7.2, 0.7.3 and 0.7.4 are all bugfix releases (bounds checks, squeeze
-division-by-zero, ICC validation; then end-of-codestream-box handling and a
-stack-usage reduction; then non-444 LF upscaling, smooth-squeeze upsampling of
-not-yet-decoded tiles, and a TOC-decode slowdown on small files) and none of
-them touches the modular buffer path. On 0.7.4 this file still reports
-`maxDelta=255` at 13.8 dB PSNR — the same figures as 0.7.3.
+`images/art/2021-08_monad.jxl` (and its copy under `old/art/`) decodes
+differently from djxl on jxl-rs 0.7.x: the right-hand region comes out as
+black/white banding instead of a clean wedge, at `maxDelta=255`, 13.8 dB PSNR.
 
-The likely cause is the 16-bit modular buffers added in 0.7.0:
-`Frame::modular_storage` selects `ModularStorage::I16` whenever the bitstream
-sets `modular_16bit_sufficient`, and the banding is what wraparound looks like.
-jxl-art files exist precisely to push modular arithmetic to its limits, so they
-are the files that would expose it. jxl-rs's own `allow_16bit_modular_buffers`
-escape hatch is `#[cfg(test)]`-only, so this wrapper cannot opt out of it.
+**This is not a decoder bug — the file is not valid JPEG XL.** That was
+established after the fact; earlier revisions of this document treated it as a
+0.7.x regression and hunted for a cause in the modular path. It is not one, and
+no jxl-rs release is going to "fix" it. Decoders are free to disagree about
+malformed input, and djxl 0.12.0, jxl-rs 0.6.0 and jxl-rs 0.7.x simply disagree
+here; that 0.6.0 happened to match djxl is coincidence, not correctness.
+
+Practical consequences:
+
+- **Do not treat this file as a canary on a version bump.** It measures nothing
+  about decoder quality. The corpus run will keep reporting `differing by more
+  than 2/255: 2` (this file, counted twice) on every release — that is the
+  expected result, not a finding.
+- The two art-page images render as banding. Re-exporting them from a valid
+  source is the actual fix, and is a content change, not a decoder change.
+- Nothing was reported upstream, and nothing should be.
 
 The rest of the art directory is unaffected beyond rounding: the other six
-files differ from 0.6.0 by at most 1/255. It was shipped anyway, as one wrong
-image on the art page against 0.7.x's progressive-rendering work, memory
-reductions, and several decoder panic fixes — the panic fixes matter here
-because a trap kills the whole module instance, not just one context.
+files differ from 0.6.0 by at most 1/255.
 
-Recheck this file on every jxl-rs bump: it is the canary for this whole class
-of bug, and `node scripts/compare-vs-libjxl.mjs` over the art directory alone
-is a few seconds' work. Nothing has been reported upstream.
-
-Apart from that one file, nothing in the corpus decodes visibly differently.
-The 2/255 band is ordinary rounding divergence between two independent
-implementations.
+Apart from that one invalid file, nothing in the corpus decodes visibly
+differently. The 2/255 band is ordinary rounding divergence between two
+independent implementations.
 
 Animation, HDR and metadata were checked separately: 12 frames stepped on
 `anim_jxl_logo.jxl` with distinct contents and correct 100 ms durations; ICC
@@ -204,4 +204,5 @@ decoding untrusted images should re-instantiate the module when a call traps.
   pinned to `=0.7.4`. 0.7.1 broke `set_pixel_format`'s signature (it returns
   `Result` now), which is the kind of churn the pin exists for; 0.7.2, 0.7.3 and
   0.7.4 needed no source changes.
-- One jxl-art file decodes wrong on 0.7.x — see [Verification](#verification).
+- One jxl-art file is not valid JPEG XL and renders as banding — see
+  [Verification](#verification). Not a decoder defect.

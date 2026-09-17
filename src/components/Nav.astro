@@ -1,3 +1,7 @@
+---
+import { JXL_DECODER_VERSION } from '../lib/jxl-decoder-version';
+---
+
 <nav class="navbar-2-component" aria-label="Main navigation" data-pagefind-ignore>
   <div class="navbar-container-menu-top">
     <div class="navbar-2-container">
@@ -131,7 +135,7 @@
             <span class="sr-only">JPEG XL decoder information</span>
           </button>
           <div id="navbar-jxl-decoder-message" role="tooltip" hidden>
-            Your browser doesn&rsquo;t support JXL natively, so this page is using a local WebAssembly decoder. Rendering may be slower than native support.
+            Your browser doesn&rsquo;t support JXL natively, so this page is using a local WebAssembly decoder (jxl-rs v{JXL_DECODER_VERSION}). Rendering may be slower than native support.
           </div>
         </div>
         </div>
@@ -157,7 +161,7 @@
               <span class="sr-only">JPEG XL decoder information</span>
             </button>
             <div id="navbar-jxl-decoder-message-mobile" role="tooltip" hidden>
-              Your browser doesn&rsquo;t support JXL natively, so this page is using a local WebAssembly decoder. Rendering may be slower than native support.
+              Your browser doesn&rsquo;t support JXL natively, so this page is using a local WebAssembly decoder (jxl-rs v{JXL_DECODER_VERSION}). Rendering may be slower than native support.
             </div>
           </div>
           <div class="navbar_menu-items navbar-mobile-toggle">
