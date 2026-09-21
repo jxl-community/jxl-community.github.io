@@ -18,9 +18,19 @@ type Tool = {
   url: string;
   contributors?: Contributor[];
   etAl?: boolean;
+  cta?: string;
 };
 
 const tools: Tool[] = [
+  {
+    name: 'LookQuick',
+    eyebrow: 'macOS Quick Look plugin',
+    description:
+      'Preview JPEG XL files right in Finder and Quick Look, including animated JXL files with full frame playback and adjustable FPS controls.',
+    href: 'https://apps.apple.com/us/app/lookquick/id6759767692?mt=12',
+    url: 'apps.apple.com · Mac App Store',
+    cta: 'View on the Mac App Store',
+  },
   {
     name: 'jxl-rs',
     eyebrow: 'Rust decoder',
@@ -137,6 +147,17 @@ const tools: Tool[] = [
         transform: translateY(-2px);
       }
 
+      .tool-card-featured {
+        border-color: var(--brand--blue--500);
+        background:
+          linear-gradient(145deg, rgb(33 230 225 / 10%), transparent 55%),
+          var(--surface--elevated);
+      }
+
+      .tool-card-featured .tool-card-eyebrow {
+        background: var(--brand--blue--500);
+      }
+
       .tool-card-eyebrow {
         margin: 0 0 1rem;
         padding: 0.25rem 0.75rem;
@@ -198,6 +219,32 @@ const tools: Tool[] = [
         overflow-wrap: anywhere;
       }
 
+      .tool-card-cta {
+        position: relative;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        margin-top: 1.25rem;
+        padding: 0.65rem 0.9rem;
+        border: 1px solid var(--brand--teal-bright--P3--500);
+        border-radius: 999px;
+        color: var(--text--color--text-white);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background-color 180ms ease, color 180ms ease;
+      }
+
+      .tool-card-cta:hover {
+        background: var(--brand--teal-bright--P3--500);
+        color: var(--surface--elevated);
+      }
+
+      .tool-card-cta:focus-visible {
+        outline: 2px solid var(--brand--teal-bright--P3--500);
+        outline-offset: 3px;
+      }
+
       .tool-card-contributor {
         width: 100%;
         margin: 1.25rem 0 0;
@@ -243,6 +290,10 @@ const tools: Tool[] = [
         .tool-card:hover {
           transform: none;
         }
+
+        .tool-card-cta {
+          transition: none;
+        }
       }
     </style>
   </Fragment>
@@ -257,8 +308,8 @@ const tools: Tool[] = [
       <div class="container-content-vflex centered">
         <div class="wrapper-content centered">
           <section class="tool-grid" aria-label="External JPEG XL tools">
-            {tools.map((tool) => (
-              <article class="tool-card">
+            {tools.map((tool, index) => (
+              <article class:list={["tool-card", { "tool-card-featured": index === 0 }]}>
                 <p class="tool-card-eyebrow">{tool.eyebrow}</p>
                 <h3>
                   <a
@@ -272,6 +323,16 @@ const tools: Tool[] = [
                 </h3>
                 <p class="tool-card-description">{tool.description}</p>
                 <p class="tool-card-url" aria-hidden="true">{tool.url}</p>
+                {tool.cta && (
+                  <a
+                    class="tool-card-cta"
+                    href={tool.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {tool.cta} <span aria-hidden="true">↗</span>
+                  </a>
+                )}
                 {tool.contributors && tool.contributors.length > 0 && (
                   <p class="tool-card-contributor">
                     {tool.contributors.length > 1 || tool.etAl ? 'Contributors:' : 'Contributor:'}{' '}
