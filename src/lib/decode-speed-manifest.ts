@@ -1,5 +1,5 @@
 // Build-time only: the supplied encoder metadata is the source of truth for
-// variants and settings. PNG masters stay on disk and never enter the manifest.
+// variants and settings. The PNG master is tested too, as the lossless baseline.
 import fs from 'node:fs';
 import path from 'node:path';
 import dataset from '../data/decode-speed-images.json';
@@ -87,6 +87,13 @@ export const decodeSpeedManifest = {
         mime: 'image/avif',
         url: asset(`${stem}-${depth}bit.avif`),
       })),
+      {
+        label: 'PNG',
+        encoder: 'PNG master',
+        specifics: 'Lossless source for every other encode',
+        mime: 'image/png',
+        url: asset(metadata.source),
+      },
       ...settings.jxl_faster_decoding_levels.map((level) => ({
         label: `JPEG XL fd${level}`,
         encoder: jxlEncoder,

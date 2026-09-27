@@ -173,9 +173,9 @@ for (const image of manifest.images) {
           </p>
           <p>
             Native decoding uses a fresh image and object URL for each decode. WASM creates a fresh
-            decoder and copies its 8-bit RGBA pixels into JavaScript memory, matching these 8-bit
-            JPEG XL files. These timings include the work of the respective browser APIs; they are
-            not isolated codec CPU measurements.
+            decoder and copies its output into JavaScript memory as 8-bit RGBA. These timings
+            include the work of the respective browser APIs; they are not isolated codec CPU
+            measurements.
           </p>
         </div>
         <div>

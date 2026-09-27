@@ -1,5 +1,5 @@
 {
-  "note": "Five photographs, 2400 pixels on the long side, each with 13 encodes: JPEG, JPEGli, WebP, AVIF at 8/10/12 bits, and seven JPEG XL variants. Encoding settings vary by format; these files are not matched for visual quality.",
+  "note": "Five photographs, 2400 pixels on the long side, each tested as the lossless PNG master plus 13 encodes: JPEG, JPEGli, WebP, AVIF at 8/10/12 bits, and seven JPEG XL variants. Encoding settings vary by format; these files are not matched for visual quality.",
   "images": [
     {
       "id": "abdullah-oguk-qCrocisvGwc-unsplash",
@@ -17,9 +17,10 @@
     },
     {
       "id": "mos-sukjaroenkraisri-jIaZYNwo76I-unsplash",
-      "title": "City at sunset",
+      "title": "Airport burgers",
       "photographer": "Mos Sukjaroenkraisri",
       "url": "https://unsplash.com/photos/jIaZYNwo76I",
+      "focus": "50% 60%",
       "settings": "/images/decode-speed/mos-sukjaroenkraisri-jIaZYNwo76I-unsplash-variants/settings.json"
     },
     {

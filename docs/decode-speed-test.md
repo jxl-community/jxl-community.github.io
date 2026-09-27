@@ -9,7 +9,8 @@ folder and `settings.json` per photo. `src/data/decode-speed-images.json` lists
 photo titles, credits, and settings paths. `src/lib/decode-speed-manifest.ts`
 reads those settings at build time to produce the benchmark manifest.
 
-The current set includes 13 encodes per image:
+The current set tests each image's PNG master (the lossless baseline) plus 13
+encodes:
 
 - JPEG (Pillow 12.1.1, quality 90).
 - JPEGli (cjpegli, quality 90, progressive level 2).
@@ -21,8 +22,9 @@ The current set includes 13 encodes per image:
   and a lossless transcode of the JPEGli JPEG.
 
 Each JPEG XL file gets separate WASM and native rows, so the current dataset has
-100 result rows for 65 files. The Pillow JPEGs supply previews and thumbnails.
-PNG masters remain in the folders for reference; the page never requests them.
+105 result rows for 70 files. The Pillow JPEGs supply previews and thumbnails.
+The PNG masters add about 23 MB to the roughly 42 MB download; keep them
+alpha-free and 8-bit RGB, since every other encode is made from them.
 
 Encoder names, versions, and specifics come from each photo's settings JSON,
 not a second hand-maintained list. To retire an AVIF depth, remove it from that
@@ -64,7 +66,11 @@ trusting metadata, so accidental size differences are visible. This dataset
 uses format-specific quality settings, not matched visual quality; the page
 states that explicitly. Animated and HDR inputs are outside the benchmark's
 scope; WASM requests RGBA8 and rejects animated JXL.
-All JXL files are 8-bit, so RGBA8 loses nothing. The 10- and 12-bit AVIFs are
+The "8-bit" in each JXL header records the source's bit depth, not a limit on
+the decoded data. Only the lossless-from-master files are truly 8-bit. Lossy
+files and JPEG transcodes decode at higher precision (a 16-bit `djxl` decode
+of the lantern portrait gives about 58,000 distinct values, not 256), so RGBA8
+output rounds them. That rounding is part of what the WASM timing measures. The 10- and 12-bit AVIFs are
 decoded natively, and the pixel format the browser decodes them to is up to the
 browser; the page cannot see or control it.
 
@@ -97,7 +103,7 @@ browser; the page cannot see or control it.
 
 Run `npm run check` and `npm run build`. In Chromium and Safari/WebKit, verify:
 
-1. A run reveals all rows and chart bars together; the current set has 100 rows.
+1. A run reveals all rows and chart bars together; the current set has 105 rows.
 2. All 35 JXL WASM rows complete. Native JXL succeeds only where supported for
    these files, and appears separately. Other unsupported files show an error.
 3. CSV values correspond to the completed table. Running again replaces results.

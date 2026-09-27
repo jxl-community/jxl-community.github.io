@@ -126,7 +126,9 @@ function node<K extends keyof HTMLElementTagNameMap>(tag: K, text?: string, clas
 }
 
 let tooltipId = 0;
-function addTooltip(trigger: HTMLElement, content: string | HTMLElement) {
+// The tooltip shows while `trigger` is hovered or focused; `anchor` (inside
+// the trigger) is the box it is positioned against.
+function addTooltip(trigger: HTMLElement, content: string | HTMLElement, anchor = trigger) {
   trigger.classList.add('ds-tip-trigger');
   const tooltip = node('span', undefined, 'ds-tooltip');
   tooltip.id = `ds-tip-${++tooltipId}`;
@@ -139,7 +141,7 @@ function addTooltip(trigger: HTMLElement, content: string | HTMLElement) {
   });
   trigger.addEventListener('blur', () => delete trigger.dataset.dismissed);
   trigger.addEventListener('mouseleave', () => delete trigger.dataset.dismissed);
-  trigger.append(tooltip);
+  anchor.append(tooltip);
   return trigger;
 }
 
@@ -160,9 +162,9 @@ function render(rows: Result[], count: number) {
       const thumbnail = node('img');
       thumbnail.src = r.image.preview;
       thumbnail.alt = '';
-      // Uncropped: 80px tall at the photo's own aspect ratio.
-      thumbnail.height = 80;
-      thumbnail.width = Math.round((80 * r.image.previewFile.width) / r.image.previewFile.height);
+      // Uncropped: one width for every photo; height follows its aspect ratio.
+      thumbnail.width = 80;
+      thumbnail.height = Math.round((80 * r.image.previewFile.height) / r.image.previewFile.width);
       thumbnail.decoding = 'async';
       imageCell.append(thumbnail, node('span', r.image.title));
       row.append(imageCell);
@@ -246,12 +248,18 @@ function render(rows: Result[], count: number) {
           ),
         );
       }
+      const cell = node('div', undefined, 'ds-bar-cell');
+      cell.style.setProperty(
+        '--ds-tip-x',
+        String(Math.max(speeds.native ?? 0, speeds.wasm ?? 0) / max),
+      );
+      cell.append(track);
       barRow.append(
         node('span', variant.label),
-        track,
+        cell,
         node('span', number(headline!), 'ds-bar-value'),
       );
-      addTooltip(barRow, details);
+      addTooltip(barRow, details, cell);
       group.append(barRow);
     }
     chart.append(group);

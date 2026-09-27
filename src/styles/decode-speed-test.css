@@ -161,7 +161,7 @@
 }
 .ds-shell th,
 .ds-shell td {
-  padding: 0.9rem 1.1rem;
+  padding: 0.5rem 1.1rem;
   border-top: 1px solid var(--ds-line);
   vertical-align: top;
   white-space: nowrap;
@@ -182,10 +182,8 @@
 }
 .ds-image-cell img {
   display: block;
-  width: auto;
+  width: 5rem;
   height: auto;
-  max-width: 100%;
-  max-height: 5rem;
   border-radius: 6px;
   margin-bottom: 0.6rem;
 }
@@ -225,11 +223,11 @@
   flex-direction: column;
   gap: 0.2rem;
 }
-.ds-tip-trigger:hover > .ds-tooltip,
-.ds-tip-trigger:focus > .ds-tooltip {
+.ds-tip-trigger:hover .ds-tooltip,
+.ds-tip-trigger:focus .ds-tooltip {
   visibility: visible;
 }
-.ds-tip-trigger[data-dismissed] > .ds-tooltip {
+.ds-tip-trigger[data-dismissed] .ds-tooltip {
   visibility: hidden;
 }
 .ds-shell td:last-child {
@@ -302,9 +300,15 @@
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
-.ds-bar-row > .ds-tooltip {
-  left: auto;
-  right: 0;
+/* The chart tooltip sits just above the end of the longest bar. Shifting it
+   left by the same fraction keeps it inside the track at both extremes. */
+.ds-bar-cell {
+  position: relative;
+}
+.ds-bar-cell > .ds-tooltip {
+  left: calc(var(--ds-tip-x) * 100%);
+  margin-bottom: 0.35rem;
+  transform: translateX(calc(var(--ds-tip-x) * -100%));
   font-variant-numeric: tabular-nums;
 }
 .ds-chart-legend {
