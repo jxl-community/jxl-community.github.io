@@ -49,16 +49,17 @@ A missing decoder draws no bar and its error is shown in the tooltip. Hover or
 focus any chart row for both MP/s values.
 
 An image may set `focus` (a CSS `object-position`) in the data file so its face
-or subject stays visible in the cropped preview card. Table thumbnails are
-uncropped, 80px tall at the photo's own aspect ratio. Use a
-percentage, not a length: a `calc()` offset can push the crop past the image
-edge at some card sizes.
+or subject stays visible in the cropped preview card. Use a percentage, not a
+length: a `calc()` offset can push the crop past the image edge at some card
+sizes. Table thumbnails are uncropped: all 80px wide, with height following each
+photo's aspect ratio.
 
 The preview cards use `src/components/PhotoPeek.astro`, shared with the photo
-credits page. On devices with a fine pointer, hovering a preview card lifts it forward and
-grows it to the photo's full aspect ratio, with pixel dimensions and the preview
-JPEG's file size underneath. Both are read from the JPEG at build time. Touch
-devices keep the static crop; reduced motion removes the transitions.
+credits page. On devices with a fine pointer, hovering a preview card lifts it
+forward and grows it to the photo's full aspect ratio, with pixel dimensions and
+the preview JPEG's file size underneath. Both are read from the JPEG at build
+time. Touch devices keep the static crop; reduced motion removes the
+transitions.
 
 Use still images with the same pixel dimensions, orientation, and color space
 across variants. The table reads dimensions from each decoder rather than
@@ -66,19 +67,23 @@ trusting metadata, so accidental size differences are visible. This dataset
 uses format-specific quality settings, not matched visual quality; the page
 states that explicitly. Animated and HDR inputs are outside the benchmark's
 scope; WASM requests RGBA8 and rejects animated JXL.
+
 The "8-bit" in each JXL header records the source's bit depth, not a limit on
 the decoded data. Only the lossless-from-master files are truly 8-bit. Lossy
-files and JPEG transcodes decode at higher precision (a 16-bit `djxl` decode
-of the lantern portrait gives about 58,000 distinct values, not 256), so RGBA8
-output rounds them. That rounding is part of what the WASM timing measures. The 10- and 12-bit AVIFs are
-decoded natively, and the pixel format the browser decodes them to is up to the
-browser; the page cannot see or control it.
+files and JPEG transcodes decode at higher precision (a 16-bit `djxl` decode of
+the lantern portrait gives about 58,000 distinct values, not 256), so RGBA8
+output rounds them. That rounding is part of what the WASM timing measures. The
+10- and 12-bit AVIFs are decoded natively, and the pixel format the browser
+decodes them to is up to the browser; the page cannot see or control it.
 
 ## Timing contract
 
 - Download all encoded files before starting any measurements, with at most
   three simultaneous fetches. A failed download becomes an error row.
-- Load and compile the site's existing SIMD/scalar jxl-rs WASM before timing.
+- Load and compile the site's existing jxl-rs WASM before timing. There are two
+  builds: `jxl_decoder_rs_simd.wasm` when the browser supports WASM SIMD, and
+  the scalar `jxl_decoder_rs.wasm` otherwise. The WASM rows' Decoder tooltip
+  shows which one ran (`jxl-rs · SIMD` or `jxl-rs · scalar`).
 - Shuffle case execution order each run, preserving manifest order in the table.
 - Perform one untimed warm-up per case, then 7 or 21 sequential decodes.
 - Native: time from setting a fresh object URL on a fresh detached image through
