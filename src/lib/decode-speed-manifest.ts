@@ -6,10 +6,16 @@ import dataset from '../data/decode-speed-images.json';
 
 type EncodingMetadata = {
   source: string;
-  encoders: { cjxl: string; avifenc: string; cwebp: string; pillow: string };
+  encoders: { cjpegli: string; cjxl: string; avifenc: string; cwebp: string; pillow: string };
   settings: {
     jpeg_quality: number;
-    jxl_lossless_outputs: { from_png_master: string; transcoded_from_generated_jpeg: string };
+    jpegli_quality: number;
+    jpegli_progressive_level: number;
+    jxl_lossless_outputs: {
+      from_png_master: string;
+      transcoded_from_pillow_jpeg: string;
+      transcoded_from_jpegli_jpeg: string;
+    };
     jxl_lossy_distance: number;
     jxl_effort: number;
     jxl_faster_decoding_levels: number[];
@@ -47,6 +53,10 @@ export const decodeSpeedManifest = {
       return url;
     };
     const jxlEncoder = `cjxl ${version(metadata.encoders.cjxl)}`;
+    const jpegliEncoder = path.posix.basename(metadata.encoders.cjpegli);
+    if (jpegliEncoder !== 'cjpegli') {
+      throw new Error(`Unexpected JPEGli encoder in ${image.settings}`);
+    }
     const variants = [
       {
         label: 'JPEG',
@@ -54,6 +64,13 @@ export const decodeSpeedManifest = {
         specifics: `Quality ${settings.jpeg_quality}`,
         mime: 'image/jpeg',
         url: asset(`${stem}.jpg`),
+      },
+      {
+        label: 'JPEGli',
+        encoder: jpegliEncoder,
+        specifics: `Quality ${settings.jpegli_quality} · progressive level ${settings.jpegli_progressive_level}`,
+        mime: 'image/jpeg',
+        url: asset(`${stem}-jpegli.jpg`),
       },
       {
         label: 'WebP',
@@ -84,11 +101,18 @@ export const decodeSpeedManifest = {
         url: asset(settings.jxl_lossless_outputs.from_png_master),
       },
       {
-        label: 'JPEG XL transcode',
+        label: 'JPEG XL · JPEG transcode',
         encoder: jxlEncoder,
         specifics: `Lossless JPEG transcode · JPEG quality ${settings.jpeg_quality} · effort ${settings.jxl_effort}`,
         mime: 'image/jxl',
-        url: asset(settings.jxl_lossless_outputs.transcoded_from_generated_jpeg),
+        url: asset(settings.jxl_lossless_outputs.transcoded_from_pillow_jpeg),
+      },
+      {
+        label: 'JPEG XL · JPEGli transcode',
+        encoder: jxlEncoder,
+        specifics: `Lossless JPEGli transcode · JPEGli quality ${settings.jpegli_quality} · progressive level ${settings.jpegli_progressive_level} · effort ${settings.jxl_effort}`,
+        mime: 'image/jxl',
+        url: asset(settings.jxl_lossless_outputs.transcoded_from_jpegli_jpeg),
       },
     ];
     return { ...image, preview: asset(`${stem}.jpg`), variants };

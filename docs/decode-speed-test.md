@@ -9,25 +9,27 @@ folder and `settings.json` per photo. `src/data/decode-speed-images.json` lists
 photo titles, credits, and settings paths. `src/lib/decode-speed-manifest.ts`
 reads those settings at build time to produce the benchmark manifest.
 
-The current set includes 11 encodes per image:
+The current set includes 13 encodes per image:
 
 - JPEG (Pillow 12.1.1, quality 90).
+- JPEGli (cjpegli, quality 90, progressive level 2).
 - WebP (cwebp 1.6.0, quality 75, method 4).
 - AVIF at 8, 10, and 12 bits (avifenc 1.4.2, quality 60, speed 6).
 - Four lossy JPEG XL variants (cjxl 0.12.0, distance 1.5, effort 7,
   `--faster-decoding` levels 0–3).
-- Lossless JPEG XL from the master and a lossless transcode of the generated
-  quality-90 JPEG.
+- Lossless JPEG XL from the master, a lossless transcode of the Pillow JPEG,
+  and a lossless transcode of the JPEGli JPEG.
 
 Each JPEG XL file gets separate WASM and native rows, so the current dataset has
-85 result rows for 55 files. The JPEGs also supply previews and thumbnails.
+100 result rows for 65 files. The Pillow JPEGs supply previews and thumbnails.
 PNG masters remain in the folders for reference; the page never requests them.
 
 Encoder names, versions, and specifics come from each photo's settings JSON,
 not a second hand-maintained list. To retire an AVIF depth, remove it from that
 photo's `avif_depths` array; an unreferenced file can stay on disk or be removed.
 The loader checks that all referenced files exist. Lossless JXL filenames come
-from `jxl_lossless_outputs`; lossy variants follow the supplied naming scheme
+from `jxl_lossless_outputs`, including distinct Pillow and JPEGli transcodes;
+lossy variants follow the supplied naming scheme
 (`.jxl` for fd0, `-fdN.jxl` for other levels).
 
 The first table column groups each image's rows under one thumbnail and title.
@@ -36,10 +38,16 @@ encoder version and full settings. Decoder API details also appear in tooltips.
 Hover or keyboard focus shows details; Escape dismisses them. CSV exports keep
 the full Encoder and Specifics fields.
 
-Charts use one row per encoded file. Each JPEG XL track has native on top and
-WASM below, both measured from the same zero on a shared scale. Their speeds
-are never added. A missing decoder leaves its lane empty and its error is shown
-in the tooltip. Hover or focus any chart row for exact MP/s values.
+Charts use one row per encoded file, sorted fastest first within each image.
+The sort key and the number at the right of each bar are native speed when it
+completed, otherwise WASM. A JPEG XL track draws native at full height with a
+half-height WASM bar overlaid on it, both from the same zero on a shared scale;
+their speeds are never added. When only WASM completed, its bar is full height.
+A missing decoder draws no bar and its error is shown in the tooltip. Hover or
+focus any chart row for both MP/s values.
+
+An image may set `focus` (a CSS `object-position`) in the data file so its face
+or subject stays visible in the cropped preview and table thumbnail.
 
 Use still images with the same pixel dimensions, orientation, and color space
 across variants. The table reads dimensions from each decoder rather than
@@ -77,8 +85,8 @@ scope; WASM requests RGBA8 and rejects animated JXL.
 
 Run `npm run check` and `npm run build`. In Chromium and Safari/WebKit, verify:
 
-1. A run reveals all rows and chart bars together; the current set has 85 rows.
-2. All 30 JXL WASM rows complete. Native JXL succeeds only where supported for
+1. A run reveals all rows and chart bars together; the current set has 100 rows.
+2. All 35 JXL WASM rows complete. Native JXL succeeds only where supported for
    these files, and appears separately. Other unsupported files show an error.
 3. CSV values correspond to the completed table. Running again replaces results.
 4. Cancel during downloads and decoding; no partial result is published. Hiding

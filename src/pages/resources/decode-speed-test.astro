@@ -49,7 +49,14 @@ for (const image of manifest.images) {
       <div class="ds-images">
         {manifest.images.map((image) => (
           <figure>
-            <img src={image.preview} alt={image.title} width="480" height="300" decoding="async" />
+            <img
+              src={image.preview}
+              alt={image.title}
+              width="480"
+              height="300"
+              decoding="async"
+              style={image.focus && `object-position: ${image.focus}`}
+            />
             <figcaption>
               <strong>{image.title}</strong>
               <span>
@@ -133,8 +140,9 @@ for (const image of manifest.images) {
         <span>Megapixels per second · higher is faster</span>
       </div>
       <p class="ds-muted">
-        All bars use the same scale. JPEG XL pairs native decoding on top with WASM below, both
-        starting at zero. Hover over or focus a bar for speeds in MP/s.
+        All bars use the same scale, sorted fastest first. For JPEG XL, the thinner WASM bar sits
+        over the full-height native bar, both starting at zero; the number shows native speed when
+        your browser has it, otherwise WASM. Hover over or focus a bar for both speeds in MP/s.
       </p>
       <div class="ds-chart-legend" aria-label="Chart colors">
         <span>

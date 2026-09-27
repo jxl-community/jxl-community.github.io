@@ -1,5 +1,11 @@
 type Variant = { label: string; encoder?: string; specifics?: string; mime: string; url: string };
-type TestImage = { id: string; title: string; preview: string; variants: Variant[] };
+type TestImage = {
+  id: string;
+  title: string;
+  preview: string;
+  focus?: string;
+  variants: Variant[];
+};
 type Result = {
   image: TestImage;
   variant: Variant;
@@ -157,6 +163,7 @@ function render(rows: Result[], count: number) {
       thumbnail.width = 80;
       thumbnail.height = 80;
       thumbnail.decoding = 'async';
+      if (r.image.focus) thumbnail.style.objectPosition = r.image.focus;
       imageCell.append(thumbnail, node('span', r.image.title));
       row.append(imageCell);
     }
@@ -194,31 +201,40 @@ function render(rows: Result[], count: number) {
     const measured = rows.filter((r) => r.image.id === image.id && r.speed !== undefined);
     if (!measured.length)
       group.append(node('p', 'No completed decodes for this image.', 'ds-muted'));
-    // One track per file. JPEG XL uses two lanes with a shared zero origin;
-    // lengths encode the individual speeds, never their sum.
-    for (const variant of image.variants) {
-      const matching = rows.filter((r) => r.image.id === image.id && r.variant.url === variant.url);
-      if (!matching.some((r) => r.speed !== undefined)) continue;
+    // One track per file, fastest first. The headline speed is native when it
+    // ran, otherwise WASM. JPEG XL overlays a half-height WASM bar on the
+    // full-height native bar; both start at zero and are never summed.
+    const tracks = image.variants
+      .map((variant) => {
+        const matching = rows.filter(
+          (r) => r.image.id === image.id && r.variant.url === variant.url,
+        );
+        const speeds = {
+          native: matching.find((r) => r.decoder === 'native')?.speed,
+          wasm: matching.find((r) => r.decoder === 'wasm')?.speed,
+        };
+        return { variant, matching, speeds, headline: speeds.native ?? speeds.wasm };
+      })
+      .filter((t) => t.headline !== undefined)
+      .sort((a, b) => b.headline! - a.headline!);
+    for (const { variant, matching, speeds, headline } of tracks) {
       const barRow = node('div', undefined, 'ds-bar-row');
       barRow.dataset.file = variant.url;
       const track = node('div', undefined, 'ds-bar-track');
       const isJxl = variant.mime === 'image/jxl';
-      track.dataset.jxl = String(isJxl);
       track.setAttribute('aria-hidden', 'true');
       const details = node('span', undefined, 'ds-tooltip-lines');
       details.append(node('strong', variant.label));
       for (const decoder of isJxl ? (['native', 'wasm'] as const) : (['native'] as const)) {
         const result = matching.find((r) => r.decoder === decoder);
-        const lane = node('span', undefined, 'ds-bar-lane');
-        lane.dataset.decoder = decoder;
         if (result?.speed !== undefined) {
           const bar = node('span', undefined, 'ds-bar');
           bar.dataset.decoder = decoder;
           bar.dataset.jxl = String(isJxl);
+          if (decoder === 'wasm' && speeds.native !== undefined) bar.dataset.overlay = 'true';
           bar.style.width = `${(result.speed / max) * 100}%`;
-          lane.append(bar);
+          track.append(bar);
         }
-        track.append(lane);
         details.append(
           node(
             'span',
@@ -230,7 +246,11 @@ function render(rows: Result[], count: number) {
           ),
         );
       }
-      barRow.append(node('span', variant.label), track);
+      barRow.append(
+        node('span', variant.label),
+        track,
+        node('span', number(headline!), 'ds-bar-value'),
+      );
       addTooltip(barRow, details);
       group.append(barRow);
     }

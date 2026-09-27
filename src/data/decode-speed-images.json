@@ -1,5 +1,5 @@
 {
-  "note": "Five photographs, each with 11 encodes: JPEG, WebP, AVIF at 8/10/12 bits, and six JPEG XL variants. Encoding settings vary by format; these files are not matched for visual quality.",
+  "note": "Five photographs, each with 13 encodes: JPEG, JPEGli, WebP, AVIF at 8/10/12 bits, and seven JPEG XL variants. Encoding settings vary by format; these files are not matched for visual quality.",
   "images": [
     {
       "id": "abdullah-oguk-qCrocisvGwc-unsplash",
@@ -27,6 +27,7 @@
       "title": "Lantern portrait",
       "photographer": "Sabesh Photography Ltd",
       "url": "https://unsplash.com/photos/IIBAeK9rRoM",
+      "focus": "50% 20%",
       "settings": "/images/decode-speed/sabesh-photography-ltd-IIBAeK9rRoM-unsplash-variants/settings.json"
     },
     {

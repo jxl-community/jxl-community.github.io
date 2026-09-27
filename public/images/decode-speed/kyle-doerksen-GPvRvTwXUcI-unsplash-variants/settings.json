@@ -7,6 +7,7 @@
     "policy": "source ICC is supplied to each encoder when present; lossy JXL may represent standard spaces with equivalent built-in color metadata"
   },
   "encoders": {
+    "cjpegli": "/Users/kelly/bin/cjpegli",
     "cjxl": "cjxl v0.12.0 0.12.0 [_NEON_BF16_,NEON] {AppleClang 21.0.0.21000334}",
     "avifenc": "Version: 1.4.2 (dav1d [dec]:1.5.4, aom [enc/dec]:3.15.1)",
     "cwebp": "1.6.0",
@@ -14,9 +15,12 @@
   },
   "settings": {
     "jpeg_quality": 90,
+    "jpegli_quality": 90,
+    "jpegli_progressive_level": 2,
     "jxl_lossless_outputs": {
       "from_png_master": "kyle-doerksen-GPvRvTwXUcI-unsplash-lossless.jxl",
-      "transcoded_from_generated_jpeg": "kyle-doerksen-GPvRvTwXUcI-unsplash.jpg.jxl"
+      "transcoded_from_pillow_jpeg": "kyle-doerksen-GPvRvTwXUcI-unsplash.jpg.jxl",
+      "transcoded_from_jpegli_jpeg": "kyle-doerksen-GPvRvTwXUcI-unsplash-jpegli.jpg.jxl"
     },
     "jxl_lossy_distance": 1.5,
     "jxl_effort": 7,
