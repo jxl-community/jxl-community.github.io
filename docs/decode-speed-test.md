@@ -14,15 +14,16 @@ encodes:
 
 - JPEG (Pillow 12.1.1, quality 90).
 - JPEGli (cjpegli, quality 90, progressive level 2).
-- WebP (cwebp 1.6.0, quality 75, method 4).
+- WebP (cwebp 1.6.0, quality 80, method 4).
 - AVIF at 8, 10, and 12 bits (avifenc 1.4.2, quality 60, speed 6).
-- Four lossy JPEG XL variants (cjxl 0.12.0, distance 1.5, effort 7,
+- Four lossy JPEG XL variants (cjxl 0.12.0, distance 2, effort 7,
   `--faster-decoding` levels 0–3).
 - Lossless JPEG XL from the master, a lossless transcode of the Pillow JPEG,
   and a lossless transcode of the JPEGli JPEG.
 
-Each JPEG XL file gets separate WASM and native rows, so the current dataset has
-105 result rows for 70 files. The Pillow JPEGs supply previews and thumbnails.
+With WASM included, each JPEG XL file gets separate WASM and native rows, so
+the current dataset has 105 result rows for 70 files; without WASM it has 70.
+The Pillow JPEGs supply previews and thumbnails.
 The PNG masters add about 23 MB to the roughly 42 MB download; keep them
 alpha-free and 8-bit RGB, since every other encode is made from them.
 
@@ -80,10 +81,17 @@ decodes them to is up to the browser; the page cannot see or control it.
 
 - Download all encoded files before starting any measurements, with at most
   three simultaneous fetches. A failed download becomes an error row.
-- Load and compile the site's existing jxl-rs WASM before timing. There are two
-  builds: `jxl_decoder_rs_simd.wasm` when the browser supports WASM SIMD, and
-  the scalar `jxl_decoder_rs.wasm` otherwise. The WASM rows' Decoder tooltip
-  shows which one ran (`jxl-rs · SIMD` or `jxl-rs · scalar`).
+- On load, decode a 23-byte 1×1 JPEG XL natively. If that works, show the
+  "Include WASM timings" checkbox (off by default, since WASM is much slower);
+  otherwise hide it and always run WASM, so JPEG XL is never left untested.
+  Each test file is still decoded natively on its own, so a browser that passes
+  the probe but fails a file shows an error row for it. With WASM off, no WASM
+  rows are created and the WASM module is never downloaded.
+- When WASM runs, load and compile the site's existing jxl-rs WASM before
+  timing. There are two builds: `jxl_decoder_rs_simd.wasm` when the browser
+  supports WASM SIMD, and the scalar `jxl_decoder_rs.wasm` otherwise. The WASM
+  rows' Decoder tooltip shows which one ran (`jxl-rs · SIMD` or
+  `jxl-rs · scalar`).
 - Shuffle case execution order each run, preserving manifest order in the table.
 - Perform one untimed warm-up per case, then 7 or 21 sequential decodes.
 - Native: time from setting a fresh object URL on a fresh detached image through
@@ -108,9 +116,11 @@ decodes them to is up to the browser; the page cannot see or control it.
 
 Run `npm run check` and `npm run build`. In Chromium and Safari/WebKit, verify:
 
-1. A run reveals all rows and chart bars together; the current set has 105 rows.
-2. All 35 JXL WASM rows complete. Native JXL succeeds only where supported for
-   these files, and appears separately. Other unsupported files show an error.
+1. A run reveals all rows and chart bars together: 105 rows with WASM, 70
+   without. Safari shows the WASM checkbox; Chromium does not.
+2. With WASM included, all 35 JXL WASM rows complete. Native JXL succeeds only
+   where supported for these files, and appears separately. Other unsupported
+   files show an error.
 3. CSV values correspond to the completed table. Running again replaces results.
 4. Cancel during downloads and decoding; no partial result is published. Hiding
    the tab cancels too. The button becomes usable again.

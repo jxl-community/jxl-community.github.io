@@ -24,6 +24,8 @@ const manifest = JSON.parse(element('ds-manifest').textContent!) as { images: Te
 const start = element<HTMLButtonElement>('ds-start');
 const stop = element<HTMLButtonElement>('ds-stop');
 const repeats = element<HTMLSelectElement>('ds-repeats');
+const wasmOption = element('ds-wasm-option');
+const includeWasm = element<HTMLInputElement>('ds-wasm');
 const status = element('ds-status');
 const progress = element<HTMLProgressElement>('ds-progress');
 const results = element('ds-results');
@@ -31,6 +33,8 @@ let controller: AbortController | undefined;
 let worker: Worker | undefined;
 let lastResults: Result[] = [];
 let lastRepeats = 7;
+// Set once the page knows whether this browser decodes JPEG XL natively.
+let nativeJxl = false;
 
 const message = (error: unknown) => (error instanceof Error ? error.message : 'Decode failed');
 const number = (n: number) =>
@@ -173,7 +177,7 @@ function render(rows: Result[], count: number) {
     title.scope = 'row';
     const encoderDetails = node('span', undefined, 'ds-tooltip-lines');
     encoderDetails.append(node('strong', r.variant.encoder || r.variant.label));
-    if (r.variant.specifics) encoderDetails.append(node('span', r.variant.specifics));
+    if (r.variant.specifics) encoderDetails.append(node('span', r.variant.specifics, 'ds-mono'));
     title.append(addTooltip(node('span', r.variant.label, 'ds-info-label'), encoderDetails));
     const decoder = node('td');
     const api = r.api || (r.decoder === 'native' ? 'HTMLImageElement.decode' : undefined);
@@ -265,6 +269,7 @@ function render(rows: Result[], count: number) {
     chart.append(group);
   }
   element('ds-chart').replaceChildren(chart);
+  element('ds-legend-wasm').hidden = !rows.some((r) => r.decoder === 'wasm');
   const complete = rows.filter((r) => !r.error).length;
   element('ds-summary').textContent =
     `${complete} of ${rows.length} results completed · Median of ${count} decodes after one warm-up · ${new Date().toLocaleString()}`;
@@ -276,7 +281,9 @@ async function run() {
   controller = new AbortController();
   const signal = controller.signal;
   const count = Number(repeats.value);
-  start.disabled = repeats.disabled = true;
+  // WASM is optional only when native JPEG XL can stand in for it.
+  const withWasm = !nativeJxl || includeWasm.checked;
+  start.disabled = repeats.disabled = includeWasm.disabled = true;
   stop.hidden = false;
   results.hidden = true;
   progress.hidden = false;
@@ -284,7 +291,7 @@ async function run() {
   status.textContent = 'Downloading test files and preparing the decoder…';
   const rows: Result[] = manifest.images.flatMap((image) =>
     image.variants.flatMap((variant): Result[] =>
-      variant.mime === 'image/jxl'
+      variant.mime === 'image/jxl' && withWasm
         ? [
             { image, variant, decoder: 'wasm' },
             { image, variant, decoder: 'native' },
@@ -327,11 +334,13 @@ async function run() {
       }),
     );
     let wasmError: string | undefined;
-    try {
-      await workerRequest({ type: 'init' }, signal);
-    } catch (error) {
-      signal.throwIfAborted();
-      wasmError = message(error);
+    if (withWasm) {
+      try {
+        await workerRequest({ type: 'init' }, signal);
+      } catch (error) {
+        signal.throwIfAborted();
+        wasmError = message(error);
+      }
     }
 
     // Shuffle the execution order to avoid always giving one codec the coldest
@@ -384,13 +393,31 @@ async function run() {
     worker?.terminate();
     worker = undefined;
     controller = undefined;
-    start.disabled = repeats.disabled = false;
+    start.disabled = repeats.disabled = includeWasm.disabled = false;
     stop.hidden = progress.hidden = true;
   }
 }
 
-start.disabled = false;
-status.textContent = 'Ready. JPEG XL will be tested with WASM and your browser’s native decoder.';
+// A 1×1 lossless JPEG XL codestream. If it decodes, native JPEG XL exists and
+// WASM timings become optional; each test file is still checked on its own.
+const JXL_PROBE = '/woAEBAUNwIIAAEAJABLGIsVwknkAAA=';
+nativeDecode(
+  Uint8Array.from(atob(JXL_PROBE), (c) => c.charCodeAt(0)).buffer,
+  'image/jxl',
+  new AbortController().signal,
+)
+  .then(
+    () => true,
+    () => false,
+  )
+  .then((supported) => {
+    nativeJxl = supported;
+    wasmOption.hidden = !supported;
+    start.disabled = false;
+    status.textContent = supported
+      ? 'Ready. Your browser decodes JPEG XL natively; WASM timings are optional.'
+      : 'Ready. Your browser has no native JPEG XL, so JPEG XL will be tested with WASM.';
+  });
 start.addEventListener('click', run);
 stop.addEventListener('click', () => controller?.abort('Test cancelled.'));
 document.addEventListener('visibilitychange', () => {

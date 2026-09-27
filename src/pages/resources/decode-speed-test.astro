@@ -79,6 +79,10 @@ for (const image of manifest.images) {
             <option value="21">21 — longer test</option>
           </select>
         </label>
+        <label class="ds-check" id="ds-wasm-option" hidden>
+          <input type="checkbox" id="ds-wasm" />
+          Include WASM timings for JPEG XL (significantly increases run time)
+        </label>
         <button id="ds-start" class="ds-primary" type="button" disabled>
           Run speed test
         </button>
@@ -97,7 +101,8 @@ for (const image of manifest.images) {
         hidden
       ></progress>
       <p class="ds-muted ds-hint">
-        Keep this tab visible while testing. All results appear together when the run finishes.
+        Keep this browser tab visible while testing; switching tabs cancels the test run. Results
+        appear together when the run finishes.
       </p>
       <noscript>
         <p>Enable JavaScript to run the speed test on your device.</p>
@@ -142,9 +147,10 @@ for (const image of manifest.images) {
         <span>Megapixels per second · higher is faster</span>
       </div>
       <p class="ds-muted">
-        All bars use the same scale, sorted fastest first. For JPEG XL, the thinner WASM bar sits
-        over the full-height native bar, both starting at zero; the number shows native speed when
-        your browser has it, otherwise WASM. Hover over or focus a bar for both speeds in MP/s.
+        All bars use the same scale, sorted fastest first. When both JPEG XL decoders run, the
+        thinner WASM bar sits over the full-height native bar, both starting at zero; the number
+        shows native speed when your browser has it, otherwise WASM. Hover over or focus a bar for
+        both speeds in MP/s.
       </p>
       <div class="ds-chart-legend" aria-label="Chart colors">
         <span>
@@ -153,7 +159,7 @@ for (const image of manifest.images) {
         <span>
           <i class="ds-swatch ds-swatch-jxl" aria-hidden="true"></i> JPEG XL native
         </span>
-        <span>
+        <span id="ds-legend-wasm">
           <i class="ds-swatch ds-swatch-wasm" aria-hidden="true"></i> JPEG XL WASM
         </span>
       </div>
@@ -181,9 +187,11 @@ for (const image of manifest.images) {
         <div>
           <h3>Two ways to decode JPEG XL</h3>
           <p>
-            JPEG XL always runs through our local jxl-rs v{JXL_DECODER_VERSION} WebAssembly decoder.
-            If your browser can also decode a test file natively, that gets its own result using
-            exactly the same bytes. Unsupported or failed files stay visible in the table.
+            If your browser decodes JPEG XL natively, the test uses that. You can also include our
+            self-hosted jxl-rs v{JXL_DECODER_VERSION} WebAssembly decoder for comparison; it is
+            slower and significantly lengthens the run. Without native support, JPEG XL always runs
+            through WebAssembly. Both decoders get exactly the same bytes, and unsupported or failed
+            files stay visible in the table.
           </p>
           <p>
             Results depend on your device, browser, and encoding settings. Background activity,

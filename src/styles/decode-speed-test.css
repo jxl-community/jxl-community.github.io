@@ -80,8 +80,24 @@
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
-  margin-right: auto;
   font-weight: 500;
+}
+.ds-shell .ds-controls .ds-check {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.85rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+.ds-check input {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0;
+  accent-color: #3bb6b3;
+}
+.ds-shell .ds-controls .ds-primary {
+  margin-left: auto;
 }
 .ds-shell button,
 .ds-shell select {
@@ -217,6 +233,10 @@
   line-height: 1.5;
   white-space: normal;
   visibility: hidden;
+}
+.ds-mono {
+  font-family: var(--font--font-family--monospace);
+  font-size: 0.75rem;
 }
 .ds-tooltip-lines {
   display: flex;
