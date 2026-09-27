@@ -22,7 +22,7 @@
       "transcoded_from_pillow_jpeg": "vitaly-k-WRguDVlbtwA-unsplash.jpg.jxl",
       "transcoded_from_jpegli_jpeg": "vitaly-k-WRguDVlbtwA-unsplash-jpegli.jpg.jxl"
     },
-    "jxl_lossy_distance": 1.5,
+    "jxl_lossy_distance": 2,
     "jxl_effort": 7,
     "jxl_faster_decoding_levels": [
       0,
@@ -37,7 +37,7 @@
       10,
       12
     ],
-    "webp_quality": 75,
+    "webp_quality": 80,
     "webp_method": 4
   }
 }
