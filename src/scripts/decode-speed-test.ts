@@ -3,7 +3,7 @@ type TestImage = {
   id: string;
   title: string;
   preview: string;
-  focus?: string;
+  previewFile: { width: number; height: number };
   variants: Variant[];
 };
 type Result = {
@@ -160,10 +160,10 @@ function render(rows: Result[], count: number) {
       const thumbnail = node('img');
       thumbnail.src = r.image.preview;
       thumbnail.alt = '';
-      thumbnail.width = 80;
+      // Uncropped: 80px tall at the photo's own aspect ratio.
       thumbnail.height = 80;
+      thumbnail.width = Math.round((80 * r.image.previewFile.width) / r.image.previewFile.height);
       thumbnail.decoding = 'async';
-      if (r.image.focus) thumbnail.style.objectPosition = r.image.focus;
       imageCell.append(thumbnail, node('span', r.image.title));
       row.append(imageCell);
     }

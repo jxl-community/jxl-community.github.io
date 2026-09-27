@@ -48,15 +48,23 @@ for (const image of manifest.images) {
       <p class="ds-muted">{manifest.note}</p>
       <div class="ds-images">
         {manifest.images.map((image) => (
-          <figure>
-            <img
-              src={image.preview}
-              alt={image.title}
-              width="480"
-              height="300"
-              decoding="async"
-              style={image.focus && `object-position: ${image.focus}`}
-            />
+          <figure style={`--ds-ratio: ${image.previewFile.height / image.previewFile.width}`}>
+            <div class="ds-image-frame">
+              <div class="ds-image-pop">
+                <img
+                  src={image.preview}
+                  alt={image.title}
+                  width={image.previewFile.width}
+                  height={image.previewFile.height}
+                  decoding="async"
+                  style={image.focus && `object-position: ${image.focus}`}
+                />
+                <p class="ds-image-meta">
+                  {image.previewFile.width} × {image.previewFile.height} px ·{' '}
+                  {Math.round(image.previewFile.bytes / 1024).toLocaleString('en-US')} KiB JPEG
+                </p>
+              </div>
+            </div>
             <figcaption>
               <strong>{image.title}</strong>
               <span>
@@ -166,12 +174,14 @@ for (const image of manifest.images) {
           <p>
             Files are downloaded before timing begins. Each result gets one untimed warm-up,
             followed by sequential decodes. We report the median time and calculate speed from the
-            decoded pixel dimensions. Downloads, WASM setup, and drawing to the screen are excluded.
+            decoded pixel dimensions. Downloads, loading the WASM decoder, and drawing to the screen
+            are excluded.
           </p>
           <p>
             Native decoding uses a fresh image and object URL for each decode. WASM creates a fresh
-            decoder and copies its RGBA8 pixels into JavaScript memory. These timings include the
-            work of the respective browser APIs; they are not isolated codec CPU measurements.
+            decoder and copies its 8-bit RGBA pixels into JavaScript memory, matching these 8-bit
+            test images. These timings include the work of the respective browser APIs; they are not
+            isolated codec CPU measurements.
           </p>
         </div>
         <div>
@@ -182,9 +192,9 @@ for (const image of manifest.images) {
             exactly the same bytes. Unsupported or failed files stay visible in the table.
           </p>
           <p>
-            Results depend on your device, browser, encoding settings, and other activity. Browser
-            caching and scheduling can affect timings. Compare multiple runs; this is a local
-            experiment, not a universal ranking.
+            Results depend on your device, browser, and encoding settings. Background activity,
+            thermal throttling, and browser scheduling can affect timings. Compare multiple runs;
+            this is a local experiment, not a universal ranking.
           </p>
         </div>
       </div>

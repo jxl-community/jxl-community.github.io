@@ -33,6 +33,25 @@ function version(value: string) {
   return match[0];
 }
 
+// Reads pixel dimensions from a JPEG's start-of-frame marker for the preview
+// card's hover details, so they cannot drift from the file on disk.
+function jpegSize(file: string) {
+  const bytes = fs.readFileSync(file);
+  for (let i = 2; i + 9 < bytes.length;) {
+    if (bytes[i] !== 0xff) break;
+    const marker = bytes[i + 1];
+    if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) {
+      return {
+        width: bytes.readUInt16BE(i + 7),
+        height: bytes.readUInt16BE(i + 5),
+        bytes: bytes.length,
+      };
+    }
+    i += 2 + bytes.readUInt16BE(i + 2);
+  }
+  throw new Error(`No JPEG frame header in ${file}`);
+}
+
 export const decodeSpeedManifest = {
   note: dataset.note,
   images: dataset.images.map((image) => {
@@ -115,6 +134,7 @@ export const decodeSpeedManifest = {
         url: asset(settings.jxl_lossless_outputs.transcoded_from_jpegli_jpeg),
       },
     ];
-    return { ...image, preview: asset(`${stem}.jpg`), variants };
+    const preview = asset(`${stem}.jpg`);
+    return { ...image, preview, previewFile: jpegSize(`public${preview}`), variants };
   }),
 };

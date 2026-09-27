@@ -47,7 +47,15 @@ A missing decoder draws no bar and its error is shown in the tooltip. Hover or
 focus any chart row for both MP/s values.
 
 An image may set `focus` (a CSS `object-position`) in the data file so its face
-or subject stays visible in the cropped preview and table thumbnail.
+or subject stays visible in the cropped preview card. Table thumbnails are
+uncropped, 80px tall at the photo's own aspect ratio. Use a
+percentage, not a length: a `calc()` offset can push the crop past the image
+edge at some card sizes.
+
+On devices with a fine pointer, hovering a preview card lifts it forward and
+grows it to the photo's full aspect ratio, with pixel dimensions and the preview
+JPEG's file size underneath. Both are read from the JPEG at build time. Touch
+devices keep the static crop; reduced motion removes the transitions.
 
 Use still images with the same pixel dimensions, orientation, and color space
 across variants. The table reads dimensions from each decoder rather than
