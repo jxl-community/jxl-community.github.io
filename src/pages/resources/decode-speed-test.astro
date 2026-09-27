@@ -2,6 +2,8 @@
 import fs from 'node:fs';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
+import PhotoPeek from '../../components/PhotoPeek.astro';
+import { kib } from '../../lib/image-size';
 import { decodeSpeedManifest as manifest } from '../../lib/decode-speed-manifest';
 import { JXL_DECODER_VERSION } from '../../lib/jxl-decoder-version';
 import '../../styles/decode-speed-test.css';
@@ -48,23 +50,15 @@ for (const image of manifest.images) {
       <p class="ds-muted">{manifest.note}</p>
       <div class="ds-images">
         {manifest.images.map((image) => (
-          <figure style={`--ds-ratio: ${image.previewFile.height / image.previewFile.width}`}>
-            <div class="ds-image-frame">
-              <div class="ds-image-pop">
-                <img
-                  src={image.preview}
-                  alt={image.title}
-                  width={image.previewFile.width}
-                  height={image.previewFile.height}
-                  decoding="async"
-                  style={image.focus && `object-position: ${image.focus}`}
-                />
-                <p class="ds-image-meta">
-                  {image.previewFile.width} × {image.previewFile.height} px ·{' '}
-                  {Math.round(image.previewFile.bytes / 1024).toLocaleString('en-US')} KiB JPEG
-                </p>
-              </div>
-            </div>
+          <figure>
+            <PhotoPeek
+              src={image.preview}
+              alt={image.title}
+              width={image.previewFile.width}
+              height={image.previewFile.height}
+              focus={image.focus}
+              meta={`${image.previewFile.width} × ${image.previewFile.height} px · ${kib(image.previewFile.bytes)} JPEG`}
+            />
             <figcaption>
               <strong>{image.title}</strong>
               <span>
@@ -180,8 +174,8 @@ for (const image of manifest.images) {
           <p>
             Native decoding uses a fresh image and object URL for each decode. WASM creates a fresh
             decoder and copies its 8-bit RGBA pixels into JavaScript memory, matching these 8-bit
-            test images. These timings include the work of the respective browser APIs; they are not
-            isolated codec CPU measurements.
+            JPEG XL files. These timings include the work of the respective browser APIs; they are
+            not isolated codec CPU measurements.
           </p>
         </div>
         <div>

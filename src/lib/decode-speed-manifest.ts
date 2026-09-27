@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import dataset from '../data/decode-speed-images.json';
+import { imageSize } from './image-size';
 
 type EncodingMetadata = {
   source: string;
@@ -31,25 +32,6 @@ function version(value: string) {
   const match = value.match(/\d+\.\d+\.\d+/);
   if (!match) throw new Error(`Missing encoder version in ${value}`);
   return match[0];
-}
-
-// Reads pixel dimensions from a JPEG's start-of-frame marker for the preview
-// card's hover details, so they cannot drift from the file on disk.
-function jpegSize(file: string) {
-  const bytes = fs.readFileSync(file);
-  for (let i = 2; i + 9 < bytes.length;) {
-    if (bytes[i] !== 0xff) break;
-    const marker = bytes[i + 1];
-    if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) {
-      return {
-        width: bytes.readUInt16BE(i + 7),
-        height: bytes.readUInt16BE(i + 5),
-        bytes: bytes.length,
-      };
-    }
-    i += 2 + bytes.readUInt16BE(i + 2);
-  }
-  throw new Error(`No JPEG frame header in ${file}`);
 }
 
 export const decodeSpeedManifest = {
@@ -135,6 +117,6 @@ export const decodeSpeedManifest = {
       },
     ];
     const preview = asset(`${stem}.jpg`);
-    return { ...image, preview, previewFile: jpegSize(`public${preview}`), variants };
+    return { ...image, preview, previewFile: imageSize(`public${preview}`), variants };
   }),
 };

@@ -49,75 +49,7 @@
 .ds-images figure {
   margin: 0;
   min-width: 0;
-  container-type: inline-size;
-  --ds-crop: 5 / 8;
-}
-/* The frame holds the card's cropped space; the pop layer inside it can grow
-   past the frame on hover without moving the grid. */
-.ds-image-frame {
-  position: relative;
-  height: calc(100cqw * var(--ds-crop));
-}
-.ds-image-pop {
-  position: absolute;
-  inset: 0 0 auto;
-  border-radius: 12px;
-  transform-origin: 50% 0;
-  transition:
-    transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 250ms ease-out,
-    background-color 250ms ease-out,
-    z-index 0s 350ms;
-}
-.ds-images img {
-  display: block;
-  width: 100%;
-  height: calc(100cqw * var(--ds-crop));
-  object-fit: cover;
-  border-radius: 12px;
-  transition:
-    height 350ms cubic-bezier(0.22, 1, 0.36, 1),
-    border-radius 350ms ease-out;
-}
-.ds-shell .ds-image-meta {
-  margin: 0;
-  padding: 0.5rem 0.75rem 0.6rem;
-  font-size: 0.8rem;
-  font-variant-numeric: tabular-nums;
-  color: var(--ds-muted);
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity 200ms ease-out,
-    visibility 0s 200ms;
-}
-@media (hover: hover) and (pointer: fine) {
-  .ds-image-frame:hover .ds-image-pop {
-    z-index: 3;
-    transform: scale(1.06);
-    background-color: #182f5e;
-    box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.55);
-    transition-delay: 0s;
-  }
-  /* Uncropped: the image grows to its own aspect ratio, top edge fixed. */
-  .ds-image-frame:hover img {
-    height: calc(100cqw * var(--ds-ratio));
-    border-radius: 12px 12px 0 0;
-  }
-  .ds-image-frame:hover .ds-image-meta {
-    opacity: 1;
-    visibility: visible;
-    transition:
-      opacity 200ms ease-out 150ms,
-      visibility 0s;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .ds-image-pop,
-  .ds-images img,
-  .ds-shell .ds-image-meta {
-    transition: none;
-  }
+  --peek-crop: 5 / 8;
 }
 .ds-images figcaption {
   display: flex;
@@ -434,7 +366,7 @@
     gap: 0.75rem;
   }
   .ds-images figure {
-    --ds-crop: 1;
+    --peek-crop: 1;
   }
   .ds-images strong {
     font-size: 1rem;

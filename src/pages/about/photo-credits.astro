@@ -1,7 +1,18 @@
 ---
+import fs from 'node:fs';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import credits from '../../data/photo-credits.json';
 import Wave from '../../components/Wave.astro';
+import PhotoPeek from '../../components/PhotoPeek.astro';
+import { imageSize, kib } from '../../lib/image-size';
+
+// Sizes for the hover caption, read from the files so they cannot go stale.
+const photos = credits.map(({ images: image }) => {
+  const path = `/about/OpenSourceImages/${image.file_name}`;
+  const webp = imageSize(`public${path}.webp`);
+  const jxl = fs.statSync(`public${path}.jxl`).size;
+  return { image, path, webp, jxl };
+});
 
 const title = 'Photo Credits – JPEG XL';
 const description = 'Image credits for jpegxl.info.';
@@ -29,36 +40,19 @@ const description = 'Image credits for jpegxl.info.';
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 20px;
       }
-      .card-photo_credit {
-        transition: transform 0.3s ease;
+      /* The hover preview grows past the card, so the card cannot clip; the
+         image carries the card's top corners instead. Doubled selectors beat
+         styles.css, which loads after this block. */
+      .gallery .card-photo_credit,
+      .gallery .wrapper-image-photo_credit {
+        overflow: visible;
       }
-      .card-photo_credit:hover {
-        transform: translateY(-5px);
-      }
-      .wrapper-image-photo_credit {
-        aspect-ratio: 2 / 1;
+      .gallery .wrapper-image-photo_credit {
+        display: block;
+        aspect-ratio: auto;
         background-color: transparent;
-        overflow: hidden;
-      }
-      .card-photo_credit img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        display: block;
-      }
-      /* Some photographs put their subject high in the frame, where a centre
-         crop into the 2:1 card cuts it off. Those are tagged `crop: "top"` in
-         photo-credits.json. */
-      .card-photo_credit img.crop-top {
-        object-position: top;
-      }
-      .card-photo_credit picture {
-        display: block;
-        width: 100%;
-        height: 100%;
-        aspect-ratio: 2 / 1;
-        overflow: hidden;
+        --peek-crop: 1 / 2;
+        --peek-radius: 1rem 1rem 0 0;
       }
     </style>
   </Fragment>
@@ -86,73 +80,71 @@ const description = 'Image credits for jpegxl.info.';
       <div class="container-content-hflex fullspan">
         <div class="code_embed-photo_credits w-embed">
           <div id="gallery" class="gallery">
-            {
-              credits.map(({ images: image }) => {
-                const imgPath = `/about/OpenSourceImages/${image.file_name}`;
-                return (
-                  <div class="card-photo_credit">
-                    <div class="wrapper-image-photo_credit">
-                      <picture>
-                        <source srcset={`${imgPath}.jxl`} type="image/jxl" />
-                        <img
-                          src={`${imgPath}.webp`}
-                          alt={image.image_name}
-                          loading="lazy"
-                          class={image.crop === 'top' ? 'crop-top' : undefined}
-                        />
-                      </picture>
-                    </div>
-                    <div class="container-card-text">
-                      <h3 class="text-photo_credit-image_title">{image.image_name}</h3>
-                      <div class="wrapper-text-horizontal">
-                        <div class="wrapper-text-hug">
-                          <div class="text-all-caps-micro-medium-white">Photographer:</div>
-                        </div>
-                        <div class="wrapper-text-hug">
-                          <p class="text-photo_credit-link">
-                            {image.photographer_name ? (
-                              image.photographer_portfolio ? (
-                                <a
-                                  href={image.photographer_portfolio}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  {image.photographer_name}
-                                </a>
-                              ) : (
-                                image.photographer_name
-                              )
-                            ) : (
-                              'N/A'
-                            )}
-                          </p>
-                        </div>
+            {photos.map(({ image, path, webp, jxl }) => {
+              return (
+                <div class="card-photo_credit">
+                  <div class="wrapper-image-photo_credit">
+                    <PhotoPeek
+                      src={`${path}.webp`}
+                      sources={[{ srcset: `${path}.jxl`, type: 'image/jxl' }]}
+                      alt={image.image_name}
+                      width={webp.width}
+                      height={webp.height}
+                      loading="lazy"
+                      focus={image.crop === 'top' ? '50% 0%' : image.focus}
+                      meta={`${webp.width} × ${webp.height} px · JPEG XL ${kib(jxl)} · WebP ${kib(webp.bytes)}`}
+                    />
+                  </div>
+                  <div class="container-card-text">
+                    <h3 class="text-photo_credit-image_title">{image.image_name}</h3>
+                    <div class="wrapper-text-horizontal">
+                      <div class="wrapper-text-hug">
+                        <div class="text-all-caps-micro-medium-white">Photographer:</div>
                       </div>
-                      <div class="wrapper-text-horizontal">
-                        <div class="wrapper-text-hug">
-                          <div class="text-all-caps-micro-medium-white">Site:</div>
-                        </div>
-                        <div class="wrapper-text-hug">
-                          <p class="text-photo_credit-link">
-                            {image.site_name ? (
-                              image.image_url ? (
-                                <a href={image.image_url} target="_blank" rel="noopener noreferrer">
-                                  {image.site_name}
-                                </a>
-                              ) : (
-                                image.site_name
-                              )
+                      <div class="wrapper-text-hug">
+                        <p class="text-photo_credit-link">
+                          {image.photographer_name ? (
+                            image.photographer_portfolio ? (
+                              <a
+                                href={image.photographer_portfolio}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {image.photographer_name}
+                              </a>
                             ) : (
-                              'N/A'
-                            )}
-                          </p>
-                        </div>
+                              image.photographer_name
+                            )
+                          ) : (
+                            'N/A'
+                          )}
+                        </p>
+                      </div>
+                    </div>
+                    <div class="wrapper-text-horizontal">
+                      <div class="wrapper-text-hug">
+                        <div class="text-all-caps-micro-medium-white">Site:</div>
+                      </div>
+                      <div class="wrapper-text-hug">
+                        <p class="text-photo_credit-link">
+                          {image.site_name ? (
+                            image.image_url ? (
+                              <a href={image.image_url} target="_blank" rel="noopener noreferrer">
+                                {image.site_name}
+                              </a>
+                            ) : (
+                              image.site_name
+                            )
+                          ) : (
+                            'N/A'
+                          )}
+                        </p>
                       </div>
                     </div>
                   </div>
-                );
-              })
-            }
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

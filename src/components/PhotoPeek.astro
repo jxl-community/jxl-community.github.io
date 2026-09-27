@@ -1,0 +1,121 @@
+---
+// A cropped photo that, on hover with a fine pointer, lifts forward and grows
+// to its full aspect ratio with a caption line underneath. The frame keeps the
+// cropped size, so the surrounding layout never moves.
+//
+// The parent sets `--peek-crop` (height / width of the cropped frame, e.g.
+// `5 / 8`) and may set `--peek-radius` for the resting corners. The pop layer
+// ignores the pointer, so moving off the cropped frame closes it and links
+// underneath stay reachable.
+interface Props {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  sources?: { srcset: string; type: string }[];
+  /** CSS object-position for the resting crop. */
+  focus?: string;
+  meta?: string;
+  loading?: 'lazy' | 'eager';
+}
+const { src, alt, width, height, sources = [], focus, meta, loading } = Astro.props;
+---
+
+<div class="peek" style={`--peek-ratio: ${height / width}`}>
+  <div class="peek-frame">
+    <div class="peek-pop">
+      <picture>
+        {sources.map((source) => (
+          <source srcset={source.srcset} type={source.type} />
+        ))}
+        <img
+          {src}
+          {alt}
+          {width}
+          {height}
+          {loading}
+          decoding="async"
+          style={focus && `object-position: ${focus}`}
+        />
+      </picture>
+      {meta && <p class="peek-meta">{meta}</p>}
+    </div>
+  </div>
+</div>
+
+<style>
+  .peek {
+    width: 100%;
+    container-type: inline-size;
+  }
+  .peek-frame {
+    position: relative;
+    height: calc(100cqw * var(--peek-crop, 5 / 8));
+  }
+  .peek-pop {
+    position: absolute;
+    inset: 0 0 auto;
+    border-radius: 12px;
+    pointer-events: none;
+    transform-origin: 50% 0;
+    transition:
+      transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 250ms ease-out,
+      background-color 250ms ease-out,
+      z-index 0s 350ms;
+  }
+  picture {
+    display: block;
+  }
+  img {
+    display: block;
+    width: 100%;
+    height: calc(100cqw * var(--peek-crop, 5 / 8));
+    object-fit: cover;
+    border-radius: var(--peek-radius, 12px);
+    transition:
+      height 350ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-radius 350ms ease-out;
+  }
+  .peek-meta {
+    margin: 0;
+    padding: 0.5rem 0.75rem 0.6rem;
+    color: #b6bfcc;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    font-variant-numeric: tabular-nums;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 200ms ease-out,
+      visibility 0s 200ms;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .peek-frame:hover .peek-pop {
+      z-index: 3;
+      transform: scale(1.06);
+      background-color: #182f5e;
+      box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.55);
+      transition-delay: 0s;
+    }
+    /* Uncropped: the image grows to its own aspect ratio, top edge fixed. */
+    .peek-frame:hover img {
+      height: calc(100cqw * var(--peek-ratio));
+      border-radius: 12px 12px 0 0;
+    }
+    .peek-frame:hover .peek-meta {
+      opacity: 1;
+      visibility: visible;
+      transition:
+        opacity 200ms ease-out 150ms,
+        visibility 0s;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .peek-pop,
+    img,
+    .peek-meta {
+      transition: none;
+    }
+  }
+</style>

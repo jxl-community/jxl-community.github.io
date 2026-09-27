@@ -52,7 +52,8 @@ uncropped, 80px tall at the photo's own aspect ratio. Use a
 percentage, not a length: a `calc()` offset can push the crop past the image
 edge at some card sizes.
 
-On devices with a fine pointer, hovering a preview card lifts it forward and
+The preview cards use `src/components/PhotoPeek.astro`, shared with the photo
+credits page. On devices with a fine pointer, hovering a preview card lifts it forward and
 grows it to the photo's full aspect ratio, with pixel dimensions and the preview
 JPEG's file size underneath. Both are read from the JPEG at build time. Touch
 devices keep the static crop; reduced motion removes the transitions.
@@ -63,6 +64,9 @@ trusting metadata, so accidental size differences are visible. This dataset
 uses format-specific quality settings, not matched visual quality; the page
 states that explicitly. Animated and HDR inputs are outside the benchmark's
 scope; WASM requests RGBA8 and rejects animated JXL.
+All JXL files are 8-bit, so RGBA8 loses nothing. The 10- and 12-bit AVIFs are
+decoded natively, and the pixel format the browser decodes them to is up to the
+browser; the page cannot see or control it.
 
 ## Timing contract
 
