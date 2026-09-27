@@ -2,38 +2,51 @@
 
 The Explore menu links to `/resources/decode-speed-test.html`.
 
-## Replacing the starter images
+## Image set and encoding metadata
 
-Edit `src/data/decode-speed-images.json`. The three current images reuse the
-progressive demo's files as a working starter set, not final benchmark assets.
-The manifest's `note` is shown above the images; replace it with a description
-of the final dataset and encoding settings when those are ready.
+The five photos live under `public/images/decode-speed/`, with one variants
+folder and `settings.json` per photo. `src/data/decode-speed-images.json` lists
+photo titles, credits, and settings paths. `src/lib/decode-speed-manifest.ts`
+reads those settings at build time to produce the benchmark manifest.
 
-Put the new files under `public/DecodeSpeedImages/` (or another public folder).
-Each image needs a stable `id`, a `title`, a browser-readable `preview`, photo
-credits (`photographer`, `portfolio`, `url`), and a `variants` array:
+The current set includes 11 encodes per image:
 
-```json
-{
-  "label": "JPEG XL fd2",
-  "mime": "image/jxl",
-  "url": "/DecodeSpeedImages/example-fd2.jxl"
-}
-```
+- JPEG (Pillow 12.1.1, quality 90).
+- WebP (cwebp 1.6.0, quality 75, method 4).
+- AVIF at 8, 10, and 12 bits (avifenc 1.4.2, quality 60, speed 6).
+- Four lossy JPEG XL variants (cjxl 0.12.0, distance 1.5, effort 7,
+  `--faster-decoding` levels 0–3).
+- Lossless JPEG XL from the master and a lossless transcode of the generated
+  quality-90 JPEG.
 
-Variants are independent: add recompressed JPEG XL, fd1/fd2/fd3, AVIF bit depths,
-JPEGli, or other encodings without editing the runner. Supported MIME types are
-`image/jpeg`, `image/png`, `image/webp`, `image/avif`, and `image/jxl`. Labels must
-be unique within an image. Every JXL variant automatically gets separate WASM
-and native rows backed by the same downloaded bytes. Other formats use native
-decoding. The build checks that all referenced files exist.
+Each JPEG XL file gets separate WASM and native rows, so the current dataset has
+85 result rows for 55 files. The JPEGs also supply previews and thumbnails.
+PNG masters remain in the folders for reference; the page never requests them.
+
+Encoder names, versions, and specifics come from each photo's settings JSON,
+not a second hand-maintained list. To retire an AVIF depth, remove it from that
+photo's `avif_depths` array; an unreferenced file can stay on disk or be removed.
+The loader checks that all referenced files exist. Lossless JXL filenames come
+from `jxl_lossless_outputs`; lossy variants follow the supplied naming scheme
+(`.jxl` for fd0, `-fdN.jxl` for other levels).
+
+The first table column groups each image's rows under one thumbnail and title.
+The Encoder column shows the short encoding label; its tooltip contains the
+encoder version and full settings. Decoder API details also appear in tooltips.
+Hover or keyboard focus shows details; Escape dismisses them. CSV exports keep
+the full Encoder and Specifics fields.
+
+Charts use one row per encoded file. Each JPEG XL track has native on top and
+WASM below, both measured from the same zero on a shared scale. Their speeds
+are never added. A missing decoder leaves its lane empty and its error is shown
+in the tooltip. Hover or focus any chart row for exact MP/s values.
 
 Use still images with the same pixel dimensions, orientation, and color space
-across variants. Document the quality target and encoding parameters in the
-dataset note. The table reads dimensions from each decoder rather than trusting
-metadata, so accidental size differences are visible. The benchmark does not
-measure visual quality. Animated and HDR inputs are outside this benchmark's
-scope; the WASM path requests RGBA8 and rejects animated JXL.
+across variants. The table reads dimensions from each decoder rather than
+trusting metadata, so accidental size differences are visible. This dataset
+uses format-specific quality settings, not matched visual quality; the page
+states that explicitly. Animated and HDR inputs are outside the benchmark's
+scope; WASM requests RGBA8 and rejects animated JXL.
 
 ## Timing contract
 
@@ -64,8 +77,8 @@ scope; the WASM path requests RGBA8 and rejects animated JXL.
 
 Run `npm run check` and `npm run build`. In Chromium and Safari/WebKit, verify:
 
-1. A run reveals all rows and chart bars together; the starter set has 15 rows.
-2. Three JXL WASM rows complete. Native JXL succeeds only where supported for
+1. A run reveals all rows and chart bars together; the current set has 85 rows.
+2. All 30 JXL WASM rows complete. Native JXL succeeds only where supported for
    these files, and appears separately. Other unsupported files show an error.
 3. CSV values correspond to the completed table. Running again replaces results.
 4. Cancel during downloads and decoding; no partial result is published. Hiding

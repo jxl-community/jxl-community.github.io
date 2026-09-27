@@ -1,5 +1,5 @@
-type Variant = { label: string; mime: string; url: string };
-type TestImage = { id: string; title: string; variants: Variant[] };
+type Variant = { label: string; encoder?: string; specifics?: string; mime: string; url: string };
+type TestImage = { id: string; title: string; preview: string; variants: Variant[] };
 type Result = {
   image: TestImage;
   variant: Variant;
@@ -91,7 +91,7 @@ async function nativeDecode(bytes: ArrayBuffer, mime: string, signal: AbortSigna
           if (!image.naturalWidth || !image.naturalHeight) finish(new Error('No decoded pixels'));
           else finish();
         },
-        () => finish(new Error('Native decode unavailable for this file (unsupported or invalid)')),
+        () => finish(new Error('Native decode unavailable.')),
       );
     });
   } finally {
@@ -119,16 +119,58 @@ function node<K extends keyof HTMLElementTagNameMap>(tag: K, text?: string, clas
   return el;
 }
 
+let tooltipId = 0;
+function addTooltip(trigger: HTMLElement, content: string | HTMLElement) {
+  trigger.classList.add('ds-tip-trigger');
+  const tooltip = node('span', undefined, 'ds-tooltip');
+  tooltip.id = `ds-tip-${++tooltipId}`;
+  tooltip.role = 'tooltip';
+  tooltip.append(content);
+  trigger.tabIndex = 0;
+  trigger.setAttribute('aria-describedby', tooltip.id);
+  trigger.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') trigger.dataset.dismissed = 'true';
+  });
+  trigger.addEventListener('blur', () => delete trigger.dataset.dismissed);
+  trigger.addEventListener('mouseleave', () => delete trigger.dataset.dismissed);
+  trigger.append(tooltip);
+  return trigger;
+}
+
 function render(rows: Result[], count: number) {
   const body = document.createDocumentFragment();
+  let group: HTMLTableSectionElement;
+  let imageId: string | undefined;
   for (const r of rows) {
     const row = node('tr');
     row.dataset.decoder = r.decoder;
-    const title = node('th', r.variant.label);
+    if (r.image.id !== imageId) {
+      imageId = r.image.id;
+      group = node('tbody');
+      body.append(group);
+      const imageCell = node('th', undefined, 'ds-image-cell');
+      imageCell.scope = 'rowgroup';
+      imageCell.rowSpan = rows.filter((result) => result.image.id === imageId).length;
+      const thumbnail = node('img');
+      thumbnail.src = r.image.preview;
+      thumbnail.alt = '';
+      thumbnail.width = 80;
+      thumbnail.height = 80;
+      thumbnail.decoding = 'async';
+      imageCell.append(thumbnail, node('span', r.image.title));
+      row.append(imageCell);
+    }
+    const title = node('th');
     title.scope = 'row';
-    title.append(node('small', r.image.title));
-    const decoder = node('td', decoderName(r));
-    if (r.api) decoder.append(node('small', r.api));
+    const encoderDetails = node('span', undefined, 'ds-tooltip-lines');
+    encoderDetails.append(node('strong', r.variant.encoder || r.variant.label));
+    if (r.variant.specifics) encoderDetails.append(node('span', r.variant.specifics));
+    title.append(addTooltip(node('span', r.variant.label, 'ds-info-label'), encoderDetails));
+    const decoder = node('td');
+    const api = r.api || (r.decoder === 'native' ? 'HTMLImageElement.decode' : undefined);
+    if (api) {
+      decoder.append(addTooltip(node('span', decoderName(r), 'ds-info-label'), api));
+    } else decoder.textContent = decoderName(r);
     row.append(
       title,
       decoder,
@@ -138,9 +180,11 @@ function render(rows: Result[], count: number) {
       node('td', r.speed === undefined ? '—' : `${number(r.speed)} MP/s`),
       node('td', r.error || 'Complete', r.error ? 'ds-unavailable' : 'ds-good'),
     );
-    body.append(row);
+    group!.append(row);
   }
-  element('ds-rows').replaceChildren(body);
+  const table = element('ds-table');
+  table.querySelectorAll('tbody').forEach((group) => group.remove());
+  table.append(body);
 
   const chart = document.createDocumentFragment();
   const max = Math.max(0, ...rows.map((r) => r.speed ?? 0));
@@ -150,18 +194,44 @@ function render(rows: Result[], count: number) {
     const measured = rows.filter((r) => r.image.id === image.id && r.speed !== undefined);
     if (!measured.length)
       group.append(node('p', 'No completed decodes for this image.', 'ds-muted'));
-    for (const r of measured) {
+    // One track per file. JPEG XL uses two lanes with a shared zero origin;
+    // lengths encode the individual speeds, never their sum.
+    for (const variant of image.variants) {
+      const matching = rows.filter((r) => r.image.id === image.id && r.variant.url === variant.url);
+      if (!matching.some((r) => r.speed !== undefined)) continue;
       const barRow = node('div', undefined, 'ds-bar-row');
+      barRow.dataset.file = variant.url;
       const track = node('div', undefined, 'ds-bar-track');
-      const bar = node('div', undefined, 'ds-bar');
-      bar.dataset.decoder = r.decoder;
-      bar.dataset.jxl = String(r.variant.mime === 'image/jxl');
-      bar.style.width = `${(r.speed! / max) * 100}%`;
+      const isJxl = variant.mime === 'image/jxl';
+      track.dataset.jxl = String(isJxl);
       track.setAttribute('aria-hidden', 'true');
-      track.append(bar);
-      const label = `${r.variant.label} · ${decoderName(r)}`;
-      barRow.setAttribute('aria-label', `${label}: ${number(r.speed!)} megapixels per second`);
-      barRow.append(node('span', label), track, node('span', number(r.speed!), 'ds-bar-value'));
+      const details = node('span', undefined, 'ds-tooltip-lines');
+      details.append(node('strong', variant.label));
+      for (const decoder of isJxl ? (['native', 'wasm'] as const) : (['native'] as const)) {
+        const result = matching.find((r) => r.decoder === decoder);
+        const lane = node('span', undefined, 'ds-bar-lane');
+        lane.dataset.decoder = decoder;
+        if (result?.speed !== undefined) {
+          const bar = node('span', undefined, 'ds-bar');
+          bar.dataset.decoder = decoder;
+          bar.dataset.jxl = String(isJxl);
+          bar.style.width = `${(result.speed / max) * 100}%`;
+          lane.append(bar);
+        }
+        track.append(lane);
+        details.append(
+          node(
+            'span',
+            `${decoder === 'native' ? 'Native' : 'WASM'}: ${
+              result?.speed !== undefined
+                ? `${number(result.speed)} MP/s`
+                : result?.error || 'Unavailable'
+            }`,
+          ),
+        );
+      }
+      barRow.append(node('span', variant.label), track);
+      addTooltip(barRow, details);
       group.append(barRow);
     }
     chart.append(group);
@@ -304,6 +374,8 @@ element('ds-export').addEventListener('click', () => {
     [
       'Image',
       'Encoding',
+      'Encoder',
+      'Specifics',
       'Decoder',
       'API',
       'Bytes',
@@ -317,6 +389,8 @@ element('ds-export').addEventListener('click', () => {
     ...lastResults.map((r) => [
       r.image.title,
       r.variant.label,
+      r.variant.encoder || r.variant.label,
+      r.variant.specifics,
       decoderName(r),
       r.api,
       r.bytes,

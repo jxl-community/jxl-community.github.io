@@ -1,0 +1,39 @@
+{
+  "source": "kyle-doerksen-GPvRvTwXUcI-unsplash.png",
+  "source_icc_profile": {
+    "embedded": true,
+    "size_bytes": 596,
+    "sha256": "4702efd77efbc520063e0644b800315003aaea8610ef3bf742379fbbf435f3ab",
+    "policy": "source ICC is supplied to each encoder when present; lossy JXL may represent standard spaces with equivalent built-in color metadata"
+  },
+  "encoders": {
+    "cjxl": "cjxl v0.12.0 0.12.0 [_NEON_BF16_,NEON] {AppleClang 21.0.0.21000334}",
+    "avifenc": "Version: 1.4.2 (dav1d [dec]:1.5.4, aom [enc/dec]:3.15.1)",
+    "cwebp": "1.6.0",
+    "pillow": "12.1.1"
+  },
+  "settings": {
+    "jpeg_quality": 90,
+    "jxl_lossless_outputs": {
+      "from_png_master": "kyle-doerksen-GPvRvTwXUcI-unsplash-lossless.jxl",
+      "transcoded_from_generated_jpeg": "kyle-doerksen-GPvRvTwXUcI-unsplash.jpg.jxl"
+    },
+    "jxl_lossy_distance": 1.5,
+    "jxl_effort": 7,
+    "jxl_faster_decoding_levels": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "avif_quality": 60,
+    "avif_speed": 6,
+    "avif_depths": [
+      8,
+      10,
+      12
+    ],
+    "webp_quality": 75,
+    "webp_method": 4
+  }
+}

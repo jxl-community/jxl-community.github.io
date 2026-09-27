@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
-import manifest from '../../data/decode-speed-images.json';
+import { decodeSpeedManifest as manifest } from '../../lib/decode-speed-manifest';
 import { JXL_DECODER_VERSION } from '../../lib/jxl-decoder-version';
 import '../../styles/decode-speed-test.css';
 
@@ -53,8 +53,7 @@ for (const image of manifest.images) {
             <figcaption>
               <strong>{image.title}</strong>
               <span>
-                Photo by <a href={image.portfolio}>{image.photographer}</a> /{' '}
-                <a href={image.url}>Unsplash</a>
+                Photo by <a href={image.url}>{image.photographer} / Unsplash</a>
               </span>
             </figcaption>
           </figure>
@@ -110,14 +109,15 @@ for (const image of manifest.images) {
         aria-label="Decode results, scroll horizontally for more columns"
         tabindex="0"
       >
-        <table>
+        <table id="ds-table">
           <caption>
             Median decode time and speed for each image and decoder. Unavailable results are
             excluded from the chart.
           </caption>
           <thead>
             <tr>
-              <th scope="col">Image / encoding</th>
+              <th scope="col">Image</th>
+              <th scope="col">Encoder</th>
               <th scope="col">Decoder</th>
               <th scope="col">Pixels</th>
               <th scope="col">File size</th>
@@ -126,7 +126,6 @@ for (const image of manifest.images) {
               <th scope="col">Status</th>
             </tr>
           </thead>
-          <tbody id="ds-rows"></tbody>
         </table>
       </div>
       <div class="ds-section-heading ds-chart-heading">
@@ -134,8 +133,20 @@ for (const image of manifest.images) {
         <span>Megapixels per second · higher is faster</span>
       </div>
       <p class="ds-muted">
-        All bars use the same scale. Exact values and decoder APIs are in the table above.
+        All bars use the same scale. JPEG XL pairs native decoding on top with WASM below, both
+        starting at zero. Hover over or focus a bar for speeds in MP/s.
       </p>
+      <div class="ds-chart-legend" aria-label="Chart colors">
+        <span>
+          <i class="ds-swatch ds-swatch-native" aria-hidden="true"></i> Native
+        </span>
+        <span>
+          <i class="ds-swatch ds-swatch-jxl" aria-hidden="true"></i> JPEG XL native
+        </span>
+        <span>
+          <i class="ds-swatch ds-swatch-wasm" aria-hidden="true"></i> JPEG XL WASM
+        </span>
+      </div>
       <div id="ds-chart" class="ds-chart"></div>
     </section>
 

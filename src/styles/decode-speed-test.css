@@ -42,7 +42,7 @@
 }
 .ds-images {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1.25rem;
   margin-top: 1.5rem;
 }
@@ -180,6 +180,64 @@
 .ds-shell tbody th {
   font-weight: 500;
 }
+.ds-shell .ds-image-cell {
+  width: 7.5rem;
+  min-width: 7.5rem;
+  vertical-align: middle;
+  white-space: normal;
+  background: #18191b;
+}
+.ds-image-cell img {
+  display: block;
+  width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.6rem;
+}
+.ds-image-cell span {
+  display: block;
+  max-width: 8rem;
+  font-size: 0.85rem;
+}
+.ds-tip-trigger {
+  position: relative;
+  cursor: help;
+}
+.ds-info-label {
+  text-decoration: underline dotted;
+  text-underline-offset: 0.25em;
+}
+.ds-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  z-index: 2;
+  width: max-content;
+  max-width: min(22rem, calc(100vw - 4rem));
+  padding: 0.4rem 0.65rem;
+  border: 1px solid var(--ds-line);
+  border-radius: 6px;
+  background: #182f5e;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.5;
+  white-space: normal;
+  visibility: hidden;
+}
+.ds-tooltip-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.ds-tip-trigger:hover > .ds-tooltip,
+.ds-tip-trigger:focus > .ds-tooltip {
+  visibility: visible;
+}
+.ds-tip-trigger[data-dismissed] > .ds-tooltip {
+  visibility: hidden;
+}
 .ds-shell td:last-child {
   white-space: normal;
   min-width: 14rem;
@@ -215,19 +273,29 @@
 }
 .ds-bar-row {
   display: grid;
-  grid-template-columns: 13rem minmax(0, 1fr) 5rem;
+  grid-template-columns: 13rem minmax(0, 1fr);
   align-items: center;
   gap: 1rem;
   margin-top: 0.65rem;
   font-size: 0.9rem;
 }
 .ds-bar-track {
-  height: 0.8rem;
+  display: grid;
+  height: 1.25rem;
   background: rgba(255, 255, 255, 0.06);
   border-radius: 3px;
   overflow: hidden;
 }
+.ds-bar-track[data-jxl='true'] {
+  grid-template-rows: repeat(2, 1fr);
+  gap: 2px;
+}
+.ds-bar-lane {
+  display: block;
+  min-height: 0;
+}
 .ds-bar {
+  display: block;
   height: 100%;
   background: #7aa0ea;
   border-radius: 3px;
@@ -238,9 +306,36 @@
 .ds-bar[data-jxl='true'][data-decoder='native'] {
   background: #21e6e1;
 }
-.ds-bar-value {
-  text-align: right;
+.ds-bar-row > .ds-tooltip {
+  left: auto;
+  right: 0;
   font-variant-numeric: tabular-nums;
+}
+.ds-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  color: var(--ds-muted);
+  font-size: 0.85rem;
+}
+.ds-chart-legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.ds-swatch {
+  width: 1rem;
+  height: 0.5rem;
+  border-radius: 2px;
+}
+.ds-swatch-native {
+  background: #7aa0ea;
+}
+.ds-swatch-jxl {
+  background: #21e6e1;
+}
+.ds-swatch-wasm {
+  background: #3bb6b3;
 }
 .ds-method {
   margin-top: 4rem;
@@ -260,12 +355,18 @@
 .ds-credit {
   font-size: 0.9rem;
 }
+@media (max-width: 991px) {
+  .ds-images {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
 @media (max-width: 767px) {
   .ds-shell {
     width: calc(100% - 2rem);
     margin-top: 2rem;
   }
   .ds-images {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.75rem;
   }
   .ds-images img {
@@ -282,7 +383,7 @@
     gap: 1rem;
   }
   .ds-bar-row {
-    grid-template-columns: minmax(7rem, 1fr) minmax(0, 1.5fr) 3.5rem;
+    grid-template-columns: minmax(7rem, 1fr) minmax(0, 1.5fr);
     gap: 0.65rem;
     font-size: 0.8rem;
   }
