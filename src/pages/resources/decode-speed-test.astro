@@ -1,0 +1,187 @@
+---
+import fs from 'node:fs';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import manifest from '../../data/decode-speed-images.json';
+import { JXL_DECODER_VERSION } from '../../lib/jxl-decoder-version';
+import '../../styles/decode-speed-test.css';
+
+// Catch missing assets and ambiguous labels before publishing the benchmark.
+const ids = new Set<string>();
+for (const image of manifest.images) {
+  if (ids.has(image.id) || !image.variants.length)
+    throw new Error(`Invalid benchmark image: ${image.id}`);
+  ids.add(image.id);
+  const labels = new Set<string>();
+  for (const variant of image.variants) {
+    if (labels.has(variant.label)) throw new Error(`Duplicate benchmark variant: ${variant.label}`);
+    labels.add(variant.label);
+    if (
+      !['image/jpeg', 'image/png', 'image/webp', 'image/avif', 'image/jxl'].includes(variant.mime)
+    ) {
+      throw new Error(`Unsupported benchmark MIME type: ${variant.mime}`);
+    }
+    if (!variant.url.startsWith('/') || variant.url.includes('..'))
+      throw new Error('Use local benchmark assets');
+    fs.accessSync(`public${variant.url}`);
+  }
+  fs.accessSync(`public${image.preview}`);
+}
+---
+
+<BaseLayout
+  title="Decode Speed Test – JPEG XL"
+  description="Compare image decoding speed on your device across JPEG, WebP, AVIF, and JPEG XL, with separate WebAssembly and native JPEG XL results."
+  canonical="https://jpegxl.info/resources/decode-speed-test.html"
+>
+  <PageHero
+    title="Decode Speed Test"
+    subtitle="Same images. Different decoders. See how quickly your browser turns compressed files into pixels."
+  />
+
+  <main class="ds-shell">
+    <section aria-labelledby="ds-set-heading">
+      <div class="ds-section-heading">
+        <h2 id="ds-set-heading">Put your browser to the test</h2>
+        <span>{manifest.images.length} images · all formats</span>
+      </div>
+      <p class="ds-muted">{manifest.note}</p>
+      <div class="ds-images">
+        {manifest.images.map((image) => (
+          <figure>
+            <img src={image.preview} alt={image.title} width="480" height="300" decoding="async" />
+            <figcaption>
+              <strong>{image.title}</strong>
+              <span>
+                Photo by <a href={image.portfolio}>{image.photographer}</a> /{' '}
+                <a href={image.url}>Unsplash</a>
+              </span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <section class="ds-run" aria-label="Benchmark controls">
+      <div class="ds-controls">
+        <label for="ds-repeats">
+          Decodes per result
+          <select id="ds-repeats">
+            <option value="7">7 — quick test</option>
+            <option value="21">21 — longer test</option>
+          </select>
+        </label>
+        <button id="ds-start" class="ds-primary" type="button" disabled>
+          Run speed test
+        </button>
+        <button id="ds-stop" type="button" hidden>
+          Cancel
+        </button>
+      </div>
+      <p id="ds-status" role="status" aria-live="polite">
+        Preparing the test…
+      </p>
+      <progress
+        id="ds-progress"
+        max="1"
+        value="0"
+        aria-label="Benchmark progress"
+        hidden
+      ></progress>
+      <p class="ds-muted ds-hint">
+        Keep this tab visible while testing. All results appear together when the run finishes.
+      </p>
+      <noscript>
+        <p>Enable JavaScript to run the speed test on your device.</p>
+      </noscript>
+    </section>
+
+    <section id="ds-results" aria-labelledby="ds-results-heading" hidden>
+      <div class="ds-section-heading">
+        <h2 id="ds-results-heading">Your results</h2>
+        <button id="ds-export" type="button">
+          Download CSV
+        </button>
+      </div>
+      <p id="ds-summary" class="ds-muted"></p>
+      <div
+        class="ds-table-scroll"
+        role="region"
+        aria-label="Decode results, scroll horizontally for more columns"
+        tabindex="0"
+      >
+        <table>
+          <caption>
+            Median decode time and speed for each image and decoder. Unavailable results are
+            excluded from the chart.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Image / encoding</th>
+              <th scope="col">Decoder</th>
+              <th scope="col">Pixels</th>
+              <th scope="col">File size</th>
+              <th scope="col">Median time</th>
+              <th scope="col">Speed</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody id="ds-rows"></tbody>
+        </table>
+      </div>
+      <div class="ds-section-heading ds-chart-heading">
+        <h2>Decode speed by image</h2>
+        <span>Megapixels per second · higher is faster</span>
+      </div>
+      <p class="ds-muted">
+        All bars use the same scale. Exact values and decoder APIs are in the table above.
+      </p>
+      <div id="ds-chart" class="ds-chart"></div>
+    </section>
+
+    <section class="ds-method" aria-labelledby="ds-method-heading">
+      <h2 id="ds-method-heading">What are we measuring?</h2>
+      <div class="ds-method-columns">
+        <div>
+          <h3>From bytes to pixels</h3>
+          <p>
+            Files are downloaded before timing begins. Each result gets one untimed warm-up,
+            followed by sequential decodes. We report the median time and calculate speed from the
+            decoded pixel dimensions. Downloads, WASM setup, and drawing to the screen are excluded.
+          </p>
+          <p>
+            Native decoding uses a fresh image and object URL for each decode. WASM creates a fresh
+            decoder and copies its RGBA8 pixels into JavaScript memory. These timings include the
+            work of the respective browser APIs; they are not isolated codec CPU measurements.
+          </p>
+        </div>
+        <div>
+          <h3>Two ways to decode JPEG XL</h3>
+          <p>
+            JPEG XL always runs through our local jxl-rs v{JXL_DECODER_VERSION} WebAssembly decoder.
+            If your browser can also decode a test file natively, that gets its own result using
+            exactly the same bytes. Unsupported or failed files stay visible in the table.
+          </p>
+          <p>
+            Results depend on your device, browser, encoding settings, and other activity. Browser
+            caching and scheduling can affect timings. Compare multiple runs; this is a local
+            experiment, not a universal ranking.
+          </p>
+        </div>
+      </div>
+      <p class="ds-credit">
+        Inspired by{' '}
+        <a href="https://sneyers.info/browserspeedtest/">Jon Sneyers’ browser decode speed test</a>.
+      </p>
+    </section>
+  </main>
+  <script
+    type="application/json"
+    id="ds-manifest"
+    is:inline
+    set:html={JSON.stringify(manifest).replace(/</g, '\\u003c')}
+  />
+  <script>
+    import '../../scripts/decode-speed-test';
+  </script>
+</BaseLayout>

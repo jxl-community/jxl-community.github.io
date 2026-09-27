@@ -1,0 +1,95 @@
+{
+  "note": "Starter set from the progressive loading demo. Final benchmark encodes will replace these files.",
+  "images": [
+    {
+      "id": "anto-meneghini-IrohWzafmmA-unsplash",
+      "title": "Poke bowl",
+      "photographer": "Anto Meneghini",
+      "url": "https://unsplash.com/photos/vegetable-salad-on-black-ceramic-bowl-IrohWzafmmA",
+      "portfolio": "https://unsplash.com/@antomeneghini",
+      "preview": "/ProgressiveDemoImages/ssimu2-85/anto-meneghini-IrohWzafmmA-unsplash/anto-meneghini-IrohWzafmmA-unsplash-jpeg-sequential.jpg",
+      "variants": [
+        {
+          "label": "JPEG",
+          "mime": "image/jpeg",
+          "url": "/ProgressiveDemoImages/ssimu2-85/anto-meneghini-IrohWzafmmA-unsplash/anto-meneghini-IrohWzafmmA-unsplash-jpeg-sequential.jpg"
+        },
+        {
+          "label": "WebP",
+          "mime": "image/webp",
+          "url": "/ProgressiveDemoImages/ssimu2-85/anto-meneghini-IrohWzafmmA-unsplash/anto-meneghini-IrohWzafmmA-unsplash.webp"
+        },
+        {
+          "label": "AVIF",
+          "mime": "image/avif",
+          "url": "/ProgressiveDemoImages/ssimu2-85/anto-meneghini-IrohWzafmmA-unsplash/anto-meneghini-IrohWzafmmA-unsplash.avif"
+        },
+        {
+          "label": "JPEG XL",
+          "mime": "image/jxl",
+          "url": "/ProgressiveDemoImages/ssimu2-85/anto-meneghini-IrohWzafmmA-unsplash/anto-meneghini-IrohWzafmmA-unsplash-progressive.jxl"
+        }
+      ]
+    },
+    {
+      "id": "calvin-xy-wang-FUNWLd_5_oI-unsplash",
+      "title": "Granite peak",
+      "photographer": "Calvin XY Wang",
+      "url": "https://unsplash.com/photos/granite-peak-in-huangshan-china-FUNWLd_5_oI",
+      "portfolio": "https://unsplash.com/@calw_px",
+      "preview": "/ProgressiveDemoImages/ssimu2-85/calvin-xy-wang-FUNWLd_5_oI-unsplash/calvin-xy-wang-FUNWLd_5_oI-unsplash-jpeg-sequential.jpg",
+      "variants": [
+        {
+          "label": "JPEG",
+          "mime": "image/jpeg",
+          "url": "/ProgressiveDemoImages/ssimu2-85/calvin-xy-wang-FUNWLd_5_oI-unsplash/calvin-xy-wang-FUNWLd_5_oI-unsplash-jpeg-sequential.jpg"
+        },
+        {
+          "label": "WebP",
+          "mime": "image/webp",
+          "url": "/ProgressiveDemoImages/ssimu2-85/calvin-xy-wang-FUNWLd_5_oI-unsplash/calvin-xy-wang-FUNWLd_5_oI-unsplash.webp"
+        },
+        {
+          "label": "AVIF",
+          "mime": "image/avif",
+          "url": "/ProgressiveDemoImages/ssimu2-85/calvin-xy-wang-FUNWLd_5_oI-unsplash/calvin-xy-wang-FUNWLd_5_oI-unsplash.avif"
+        },
+        {
+          "label": "JPEG XL",
+          "mime": "image/jxl",
+          "url": "/ProgressiveDemoImages/ssimu2-85/calvin-xy-wang-FUNWLd_5_oI-unsplash/calvin-xy-wang-FUNWLd_5_oI-unsplash-progressive.jxl"
+        }
+      ]
+    },
+    {
+      "id": "dibakar-roy-HNT6EehPZoI-unsplash",
+      "title": "Holi festival",
+      "photographer": "Dibakar Roy",
+      "url": "https://unsplash.com/photos/crowd-celebrating-holi-festival-with-colored-powder-HNT6EehPZoI",
+      "portfolio": "https://unsplash.com/@dibakar16roy",
+      "preview": "/ProgressiveDemoImages/ssimu2-85/dibakar-roy-HNT6EehPZoI-unsplash/dibakar-roy-HNT6EehPZoI-unsplash-jpeg-sequential.jpg",
+      "variants": [
+        {
+          "label": "JPEG",
+          "mime": "image/jpeg",
+          "url": "/ProgressiveDemoImages/ssimu2-85/dibakar-roy-HNT6EehPZoI-unsplash/dibakar-roy-HNT6EehPZoI-unsplash-jpeg-sequential.jpg"
+        },
+        {
+          "label": "WebP",
+          "mime": "image/webp",
+          "url": "/ProgressiveDemoImages/ssimu2-85/dibakar-roy-HNT6EehPZoI-unsplash/dibakar-roy-HNT6EehPZoI-unsplash.webp"
+        },
+        {
+          "label": "AVIF",
+          "mime": "image/avif",
+          "url": "/ProgressiveDemoImages/ssimu2-85/dibakar-roy-HNT6EehPZoI-unsplash/dibakar-roy-HNT6EehPZoI-unsplash.avif"
+        },
+        {
+          "label": "JPEG XL",
+          "mime": "image/jxl",
+          "url": "/ProgressiveDemoImages/ssimu2-85/dibakar-roy-HNT6EehPZoI-unsplash/dibakar-roy-HNT6EehPZoI-unsplash-progressive.jxl"
+        }
+      ]
+    }
+  ]
+}
