@@ -94,7 +94,7 @@ decodes them to is up to the browser; the page cannot see or control it.
   rows' Decoder tooltip shows which one ran (`jxl-rs · SIMD` or
   `jxl-rs · scalar`).
 - Shuffle case execution order each run, preserving manifest order in the table.
-- Perform one untimed warm-up per case, then 7 or 21 sequential decodes.
+- Perform one untimed warm-up per case, then 5 or 21 sequential decodes.
 - Native: time from setting a fresh object URL on a fresh detached image through
   `HTMLImageElement.decode()`. Make a fresh Blob for every call; revoke URLs and
   release images afterward. No JXL polyfill is loaded on this page.

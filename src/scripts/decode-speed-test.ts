@@ -32,7 +32,7 @@ const results = element('ds-results');
 let controller: AbortController | undefined;
 let worker: Worker | undefined;
 let lastResults: Result[] = [];
-let lastRepeats = 7;
+let lastRepeats = 5;
 // Set once the page knows whether this browser decodes JPEG XL natively.
 let nativeJxl = false;
 
