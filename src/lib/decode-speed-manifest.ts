@@ -13,13 +13,14 @@ type EncodingMetadata = {
     jpegli_quality: number;
     jpegli_progressive_level: number;
     jxl_lossless_outputs: {
-      from_png_master: string;
+      from_png_master_faster_decoding_levels: string[];
       transcoded_from_pillow_jpeg: string;
       transcoded_from_jpegli_jpeg: string;
     };
     jxl_lossy_distance: number;
     jxl_effort: number;
     jxl_faster_decoding_levels: number[];
+    jxl_lossless_faster_decoding_levels: number[];
     avif_quality: number;
     avif_speed: number;
     avif_depths: number[];
@@ -44,6 +45,10 @@ export const decodeSpeedManifest = {
       fs.readFileSync(`public${image.settings}`, 'utf8'),
     );
     const settings = metadata.settings;
+    const losslessFiles = settings.jxl_lossless_outputs.from_png_master_faster_decoding_levels;
+    if (losslessFiles.length !== settings.jxl_lossless_faster_decoding_levels.length) {
+      throw new Error(`Mismatched lossless JPEG XL levels and files in ${image.settings}`);
+    }
     const directory = path.posix.dirname(image.settings);
     const stem = metadata.source.replace(/\.png$/, '');
     const asset = (filename: string) => {
@@ -101,13 +106,13 @@ export const decodeSpeedManifest = {
         mime: 'image/jxl',
         url: asset(`${stem}${level === 0 ? '' : `-fd${level}`}.jxl`),
       })),
-      {
-        label: 'JPEG XL lossless',
+      ...settings.jxl_lossless_faster_decoding_levels.map((level, index) => ({
+        label: `JPEG XL lossless fd${level}`,
         encoder: jxlEncoder,
-        specifics: `Lossless from master · effort ${settings.jxl_effort}`,
+        specifics: `Lossless from PNG master · --faster-decoding=${level} · effort ${settings.jxl_effort}`,
         mime: 'image/jxl',
-        url: asset(settings.jxl_lossless_outputs.from_png_master),
-      },
+        url: asset(losslessFiles[index]),
+      })),
       {
         label: 'JPEG XL · JPEG transcode',
         encoder: jxlEncoder,

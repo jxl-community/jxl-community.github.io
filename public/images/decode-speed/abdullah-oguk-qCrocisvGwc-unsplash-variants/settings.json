@@ -18,7 +18,13 @@
     "jpegli_quality": 90,
     "jpegli_progressive_level": 2,
     "jxl_lossless_outputs": {
-      "from_png_master": "abdullah-oguk-qCrocisvGwc-unsplash-lossless.jxl",
+      "from_png_master_faster_decoding_levels": [
+        "abdullah-oguk-qCrocisvGwc-unsplash-lossless-fd0.jxl",
+        "abdullah-oguk-qCrocisvGwc-unsplash-lossless-fd1.jxl",
+        "abdullah-oguk-qCrocisvGwc-unsplash-lossless-fd2.jxl",
+        "abdullah-oguk-qCrocisvGwc-unsplash-lossless-fd3.jxl",
+        "abdullah-oguk-qCrocisvGwc-unsplash-lossless-fd4.jxl"
+      ],
       "transcoded_from_pillow_jpeg": "abdullah-oguk-qCrocisvGwc-unsplash.jpg.jxl",
       "transcoded_from_jpegli_jpeg": "abdullah-oguk-qCrocisvGwc-unsplash-jpegli.jpg.jxl"
     },
@@ -28,7 +34,15 @@
       0,
       1,
       2,
-      3
+      3,
+      4
+    ],
+    "jxl_lossless_faster_decoding_levels": [
+      0,
+      1,
+      2,
+      3,
+      4
     ],
     "avif_quality": 60,
     "avif_speed": 6,

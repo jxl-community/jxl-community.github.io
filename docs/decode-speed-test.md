@@ -9,30 +9,31 @@ folder and `settings.json` per photo. `src/data/decode-speed-images.json` lists
 photo titles, credits, and settings paths. `src/lib/decode-speed-manifest.ts`
 reads those settings at build time to produce the benchmark manifest.
 
-The current set tests each image's PNG master (the lossless baseline) plus 13
+The current set tests each image's PNG master (the lossless baseline) plus 18
 encodes:
 
 - JPEG (Pillow 12.1.1, quality 90).
 - JPEGli (cjpegli, quality 90, progressive level 2).
 - WebP (cwebp 1.6.0, quality 80, method 4).
 - AVIF at 8, 10, and 12 bits (avifenc 1.4.2, quality 60, speed 6).
-- Four lossy JPEG XL variants (cjxl 0.12.0, distance 2, effort 7,
-  `--faster-decoding` levels 0–3).
-- Lossless JPEG XL from the master, a lossless transcode of the Pillow JPEG,
-  and a lossless transcode of the JPEGli JPEG.
+- Five lossy JPEG XL variants (cjxl 0.12.0, distance 2, effort 7,
+  `--faster-decoding` levels 0–4).
+- Five lossless PNG-to-JXL variants (effort 7, `--faster-decoding` levels 0–4).
+- Lossless JPEG transcodes of the Pillow JPEG and JPEGli JPEG.
 
 With WASM included, each JPEG XL file gets separate WASM and native rows, so
-the current dataset has 105 result rows for 70 files; without WASM it has 70.
+the current dataset has 155 result rows for 95 files; without WASM it has 95.
 The Pillow JPEGs supply previews and thumbnails.
-The PNG masters add about 23 MB to the roughly 42 MB download; keep them
+The full set downloads about 132 MiB, including about 22 MiB of PNG masters; keep them
 alpha-free and 8-bit RGB, since every other encode is made from them.
 
 Encoder names, versions, and specifics come from each photo's settings JSON,
 not a second hand-maintained list. To retire an AVIF depth, remove it from that
 photo's `avif_depths` array; an unreferenced file can stay on disk or be removed.
-The loader checks that all referenced files exist. Lossless JXL filenames come
-from `jxl_lossless_outputs`, including distinct Pillow and JPEGli transcodes;
-lossy variants follow the supplied naming scheme
+The loader checks that all referenced files exist. PNG-to-JXL filenames come
+from `jxl_lossless_outputs.from_png_master_faster_decoding_levels`, paired with
+`jxl_lossless_faster_decoding_levels`; the Pillow and JPEGli transcode filenames
+also come from `jxl_lossless_outputs`. Lossy variants follow the supplied naming scheme
 (`.jxl` for fd0, `-fdN.jxl` for other levels).
 
 The first table column groups each image's rows under one thumbnail and title.
@@ -116,9 +117,11 @@ decodes them to is up to the browser; the page cannot see or control it.
 
 Run `npm run check` and `npm run build`. In Chromium and Safari/WebKit, verify:
 
-1. A run reveals all rows and chart bars together: 105 rows with WASM, 70
-   without. Safari shows the WASM checkbox; Chromium does not.
-2. With WASM included, all 35 JXL WASM rows complete. Native JXL succeeds only
+1. A run reveals all rows and chart bars together: 155 rows with WASM, 95
+   without. Browsers with native JPEG XL show the WASM checkbox (Safari, and
+   Chrome Dev 156 as of September 2026); browsers without it (Chrome 154
+   stable) do not.
+2. With WASM included, all 60 JXL WASM rows complete. Native JXL succeeds only
    where supported for these files, and appears separately. Other unsupported
    files show an error.
 3. CSV values correspond to the completed table. Running again replaces results.

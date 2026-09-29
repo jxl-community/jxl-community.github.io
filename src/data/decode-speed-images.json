@@ -1,5 +1,5 @@
 {
-  "note": "Five photographs, 2400 pixels on the long side, each tested as the lossless PNG master plus 13 encodes: JPEG, JPEGli, WebP, AVIF at 8/10/12 bits, and seven JPEG XL variants. Encoding settings vary by format; these files are not matched for visual quality.",
+  "note": "Five photographs, 2400 pixels on the long side, each tested as the lossless PNG master plus 18 encodes: JPEG, JPEGli, WebP, AVIF at 8/10/12 bits, five lossy JPEG XL faster-decoding levels, five lossless PNG-to-JXL levels, and two lossless JPEG transcodes. Encoding settings vary by format; these files are not matched for visual quality.",
   "images": [
     {
       "id": "abdullah-oguk-qCrocisvGwc-unsplash",

@@ -18,7 +18,13 @@
     "jpegli_quality": 90,
     "jpegli_progressive_level": 2,
     "jxl_lossless_outputs": {
-      "from_png_master": "vitaly-k-WRguDVlbtwA-unsplash-lossless.jxl",
+      "from_png_master_faster_decoding_levels": [
+        "vitaly-k-WRguDVlbtwA-unsplash-lossless-fd0.jxl",
+        "vitaly-k-WRguDVlbtwA-unsplash-lossless-fd1.jxl",
+        "vitaly-k-WRguDVlbtwA-unsplash-lossless-fd2.jxl",
+        "vitaly-k-WRguDVlbtwA-unsplash-lossless-fd3.jxl",
+        "vitaly-k-WRguDVlbtwA-unsplash-lossless-fd4.jxl"
+      ],
       "transcoded_from_pillow_jpeg": "vitaly-k-WRguDVlbtwA-unsplash.jpg.jxl",
       "transcoded_from_jpegli_jpeg": "vitaly-k-WRguDVlbtwA-unsplash-jpegli.jpg.jxl"
     },
@@ -28,7 +34,15 @@
       0,
       1,
       2,
-      3
+      3,
+      4
+    ],
+    "jxl_lossless_faster_decoding_levels": [
+      0,
+      1,
+      2,
+      3,
+      4
     ],
     "avif_quality": 60,
     "avif_speed": 6,
