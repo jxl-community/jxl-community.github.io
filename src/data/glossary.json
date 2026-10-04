@@ -60,6 +60,11 @@
     "subcategory": "Color & Display Tech"
   },
   {
+    "term": "ANS (Asymmetric Numeral Systems)",
+    "definition": "A family of lossless entropy coding methods that achieves the compression density of Arithmetic Coding at the speed of Huffman Coding. By updating a single numerical state as symbols are processed, it assigns fewer fractional bits to frequent symbols. JPEG XL specifically uses rANS (range ANS), leveraging multi-stream parallelism for fast SIMD-accelerated decoding.",
+    "subcategory": "Compression"
+  },
+  {
     "term": "Compression",
     "definition": "The process of reducing the size in bytes of an image file while either preserving all information exactly (lossless compression) or allowing some amount of information loss while maintaining the visual image quality as much as possible (lossy compression).",
     "subcategory": "Compression"
@@ -91,7 +96,7 @@
   },
   {
     "term": "Entropy Coding",
-    "definition": "A technique used in lossless compression to assign shorter codes to more frequent symbols in the data, resulting in smaller file sizes. JPEG XL uses a combination of techniques like Asymmetrical Numerical Systems (ANS) and LZ77 for efficient entropy coding. Lossy compression in both JPEG and JPEG XL also uses lossless compression to store the part of the image information that is not lost; JPEG XL has more advanced entropy coding techniques than JPEG, which is what allows effective lossless JPEG recompression.",
+    "definition": "A lossless compression technique that represents more frequent symbols using fewer bits on average, resulting in smaller file sizes. JPEG XL uses rANS (range Asymmetric Numeral Systems) for entropy coding and can combine it with LZ77 to compress repeated sequences. Lossy compression in both JPEG and JPEG XL also uses lossless compression to store the part of the image information that is not lost; JPEG XL has more advanced entropy coding techniques than JPEG, which is what allows effective lossless JPEG recompression.",
     "subcategory": "Compression"
   },
   {

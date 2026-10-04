@@ -826,6 +826,22 @@
     ],
     "News": [
         {
+            "Title": "Chrome 155 adds JPEG XL and wallet credentials, but most sites will need time to use them",
+            "link": "https://www.digitbin.com/chrome-155-jpeg-xl-features/",
+            "date": "2026-10-04",
+            "Author": "Swayam Prakash",
+            "Publication": "DigitBin",
+            "Summary": "DigitBin covers Chrome 155's early rollout and planned JPEG XL decoding with the Rust-based jxl-rs decoder, explaining how website adoption will bring the format's benefits to users.",
+            "Tags": [
+                "JPEG XL",
+                "Chrome",
+                "Browser Support",
+                "Rust",
+                "jxl-rs",
+                "Web delivery"
+            ]
+        },
+        {
             "Title": "Firefox rattrape Safari avec une nouveauté très attendue par les utilisateurs",
             "link": "https://www.clubic.com/actualite-626848-firefox-rattrape-safari-avec-une-nouveaute-tres-attendue-par-les-utilisateurs.html",
             "date": "2026-08-26",
