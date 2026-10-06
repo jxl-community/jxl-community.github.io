@@ -25,10 +25,9 @@ const description =
      JPEG XL   progressive only (the comparison pane)
 
    Worth knowing before reading the AVIF numbers: its "progressive" file really
-   is layered (an `a1lx` box, base layer complete at 2.5% of the file), but no
-   current browser paints that base layer — Chrome and Safari both show nothing
-   until the final byte, exactly like the standard AVIF. The demo reports that
-   rather than hiding it. */
+   is layered (an `a1lx` box, base layer complete at 2.5% of the file). Chrome
+   paints that base layer; Safari shows nothing until the final byte, exactly
+   like the standard AVIF. The demo reports that rather than hiding it. */
 const CSV = 'ssimu2-85/results.csv';
 const DIR = 'ProgressiveDemoImages';
 const filePath = (file: string) => path.join('public', DIR, file);

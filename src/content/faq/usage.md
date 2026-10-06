@@ -1,7 +1,7 @@
 ---
 title: Usage
 order: 2
-lastUpdated: July 9, 2026
+lastUpdated: October 6, 2026
 ---
 
 ### Where can I use JPEG XL images?
@@ -11,12 +11,12 @@ JPEG XL is well-suited for applications where both image quality and file size a
 
 ### What are JPEG XL’s limitations?
 
-While JPEG XL offers numerous benefits, there are some limitations to consider. The most significant limitation is that browser support for JPEG XL is still evolving, meaning not all browsers can display JPEG XL images natively. Additionally, some existing image editing software might not yet offer native support for JPEG XL, requiring updates or plugins to handle the format. Therefore, users may need to rely on compatible software and browsers to fully utilize JPEG XL’s capabilities.
+While JPEG XL offers numerous benefits, there are some limitations to consider. Browser support is recent: Chrome and Firefox only turned it on by default in late 2026, so visitors on older browser versions can’t display JPEG XL images natively and still need a fallback format. Additionally, some existing image editing software might not yet offer native support for JPEG XL, requiring updates or plugins to handle the format. Therefore, users may need to rely on compatible software and browsers to fully utilize JPEG XL’s capabilities.
 - - -
 
 ### Can I use JPEG XL on my web browser?
 
-Support for JPEG XL in web browsers is still evolving. Most modern browsers offer support, but it’s not yet universally adopted. It’s fully supported in Safari, Thorium, Basilisk, Pale Moon, and Waterfox. Support behind a flag was added in Chrome version 145 and Firefox version 152. You can check [https://caniuse.com/jpegxl](https://caniuse.com/jpegxl) for the latest browser compatibility information.
+Yes, in most current browsers. JPEG XL is supported by default in Safari, in Chrome from version 155, and in Firefox from version 158 (due October 13, 2026). Thorium, Waterfox, Pale Moon, Basilisk, Orion, Ladybird, and Zen support it too. You can check [https://caniuse.com/jpegxl](https://caniuse.com/jpegxl) for the latest browser compatibility information.
 
 Leverage the `<picture>` element to deliver JXL images to browsers that support them, while ensuring fallback for other browsers:
 ```html

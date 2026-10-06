@@ -118,9 +118,9 @@ decodes them to is up to the browser; the page cannot see or control it.
 Run `npm run check` and `npm run build`. In Chromium and Safari/WebKit, verify:
 
 1. A run reveals all rows and chart bars together: 155 rows with WASM, 95
-   without. Browsers with native JPEG XL show the WASM checkbox (Safari, and
-   Chrome Dev 156 as of September 2026); browsers without it (Chrome 154
-   stable) do not.
+   without. Browsers with native JPEG XL show the WASM checkbox (Safari,
+   Chrome 155+, Firefox 158+); browsers without it (Chrome 154 and earlier)
+   do not.
 2. With WASM included, all 60 JXL WASM rows complete. Native JXL succeeds only
    where supported for these files, and appears separately. Other unsupported
    files show an error.

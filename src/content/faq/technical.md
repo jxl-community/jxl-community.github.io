@@ -1,7 +1,7 @@
 ---
 title: Technical
 order: 3
-lastUpdated: July 9, 2026
+lastUpdated: October 6, 2026
 ---
 
 ### How can I convert images to JPEG XL?
@@ -21,7 +21,7 @@ Both JPEG XL and WebP offer significant improvements over JPEG. However, they ha
 - **Inherent Limitations:** WebP’s maximum of 8 bits-per-channel and its mandatory use of 4:2:0 chroma subsampling in lossy images restrict its suitability for high-quality image applications. In practice, lossy WebP operates at 6.5 bits per pixel rather than 8 bits. While the green channel retains approximately 7 bits of precision, the red and blue channels lose more than one bit of accuracy due to their conversion into a limited-range YUV format. WebP also limits image width and height to 16,383 pixels. While this may suffice for most web use cases, it is not practical for authoring workflows and other applications where larger image dimensions are required.
 - **Compression algorithms:** JPEG XL employs a more complex compression pipeline compared to WebP, leading to better compression ratios versus compression speed at all levels. [link]
 - **Feature support:** JPEG XL offers a wider range of critical modern features like HDR & wide gamut support, 32 bits per channel, progressive decoding, extra channels, and CMYK support, making it more versatile for various applications.
-- **Browser adoption:** WebP currently has wider browser support compared to JPEG XL.
+- **Browser adoption:** WebP still has wider browser support, mainly because it reaches older browser versions. JPEG XL is now supported by default in Safari and Chrome, with Firefox following in version 158.
 - - -
 
 ### What is the maximum file size supported by JPEG XL?
