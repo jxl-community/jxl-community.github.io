@@ -1,6 +1,26 @@
 {
     "Blog posts": [
         {
+            "title": "Shipping JPEG XL in Chrome",
+            "link": "https://developer.chrome.com/blog/jpeg-xl-in-chrome",
+            "date": "2026-10-06",
+            "Author": "Luca Versari, Moritz Firsching, Philip Jägenstedt",
+            "Publication": "Chrome for Developers",
+            "Summary": "The Chrome team announces JPEG XL decoding from Chrome 155, built on the memory-safe Rust jxl-rs decoder, with support for HDR, progressive decoding, animation and lossless JPEG transcoding.",
+            "Tags": [
+                "JPEG XL",
+                "Chrome",
+                "Google",
+                "Browser Support",
+                "Rust",
+                "jxl-rs",
+                "HDR",
+                "Progressive",
+                "Interop",
+                "Web delivery"
+            ]
+        },
+        {
             "title": "Intent to Ship: JPEG XL",
             "link": "https://hacks.mozilla.org/2026/08/intent-to-ship-jpeg-xl/",
             "date": "2026-08-24",
