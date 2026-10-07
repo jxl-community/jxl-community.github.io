@@ -103,6 +103,12 @@ const description =
                     rel="noopener noreferrer"
                     class="link-text-body-underline">jxl-oxide:‍</a
                   > Rust decoder<br />
+                  <a
+                    href="https://github.com/awxkee/jixel"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="link-text-body-underline">jixel:</a
+                  > Compact encoder in Rust by awxkee<br />
                 </div>
               </div>
             </div>
@@ -167,46 +173,35 @@ const description =
                 </a>
                 <div class="text-regular-semibold wrap-none centered color-black">iOS 17+</div>
               </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://www.openmandriva.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/sw_openmandriva.svg"
-                    loading="lazy"
-                    width="120"
-                    height="120"
-                    alt="OpenMandriva Lx logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">
-                  OpenMandriva Lx
-                </div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://kaosx.us"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/sw_kaos.svg"
-                    loading="lazy"
-                    width="120"
-                    height="120"
-                    alt="KaOS Logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">KaOS</div>
+            </div>
+            <div class="wrapper-text centered">
+              <div class="container-text-shaded centered">
+                <div class="text-regular-semibold color-black">Linux</div>
+                <p class="text-small-regular centered color-black">JPEG XL is packaged across the major Linux distributions.</p>
+                <ul class="linux-distributions text-small-regular color-black">
+                  <li><strong>Arch Linux & derivatives</strong> —{' '}
+                    <a href="https://archlinux.org/packages/extra/x86_64/libjxl/" target="_blank" rel="noopener noreferrer" class="link-text-body-underline">libjxl</a>{' '}
+                    is available for Arch, Manjaro, and EndeavourOS, with support across FFmpeg, ImageMagick, and KDE.</li>
+                  <li><strong>Fedora</strong> —{' '}
+                    <a href="https://packages.fedoraproject.org/pkgs/jpegxl/" target="_blank" rel="noopener noreferrer" class="link-text-body-underline">Libraries, development packages, and tools</a>{' '}
+                    are in the official repositories.</li>
+                  <li><strong>Debian</strong> —{' '}
+                    <a href="https://packages.debian.org/bookworm/libjxl-tools" target="_blank" rel="noopener noreferrer" class="link-text-body-underline">Command-line tools and libraries</a>{' '}
+                    are available in Debian 12 and newer.</li>
+                  <li><strong>Ubuntu & derivatives</strong> —{' '}
+                    <a href="https://packages.ubuntu.com/noble/libjxl-dev" target="_blank" rel="noopener noreferrer" class="link-text-body-underline">Packages are available in Ubuntu 24.04 LTS and newer</a>.
+                    For Mint, Pop!_OS, and Zorin OS, availability depends on the Ubuntu base.</li>
+                  <li><strong>openSUSE</strong> — Check{' '}
+                    <a href="https://software.opensuse.org/package/libjxl" target="_blank" rel="noopener noreferrer" class="link-text-body-underline">package availability</a>{' '}
+                    for your Tumbleweed or Leap release.</li>
+                  <li><strong>KaOS & OpenMandriva</strong> — Early adopters of JPEG XL viewing in Qt/KDE applications.</li>
+                </ul>
+                <p class="text-small-regular centered color-black">Image viewing and thumbnails depend on the application and installed desktop plugins.</p>
               </div>
             </div>
             <div class="wrapper-text centered">
               <div class="container-text-shaded centered">
-                <div class="text-regular-semibold color-black">And more</div>
+                <div class="text-regular-semibold color-black">Desktop integration & plugins</div>
                 <div class="text-small-regular centered color-black">
                   <a
                     href="https://github.com/novomesk/qt-jpegxl-image-plugin"
@@ -253,7 +248,7 @@ const description =
           <div class="spacer-2rem"></div>
           <div class="group-container">
             <div class="text-xl-regular color-black">Browser Support</div>
-            <p class="text-small-regular color-black">These browsers support JPEG XL by default:</p>
+            <p class="text-small-regular color-black">JPEG XL browser support varies by version and release channel. Hover for version details:</p>
             <div class="container-logos">
               <div class="wrapper-logo-text">
                 <a
@@ -272,11 +267,12 @@ const description =
                 >
                 <div class="text-regular-semibold wrap-none centered color-black">Safari</div>
               </div>
-              <div class="wrapper-logo-text">
+              <div class="wrapper-logo-text browser-tooltip">
                 <a
                   href="https://www.google.com/chrome/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-describedby="chrome-support-tooltip"
                   class="wrapper-logo-software-link w-inline-block"
                   ><img
                     src="/images/Logo-Google-Chrome.svg"
@@ -288,12 +284,14 @@ const description =
                   /></a
                 >
                 <div class="text-regular-semibold wrap-none centered color-black">Chrome</div>
+                <div id="chrome-support-tooltip" class="browser-tooltip-content" role="tooltip">Enabled by default in Chrome 155 and newer.</div>
               </div>
-              <div class="wrapper-logo-text">
+              <div class="wrapper-logo-text browser-tooltip">
                 <a
                   href="https://www.firefox.com/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-describedby="firefox-support-tooltip"
                   class="wrapper-logo-software-link w-inline-block"
                   ><img
                     src="/images/Logo-Firefox.svg"
@@ -305,6 +303,26 @@ const description =
                   /></a
                 >
                 <div class="text-regular-semibold wrap-none centered color-black">Firefox</div>
+                <div id="firefox-support-tooltip" class="browser-tooltip-content" role="tooltip">Upcoming: enabled by default in Firefox 158, scheduled for October 13, 2026.</div>
+              </div>
+              <div class="wrapper-logo-text browser-tooltip">
+                <a
+                  href="https://brave.com/download-beta/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-describedby="brave-support-tooltip"
+                  class="wrapper-logo-software-link w-inline-block"
+                  ><img
+                    src="/images/Logo-Brave.svg"
+                    loading="lazy"
+                    width="120"
+                    height="120"
+                    alt="Brave logo"
+                    class="image-logo-software"
+                  /></a
+                >
+                <div class="text-regular-semibold wrap-none centered color-black">Brave Beta</div>
+                <div id="brave-support-tooltip" class="browser-tooltip-content" role="tooltip">Enabled by default in Brave Beta 1.98, based on Chromium 155. This is the beta channel.</div>
               </div>
               <div class="wrapper-logo-text">
                 <a
@@ -443,9 +461,7 @@ const description =
             </div>
             <div id="ciu-embed-wrap">
               <p class="text-small-regular color-black">
-                Chrome supports JPEG XL by default from version 155. Firefox enables it by default
-                from version 158, due October 13, 2026. The current state of support in major
-                browsers is as follows:
+                The current state of support in major browsers is as follows:
               </p>
               <p
                 class="ciu-embed"
@@ -819,15 +835,13 @@ const description =
                 <div class="text-small-regular color-black centered">
                   <a href="https://exiftool.org/" class="link-text-body-underline"
                     >ExifTool by Phil Harvey</a
-                  >
-                  (supported since 12.25)<br />‍<a
+                  >{' '}(supported since 12.25)<br />‍<a
                     href="https://exiv2.org/"
                     class="link-text-body-underline">Exiv2</a
-                  >
-                  (supported since 0.27.4)<br />‍<a
+                  >{' '}(supported since 0.27.4)<br />‍<a
                     href="https://github.com/ashampoo/kim"
                     class="link-text-body-underline">Ashampoo Kim</a
-                  > (supported since 0.10)
+                  >{' '}(supported since 0.10)
                 </div>
               </div>
             </div>
@@ -918,6 +932,14 @@ const description =
     </div>
   </main>
   <script>
+    document.querySelectorAll<HTMLElement>('.browser-tooltip').forEach((browser) => {
+      browser.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') browser.classList.add('tooltip-dismissed');
+      });
+      browser.addEventListener('mouseleave', () => browser.classList.remove('tooltip-dismissed'));
+      browser.addEventListener('focusout', () => browser.classList.remove('tooltip-dismissed'));
+    });
+
     const embed = document.querySelector('#ciu-embed-wrap .ciu-embed');
 
     if (embed) {
@@ -936,3 +958,47 @@ const description =
     }
   </script>
 </BaseLayout>
+
+<style>
+  .linux-distributions {
+    text-align: left;
+    padding-left: 1.25rem;
+    margin: 0;
+    max-width: 65ch;
+  }
+  .linux-distributions li {
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+  }
+  .linux-distributions li + li { margin-top: 1rem; }
+  .browser-tooltip { position: relative; }
+  .browser-tooltip-content {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(16rem, 80vw);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    background: var(--page-black);
+    color: var(--page-white, #fff);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    text-align: center;
+    z-index: 10;
+    visibility: hidden;
+    opacity: 0;
+    box-shadow: 0 4px 16px #0003;
+  }
+  .browser-tooltip:hover .browser-tooltip-content,
+  .browser-tooltip:focus-within .browser-tooltip-content {
+    visibility: visible;
+    opacity: 1;
+  }
+  .browser-tooltip.tooltip-dismissed .browser-tooltip-content {
+    visibility: hidden;
+    opacity: 0;
+  }
+</style>
