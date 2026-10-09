@@ -1,20 +1,20 @@
 :root {
-  --visualizer-surface: #1f1f1f;
-  --visualizer-control-surface: #2d2d2d;
-  --visualizer-canvas: #141414;
-  --visualizer-chart: #191919;
-  --visualizer-border: #dcdcdc;
-  --visualizer-text: #e1e1e1;
+  --visualizer-surface: var(--surface--control-track);
+  --visualizer-control-surface: var(--surface--control);
+  --visualizer-canvas: var(--surface--canvas);
+  --visualizer-chart: var(--surface--chart);
+  --visualizer-border: var(--neutrals--gray--border);
+  --visualizer-text: var(--neutrals--gray--soft-white);
   --visualizer-muted: var(--neutrals--gray--200);
   --visualizer-track: var(--neutrals--gray--800);
   --visualizer-accent: var(--brand--teal-bright--500);
-  --visualizer-ink: #171717;
-  --visualizer-grid: rgb(220 220 220 / 16%);
-  --visualizer-border-subtle: rgb(220 220 220 / 30%);
-  --visualizer-border-faint: rgb(220 220 220 / 22%);
+  --visualizer-ink: var(--text--color--control-ink);
+  --visualizer-grid: var(--overlay--gray-border-16);
+  --visualizer-border-subtle: var(--overlay--gray-border-30);
+  --visualizer-border-faint: var(--overlay--gray-border-22);
   --visualizer-focus: var(--white);
-  --visualizer-axis: #b8b8b8;
-  --visualizer-caption: #a9a9a9;
+  --visualizer-axis: var(--text--color--axis);
+  --visualizer-caption: var(--text--color--caption);
 }
 
 body {
@@ -58,7 +58,7 @@ body {
 /*
 .slider::-webkit-slider-runnable-track {
   -webkit-appearance: none;
-  color: #fff;
+  color: var(--white);
 }
 */
 
@@ -74,7 +74,7 @@ input[type=range]::-webkit-slider-thumb {
   border: 1px solid var(--visualizer-accent);
   border-radius: 100%;
   transform: translateY(-50%);
-  box-shadow: inset rgba(0, 0, 0, 0.6) 0px 0px 2px 2px;
+  box-shadow: inset var(--overlay--black-60) 0px 0px 2px 2px;
 }
 
 input[type=range]::-webkit-slider-runnable-track {
@@ -111,7 +111,7 @@ input[type=range]::-webkit-slider-container {
   border: 1px solid var(--visualizer-accent);
   border-radius: 100%;
   transform: translateX(-50%);
-  box-shadow: inset rgba(0, 0, 0, 0.6) 0px 0px 2px 2px;
+  box-shadow: inset var(--overlay--black-60) 0px 0px 2px 2px;
 }
 
 #effort-slider::-webkit-slider-runnable-track {
@@ -313,7 +313,7 @@ input[type=range]::-webkit-slider-container {
 }
 
 .tradeoff-chart-svg .chart-selection-guide {
-  stroke: rgba(255, 255, 255, 0.45);
+  stroke: var(--overlay--white-45);
   stroke-dasharray: 3 5;
   stroke-width: 1;
   vector-effect: non-scaling-stroke;

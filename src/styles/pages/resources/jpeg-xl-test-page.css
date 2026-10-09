@@ -1,0 +1,11 @@
+/* Page-specific rules; import order preserves the original cascade. */
+/* Only show warning text in Safari */
+    .safari-text {
+      display: none; /* Hide by default */
+    }
+  
+    @supports (-webkit-touch-callout: none) {
+      .safari-text {
+        display: block !important;
+      }
+    }

@@ -1,0 +1,241 @@
+/* Page-specific rules; import order preserves the original cascade. */
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+.wrapper {
+  width: 100%;
+}
+.resource-tab-layout {
+  display: grid;
+  grid-template-columns: minmax(11rem, 13rem) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+  width: 100%;
+}
+.resource-tab-layout > :last-child,
+.code-faqs {
+  width: 100%;
+  min-width: 0;
+}
+.resource-tab-rail {
+  position: sticky;
+  top: 1.5rem;
+  padding: 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--brand--teal-bright--500) 24%, var(--line-divider));
+  border-radius: var(--radius--small);
+  background: color-mix(in srgb, var(--page-black) 65%, transparent);
+}
+.tab-content {
+  box-sizing: border-box;
+  padding: 20px;
+  background: var(--surface--elevated);
+  border-radius: 10px;
+  margin-top: 20px;
+  width: 100%;
+}
+.tab-content[hidden] {
+  display: none;
+}
+.faq-item {
+  margin: 0;
+}
+.faq-item + .faq-item {
+  border-top: 1px solid var(--line-divider);
+}
+.text-question-faq {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0;
+  padding: 1.25em 0 0.75em;
+  cursor: pointer;
+  list-style: none;
+}
+.text-question-faq > :first-child {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.text-question-faq::-webkit-details-marker {
+  display: none;
+}
+.text-answer-faq {
+  font-size: 1.125rem;
+  font-weight: 300;
+  margin-top: 0;
+  margin-bottom: 1.5em;
+  color: var(--text--color--text-white);
+  text-wrap: pretty;
+  padding-bottom: 1.5em;
+}
+.text-answer-faq li {
+  font-family: var(--font--font-family--barlow);
+  font-size: clamp(0.9375rem, calc(0.872rem + 0.282vw), 1.125rem);
+  font-weight: 300;
+  color: inherit;
+  letter-spacing: -0.01em;
+  line-height: 1.45em;
+}
+.text-answer-faq :not(pre) > code {
+  border: 1px solid color-mix(in srgb, var(--brand--teal-bright--P3--500) 22%, transparent);
+  border-radius: 0.35rem;
+  background: color-mix(in srgb, var(--brand--teal-bright--P3--500) 10%, transparent);
+  color: var(--text--color--text-white);
+  font-family: var(--font--font-family--monospace);
+  font-size: 0.88em;
+  font-weight: 500;
+  padding: 0.08em 0.32em;
+  white-space: nowrap;
+}
+.faq-code-block {
+  overflow: hidden;
+  margin: 1rem 0 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--brand--teal-bright--P3--500) 22%, var(--line-divider));
+  border-radius: 8px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--brand--teal-bright--P3--500) 12%, var(--surface--panel)) 0%,
+      var(--text--color--text-black) 56%
+    );
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--white) 8%, transparent);
+  text-align: left;
+}
+.faq-code-block figcaption {
+  border-bottom: 1px solid color-mix(in srgb, var(--white) 9%, transparent);
+  color: color-mix(in srgb, var(--brand--teal-bright--P3--500) 80%, var(--white));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font--font-family--monospace);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  padding: 0.7rem 1rem 0.62rem;
+}
+.faq-copy-button {
+  appearance: none;
+  border: 1px solid color-mix(in srgb, var(--brand--teal-bright--P3--500) 35%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--white) 7%, transparent);
+  color: var(--text--color--text-white);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  padding: 0.4rem 0.65rem;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+.faq-copy-button:hover,
+.faq-copy-button:focus-visible {
+  border-color: color-mix(in srgb, var(--brand--teal-bright--P3--500) 72%, transparent);
+  background: color-mix(in srgb, var(--brand--teal-bright--P3--500) 18%, transparent);
+  color: var(--white);
+}
+.faq-copy-button:focus-visible {
+  outline: 2px solid var(--brand--teal-bright--P3--500);
+  outline-offset: 2px;
+}
+.faq-copy-button:active {
+  transform: translateY(1px);
+}
+.faq-copy-button.is-copied {
+  border-color: color-mix(in srgb, var(--brand--teal-bright--P3--500) 85%, transparent);
+  background: color-mix(in srgb, var(--brand--teal-bright--P3--500) 24%, transparent);
+  color: var(--white);
+}
+.faq-code-block pre {
+  overflow-x: auto;
+  margin: 0;
+  padding: 1rem;
+  -webkit-overflow-scrolling: touch;
+}
+.faq-code-block code {
+  display: block;
+  color: var(--text--color--text-white);
+  font-family: var(--font--font-family--monospace);
+  font-size: clamp(0.8125rem, calc(0.77rem + 0.18vw), 0.9375rem);
+  font-weight: 400;
+  line-height: 1.65;
+  tab-size: 2;
+  white-space: pre;
+}
+.text-answer-faq :first-child {
+  margin-top: 0;
+}
+.text-answer-faq :last-child {
+  margin-bottom: 0;
+}
+.disclosure-icon {
+  width: 20px;
+  height: 20px;
+  background-color: var(--brand--blue--P3--500);
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 20px;
+  position: relative;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+.disclosure-icon::before,
+.disclosure-icon::after {
+  content: '';
+  position: absolute;
+  background-color: var(--white);
+  transition: transform 0.3s ease;
+}
+.disclosure-icon::before {
+  width: 2px;
+  height: 10px;
+}
+.disclosure-icon::after {
+  width: 10px;
+  height: 2px;
+}
+.faq-item[open] .disclosure-icon {
+  transform: rotate(180deg);
+  background-color: var(--brand--teal-bright--P3--500);
+}
+.faq-item[open] .disclosure-icon::before {
+  transform: rotate(90deg);
+}
+.code-faqs hr {
+  border: 0;
+  height: 1px;
+  background: var(--line-divider);
+  margin: 20px 0;
+}
+.faq-updated-footer {
+  margin: 1rem 0 0;
+  color: color-mix(in srgb, var(--text--color--text-white) 70%, transparent);
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.4;
+  text-align: center;
+}
+.faq-updated-footer span + span::before {
+  content: ' · ';
+}
+@media (max-width: 767px) {
+  .resource-tab-layout {
+    display: block;
+  }
+  .resource-tab-rail {
+    position: static;
+    margin-bottom: 1.25rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+}

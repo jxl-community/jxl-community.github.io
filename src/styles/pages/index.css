@@ -1,0 +1,156 @@
+/* Page-specific rules; import order preserves the original cascade. */
+.JPEGCommitte-logo-carousel {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+.JPEGCommitte-logo-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.JPEGCommitte-logo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  animation: JC-fade 45s infinite;
+  animation-delay: calc(var(--i) * 5s);
+}
+@keyframes JC-fade {
+  0%,
+  10%,
+  100% {
+    opacity: 0;
+  }
+  2%,
+  8% {
+    opacity: 1;
+  }
+}
+
+.scale-animation-1 #green-square-1,
+.scale-animation-1 #mask-square-1 {
+  animation: scaleSquare1 12s ease-in-out infinite;
+  transform-origin: bottom right;
+}
+.scale-animation-2 #green-square-2,
+.scale-animation-2 #mask-square-2 {
+  animation: scaleSquare2 12s ease-in-out infinite;
+  transform-origin: bottom right;
+}
+.scale-animation-3 #green-square-3,
+.scale-animation-3 #mask-square-3 {
+  animation: scaleSquare3 12s ease-in-out infinite;
+  transform-origin: bottom right;
+}
+.scale-animation-4 #green-square-4,
+.scale-animation-4 #mask-square-3 {
+  animation: scaleSquare4 12s ease-in-out infinite;
+  transform-origin: bottom right;
+}
+
+@keyframes scaleSquare1 {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(0.8696);
+  }
+  70% {
+    transform: scale(0.8696);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes scaleSquare2 {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(0.684) translate(-0.5px, -0.5px);
+  }
+  70% {
+    transform: scale(0.684) translate(-0.5px, -0.5px);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes scaleSquare3 {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(0.6135) translate(-0.5px, -0.5px);
+  }
+  70% {
+    transform: scale(0.6135) translate(-0.5px, -0.5px);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes scaleSquare4 {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(0.5714) translate(-0.5px, -0.5px);
+  }
+  70% {
+    transform: scale(0.5714) translate(-0.5px, -0.5px);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Keep one logo visible instead of leaving the carousel transparent. */
+  .JPEGCommitte-logo {
+    animation: none;
+    display: none;
+  }
+  .JPEGCommitte-logo[data-static-logo] {
+    display: block;
+    opacity: 1;
+  }
+
+  /* Preserve each diagram's compressed state and its size comparison. */
+  .scale-animation-1 #green-square-1 {
+    animation: none;
+    transform: scale(0.8696);
+  }
+  .scale-animation-2 #green-square-2 {
+    animation: none;
+    transform: scale(0.684) translate(-0.5px, -0.5px);
+  }
+  .scale-animation-3 #green-square-3 {
+    animation: none;
+    transform: scale(0.6135) translate(-0.5px, -0.5px);
+  }
+  .scale-animation-4 #green-square-4 {
+    animation: none;
+    transform: scale(0.5714) translate(-0.5px, -0.5px);
+  }
+}
+
+#myVideo,
+#HDRVideo {
+  max-width: 896px;
+  object-fit: cover;
+}
+
+/* Fixed carousel order is presentation, not inline image data. */
+.JPEGCommitte-logo:nth-child(1) { --i: 0; }
+.JPEGCommitte-logo:nth-child(2) { --i: 1; }
+.JPEGCommitte-logo:nth-child(3) { --i: 2; }
+.JPEGCommitte-logo:nth-child(4) { --i: 3; }
+.JPEGCommitte-logo:nth-child(5) { --i: 4; }
+.JPEGCommitte-logo:nth-child(6) { --i: 5; }
+.JPEGCommitte-logo:nth-child(7) { --i: 6; }
+.JPEGCommitte-logo:nth-child(8) { --i: 7; }
+.JPEGCommitte-logo:nth-child(9) { --i: 8; }

@@ -1,4 +1,4 @@
-/* Extracted from legacy root index.html <style> block.
+/* Extracted from legacy root index.html \3c style> block.
    Temporary during Astro migration; will be refactored. */
 
 .noise {
@@ -120,9 +120,9 @@
   background-image:
     linear-gradient(
       180deg,
-      rgba(24, 25, 27, 0) 0%,
-      rgba(24, 25, 27, 0) 40%,
-      rgba(24, 25, 27, 0.65) 72%,
+      var(--overlay--page-black-0) 0%,
+      var(--overlay--page-black-0) 40%,
+      var(--overlay--page-black-65) 72%,
       var(--page-black) 96%
     ),
     image-set(
@@ -220,10 +220,10 @@
 /* Format pills (JPEG / JPEG XL / WEBP / …) above the images — dark frosted
    tint so the scrolling background is visible, blurred, beneath them. */
 .div-container-rounded_text_box {
-  background-color: rgba(48, 54, 62, 0.42);
+  background-color: var(--surface--image-stage);
   -webkit-backdrop-filter: blur(10px) saturate(125%);
   backdrop-filter: blur(10px) saturate(125%);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--overlay--white-50);
 }
 
 /* On small phones let the body paragraphs run closer to the screen edges
@@ -470,7 +470,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: #ffffff32;
+  background-color: var(--overlay--white-film);
   margin: 5px 0;
   cursor: pointer;
 }
@@ -686,7 +686,7 @@ main {
   font-family: var(--font--font-family--barlow);
   font-weight: 600;
   font-size: 12px;
-  color: #fff;
+  color: var(--white);
   line-height: 1;
 }
 
@@ -698,7 +698,7 @@ main {
   appearance: none;
   width: 8px;
   height: 72px;
-  background-color: #1f1f1f;
+  background-color: var(--surface--control-track);
   writing-mode: vertical-lr;
   direction: rtl;
   vertical-align: middle;
@@ -716,7 +716,7 @@ main {
   align-self: center;
   width: 100%;
   height: 8px;
-  background: #464646;
+  background: var(--neutrals--gray--800);
   border-radius: 50px;
   margin-top: 0;
   margin-bottom: 0;
@@ -729,17 +729,17 @@ main {
   -webkit-appearance: none;
   height: 24px;
   width: 24px;
-  background-color: #22e6e1;
-  border: 1px solid #22e6e1;
+  background-color: var(--brand--teal--control);
+  border: 1px solid var(--brand--teal--control);
   border-radius: 100%;
   /* Center on the vertical track, nudged down a few px to sit on the groove. */
   transform: translate(calc(-50% + 4px), 4px);
-  box-shadow: inset rgba(0, 0, 0, 0.6) 0px 0px 2px 2px;
+  box-shadow: inset var(--overlay--black-60) 0px 0px 2px 2px;
 }
 
 .image-slider:focus-visible ~ .slider-button,
 .image-slider-avif:focus-visible ~ .slider-button {
-  outline: 2px solid black;
+  outline: 2px solid var(--base--black);
   outline-offset: 1px;
 }
 
@@ -748,7 +748,7 @@ main {
   inset: 0;
   width: 3px;
   height: 100%;
-  background-color: #fff;
+  background-color: var(--white);
   z-index: 5;
   left: var(--position);
   transform: translateX(-50%);
@@ -757,8 +757,8 @@ main {
 
 .slider-button {
   position: absolute;
-  background-color: #ffffff80;
-  color: rgb(1, 1, 12);
+  background-color: var(--overlay--white-translucent);
+  color: var(--surface--demo-ink);
   width: 34px;
   height: 34px;
   border-radius: 100vw;
@@ -769,7 +769,7 @@ main {
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 5;
-  box-shadow: 1px, 1px, 1px, hsl(0, 50%, 2%, 0.5);
+  box-shadow: 1px, 1px, 1px, var(--surface--demo-overlay);
 }
 
 .image-container-active {
@@ -825,7 +825,7 @@ main {
   height: 0;
   border-top: 25px solid transparent;
   border-bottom: 25px solid transparent;
-  border-left: 25px solid black;
+  border-left: 25px solid var(--base--black);
   position: absolute;
   left: 100%;
   top: 46%;
@@ -838,9 +838,9 @@ main {
   position: absolute;
   box-sizing: border-box;
   border-radius: 14px;
-  background-color: black;
-  color: white;
-  box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.08);
+  background-color: var(--base--black);
+  color: var(--white);
+  box-shadow: 0 0 20px 5px var(--overlay--white-8);
   padding: 1rem;
   top: 0px;
   left: 100%;
@@ -909,13 +909,13 @@ main {
 }
 
 .scale-label-active {
-  font-family: barlow, sans-serif;
+  font-family: var(--font--font-family--barlow);
   font-weight: 600;
   font-size: 14px;
   letter-spacing: 6%;
   line-height: 0.8em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--white);
   margin: 0;
 }
 
@@ -927,12 +927,12 @@ main {
   display: flex;
   -webkit-appearance: none;
   appearance: none;
-  background: #808080;
+  background: var(--neutrals--gray--500);
   margin: -2px;
   padding: 0;
   width: 100%;
   height: 2px;
-  background-color: #808080;
+  background-color: var(--neutrals--gray--500);
   align-content: center;
   position: relative;
   pointer-events: none;
@@ -942,12 +942,12 @@ main {
   display: flex;
   -webkit-appearance: none;
   appearance: none;
-  background: #808080;
+  background: var(--neutrals--gray--500);
   margin: -2px;
   padding: 0;
   width: 100%;
   height: 2px;
-  background-color: #808080;
+  background-color: var(--neutrals--gray--500);
   align-content: center;
   position: relative;
   pointer-events: none;
@@ -989,13 +989,13 @@ main {
   width: clamp(15.5rem, 70vw, 327px);
   height: 36px;
   box-shadow:
-    0px -0.5px 1px rgba(255, 255, 255, 0.866) inset,
-    0px -0.5px 1px rgba(255, 255, 255, 0.25) inset,
-    1px 1.5px 4px rgba(0, 0, 0, 0.355) inset,
-    1px 1.5px 4px rgba(0, 0, 0, 0.394) inset;
+    0px -0.5px 1px var(--text--color--demo-bright) inset,
+    0px -0.5px 1px var(--overlay--white-25) inset,
+    1px 1.5px 4px var(--shadow--demo-soft) inset,
+    1px 1.5px 4px var(--shadow--demo-strong) inset;
   border-radius: var(--br-81xl);
   background:
-    linear-gradient(rgba(208, 208, 208, 0.15), rgba(208, 208, 208, 0.15)), rgba(0, 0, 0, 0.8);
+    linear-gradient(var(--overlay--gray-medium-15), var(--overlay--gray-medium-15)), var(--overlay--black-80);
   border: 0.5px solid var(--color-gray-400);
   border-radius: 100px;
   box-sizing: border-box;
@@ -1029,30 +1029,30 @@ main {
   font-size: 12px;
   font-family: barlow;
   font-weight: 500;
-  -webkit-text-fill-color: #ffffff92;
+  -webkit-text-fill-color: var(--overlay--white-highlight);
   line-height: 120%;
   letter-spacing: 0.025rem;
   padding: 0.3rem 0.6rem 0.3rem 0.6rem;
   margin-left: 0.4rem;
   margin-right: 0.4rem;
   cursor: pointer;
-  background-color: #ffffff00;
+  background-color: var(--overlay--white-0);
   border: none;
 }
 
 .tabs__button:active,
 .tabs__button_avif:active {
-  background-color: color-mix(in srgb, #5e5e5e 80%, #fff 15%);
+  background-color: color-mix(in srgb, var(--neutrals--gray--secondary) 80%, var(--white) 15%);
 }
 
 .tabs__button-active,
 .tabs__button_avif-active {
-  background-color: #ffffff32;
+  background-color: var(--overlay--white-film);
   font-weight: 600;
-  -webkit-text-fill-color: #fff;
+  -webkit-text-fill-color: var(--white);
   border-style: solid;
   border-width: 0.5px;
-  border-color: #cccccc5e;
+  border-color: var(--overlay--gray-37);
 }
 
 .tabs__button::before,
@@ -1174,8 +1174,8 @@ main > .section-lossless-transcoding {
   vertical-align: top;
   width: 100%;
   height: 20px;
-  background: #464646;
-  background: linear-gradient(to bottom right, transparent 50%, #464646 50%);
+  background: var(--neutrals--gray--800);
+  background: linear-gradient(to bottom right, transparent 50%, var(--neutrals--gray--800) 50%);
   margin-top: 4rem;
   border-radius: 2px;
   align-content: center;
@@ -1188,9 +1188,9 @@ main > .section-lossless-transcoding {
   height: 28px;
   width: 10px;
   margin-bottom: 4px;
-  background-color: #22e6e1;
-  border: 1px solid #22e6e1;
-  box-shadow: inset rgba(0, 0, 0, 0.6) 0px 0px 2px 2px;
+  background-color: var(--brand--teal--control);
+  border: 1px solid var(--brand--teal--control);
+  box-shadow: inset var(--overlay--black-60) 0px 0px 2px 2px;
   border-radius: 6px 6px 2px 2px;
 }
 
@@ -1199,7 +1199,7 @@ main > .section-lossless-transcoding {
   appearance: none;
   width: 100%;
   height: 8px;
-  background: #464646;
+  background: var(--neutrals--gray--800);
   margin-top: 4rem;
   border-radius: 10px;
   align-content: center;
@@ -1214,7 +1214,7 @@ main > .section-lossless-transcoding {
   background-color: var(--brand--teal-bright--P3--600);
   border: 1px solid var(--brand--teal-dark--P3--600);
   border-radius: 100%;
-  box-shadow: inset rgba(0, 0, 0, 0.6) 0px 0px 2px 2px;
+  box-shadow: inset var(--overlay--black-60) 0px 0px 2px 2px;
 }
 
 .size-range-labels {
@@ -1229,7 +1229,7 @@ main > .section-lossless-transcoding {
   font-weight: 500;
   font-size: 12px;
   text-transform: uppercase;
-  -webkit-text-fill-color: #fff;
+  -webkit-text-fill-color: var(--white);
 }
 
 .range-labels {
@@ -1244,7 +1244,7 @@ main > .section-lossless-transcoding {
   font-weight: 500;
   font-size: 12px;
   text-transform: uppercase;
-  -webkit-text-fill-color: white;
+  -webkit-text-fill-color: var(--white);
 }
 
 .size-label {
@@ -1316,7 +1316,7 @@ main > .section-lossless-transcoding {
   letter-spacing: 0;
   word-spacing: 0.1em;
   line-height: 1.45em;
-  color: #fff;
+  color: var(--white);
   margin: 0;
 }
 
@@ -1339,12 +1339,12 @@ main > .section-lossless-transcoding {
   letter-spacing: 0.015em;
   word-spacing: 0.1em;
   line-height: 1.4rem;
-  color: #afafaf;
+  color: var(--text--color--secondary);
   margin: 0;
 }
 
 .text-s-medium-white {
-  color: #fff;
+  color: var(--white);
   font-weight: 500;
 }
 
@@ -1355,7 +1355,7 @@ main > .section-lossless-transcoding {
   letter-spacing: -0.0075rem;
   line-height: 1.45em;
   text-transform: uppercase;
-  color: white;
+  color: var(--white);
   margin: 0;
 }
 
@@ -1366,7 +1366,7 @@ main > .section-lossless-transcoding {
   letter-spacing: -0.03em;
   line-height: 0.8em;
   text-transform: uppercase;
-  color: #ffffffa7;
+  color: var(--overlay--white-emphasis);
   margin: 0;
 }
 

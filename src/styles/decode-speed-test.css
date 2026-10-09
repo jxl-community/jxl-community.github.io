@@ -1,9 +1,9 @@
 .ds-shell {
-  --ds-line: rgba(255, 255, 255, 0.17);
-  --ds-muted: #b6bfcc;
+  --ds-line: var(--overlay--white-17);
+  --ds-muted: var(--brand--navy--100);
   width: min(76rem, 100% - 3rem);
   margin: 3rem auto 6rem;
-  color: #fff;
+  color: var(--white);
   font-family: var(--font--font-family--barlow);
   font-size: 1rem;
   line-height: 1.55;
@@ -94,7 +94,7 @@
   width: 1.1rem;
   height: 1.1rem;
   margin: 0;
-  accent-color: #3bb6b3;
+  accent-color: var(--brand--teal-dark--500);
 }
 .ds-shell .ds-controls .ds-primary {
   margin-left: auto;
@@ -105,8 +105,8 @@
   padding: 0.65rem 1.15rem;
   border: 1px solid var(--ds-line);
   border-radius: 8px;
-  color: #fff;
-  background: #182f5e;
+  color: var(--white);
+  background: var(--brand--blue--900);
   font: inherit;
   cursor: pointer;
 }
@@ -121,24 +121,24 @@
   background-position: right 1rem center;
 }
 .ds-shell button:hover {
-  background: #28509f;
+  background: var(--brand--blue--700);
 }
 .ds-shell .ds-primary {
-  background: #3bb6b3;
-  color: #081425;
+  background: var(--brand--teal-dark--500);
+  color: var(--brand--navy--900);
   border-color: transparent;
   font-weight: 600;
   min-width: 11rem;
 }
 .ds-shell .ds-primary:hover {
-  background: #6aeeeb;
+  background: var(--brand--teal-bright--300);
 }
 .ds-shell button:disabled {
   opacity: 0.5;
   cursor: wait;
 }
 .ds-shell :focus-visible {
-  outline: 2px solid #21e6e1;
+  outline: 2px solid var(--brand--teal-bright--500);
   outline-offset: 4px;
 }
 .ds-shell #ds-status {
@@ -152,7 +152,7 @@
   display: block;
   width: 100%;
   height: 0.5rem;
-  accent-color: #21e6e1;
+  accent-color: var(--brand--teal-bright--500);
   margin: 1rem 0;
 }
 .ds-table-scroll {
@@ -183,7 +183,7 @@
   white-space: nowrap;
 }
 .ds-shell thead th {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--overlay--white-6);
   font-weight: 600;
 }
 .ds-shell tbody th {
@@ -194,7 +194,7 @@
   min-width: 7.5rem;
   vertical-align: middle;
   white-space: normal;
-  background: #18191b;
+  background: var(--page-black);
 }
 .ds-image-cell img {
   display: block;
@@ -226,8 +226,8 @@
   padding: 0.4rem 0.65rem;
   border: 1px solid var(--ds-line);
   border-radius: 6px;
-  background: #182f5e;
-  color: #fff;
+  background: var(--brand--blue--900);
+  color: var(--white);
   font-size: 0.8rem;
   font-weight: 400;
   line-height: 1.5;
@@ -263,13 +263,13 @@
   font-weight: 400;
 }
 .ds-shell tr[data-decoder='wasm'] {
-  background: rgba(59, 182, 179, 0.08);
+  background: var(--overlay--teal-muted-8);
 }
 .ds-shell .ds-good {
-  color: #6aeeeb;
+  color: var(--brand--teal-bright--300);
 }
 .ds-shell .ds-unavailable {
-  color: #f6bb99;
+  color: var(--accent--orange--200);
 }
 .ds-chart-heading {
   margin-top: 3rem;
@@ -294,7 +294,7 @@
 .ds-bar-track {
   position: relative;
   height: 1.25rem;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--overlay--white-6);
   border-radius: 3px;
   overflow: hidden;
 }
@@ -302,19 +302,19 @@
   position: absolute;
   inset-block: 0;
   left: 0;
-  background: #7aa0ea;
+  background: var(--brand--blue--300);
   border-radius: 3px;
 }
 .ds-bar[data-decoder='wasm'] {
-  background: #3bb6b3;
+  background: var(--brand--teal-dark--500);
 }
 /* WASM sits over native at half height, centered, so both stay readable. */
 .ds-bar[data-overlay] {
   inset-block: 25%;
-  box-shadow: 0 0 0 1px rgba(8, 20, 37, 0.55);
+  box-shadow: 0 0 0 1px var(--overlay--navy-55);
 }
 .ds-bar[data-jxl='true'][data-decoder='native'] {
-  background: #21e6e1;
+  background: var(--brand--teal-bright--500);
 }
 .ds-bar-value {
   text-align: right;
@@ -349,13 +349,13 @@
   border-radius: 2px;
 }
 .ds-swatch-native {
-  background: #7aa0ea;
+  background: var(--brand--blue--300);
 }
 .ds-swatch-jxl {
-  background: #21e6e1;
+  background: var(--brand--teal-bright--500);
 }
 .ds-swatch-wasm {
-  background: #3bb6b3;
+  background: var(--brand--teal-dark--500);
 }
 .ds-method {
   margin-top: 4rem;

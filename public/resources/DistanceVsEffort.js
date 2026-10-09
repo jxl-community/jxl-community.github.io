@@ -286,8 +286,8 @@ document.addEventListener('DOMContentLoaded', () => {
         : focusLossyTime ? 'Encoding time (seconds, lossy detail)' : 'Encoding time (seconds)';
       const selectedValue = valueFor(selectedVariant);
       const selectedEffortIndex = efforts.indexOf(selectedEffort);
-      const colors = ['#69c2ff', '#a48cff', '#ce83ea', '#ffad67', '#b7d95a', '#59d0b4', '#ff907d', '#70d8f5'];
-      const selectedColor = '#ff4fa3';
+      const colors = Array.from({ length: 8 }, (_, index) => `var(--chart--effort-${index + 1})`);
+      const selectedColor = 'var(--chart--selected)';
       const xTicks = 5;
       const grid = [];
       const linearTickStep = focusLossyTime ? yMaximum / 4 : yMaximum <= 20 ? 5 : yMaximum / 4;

@@ -1,0 +1,11 @@
+/* Page-specific rules; import order preserves the original cascade. */
+.timeline-heading {
+color: var(--brand--teal-bright--P3--600);
+letter-spacing: .015em;
+margin-top: 0;
+margin-bottom: 1rem;
+font-family: var(--font--font-family--barlow);
+font-size: clamp(1rem, calc(0.868rem + 0.563vw), 1.375rem);
+font-weight: 600;
+line-height: 1.2em;
+    }

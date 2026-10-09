@@ -14,7 +14,7 @@
   padding: 0.75rem 1.5rem;
   background: var(--base--white);
   color: var(--base--black);
-  font-family: Barlow, sans-serif;
+  font-family: var(--font--font-family--barlow);
   font-weight: 600;
   font-size: 0.875rem;
   border-radius: 0 0 6px 6px;
@@ -24,7 +24,7 @@
 
 .skip-nav:focus {
   top: 0;
-  outline: 2px solid var(--brand--blue--P3--500, #3871e0);
+  outline: 2px solid var(--brand--blue--P3--500, var(--brand--blue--500));
   outline-offset: 2px;
 }
 
@@ -175,7 +175,7 @@ nav.scrolled .navbar_logo-link.w--current {
 
 .navbar-close .navbar-toggle {
   animation: none;
-  color: #fff;
+  color: var(--white);
   text-shadow: none;
 }
 
@@ -194,24 +194,24 @@ nav.scrolled .navbar_logo-link.w--current {
 
 .navbar-toggle:hover {
   animation: none;
-  color: #fff;
+  color: var(--white);
   text-shadow: none;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--overlay--white-8);
   border-radius: 6px;
 }
 
 .navbar-toggle:focus-visible,
 .navbar-desktop-trigger:focus-visible,
 .navbar-desktop-dropdown a:focus-visible {
-  outline: 2px solid oklch(83.77% 0.1936 191.95);
+  outline: 2px solid var(--focus--ring);
   outline-offset: 3px;
 }
 
 @keyframes navbar-icon-glow {
-  0%   { color: oklch(67% 0.22 262); text-shadow: 0 0 5px oklch(57% 0.18 262 / 0.3); }
-  33%  { color: oklch(75% 0.18 230); text-shadow: 0 0 7px oklch(65% 0.15 230 / 0.35); }
-  66%  { color: oklch(81% 0.14 193); text-shadow: 0 0 8px oklch(71% 0.12 193 / 0.35); }
-  100% { color: oklch(67% 0.22 262); text-shadow: 0 0 5px oklch(57% 0.18 262 / 0.3); }
+  0%   { color: var(--nav--glow-blue); text-shadow: 0 0 5px var(--nav--shadow-blue); }
+  33%  { color: var(--nav--glow-cyan); text-shadow: 0 0 7px var(--nav--shadow-cyan); }
+  66%  { color: var(--nav--glow-teal); text-shadow: 0 0 8px var(--nav--shadow-teal); }
+  100% { color: var(--nav--glow-blue); text-shadow: 0 0 5px var(--nav--shadow-blue); }
 }
 
 .navbar-toggle[aria-expanded='true']::after,
@@ -273,7 +273,7 @@ nav.scrolled .navbar_logo-link.w--current {
   border: 0;
   border-radius: 6px;
   background: transparent;
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--overlay--white-82);
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease;
 }
@@ -289,12 +289,12 @@ nav.scrolled .navbar_logo-link.w--current {
 }
 
 .navbar-search-trigger:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--overlay--white-12);
   color: var(--base--white);
 }
 
 .navbar-search-trigger:focus-visible {
-  outline: 2px solid oklch(83.77% 0.1936 191.95);
+  outline: 2px solid var(--focus--ring);
   outline-offset: 3px;
 }
 
@@ -319,7 +319,7 @@ nav.scrolled .navbar_logo-link.w--current {
 .site-search-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(4, 7, 10, 0.76);
+  background: var(--surface--search-backdrop);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
@@ -329,12 +329,12 @@ nav.scrolled .navbar_logo-link.w--current {
   width: min(42rem, 100%);
   margin-top: clamp(4rem, 12vh, 8rem);
   padding: clamp(1.125rem, 3vw, 1.75rem);
-  border: 1px solid rgba(255, 255, 255, 0.17);
+  border: 1px solid var(--overlay--white-17);
   border-radius: 1rem;
   background:
     linear-gradient(135deg, color-mix(in srgb, var(--brand--teal-bright--500) 17%, transparent), transparent 45%),
-    rgba(15, 18, 22, 0.97);
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.55), inset 0 1px rgba(255, 255, 255, 0.08);
+    var(--surface--search-panel);
+  box-shadow: 0 1.5rem 4rem var(--overlay--black-55), inset 0 1px var(--overlay--white-8);
 }
 
 .site-search-heading {
@@ -348,7 +348,7 @@ nav.scrolled .navbar_logo-link.w--current {
 .site-search-heading h2 {
   margin: 0;
   color: var(--white);
-  font-family: Barlow, sans-serif;
+  font-family: var(--font--font-family--barlow);
   font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 500;
   line-height: 1;
@@ -360,8 +360,8 @@ nav.scrolled .navbar_logo-link.w--current {
   padding: 0;
   border: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.8);
+  background: var(--overlay--white-8);
+  color: var(--overlay--white-80);
   cursor: pointer;
   font-size: 1.6rem;
   line-height: 1;
@@ -369,7 +369,7 @@ nav.scrolled .navbar_logo-link.w--current {
 }
 
 .site-search-close:hover {
-  background: rgba(255, 255, 255, 0.16);
+  background: var(--overlay--white-16);
   color: var(--white);
 }
 
@@ -384,13 +384,13 @@ nav.scrolled .navbar_logo-link.w--current {
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 0.875rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--overlay--white-20);
   border-radius: 0.75rem;
-  background: rgba(0, 0, 0, 0.28);
+  background: var(--overlay--black-28);
 }
 
 .site-search-form:focus-within {
-  border-color: color-mix(in srgb, var(--brand--teal-bright--500) 72%, rgba(255, 255, 255, 0.2));
+  border-color: color-mix(in srgb, var(--brand--teal-bright--500) 72%, var(--overlay--white-20));
 }
 
 .site-search-form svg {
@@ -411,7 +411,7 @@ nav.scrolled .navbar_logo-link.w--current {
   border: 0;
   background: transparent;
   color: var(--white);
-  font-family: Barlow, sans-serif;
+  font-family: var(--font--font-family--barlow);
   font-size: 1.125rem;
   line-height: 1.35;
 }
@@ -421,14 +421,14 @@ nav.scrolled .navbar_logo-link.w--current {
 }
 
 .site-search-form input::placeholder {
-  color: rgba(255, 255, 255, 0.48);
+  color: var(--overlay--white-48);
 }
 
 .site-search-status {
   min-height: 1.25rem;
   margin: 0.875rem 0 0;
-  color: rgba(255, 255, 255, 0.58);
-  font-family: Barlow, sans-serif;
+  color: var(--overlay--white-58);
+  font-family: var(--font--font-family--barlow);
   font-size: 0.875rem;
 }
 
@@ -444,7 +444,7 @@ nav.scrolled .navbar_logo-link.w--current {
   padding: 0.75rem 0.875rem;
   border: 1px solid transparent;
   border-radius: 0.625rem;
-  color: rgba(255, 255, 255, 0.86);
+  color: var(--overlay--white-86);
   text-decoration: none;
   transition: border-color 0.15s ease, background 0.15s ease;
 }
@@ -456,14 +456,14 @@ nav.scrolled .navbar_logo-link.w--current {
 
 .site-search-result-title {
   color: var(--brand--teal-bright--500);
-  font-family: Barlow, sans-serif;
+  font-family: var(--font--font-family--barlow);
   font-size: 1rem;
   font-weight: 600;
 }
 
 .site-search-result-excerpt {
-  color: rgba(255, 255, 255, 0.7);
-  font-family: Barlow, sans-serif;
+  color: var(--overlay--white-70);
+  font-family: var(--font--font-family--barlow);
   font-size: 0.9rem;
   line-height: 1.4;
 }
@@ -500,9 +500,9 @@ nav.scrolled .navbar_logo-link.w--current {
   border: 0;
   border-radius: 6px;
   background: transparent;
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--overlay--white-82);
   cursor: pointer;
-  font-family: Barlow, sans-serif;
+  font-family: var(--font--font-family--barlow);
   line-height: 0;
   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
@@ -521,12 +521,12 @@ nav.scrolled .navbar_logo-link.w--current {
 
 .navbar-jxl-decoder-info button:hover,
 .navbar-jxl-decoder-info button[aria-expanded='true'] {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--overlay--white-12);
   color: var(--base--white);
 }
 
 .navbar-jxl-decoder-info button:focus-visible {
-  outline: 2px solid oklch(83.77% 0.1936 191.95);
+  outline: 2px solid var(--focus--ring);
   outline-offset: 3px;
 }
 
@@ -536,12 +536,12 @@ nav.scrolled .navbar_logo-link.w--current {
   right: 0;
   width: min(20rem, calc(100vw - 2rem));
   padding: 0.75rem 0.875rem;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid var(--overlay--white-14);
   border-radius: 10px;
-  background: rgba(15, 18, 22, 0.96);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.42);
-  color: rgba(255, 255, 255, 0.88);
-  font-family: Barlow, sans-serif;
+  background: var(--surface--tooltip);
+  box-shadow: 0 12px 32px var(--overlay--black-42);
+  color: var(--overlay--white-88);
+  font-family: var(--font--font-family--barlow);
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.4;
@@ -566,8 +566,8 @@ nav.scrolled .navbar_logo-link.w--current {
   padding: 0.5rem 0.875rem;
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.82);
-  font-family: Barlow, sans-serif;
+  color: var(--overlay--white-82);
+  font-family: var(--font--font-family--barlow);
   font-size: 0.9375rem;
   font-weight: 500;
   cursor: pointer;
@@ -592,8 +592,8 @@ nav.scrolled .navbar_logo-link.w--current {
 .navbar-desktop-item:hover .navbar-desktop-trigger,
 .navbar-desktop-item.is-open .navbar-desktop-trigger,
 .navbar-desktop-item:focus-within .navbar-desktop-trigger {
-  background: rgba(255, 255, 255, 0.09);
-  color: white;
+  background: var(--overlay--white-9);
+  color: var(--white);
 }
 
 .navbar-desktop-item:hover .navbar-chevron,
@@ -614,14 +614,14 @@ nav.scrolled .navbar_logo-link.w--current {
   min-width: 215px;
   -webkit-backdrop-filter: blur(24px);
   backdrop-filter: blur(24px);
-  background-color: rgba(15, 18, 22, 0.94);
-  background-image: linear-gradient(150deg, rgba(27, 163, 160, 0.18) 0%, transparent 55%);
+  background-color: var(--surface--nav-dropdown);
+  background-image: linear-gradient(150deg, var(--overlay--nav-accent-18) 0%, transparent 55%);
   border-radius: 13px;
-  border: 1px solid rgba(255, 255, 255, 0.11);
+  border: 1px solid var(--overlay--white-11);
   box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.45),
-    0 2px 8px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    0 12px 40px var(--overlay--black-45),
+    0 2px 8px var(--overlay--black-30),
+    inset 0 1px 0 var(--overlay--white-7);
   padding: 0.5rem;
   opacity: 0;
   pointer-events: none;
@@ -644,15 +644,15 @@ nav.scrolled .navbar_logo-link.w--current {
 
 .navbar-desktop-divider {
   border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-top: 1px solid var(--overlay--white-7);
   margin: 0.375rem 0.5rem;
 }
 
 .navbar-desktop-dropdown a {
   display: block;
   padding: 0.5rem 0.75rem;
-  color: rgba(255, 255, 255, 0.72);
-  font-family: Barlow, sans-serif;
+  color: var(--overlay--white-72);
+  font-family: var(--font--font-family--barlow);
   font-size: 0.9375rem;
   font-weight: 400;
   text-decoration: none;
@@ -663,13 +663,13 @@ nav.scrolled .navbar_logo-link.w--current {
 
 .navbar-desktop-dropdown a.navbar-desktop-subitem {
   padding-left: 1.5rem;
-  color: rgba(255, 255, 255, 0.58);
+  color: var(--overlay--white-58);
   font-size: 0.875rem;
 }
 
 .navbar-desktop-dropdown a:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: white;
+  background: var(--overlay--white-8);
+  color: var(--white);
   padding-left: 1rem;
 }
 
@@ -797,7 +797,7 @@ nav.scrolled .navbar_logo-link.w--current {
 .container-column-vertical > a {
   font-weight: 400;
   color: var(--text--color--text-black);
-  font-family: Barlow, sans-serif;
+  font-family: var(--font--font-family--barlow);
   line-height: 2em;
   padding: 0 1em;
   font-size: 1rem;
@@ -835,20 +835,20 @@ nav.scrolled .navbar_logo-link.w--current {
 }
 
 .sitemap-heading {
-  color: rgba(255, 255, 255, 0.46);
-  font-family: Barlow, sans-serif;
+  color: var(--overlay--white-46);
+  font-family: var(--font--font-family--barlow);
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   padding-bottom: 0.5rem;
   margin-bottom: 0.25rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid var(--overlay--white-7);
 }
 
 .sitemap-column a {
-  color: rgba(255, 255, 255, 0.62);
-  font-family: Barlow, sans-serif;
+  color: var(--overlay--white-62);
+  font-family: var(--font--font-family--barlow);
   font-size: 0.9375rem;
   font-weight: 400;
   text-decoration: none;
@@ -858,7 +858,7 @@ nav.scrolled .navbar_logo-link.w--current {
 }
 
 .sitemap-column a:hover {
-  color: white;
+  color: var(--white);
 }
 
 @media screen and (max-width: 991px) {
@@ -874,7 +874,7 @@ nav.scrolled .navbar_logo-link.w--current {
 /* ===== MISSING WEBFLOW TYPE CLASS ===== */
 
 .text-l-regular {
-  font-family: Barlow, sans-serif;
+  font-family: var(--font--font-family--barlow);
   font-size: 1.375rem; /* 22px — proportional to text-xxl-regular siblings */
   font-weight: 400;
   line-height: 1.4;
@@ -935,7 +935,7 @@ nav.scrolled .navbar_logo-link.w--current {
 @media (prefers-reduced-motion: reduce) {
   .navbar-toggle {
     animation: none;
-    color: oklch(75% 0.18 230);
+    color: var(--nav--glow-cyan);
     text-shadow: none;
   }
 }
@@ -946,15 +946,15 @@ nav.scrolled .navbar_logo-link.w--current {
 .container-navbar-dropdown-content {
   -webkit-backdrop-filter: blur(24px);
   backdrop-filter: blur(24px);
-  background-color: rgba(12, 15, 19, 0.94);
-  background-image: linear-gradient(180deg, rgba(27, 163, 160, 0.2) 0%, transparent 28%);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  background-color: var(--surface--nav-mobile);
+  background-image: linear-gradient(180deg, var(--overlay--nav-accent-20) 0%, transparent 28%);
+  border-top: 1px solid var(--overlay--white-8);
+  box-shadow: 0 12px 40px var(--overlay--black-50);
 }
 
 /* Section heading labels — match desktop uppercase muted style */
 .text-navbar-menu_section {
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--overlay--white-40);
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.09em;
@@ -963,25 +963,25 @@ nav.scrolled .navbar_logo-link.w--current {
 
 /* Divider under section label */
 .navbar-wrapper-text-section.span-with_divider-bottom {
-  border-bottom-color: rgba(255, 255, 255, 0.09);
+  border-bottom-color: var(--overlay--white-9);
 }
 
 /* Links — white text with hover pill, matching desktop */
 .container-column-vertical > a {
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--overlay--white-72);
   border-radius: 8px;
   transition: background 0.15s ease, color 0.15s ease, padding-left 0.15s ease;
 }
 
 .container-column-vertical > a.navbar-mobile-subitem {
   padding: 0 1em 0 2em;
-  color: rgba(255, 255, 255, 0.58);
+  color: var(--overlay--white-58);
   font-size: 0.875rem;
 }
 
 .container-column-vertical > a:hover {
-  color: white;
-  background: rgba(255, 255, 255, 0.08);
+  color: var(--white);
+  background: var(--overlay--white-8);
   font-weight: 400;
   padding-left: 1.5em;
 }
@@ -1048,7 +1048,7 @@ nav.scrolled .navbar_logo-link.w--current {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.25);
+  background: var(--overlay--white-25);
   border: none;
   cursor: pointer;
   padding: 0;
@@ -1056,11 +1056,11 @@ nav.scrolled .navbar_logo-link.w--current {
 }
 
 .w-slider-dot:hover {
-  background: rgba(255, 255, 255, 0.55);
+  background: var(--overlay--white-55);
   transform: scale(1.2);
 }
 
 .w-slider-dot.is-active {
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--overlay--white-85);
   transform: scale(1.15);
 }

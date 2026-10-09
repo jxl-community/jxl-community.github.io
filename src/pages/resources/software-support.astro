@@ -1,4 +1,5 @@
 ---
+import '../../styles/pages/resources/software-support.css';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Wave from '../../components/Wave.astro';
 
@@ -14,18 +15,7 @@ const description =
 >
   <Fragment slot="head">
     <script is:inline type="module" src="https://caniuse-embed.vercel.app/embed.js"></script>
-    <style is:inline>
-      #ciu-embed-wrap {
-        width: 100%;
-        min-width: 0;
-      }
-      #ciu-embed-wrap .ciu-embed,
-      #ciu-embed-wrap iframe {
-        width: 100% !important;
-        max-width: 100%;
-        min-width: 0;
-      }
-    </style>
+
   </Fragment>
   <main id="main-content">
     <section class="section-hero hero-fullspan-graphic gradient-bottom">
@@ -617,8 +607,7 @@ const description =
                       width="296"
                       height="62"
                       alt="ACDSee Logo"
-                      class="image-logo-software"
-                      style="max-width: 200px; max-height: 120px; object-fit: contain;"
+                      class="image-logo-software image-logo-software--wide"
                     />
                   </picture>
                 </a>
@@ -983,14 +972,14 @@ const description =
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
     background: var(--page-black);
-    color: var(--page-white, #fff);
+    color: var(--page-white, var(--white));
     font-size: 0.875rem;
     line-height: 1.5;
     text-align: center;
     z-index: 10;
     visibility: hidden;
     opacity: 0;
-    box-shadow: 0 4px 16px #0003;
+    box-shadow: 0 4px 16px var(--overlay--black-20);
   }
   .browser-tooltip:hover .browser-tooltip-content,
   .browser-tooltip:focus-within .browser-tooltip-content {

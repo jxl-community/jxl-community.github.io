@@ -1,0 +1,17 @@
+/* Page-specific rules; import order preserves the original cascade. */
+#ciu-embed-wrap {
+  width: 100%;
+  min-width: 0;
+}
+#ciu-embed-wrap .ciu-embed,
+#ciu-embed-wrap iframe {
+  width: 100% !important;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.image-logo-software--wide {
+  max-width: 200px;
+  max-height: 120px;
+  object-fit: contain;
+}

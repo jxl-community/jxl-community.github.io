@@ -47,7 +47,8 @@ runs both checks for every pull request and every push to `main`.
 - **Editorial content:** FAQ entries are Markdown in `src/content/faq/`.
   Other structured content, such as news and the glossary, is in `src/data/`.
 - **Styling and browser behavior:** Styles live in `src/styles/`; client-side
-  behavior lives in `src/scripts/`.
+  behavior lives in `src/scripts/`. See [theming conventions](docs/theming.md)
+  for shared tokens, page stylesheet order, and data-driven inline values.
 - **Static files:** Put images, downloads, `robots.txt`, and other files that
   should be copied unchanged into `public/`.
 

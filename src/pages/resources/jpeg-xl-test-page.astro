@@ -1,4 +1,5 @@
 ---
+import '../../styles/pages/resources/jpeg-xl-test-page.css';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Wave from '../../components/Wave.astro';
 
@@ -7,20 +8,7 @@ const description = 'Try if your browser supports JPEG XL images.';
 ---
 
 <BaseLayout title={title} description={description} canonical="https://jpegxl.info/resources/jpeg-xl-test-page.html">
-  <Fragment slot="head">
-    <style is:inline>
-      /* Only show warning text in Safari */
-          .safari-text {
-            display: none; /* Hide by default */
-          }
-        
-          @supports (-webkit-touch-callout: none) {
-            .safari-text {
-              display: block !important;
-            }
-          }
-    </style>
-  </Fragment>
+
 
 <main id="main-content">
   <section class="section-hero hero-fullspan-graphic gradient-bottom">

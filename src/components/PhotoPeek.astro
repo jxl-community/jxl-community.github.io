@@ -80,7 +80,7 @@ const { src, alt, width, height, sources = [], focus, meta, loading } = Astro.pr
   .peek-meta {
     margin: 0;
     padding: 0.5rem 0.75rem 0.6rem;
-    color: #b6bfcc;
+    color: var(--brand--navy--100);
     font-size: 0.8rem;
     line-height: 1.5;
     font-variant-numeric: tabular-nums;
@@ -94,8 +94,8 @@ const { src, alt, width, height, sources = [], focus, meta, loading } = Astro.pr
     .peek-frame:hover .peek-pop {
       z-index: 3;
       transform: scale(1.06);
-      background-color: #182f5e;
-      box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.55);
+      background-color: var(--brand--blue--900);
+      box-shadow: 0 1.25rem 3rem var(--overlay--black-55);
       transition-delay: 0s;
     }
     /* Uncropped: the image grows to its own aspect ratio, top edge fixed. */
