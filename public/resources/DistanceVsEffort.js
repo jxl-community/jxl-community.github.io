@@ -81,6 +81,28 @@ document.addEventListener('DOMContentLoaded', () => {
       clampPan();
       applyZoomAndPan();
     });
+    imageViewport.addEventListener('keydown', event => {
+      if (event.target !== imageViewport || event.altKey || event.ctrlKey || event.metaKey) return;
+      if (event.key === 'Home') {
+        event.preventDefault();
+        zoomSlider.value = '1';
+        setZoom(1);
+        return;
+      }
+      if (currentZoom === 1) return;
+      const movement = {
+        ArrowLeft: [32, 0],
+        ArrowRight: [-32, 0],
+        ArrowUp: [0, 32],
+        ArrowDown: [0, -32],
+      }[event.key];
+      if (!movement) return;
+      event.preventDefault();
+      panX += movement[0];
+      panY += movement[1];
+      clampPan();
+      applyZoomAndPan();
+    });
     imageViewport.addEventListener('pointerdown', startPan);
     imageViewport.addEventListener('pointermove', movePan);
     imageViewport.addEventListener('pointerup', endPan);

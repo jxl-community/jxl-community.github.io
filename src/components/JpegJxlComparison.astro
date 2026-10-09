@@ -27,7 +27,8 @@
           <div class="code-embed-5 w-embed">
             <div class="section-container">
               <div class="image-container">
-                <div class="comparison-container">
+                <div class="comparison-container" tabindex="0" role="group" aria-label="JPEG and JPEG XL image view" aria-describedby="jpeg-pan-help">
+                  <p id="jpeg-pan-help" class="pan-help">Zoom in, then use arrow keys to pan. Press Home to reset the view.</p>
                   <div class="image-container-1">
                     <div class="image1-before comparison-layer-before">
                       <img id="JPEGCompare_JPEGImage" class="slider-image" src="" alt="JPEG" draggable="false" />
@@ -142,16 +143,7 @@
                                       stroke-linejoin="round"
                                     ></path>
                                   </svg>
-                                  <input
-                                    type="range"
-                                    min="0"
-                                    max="100"
-                                    step="1"
-                                    value="50"
-                                    class="tooltip-slider"
-                                    id="JPEGCompare_JPEGSSIM2"
-                                    readonly=""
-                                  />
+                                  <span class="metric-scale tooltip-slider" aria-hidden="true" data-min="0" data-max="100" data-value="50" id="JPEGCompare_JPEGSSIM2"></span>
                                   <svg
                                     class="triangle-right"
                                     width="13"
@@ -210,7 +202,7 @@
                                       stroke-linejoin="round"
                                     ></path>
                                   </svg>
-                                  <input type="range" min="0" max="3" step=".1" value="1" class="tooltip-slider-reverse" readonly="" />
+                                  <span class="metric-scale tooltip-slider-reverse" aria-hidden="true" data-min="0" data-max="3" data-value="1"></span>
                                   <svg
                                     class="triangle-right"
                                     width="13"
@@ -265,7 +257,7 @@
                                       stroke-linejoin="round"
                                     ></path>
                                   </svg>
-                                  <input type="range" min="0" max="16" step=".5" value="2" class="tooltip-slider-reverse" readonly="" />
+                                  <span class="metric-scale tooltip-slider-reverse" aria-hidden="true" data-min="0" data-max="16" data-value="2"></span>
                                   <svg
                                     class="triangle-right"
                                     width="13"
@@ -334,7 +326,7 @@
                                       stroke-linejoin="round"
                                     ></path>
                                   </svg>
-                                  <input type="range" min="0" max="100" step="1" value="50" class="tooltip-slider" readonly="" />
+                                  <span class="metric-scale tooltip-slider" aria-hidden="true" data-min="0" data-max="100" data-value="50"></span>
                                   <svg
                                     class="triangle-right"
                                     width="13"
@@ -393,7 +385,7 @@
                                       stroke-linejoin="round"
                                     ></path>
                                   </svg>
-                                  <input type="range" min="0" max="3" step=".1" value="1" class="tooltip-slider-reverse" readonly="" />
+                                  <span class="metric-scale tooltip-slider-reverse" aria-hidden="true" data-min="0" data-max="3" data-value="1"></span>
                                   <svg
                                     class="triangle-right"
                                     width="13"
@@ -448,7 +440,7 @@
                                       stroke-linejoin="round"
                                     ></path>
                                   </svg>
-                                  <input type="range" min="0" max="16" step=".5" value="2" class="tooltip-slider-reverse" readonly="" />
+                                  <span class="metric-scale tooltip-slider-reverse" aria-hidden="true" data-min="0" data-max="16" data-value="2"></span>
                                   <svg
                                     class="triangle-right"
                                     width="13"
@@ -514,7 +506,7 @@
             <p class="text-medium">SSIMU2: <span id="JPEGCSize_JPEGSSIMU2">99.9</span></p>
           </div>
           <div class="slide-container">
-            <input type="range" min="0" max="75" value="50" step="25" class="slider-size" id="mySizeRange" />
+            <input type="range" min="0" max="75" value="50" step="25" class="slider-size" id="mySizeRange" aria-label="JPEG comparison quality preset" aria-valuetext="Med-High" />
             <div class="size-range-labels">
               <p class="size-label text-all-caps-micro-medium-white ml">Med-Low</p>
               <p class="size-label text-all-caps-micro-medium-white s-md">Medium</p>
@@ -540,7 +532,7 @@
             <p class="text-medium"><span id="JPEGCQuality_JPEGSize">300</span>&nbsp;KB</p>
           </div>
           <div class="slide-container">
-            <input type="range" min="0" max="75" value="25" step="25" class="slider" id="myQualityRange" />
+            <input type="range" min="0" max="75" value="25" step="25" class="slider" id="myQualityRange" aria-label="JPEG comparison file size preset" aria-valuetext="Medium" />
             <div class="range-labels">
               <p class="quality-label text-all-caps-micro-medium-white sm">Small</p>
               <p class="quality-label text-all-caps-micro-medium-white q-md">Medium</p>

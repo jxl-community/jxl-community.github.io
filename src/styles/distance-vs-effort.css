@@ -157,6 +157,32 @@ input[type=range]::-webkit-slider-container {
   cursor: grab;
 }
 
+.image-pan-viewport:focus-visible {
+  outline: 2px solid var(--brand--teal-bright--500);
+  outline-offset: 4px;
+}
+
+.image-pan-viewport .pan-help {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  z-index: 1;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  background: var(--page-black);
+  color: var(--white);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.image-pan-viewport:focus-visible .pan-help {
+  opacity: 1;
+}
+
 .image-pan-viewport.is-panning {
   cursor: grabbing;
 }

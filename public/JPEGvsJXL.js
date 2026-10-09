@@ -123,7 +123,7 @@ const displayData = (array, scrollValue, type) => {
         elements.JPEGCQuality_JXLSSIMU2.textContent = formatSSIMU2(data.JXL_SSIMU2);
     }
     updateDots();
-    updateTooltipSliders(data);
+    updateTooltipMetrics(data);
 };
 /* Get Slider Value */
 const getSliderValue = (scrollValue, type) => {
@@ -240,6 +240,30 @@ function setupComparisonZoomPan({ container, comparisonSlider, zoomSlider, zoomV
         applyZoomPan();
     });
 
+    container.addEventListener('keydown', (event) => {
+        // Let nested comparison and zoom sliders keep their native keys.
+        if (event.target !== container || event.altKey || event.ctrlKey || event.metaKey) return;
+        if (event.key === 'Home') {
+            event.preventDefault();
+            zoomSlider.value = '1';
+            zoomSlider.dispatchEvent(new Event('input', { bubbles: true }));
+            return;
+        }
+        if (currentZoom === 1) return;
+        const movement = {
+            ArrowLeft: [32, 0],
+            ArrowRight: [-32, 0],
+            ArrowUp: [0, 32],
+            ArrowDown: [0, -32],
+        }[event.key];
+        if (!movement) return;
+        event.preventDefault();
+        panX += movement[0];
+        panY += movement[1];
+        clampPan();
+        applyZoomPan();
+    });
+
     container.addEventListener('pointerdown', (event) => {
         if (currentZoom === 1 || isNearComparisonDivider(event)) {
             return;
@@ -310,24 +334,28 @@ function setupComparisonZoomPan({ container, comparisonSlider, zoomSlider, zoomV
         return `${Number.isInteger(zoom) ? zoom : zoom.toFixed(1)}×`;
     }
 }
-function updateTooltipSliders(data) {
-    // Helper function to update slider and text
-    const updateSliderAndText = (sliderId, textId, value) => {
-        const slider = document.querySelector(sliderId);
+function updateTooltipMetrics(data) {
+    // The decorative scale mirrors the readable metric text; it has no input behavior.
+    const updateMetricAndText = (sliderId, textId, value) => {
+        const metric = document.querySelector(sliderId);
         const text = document.getElementById(textId);
-        if (slider && text) {
-            slider.value = value;
+        if (metric && text) {
+            const minimum = Number(metric.dataset.min);
+            const maximum = Number(metric.dataset.max);
+            const position = Math.max(0, Math.min(1, (Number(value) - minimum) / (maximum - minimum)));
+            metric.dataset.value = value;
+            metric.style.setProperty('--metric-position', String(position));
             text.textContent = value;
         }
     };
-    // Update JPEG sliders and text
-    updateSliderAndText("#tooltip_JPEGSSIMU2 .ssim-label-slider input", "tooltipJPEGSSIMU2", data.JPEG_SSIMU2.toFixed(1));
-    updateSliderAndText("#tooltip_JPEGButter .butter-label-slider .scale input", "JPEGButter", data.JPEG_Butter.toFixed(2));
-    updateSliderAndText("#tooltip_JPEGDSSIM .dssim-label-slider .scale input", "JPEGDSSIM", (data.JPEG_DSSIM * 1000).toFixed(2));
-    // Update JXL sliders and text
-    updateSliderAndText("#tooltip_JXLSSIMU2 .ssim-label-slider input", "tooltipJXLSSIMU2", data.JXL_SSIMU2.toFixed(1));
-    updateSliderAndText("#tooltip_JXLButter .butter-label-slider .scale input", "JXLButter", data.JXL_Butter.toFixed(2));
-    updateSliderAndText("#tooltip_JXLDSSIM .dssim-label-slider .scale input", "JXLDSSIM", (data.JXL_DSSIM * 1000).toFixed(2));
+    // Update JPEG metrics and text
+    updateMetricAndText("#tooltip_JPEGSSIMU2 .ssim-label-slider .metric-scale", "tooltipJPEGSSIMU2", data.JPEG_SSIMU2.toFixed(1));
+    updateMetricAndText("#tooltip_JPEGButter .butter-label-slider .scale .metric-scale", "JPEGButter", data.JPEG_Butter.toFixed(2));
+    updateMetricAndText("#tooltip_JPEGDSSIM .dssim-label-slider .scale .metric-scale", "JPEGDSSIM", (data.JPEG_DSSIM * 1000).toFixed(2));
+    // Update JXL metrics and text
+    updateMetricAndText("#tooltip_JXLSSIMU2 .ssim-label-slider .metric-scale", "tooltipJXLSSIMU2", data.JXL_SSIMU2.toFixed(1));
+    updateMetricAndText("#tooltip_JXLButter .butter-label-slider .scale .metric-scale", "JXLButter", data.JXL_Butter.toFixed(2));
+    updateMetricAndText("#tooltip_JXLDSSIM .dssim-label-slider .scale .metric-scale", "JXLDSSIM", (data.JXL_DSSIM * 1000).toFixed(2));
     // Update JPEG and JXL info that don't have sliders
     document.getElementById("JPEGQuality").textContent = data.JPEG_Quality;
     document.getElementById("tooltipJPEGSize").textContent = (data.JPEG_Size / 1024).toFixed(1);

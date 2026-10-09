@@ -533,6 +533,35 @@ main {
   --comparison-pan-y: 0px;
 }
 
+.comparison-container:focus-visible,
+.comparison-container-avif:focus-visible {
+  outline: 2px solid var(--brand--teal-bright--500);
+  outline-offset: 4px;
+}
+
+.comparison-container .pan-help,
+.comparison-container-avif .pan-help {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  z-index: 8;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  background: var(--page-black);
+  color: var(--white);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.comparison-container:focus-visible .pan-help,
+.comparison-container-avif:focus-visible .pan-help {
+  opacity: 1;
+}
+
 .comparison-container .image-container-1,
 .comparison-container-avif .image-container-1 {
   position: absolute;
@@ -925,49 +954,18 @@ main {
   transform: rotate(180deg);
 }
 
-/* iOS renders a default track/thumb box behind the custom triangle thumbs;
-   force the native track transparent so only the orange triangle shows. */
-.tooltip-slider::-webkit-slider-runnable-track,
-.tooltip-slider-reverse::-webkit-slider-runnable-track {
-  -webkit-appearance: none;
-  appearance: none;
-  background: transparent;
-  border: none;
-}
-
-.tooltip-slider::-moz-range-track,
-.tooltip-slider-reverse::-moz-range-track {
-  background: transparent;
-  border: none;
-}
-
-.tooltip-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
+/* Decorative metric marker; the adjacent text supplies the accessible value. */
+.metric-scale::before {
+  content: '';
+  position: absolute;
+  left: calc(6px + (100% - 12px) * var(--metric-position, 0.5));
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 0;
   height: 0;
-  /* iOS draws a white box behind the thumb unless its own box is cleared. */
-  background: transparent;
-  box-shadow: none;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
   border-top: 12px solid var(--accent--orange--P3--500);
-  border-bottom: 0;
-  cursor: pointer;
-}
-
-.tooltip-slider-reverse::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 0;
-  height: 0;
-  background: transparent;
-  box-shadow: none;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 12px solid var(--accent--orange--P3--500);
-  border-bottom: 0;
-  cursor: pointer;
 }
 
 .tooltip-columns {

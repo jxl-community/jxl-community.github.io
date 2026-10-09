@@ -24,6 +24,21 @@
   window.addEventListener('scroll', onScroll, { passive: true });
 })();
 
+/* Announce comparison presets using the same labels shown beside each range. */
+(function () {
+  document.querySelectorAll('.jpeg-jxl-tabs .slide-container input, .avif-jxl-tabs .slide-container input').forEach(function (input) {
+    const labels = Array.from(input.parentElement.querySelectorAll('.size-label, .quality-label'));
+    function updateValueText() {
+      const index = Math.round((Number(input.value) - Number(input.min)) / Number(input.step));
+      const label = labels[index];
+      if (label) input.setAttribute('aria-valuetext', label.textContent.trim());
+    }
+    updateValueText();
+    input.addEventListener('input', updateValueText);
+    input.addEventListener('change', updateValueText);
+  });
+})();
+
 /* Simple slider — replaces Webflow's slider JS for .w-slider components */
 (function () {
   document.querySelectorAll('.w-slider').forEach(function (slider) {

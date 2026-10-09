@@ -124,7 +124,7 @@ const displayDataAVIF = (array, scrollValue, type) => {
     }
 
     updateDotsAVIF();
-    updateTooltipSlidersAVIF(data);
+    updateTooltipMetricsAVIF(data);
 };
 
 /* Get Slider Value */
@@ -247,6 +247,30 @@ function setupComparisonZoomPanAVIF({ container, comparisonSlider, zoomSlider, z
         applyZoomPan();
     });
 
+    container.addEventListener('keydown', (event) => {
+        // Let nested comparison and zoom sliders keep their native keys.
+        if (event.target !== container || event.altKey || event.ctrlKey || event.metaKey) return;
+        if (event.key === 'Home') {
+            event.preventDefault();
+            zoomSlider.value = '1';
+            zoomSlider.dispatchEvent(new Event('input', { bubbles: true }));
+            return;
+        }
+        if (currentZoom === 1) return;
+        const movement = {
+            ArrowLeft: [32, 0],
+            ArrowRight: [-32, 0],
+            ArrowUp: [0, 32],
+            ArrowDown: [0, -32],
+        }[event.key];
+        if (!movement) return;
+        event.preventDefault();
+        panX += movement[0];
+        panY += movement[1];
+        clampPan();
+        applyZoomPan();
+    });
+
     container.addEventListener('pointerdown', (event) => {
         if (currentZoom === 1 || isNearComparisonDivider(event)) {
             return;
@@ -318,26 +342,30 @@ function setupComparisonZoomPanAVIF({ container, comparisonSlider, zoomSlider, z
     }
 }
 
-function updateTooltipSlidersAVIF(data) {
-    // Helper function to update slider and text
-    const updateSliderAndTextAVIF = (sliderId, textId, value) => {
-        const slider = document.querySelector(sliderId);
+function updateTooltipMetricsAVIF(data) {
+    // The decorative scale mirrors the readable metric text; it has no input behavior.
+    const updateMetricAndTextAVIF = (sliderId, textId, value) => {
+        const metric = document.querySelector(sliderId);
         const text = document.getElementById(textId);
-        if (slider && text) {
-            slider.value = value;
+        if (metric && text) {
+            const minimum = Number(metric.dataset.min);
+            const maximum = Number(metric.dataset.max);
+            const position = Math.max(0, Math.min(1, (Number(value) - minimum) / (maximum - minimum)));
+            metric.dataset.value = value;
+            metric.style.setProperty('--metric-position', String(position));
             text.textContent = value;
         }
     };
 
-    // Update AVIF sliders and text
-    updateSliderAndTextAVIF("#tooltip_AVIFSSIMU2 .ssim-label-slider input", "tooltipAVIFSSIMU2", data.AVIF_SSIMU2.toFixed(1));
-    updateSliderAndTextAVIF("#tooltip_AVIFButter .butter-label-slider .scale input", "AVIFButter", data.AVIF_Butter.toFixed(2));
-    updateSliderAndTextAVIF("#tooltip_AVIFDSSIM .dssim-label-slider .scale input", "AVIFDSSIM", (data.AVIF_DSSIM * 1000).toFixed(2));
+    // Update AVIF metrics and text
+    updateMetricAndTextAVIF("#tooltip_AVIFSSIMU2 .ssim-label-slider .metric-scale", "tooltipAVIFSSIMU2", data.AVIF_SSIMU2.toFixed(1));
+    updateMetricAndTextAVIF("#tooltip_AVIFButter .butter-label-slider .scale .metric-scale", "AVIFButter", data.AVIF_Butter.toFixed(2));
+    updateMetricAndTextAVIF("#tooltip_AVIFDSSIM .dssim-label-slider .scale .metric-scale", "AVIFDSSIM", (data.AVIF_DSSIM * 1000).toFixed(2));
 
-    // Update JXL sliders and text
-    updateSliderAndTextAVIF("#tooltip_JXLSSIMU2_AVIF .ssim-label-slider input", "tooltipJXLSSIMU2_AVIF", data.JXL_SSIMU2.toFixed(1));
-    updateSliderAndTextAVIF("#tooltip_JXLButter_AVIF .butter-label-slider .scale input", "JXLButter_AVIF", data.JXL_Butter.toFixed(2));
-    updateSliderAndTextAVIF("#tooltip_JXLDSSIM_AVIF .dssim-label-slider .scale input", "JXLDSSIM_AVIF", (data.JXL_DSSIM * 1000).toFixed(2));
+    // Update JXL metrics and text
+    updateMetricAndTextAVIF("#tooltip_JXLSSIMU2_AVIF .ssim-label-slider .metric-scale", "tooltipJXLSSIMU2_AVIF", data.JXL_SSIMU2.toFixed(1));
+    updateMetricAndTextAVIF("#tooltip_JXLButter_AVIF .butter-label-slider .scale .metric-scale", "JXLButter_AVIF", data.JXL_Butter.toFixed(2));
+    updateMetricAndTextAVIF("#tooltip_JXLDSSIM_AVIF .dssim-label-slider .scale .metric-scale", "JXLDSSIM_AVIF", (data.JXL_DSSIM * 1000).toFixed(2));
 
     // Update AVIF and JXL info that don't have sliders
     document.getElementById("AVIFQuality").textContent = data.AVIF_Quality;

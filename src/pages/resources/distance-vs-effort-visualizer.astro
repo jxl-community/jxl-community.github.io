@@ -32,9 +32,10 @@ const description = 'Compare codecs by perceptual distance and encoding effort.'
           <div class="wrapper-content centered">
             <div class="code-distance_vs_effort w-embed">
               <div class="container">
-                <select id="image-dropdown"></select>
+                <select id="image-dropdown" aria-label="Visualizer image"></select>
                 <div class="image-slider-container">
-                  <div id="image-viewport" class="image-pan-viewport">
+                  <div id="image-viewport" class="image-pan-viewport" tabindex="0" role="group" aria-label="Visualizer image view" aria-describedby="visualizer-pan-help">
+                    <p id="visualizer-pan-help" class="pan-help" data-pagefind-ignore>Zoom in, then use arrow keys to pan. Press Home to reset the view.</p>
                     <img id="image" src="" alt="Image" class="no-smoothing" draggable="false" width="896" height="448">
                   </div>
                   <div id="vertical-slider-container" class="effort-slider-container">
