@@ -60,6 +60,25 @@ nav {
 /* Smooth transitions on the bar and logo link */
 .navbar-container-menu-top {
   transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  /* A filtered ancestor confines dropdown backdrop sampling to the bar.
+     Put the bar's glass on its own layer so menus can blur the page behind. */
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background: transparent;
+}
+
+.navbar-container-menu-top::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  background: var(--overlay--page-black-45);
+}
+
+.navbar-container-menu-top > .navbar-2-container {
+  position: relative;
 }
 
 .navbar_logo-link,
@@ -593,9 +612,9 @@ nav.scrolled .navbar_logo-link.w--current {
   left: 50%;
   transform: translateX(-50%) translateY(-10px);
   min-width: 215px;
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  background-color: rgba(15, 18, 22, 0.9);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  background-color: rgba(15, 18, 22, 0.94);
   background-image: linear-gradient(150deg, rgba(27, 163, 160, 0.18) 0%, transparent 55%);
   border-radius: 13px;
   border: 1px solid rgba(255, 255, 255, 0.11);
@@ -925,9 +944,9 @@ nav.scrolled .navbar_logo-link.w--current {
 
 /* Override the webflow.css white-overlay background with the same dark glass */
 .container-navbar-dropdown-content {
-  -webkit-backdrop-filter: blur(22px);
-  backdrop-filter: blur(22px);
-  background-color: rgba(12, 15, 19, 0.93);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  background-color: rgba(12, 15, 19, 0.94);
   background-image: linear-gradient(180deg, rgba(27, 163, 160, 0.2) 0%, transparent 28%);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);

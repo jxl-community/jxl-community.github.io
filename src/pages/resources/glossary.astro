@@ -116,9 +116,19 @@ const grouped = subcategories.map((subcategory) => ({
       .glossary-content a:hover {
         color: var(--text--color--link-hover);
       }
-      .term a,
-      .term a:hover {
-        color: inherit;
+      .term:focus-visible,
+      .term-permalink:focus-visible {
+        outline: 2px solid var(--brand--teal-bright--500);
+        outline-offset: 4px;
+      }
+      .term-permalink {
+        display: inline-block;
+        margin-bottom: 1.5em;
+        font-size: 0.875rem;
+      }
+      .glossary-content .term-permalink {
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
       }
       .disclosure-icon {
         display: inline-flex;
@@ -199,13 +209,12 @@ const grouped = subcategories.map((subcategory) => ({
                     {terms.map((item) => (
                       <div class="glossary-term">
                         <details>
-                          <summary class="term">
-                            <a id={termId(item.term)} href={`#${termId(item.term)}`}>
-                              {item.term}
-                            </a>
+                          <summary id={termId(item.term)} class="term">
+                            {item.term}
                             <span class="disclosure-icon" aria-hidden="true"></span>
                           </summary>
                           <div class="definition" set:html={item.definition} />
+                          <a class="term-permalink" href={`#${termId(item.term)}`} aria-label={`Permalink to ${item.term}`}>Permalink</a>
                         </details>
                       </div>
                     ))}
@@ -241,15 +250,6 @@ const grouped = subcategories.map((subcategory) => ({
           content.classList.remove('fade-out');
         }, 300);
       },
-    });
-
-    // Clicking a term's link toggles its definition without moving the page.
-    content.addEventListener('click', (e) => {
-      const anchor = (e.target as HTMLElement).closest('summary.term a');
-      if (!anchor) return;
-      e.preventDefault();
-      const details = anchor.closest('details')!;
-      details.open = !details.open;
     });
 
     // Deep links (#term-id): jump to the right tab, open and scroll to the term.
