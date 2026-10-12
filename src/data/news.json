@@ -1,6 +1,21 @@
 {
     "Blog posts": [
         {
+            "title": "We’re on a roll - EPUB 3.4 is coming",
+            "link": "https://www.w3.org/blog/2026/were-on-a-roll-epub-3-4-is-coming/",
+            "date": "2026-10-12",
+            "Author": "Wendy Reid",
+            "Publication": "W3C Blog",
+            "Summary": "W3C previews EPUB 3.4, which adds JPEG XL and AVIF image support alongside roll layouts for webtoons and accessibility updates. EPUBCheck 5.4.0 now validates the newly supported image formats.",
+            "Tags": [
+                "JPEG XL",
+                "AVIF",
+                "EPUB",
+                "App Support",
+                "Overview"
+            ]
+        },
+        {
             "title": "Shipping JPEG XL in Chrome",
             "link": "https://developer.chrome.com/blog/jpeg-xl-in-chrome",
             "date": "2026-10-06",
