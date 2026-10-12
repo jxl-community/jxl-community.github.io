@@ -846,6 +846,20 @@
     ],
     "News": [
         {
+            "Title": "Firefox 158 Now Available With JPEG-XL Support By Default",
+            "link": "https://www.phoronix.com/news/Firefox-158-Released",
+            "date": "2026-10-12",
+            "Author": "Michael Larabel",
+            "Publication": "Phoronix",
+            "Summary": "Firefox 158 enables JPEG XL image support by default and adds image/jxl to the HTTP Accept header for image requests, removing the need for an experimental setting.",
+            "Tags": [
+                "JPEG XL",
+                "Firefox",
+                "Browser Support",
+                "Web delivery"
+            ]
+        },
+        {
             "Title": "Chrome 155 adds JPEG XL and wallet credentials, but most sites will need time to use them",
             "link": "https://www.digitbin.com/chrome-155-jpeg-xl-features/",
             "date": "2026-10-04",

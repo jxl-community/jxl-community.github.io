@@ -10,8 +10,16 @@
   min-width: 0;
 }
 
-.image-logo-software--wide {
-  max-width: 200px;
+.wrapper-logo-software-link.wrapper-logo-software-link--acdsee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-logo-software.image-logo-software--wide {
+  width: 160px;
+  max-width: 160px;
+  height: auto;
   max-height: 120px;
   object-fit: contain;
 }
