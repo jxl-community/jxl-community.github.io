@@ -41,7 +41,7 @@
             "date": "2026-08-24",
             "Author": "Jake Archibald",
             "Publication": "Mozilla Hacks",
-            "Summary": "Mozilla outlines Firefox's planned JPEG XL support, powered by the Rust-based jxl-rs decoder, including progressive rendering.",
+            "Summary": "Mozilla announced plans for JPEG XL support powered by the Rust-based jxl-rs decoder, including progressive rendering. Support shipped by default in Firefox 158 on October 13, 2026.",
             "Tags": [
                 "JPEG XL",
                 "Firefox",
@@ -896,7 +896,7 @@
             "date": "2026-08-26",
             "Author": "Charles Gouin-Peyrot",
             "Publication": "Clubic",
-            "Summary": "Firefox 157 is expected to enable JPEG XL support by default, extending the format's availability in major browsers.",
+            "Summary": "Clubic covered plans to enable JPEG XL support by default in Firefox 157. The feature ultimately shipped in Firefox 158 on October 13, 2026, extending the format's availability in major browsers.",
             "Tags": [
                 "JPEG XL",
                 "Firefox",
@@ -913,7 +913,7 @@
             "link": "https://news.ycombinator.com/item?id=49437946",
             "date": "2026-08-26",
             "Publication": "Hacker News",
-            "Summary": "Hacker News discussion of Firefox 157 enabling JPEG XL by default on all platforms.",
+            "Summary": "Hacker News discussion of the original plan to enable JPEG XL by default in Firefox 157 on all platforms. Support ultimately shipped in Firefox 158 on October 13, 2026.",
             "Tags": [
                 "JPEG XL",
                 "Firefox",
@@ -1170,7 +1170,7 @@
             "date": "2024-09-04",
             "Author": "Michael Larabel",
             "Publication": "Phoronix",
-            "Summary": "Mozilla is exploring the adoption of a Rust-based JPEG-XL decoder, contingent on assurances of security, performance, and compatibility.",
+            "Summary": "Mozilla explored adopting a Rust-based JPEG XL decoder with requirements for security, performance, and compatibility. The resulting jxl-rs decoder now powers JPEG XL support enabled by default in Firefox 158 and newer.",
             "Tags": [
                 "Firefox",
                 "JPEG XL",

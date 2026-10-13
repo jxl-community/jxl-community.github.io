@@ -1,7 +1,7 @@
 ---
 title: Usage
 order: 2
-lastUpdated: October 6, 2026
+lastUpdated: October 13, 2026
 ---
 
 ### Where can I use JPEG XL images?
@@ -16,7 +16,7 @@ While JPEG XL offers numerous benefits, there are some limitations to consider. 
 
 ### Can I use JPEG XL on my web browser?
 
-Yes, in most current browsers. JPEG XL is supported by default in Safari, in Chrome from version 155, and in Firefox from version 158 (due October 13, 2026). Thorium, Waterfox, Pale Moon, Basilisk, Orion, Ladybird, and Zen support it too. You can check [https://caniuse.com/jpegxl](https://caniuse.com/jpegxl) for the latest browser compatibility information.
+Yes, in most current browsers. JPEG XL is supported by default in Safari, in Chrome from version 155, and in Firefox from version 158, [released October 13, 2026](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/158). Thorium, Waterfox, Pale Moon, Basilisk, Orion, Ladybird, and Zen support it too. You can check [https://caniuse.com/jpegxl](https://caniuse.com/jpegxl) for the latest browser compatibility information.
 
 Leverage the `<picture>` element to deliver JXL images to browsers that support them, while ensuring fallback for other browsers:
 ```html

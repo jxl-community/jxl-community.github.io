@@ -23,12 +23,33 @@ type Tool = {
 
 const tools: Tool[] = [
   {
+    name: 'Squoosh',
+    eyebrow: 'Browser image optimizer',
+    description:
+      'Compress images, compare the results, and adjust quality settings in your browser, with all image processing performed locally on your device.',
+    href: 'https://squoosh.app/index.html',
+    url: 'squoosh.app',
+  },
+  {
     name: 'Squash',
     eyebrow: 'Browser image optimizer',
     description:
       'Fork of Squoosh: Compress images, compare codecs, and adjust quality settings in your browser, with image processing performed locally on device.',
     href: 'https://squash.techie-jim.net/editor',
     url: 'squash.techie-jim.net/editor',
+  },
+  {
+    name: 'pXL Compare',
+    eyebrow: 'Mac compression comparison app',
+    description: 'A Mac-native image compression and comparison app.',
+    href: 'https://pxlcompare.com',
+    url: 'pxlcompare.com',
+    contributors: [
+      {
+        name: 'Kelly Thompson',
+        href: 'https://github.com/kkthompson/',
+      },
+    ],
   },
   {
     name: 'jxl-rs',
