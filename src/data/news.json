@@ -1,6 +1,26 @@
 {
     "Blog posts": [
         {
+            "title": "JPEG XL vs AVIF for web use-cases",
+            "link": "https://jakearchibald.com/2026/jpeg-xl-vs-avif/",
+            "date": "2026-10-15",
+            "Author": "Jake Archibald",
+            "Publication": "JakeArchibald.com",
+            "Summary": "Jake Archibald benchmarks JPEG XL (libjxl and jixel) against AVIF for web images, comparing file sizes, encoding and decoding performance, progressive rendering, and HDR.",
+            "Tags": [
+                "JPEG XL",
+                "AVIF",
+                "Benchmarking",
+                "Image Quality Assessment",
+                "Lossy",
+                "Lossless",
+                "Progressive",
+                "HDR",
+                "Web delivery",
+                "Technical deep-dive"
+            ]
+        },
+        {
             "title": "We’re on a roll - EPUB 3.4 is coming",
             "link": "https://www.w3.org/blog/2026/were-on-a-roll-epub-3-4-is-coming/",
             "date": "2026-10-12",

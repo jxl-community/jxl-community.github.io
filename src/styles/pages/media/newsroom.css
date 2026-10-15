@@ -76,6 +76,7 @@
   font-style: italic;
   margin: 0.5em 0;
   color: color-mix(in srgb, var(--text--color--text-white) 90%, transparent);
+  text-wrap: pretty;
 }
 .news-item-tags,
 .tag-menu-tags {
