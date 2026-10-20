@@ -47,10 +47,10 @@
 //! re-instantiate the module when a call traps. In practice this is rare: a
 //! sweep of 186 files across this site's corpus produced no panics at all.
 
-use jxl::api::states::{Initialized, WithFrameInfo, WithImageInfo};
 use jxl::api::{
-    JxlColorEncoding, JxlColorProfile, JxlDecoder, JxlDecoderOptions, JxlOutputBuffer,
-    JxlPixelFormat, JxlPrimaries, JxlTransferFunction, ProcessingResult,
+    Event, ExtraChannel, JxlBasicInfo, JxlColorEncoding, JxlColorProfile, JxlDecoder,
+    JxlDecoderOptions, JxlExtraChannel, JxlOutputBuffer, JxlPixelFormat, JxlPrimaries,
+    JxlTransferFunction,
 };
 
 // ---------------------------------------------------------------- status codes
@@ -78,9 +78,9 @@ pub const FORMAT_RGBA_F16: u32 = 2;
 // --------------------------------------------------------------------- context
 
 enum State {
-    Init(JxlDecoder<Initialized>),
-    Info(JxlDecoder<WithImageInfo>),
-    Frame(JxlDecoder<WithFrameInfo>),
+    /// Boxed so that taking it out of the context and putting it back on every
+    /// event moves a pointer, not the whole decoder.
+    Decoding(Box<JxlDecoder>),
     Done,
     Failed,
 }
@@ -103,7 +103,8 @@ pub struct Ctx {
     extra_channels: usize,
     has_alpha: bool,
 
-    /// Backed by `u32` so the start is 4-byte aligned: `flush_pixels` may panic
+    /// Backed by `u32` so the start is 4-byte aligned: `process` and
+    /// `flush_pixels` may panic
     /// if a 2- or 4-byte-per-sample buffer is handed to it unaligned.
     pixels: Vec<u32>,
     pixels_len: usize,
@@ -149,28 +150,6 @@ impl Ctx {
         self.error.extend_from_slice(msg.as_bytes());
         self.state = Some(State::Failed);
         JXL_ERROR
-    }
-
-    /// One output buffer covering the whole frame.
-    ///
-    /// The returned buffer aliases `self.pixels`, and its lifetime is
-    /// unconstrained, so the caller must keep two things true:
-    ///
-    /// 1. `self.pixels` must not be resized or dropped while it is alive. Only
-    ///    `capture_image_info` resizes it, and that runs once, before any
-    ///    buffer exists.
-    /// 2. Nothing else may read or write those bytes concurrently.
-    ///
-    /// Both hold at every call site: the buffer is created immediately before a
-    /// single `process`/`flush_pixels` call and dropped immediately after.
-    ///
-    /// # Safety
-    /// See the two conditions above.
-    unsafe fn output<'a>(&'a mut self) -> [JxlOutputBuffer<'a>; 1] {
-        let rows = self.height as usize;
-        let row = self.row_bytes();
-        let ptr = self.pixels.as_mut_ptr() as *mut u8;
-        [unsafe { JxlOutputBuffer::new_from_ptr(ptr, rows, row, row) }]
     }
 }
 
@@ -291,109 +270,98 @@ fn advance(ctx: &mut Ctx) -> i32 {
     if !ctx.configured {
         let mut opts = JxlDecoderOptions::default();
         opts.desired_intensity_target = ctx.intensity_target;
-        ctx.state = Some(State::Init(JxlDecoder::new(opts)));
+        ctx.state = Some(State::Decoding(Box::new(JxlDecoder::new(opts))));
         ctx.configured = true;
     }
 
     loop {
-        let Some(state) = ctx.state.take() else {
-            return ctx.fail("decoder used after failure");
-        };
-
-        match state {
-            State::Init(dec) => {
-                let mut input: &[u8] = &ctx.buf[ctx.cursor..];
-                let before = input.len();
-                match dec.process(&mut input, None) {
-                    Ok(ProcessingResult::Complete { result }) => {
-                        ctx.cursor += before - input.len();
-                        let mut dec = result;
-                        capture_image_info(ctx, &dec);
-                        let fmt = ctx.pixel_format();
-                        // jxl-rs only accepts a format change between basic info
-                        // and the first frame header, which is exactly here, so
-                        // this cannot fail -- surfaced rather than ignored so a
-                        // future reorder of this arm is loud instead of silent.
-                        if let Err(e) = dec.set_pixel_format(fmt) {
-                            return ctx.fail(&format!("pixel format: {e}"));
-                        }
-                        capture_profiles(ctx, &dec);
-                        ctx.state = Some(State::Info(dec));
-                    }
-                    Ok(ProcessingResult::NeedsMoreInput { fallback, .. }) => {
-                        ctx.cursor += before - input.len();
-                        ctx.state = Some(State::Init(fallback));
-                        return JXL_NEED_MORE;
-                    }
-                    Err(e) => return ctx.fail(&format!("header: {e}")),
-                }
-            }
-
-            State::Info(dec) => {
-                let mut input: &[u8] = &ctx.buf[ctx.cursor..];
-                let before = input.len();
-                match dec.process(&mut input, None) {
-                    Ok(ProcessingResult::Complete { result }) => {
-                        ctx.cursor += before - input.len();
-                        let hdr = result.frame_header();
-                        ctx.frame_duration_ms = hdr.duration.unwrap_or(0.0);
-                        ctx.state = Some(State::Frame(result));
-                    }
-                    Ok(ProcessingResult::NeedsMoreInput { fallback, .. }) => {
-                        ctx.cursor += before - input.len();
-                        ctx.state = Some(State::Info(fallback));
-                        return JXL_NEED_MORE;
-                    }
-                    Err(e) => return ctx.fail(&format!("frame header: {e}")),
-                }
-            }
-
-            State::Frame(dec) => {
-                // `buf` and `pixels` are disjoint fields, but the borrow checker
-                // only sees `&ctx` vs `&mut ctx`. Detach the input slice so the
-                // output buffer can borrow the pixel store independently; the
-                // stream is never mutated while `process` runs.
-                let avail = ctx.buf.len() - ctx.cursor;
-                let mut input: &[u8] =
-                    unsafe { std::slice::from_raw_parts(ctx.buf.as_ptr().add(ctx.cursor), avail) };
-                let before = input.len();
-                let mut bufs = unsafe { ctx.output() };
-                let outcome = dec.process(&mut input, &mut bufs, None);
-                drop(bufs);
-                match outcome {
-                    Ok(ProcessingResult::Complete { result }) => {
-                        ctx.cursor += before - input.len();
-                        ctx.have_pixels = true;
-                        if result.has_more_frames() {
-                            ctx.state = Some(State::Info(result));
-                            return JXL_FRAME;
-                        }
-                        ctx.state = Some(State::Done);
-                        return JXL_COMPLETE;
-                    }
-                    Ok(ProcessingResult::NeedsMoreInput { fallback, .. }) => {
-                        ctx.cursor += before - input.len();
-                        ctx.state = Some(State::Frame(fallback));
-                        return JXL_NEED_MORE;
-                    }
-                    Err(e) => return ctx.fail(&format!("frame: {e}")),
-                }
-            }
-
-            State::Done => {
+        let mut dec = match ctx.state.take() {
+            Some(State::Decoding(dec)) => dec,
+            Some(State::Done) => {
                 ctx.state = Some(State::Done);
                 return JXL_COMPLETE;
             }
-            State::Failed => {
+            Some(State::Failed) => {
                 ctx.state = Some(State::Failed);
                 return JXL_ERROR;
             }
+            None => return ctx.fail("decoder used after failure"),
+        };
+
+        let rows = ctx.height as usize;
+        let row = ctx.row_bytes();
+        let event = {
+            // Destructured so the input slice and the output buffer borrow
+            // disjoint fields. `pixels` is sized in `capture_image_info`, which
+            // runs before `rows` is ever non-zero, and is not resized after.
+            let Ctx {
+                buf,
+                cursor,
+                pixels,
+                ..
+            } = &mut *ctx;
+            let mut input: &[u8] = &buf[*cursor..];
+            let before = input.len();
+            let result = if rows == 0 {
+                // No basic info yet, so nothing to draw into.
+                dec.process(&mut input, None, None)
+            } else {
+                let mut bufs = [unsafe {
+                    JxlOutputBuffer::new_from_ptr(pixels.as_mut_ptr() as *mut u8, rows, row, row)
+                }];
+                dec.process(&mut input, Some(&mut bufs[..]), None)
+            };
+            *cursor += before - input.len();
+            result
+        };
+
+        match event {
+            Ok(Event::NeedMoreInput { .. }) => {
+                ctx.state = Some(State::Decoding(dec));
+                return JXL_NEED_MORE;
+            }
+            Ok(Event::BasicInfo) => {
+                let Some(info) = dec.basic_info() else {
+                    return ctx.fail("basic info event without basic info");
+                };
+                capture_image_info(ctx, info);
+                // jxl-rs only accepts a format change between basic info and the
+                // first frame header, which is exactly here, so this cannot fail
+                // -- surfaced rather than ignored so a future reorder of this arm
+                // is loud instead of silent.
+                if let Err(e) = dec.set_pixel_format(ctx.pixel_format()) {
+                    return ctx.fail(&format!("pixel format: {e}"));
+                }
+                capture_profiles(ctx, &dec);
+            }
+            Ok(Event::FrameHeader) => {
+                ctx.frame_duration_ms = dec.frame_header().and_then(|h| h.duration).unwrap_or(0.0);
+            }
+            Ok(Event::FrameComplete { has_more_frames }) => {
+                ctx.have_pixels = true;
+                if has_more_frames {
+                    ctx.state = Some(State::Decoding(dec));
+                    return JXL_FRAME;
+                }
+                // The last frame is in; trailing boxes are of no interest here,
+                // so finish now rather than waiting on `Event::Complete`.
+                ctx.state = Some(State::Done);
+                return JXL_COMPLETE;
+            }
+            Ok(Event::Complete) => {
+                ctx.state = Some(State::Done);
+                return JXL_COMPLETE;
+            }
+            Err(e) => {
+                let stage = if ctx.width == 0 { "header" } else { "frame" };
+                return ctx.fail(&format!("{stage}: {e}"));
+            }
         }
+        ctx.state = Some(State::Decoding(dec));
     }
 }
 
-fn capture_image_info(ctx: &mut Ctx, dec: &JxlDecoder<WithImageInfo>) {
-    let info = dec.basic_info();
+fn capture_image_info(ctx: &mut Ctx, info: &JxlBasicInfo) {
     ctx.width = info.size.0 as u32;
     ctx.height = info.size.1 as u32;
     // The pixel format carries one entry per extra channel; getting this count
@@ -411,11 +379,11 @@ fn capture_image_info(ctx: &mut Ctx, dec: &JxlDecoder<WithImageInfo>) {
     ctx.pixels.resize(bytes.div_ceil(4), 0);
 }
 
-fn is_alpha(c: &jxl::api::JxlExtraChannel) -> bool {
-    matches!(c.ec_type, jxl::headers::extra_channels::ExtraChannel::Alpha)
+fn is_alpha(c: &JxlExtraChannel) -> bool {
+    matches!(c.ec_type, ExtraChannel::Alpha)
 }
 
-fn capture_profiles(ctx: &mut Ctx, dec: &JxlDecoder<WithImageInfo>) {
+fn capture_profiles(ctx: &mut Ctx, dec: &JxlDecoder) {
     let out = dec.output_color_profile();
     ctx.output_icc = icc_bytes(out);
     ctx.embedded_icc = icc_bytes(dec.embedded_color_profile());
@@ -428,8 +396,8 @@ fn capture_profiles(ctx: &mut Ctx, dec: &JxlDecoder<WithImageInfo>) {
 /// PNG `cICP` chunk carries. `2` means "unspecified" in that registry, and is
 /// the honest answer for anything not on the short list: callers should fall
 /// back to embedding the ICC profile instead of writing a wrong cICP.
-fn cicp_of(profile: &JxlColorProfile) -> (u32, u32) {
-    let JxlColorProfile::Simple(enc) = profile else {
+fn cicp_of(profile: Option<&JxlColorProfile>) -> (u32, u32) {
+    let Some(JxlColorProfile::Simple(enc)) = profile else {
         return (2, 2); // an ICC-only profile carries no CICP equivalent
     };
     let (primaries, transfer) = match enc {
@@ -461,8 +429,11 @@ fn cicp_of(profile: &JxlColorProfile) -> (u32, u32) {
     (p, t)
 }
 
-fn icc_bytes(profile: &JxlColorProfile) -> Vec<u8> {
-    profile.try_as_icc().map(|c| c.into_owned()).unwrap_or_default()
+fn icc_bytes(profile: Option<&JxlColorProfile>) -> Vec<u8> {
+    profile
+        .and_then(|p| p.try_as_icc())
+        .map(|c| c.into_owned())
+        .unwrap_or_default()
 }
 
 /// Render everything the decoder currently holds into the pixel buffer.
@@ -487,8 +458,7 @@ pub unsafe extern "C" fn jxl_flush(ctx: *mut Ctx) -> i32 {
             JxlOutputBuffer::new_from_ptr(pixels.as_mut_ptr() as *mut u8, rows, row, row)
         }];
         let r = match state.as_mut() {
-            Some(State::Frame(dec)) => dec.flush_pixels(&mut bufs, None).unwrap_or(false),
-            Some(State::Info(dec)) => dec.flush_pixels(&mut bufs, None).unwrap_or(false),
+            Some(State::Decoding(dec)) => dec.flush_pixels(&mut bufs, None).unwrap_or(false),
             _ => false,
         };
         drop(bufs);

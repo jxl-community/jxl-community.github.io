@@ -31,7 +31,7 @@ imports** — no JS glue, no emscripten runtime, no `SharedArrayBuffer`:
 const { instance } = await WebAssembly.instantiate(bytes);   // that's all
 ```
 
-| | libjxl `wasm_demo` (current) | jxl-rs 0.7.4 (here) |
+| | libjxl `wasm_demo` (current) | jxl-rs 0.8.0 (here) |
 | --- | --- | --- |
 | wasm imports | emscripten runtime | **none** |
 | threads / `SharedArrayBuffer` | yes | no |
@@ -39,10 +39,10 @@ const { instance } = await WebAssembly.instantiate(bytes);   // that's all
 | first pixels, `portrait.jxl` | ~25–30 % of file | **2 % (1 381 B)** |
 | first pixels, 1 MB pair | ~25 % | **1 % (8 698 B)** |
 | HDR | tone-mapped to SDR at 100 nits | PQ data and ICC passed through |
-| payload | 1 062 KB wasm + 24 KB JS | 1 332 KB wasm, no glue |
+| payload | 1 062 KB wasm + 24 KB JS | 1 465 KB wasm, no glue |
 
-It is ~246 KB larger, against removing a JS glue file, a service worker, and a
-full page reload.
+It is ~403 KB larger (0.8.0 added ~133 KB over 0.7.4), against removing a JS
+glue file, a service worker, and a full page reload.
 
 ## Building
 
@@ -132,16 +132,16 @@ find public -name '*.jxl' > /tmp/all.txt
 node scripts/compare-vs-libjxl.mjs /tmp/all.txt
 ```
 
-Run against every `.jxl` in `public/` (7 435 files) versus djxl 0.12.0, on
-jxl-rs 0.7.4. Every 0.7.x release so far decodes this corpus to identical
-bytes — 0.7.1, 0.7.2, 0.7.3 and 0.7.4 agree pixel-for-pixel on all 7 435
-files — so these numbers cover all four:
+Run against every `.jxl` in `public/` (7 499 files) versus djxl 0.12.0, on
+jxl-rs 0.8.0. The result is the same shape as every 0.7.x run (0.7.1–0.7.4
+agreed pixel-for-pixel on the then 7 435-file corpus): no failures, no size
+mismatches, and only the invalid file below outside the 2/255 band.
 
 | | |
 | --- | --- |
-| compared | 7 435 |
-| bit-identical | 67 |
-| within 2/255 | 7 366 |
+| compared | 7 499 |
+| bit-identical | 92 |
+| within 2/255 | 7 405 |
 | **differing by more than 2/255** | **2** (one invalid file, counted twice — see below) |
 | size mismatches | 0 |
 | failures (either decoder) | 0 |
@@ -149,8 +149,8 @@ files — so these numbers cover all four:
 ### The one file that does not match
 
 `images/art/2021-08_monad.jxl` (and its copy under `old/art/`) decodes
-differently from djxl on jxl-rs 0.7.x: the right-hand region comes out as
-black/white banding instead of a clean wedge, at `maxDelta=255`, 13.8 dB PSNR.
+differently from djxl on jxl-rs 0.7.x and 0.8.0: the right-hand region comes
+out as black/white banding instead of a clean wedge, at `maxDelta=255`, 13.8 dB PSNR.
 
 **This is not a decoder bug — the file is not valid JPEG XL.** That was
 established after the fact; earlier revisions of this document treated it as a
@@ -177,7 +177,8 @@ differently. The 2/255 band is ordinary rounding divergence between two
 independent implementations.
 
 Animation, HDR and metadata were checked separately: 12 frames stepped on
-`anim_jxl_logo.jxl` with distinct contents and correct 100 ms durations; ICC
+`anim_jxl_logo.jxl` (8 distinct images, played back and forth) with correct
+100 ms durations; ICC
 recovered for 1 200/1 200 files scanned; PQ output profile byte-identical to the
 embedded one.
 
@@ -200,9 +201,13 @@ decoding untrusted images should re-instantiate the module when a call traps.
   natively.
 - Extra channels beyond alpha (spot colour, depth, selection masks) are parsed
   and counted, but not exposed.
-- jxl-rs is pre-1.0 and its typestate API can still churn, so the dependency is
-  pinned to `=0.7.4`. 0.7.1 broke `set_pixel_format`'s signature (it returns
-  `Result` now), which is the kind of churn the pin exists for; 0.7.2, 0.7.3 and
-  0.7.4 needed no source changes.
+- jxl-rs is pre-1.0 and its API can still churn, so the dependency is pinned to
+  `=0.8.0`. 0.7.1 broke `set_pixel_format`'s signature (it returns `Result`
+  now); 0.8.0 went further and replaced the typestate API (`JxlDecoder<State>`
+  and `ProcessingResult`) with a single `JxlDecoder` whose `process` returns an
+  `Event`, which meant rewriting `advance` in `src/lib.rs`. The C ABI was
+  unchanged by that rewrite, so the JS callers needed nothing. On 0.8.0, the 12
+  animation frames of `anim_jxl_logo.jxl`, the HDR profiles and the
+  progressive first-pixel offsets all match 0.7.4 exactly.
 - One jxl-art file is not valid JPEG XL and renders as banding — see
   [Verification](#verification). Not a decoder defect.
