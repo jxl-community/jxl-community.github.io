@@ -10,7 +10,7 @@ where needed.
 
 ## Requirements
 
-- Node.js 22 or newer
+- Node.js 22.23.4 or newer
 - npm (included with Node.js)
 
 ## Run locally
