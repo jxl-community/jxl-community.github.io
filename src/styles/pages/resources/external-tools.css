@@ -1,7 +1,7 @@
 /* Page-specific rules; import order preserves the original cascade. */
 .tool-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
   gap: 1.25rem;
   width: 100%;
 }
@@ -15,7 +15,10 @@
   border: 1px solid color-mix(in srgb, var(--brand--teal-bright--500) 24%, var(--line-divider));
   border-radius: var(--radius--medium);
   background: var(--surface--elevated);
-  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
 }
 
 .tool-card:hover {
@@ -24,17 +27,7 @@
   transform: translateY(-2px);
 }
 
-.tool-card-eyebrow {
-  margin: 0 0 1rem;
-  padding: 0.25rem 0.75rem;
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--brand--teal-bright--500) 15%, transparent);
-  color: var(--text--color--text-white);
-  font-size: 0.75rem;
-  line-height: 1.2;
-}
-
-.tool-card h3 {
+.tool-card h2 {
   margin: 0 0 0.5rem;
   font-size: 1.35rem;
   font-weight: 500;
@@ -130,4 +123,21 @@
   .tool-card:hover {
     transform: none;
   }
+}
+
+.tool-directory-link {
+  align-self: flex-start;
+  margin: 0 0 2rem;
+  color: var(--neutrals--gray--200);
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+.tool-directory-link a {
+  color: var(--text--color--link);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.tool-directory-link a:focus-visible {
+  outline: 2px solid var(--focus--ring);
+  outline-offset: 4px;
 }

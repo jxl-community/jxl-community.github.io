@@ -290,6 +290,12 @@ Astro generates the sitemap at `/sitemap-index.xml`. The deployment also publish
 the same sitemap at the legacy `/sitemap.xml` URL for compatibility with existing
 crawlers and tools.
 
+## Software and demo listings
+
+Update the shared catalog in `src/data/software.ts`. See the
+[software directory guide](docs/software-directory.md) for categories, capability
+evidence, platform requirements, and contribution examples.
+
 ## Contributing
 
 Create a branch, make the focused change, and open a pull request. Keep third-party

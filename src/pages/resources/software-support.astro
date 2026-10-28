@@ -1,998 +1,283 @@
 ---
 import '../../styles/pages/resources/software-support.css';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Wave from '../../components/Wave.astro';
+import SoftwareEntry from '../../components/SoftwareEntry.astro';
+import { software, categories, platforms, capabilities } from '../../data/software';
+import { browsers, otherBrowsers, systems, linuxPackages } from '../../data/software-compatibility';
 
-const title = 'Software Support – JPEG XL';
-const description =
-  'Find applications, libraries, and tools that support JPEG XL encoding and decoding.';
+const entries = software.filter((entry) => entry.category !== 'demo');
+const grouped = categories.map((category) => ({
+  ...category,
+  entries: entries
+    .filter((entry) => entry.category === category.id || entry.also?.includes(category.id))
+    .sort((a, b) => a.name.localeCompare(b.name, 'en', { sensitivity: 'base' })),
+}));
 ---
 
 <BaseLayout
-  title={title}
-  description={description}
+  title="Software Support – JPEG XL"
+  description="Find JPEG XL viewers, editors, converters, libraries, and services by task, platform, and capability."
   canonical="https://jpegxl.info/resources/software-support.html"
 >
-  <Fragment slot="head">
-    <script is:inline type="module" src="https://caniuse-embed.vercel.app/embed.js"></script>
+  <main id="main-content" class="software-page">
+    <header class="software-hero">
+      <h1 class="display-xl-bold fill-gradient">Software Support</h1>
+      <p class="software-hero-lede">Find the right tool for your JPEG XL workflow.</p>
+      <p class="software-browser-check" data-browser-check hidden></p>
+      <nav class="software-jump" aria-label="On this page">
+        <a href="#compatibility">Browsers &amp; systems</a>
+        <a href="#software-directory">Find software</a>
+        <a href="/resources/external-tools.html">Demos &amp; experiments</a>
+      </nav>
+    </header>
+    <div class="software-page-content">
+      <section
+        id="compatibility"
+        class="software-compatibility"
+        aria-labelledby="compatibility-title"
+      >
+        <div class="software-section-intro">
+          <h2 id="compatibility-title">Browser compatibility</h2>
+          <p>Find your browser and check the version you use.</p>
+        </div>
+        <ul class="compatibility-cards">
+          {browsers.map((browser) => (
+            <li class="compatibility-card">
+              {browser.logo && (
+                <img
+                  class="compatibility-card-logo"
+                  src={browser.logo}
+                  alt=""
+                  width="56"
+                  height="56"
+                  loading="lazy"
+                />
+              )}
+              <h3>{browser.name}</h3>
+              <p>{browser.support}</p>
+              <a href={browser.source.url}>{browser.source.label}</a>
+              <ul class="browser-features" aria-label={`${browser.name} JPEG XL support`}>
+                {browser.supported ? (
+                  <>
+                    <li data-supported="true">
+                      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" /></svg>
+                      Supported
+                    </li>
+                    <li data-supported={String(browser.animation)}>
+                      <svg viewBox="0 0 16 16" aria-hidden="true">
+                        <rect x="1.5" y="3" width="13" height="10" rx="2" />
+                        <path d="M6.5 6v4l3.5-2z" />
+                      </svg>
+                      Animation
+                      {!browser.animation && <span class="sr-only">(unsupported)</span>}
+                    </li>
+                    <li data-supported={String(browser.hdr)}>
+                      <svg viewBox="0 0 16 16" aria-hidden="true">
+                        <circle cx="8" cy="8" r="2.75" />
+                        <path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1" />
+                      </svg>
+                      HDR
+                      {!browser.hdr && <span class="sr-only">(unsupported)</span>}
+                    </li>
+                  </>
+                ) : (
+                  <li data-supported="false" class="browser-feature-status">
+                    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" /></svg>
+                    Unsupported
+                  </li>
+                )}
+              </ul>
+            </li>
+          ))}
+        </ul>
+        <div class="compatibility-more">
+          <h3>Other browsers</h3>
+          <p>
+            Modern builds of these browsers support JPEG XL.
+          </p>
+          <ul class="other-browsers">
+            {otherBrowsers.map((browser) => (
+              <li>
+                <a href={browser.url}>
+                  {browser.logo && (
+                    <img src={browser.logo} alt="" width="40" height="40" loading="lazy" />
+                  )}
+                  <span class="other-browser-name">{browser.label}</span>
+                  <span class="other-browser-note">{browser.note}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <p class="compatibility-note">
+          For other versions and platforms, see the{' '}
+          <a href="https://caniuse.com/jpegxl">full browser compatibility table</a> or{' '}
+          <a href="/resources/jpeg-xl-test-page.html">test your browser</a>.
+        </p>
+      </section>
 
-  </Fragment>
-  <main id="main-content">
-    <section class="section-hero hero-fullspan-graphic gradient-bottom">
-      <div class="container-content-vflex padding-sides">
-      <div class="container-content-vflex centered">
-        <div class="wrapper-text color-gradient">
-          <h1 class="display-xl-bold fill-gradient">Software Support</h1>
+      <section
+        id="system-compatibility"
+        class="software-compatibility"
+        aria-labelledby="system-compatibility-title"
+      >
+        <div class="software-section-intro">
+          <h2 id="system-compatibility-title">System compatibility</h2>
+          <p>
+            App support and desktop integration depend on your operating system and installed
+            packages.
+          </p>
         </div>
-        <div class="wrapper-text width-small">
-          <h2 class="text-l-medium large">
-            Standardized in 2022, JPEG&nbsp;XL is quickly gaining momentum. Major operating
-            systems, web browsers, and image editing software are increasingly adopting support for
-            this efficient compression technology.
-          </h2>
+        <ul class="compatibility-cards">
+          {systems.map((system) => (
+            <li class="compatibility-card">
+              <h3>{system.name}</h3>
+              <p>{system.support}</p>
+              <a href={system.source.url}>{system.source.label}</a>
+            </li>
+          ))}
+        </ul>
+        <div class="compatibility-more">
+          <h3>Linux packages</h3>
+          <p>
+            Mint, Pop!_OS, and Zorin OS availability depends on the Ubuntu base. Check your openSUSE
+            release. KaOS and OpenMandriva also offer Qt/KDE integration.
+          </p>
+          <ul class="software-chip-links">
+            {linuxPackages.map((link) => (
+              <li>
+                <a href={link.url}>
+                  {link.logo && (
+                    <img src={link.logo} alt="" width="20" height="20" loading="lazy" />
+                  )}
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
-      </div>
-      </div>
-    <div class="container-wave-animated">
-      <div class="wrapper-content-wave centered align-middle height-cropped-width-full">
-        <Wave />
-      </div>
-    </div>
-    </section>
-    <div class="section-content-wrapper height-100 centered padding-top_bottom">
-      <section class="container-content-vflex width-page-max centered">
-      <div class="container-content-vflex width-page-max">
-        <div class="wrapper-content centered">
-          <div class="group-container">
-            <div class="text-xl-regular color-black">Libraries & APIs</div>
-            <div class="container-logos">
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://github.com/libjxl/libjxl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/libjxl-logo.svg"
-                    loading="lazy"
-                    width="140"
-                    alt="libjxl logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-small-regular centered color-black">
-                  <a
-                    href="https://github.com/libjxl/libjxl"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline"
-                    >libjxl:
-                  </a>JPEG XL reference implementation (C++)<br />
-                  <a
-                    href="https://artifacts.lucaversari.it/libjxl/libjxl/latest/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">Nightly Dev Builds</a
-                  ><br />
-                  <div class="spacer-2rem"></div>
-                  <a
-                    href="https://github.com/libjxl/jxl-rs"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">jxl-rs</a
-                  > Rust decoder<br />‍
-                  <a
-                    href="https://github.com/Traneptora/jxlatte"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">jxlatte:</a
-                  > Java decoder<br />‍
-                  <a
-                    href="https://github.com/tirr-c/jxl-oxide"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">jxl-oxide:‍</a
-                  > Rust decoder<br />
-                  <a
-                    href="https://github.com/awxkee/jixel"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">jixel:</a
-                  > Compact encoder in Rust by <a
-                    href="https://github.com/awxkee"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">awxkee</a
-                  ><br />
-                </div>
-              </div>
-            </div>
+      </section>
+
+      <section id="software-directory" class="software-directory" aria-labelledby="directory-title">
+        <div class="software-section-intro">
+          <h2 id="directory-title">What would you like to do?</h2>
+          <p>Browse by task, then narrow the list to your platform.</p>
+        </div>
+        <form
+          class="software-filters"
+          role="search"
+          aria-label="Find JPEG XL software"
+          data-software-filters
+          hidden
+        >
+          <div class="software-search-field">
+            <label for="software-search">Search software</label>
+            <input
+              id="software-search"
+              name="q"
+              type="search"
+              placeholder="Name, task, or feature"
+              autocomplete="off"
+              aria-controls="software-results"
+            />
           </div>
-          <div class="spacer-2rem"></div>
-          <div class="group-container">
-            <div class="text-xl-regular color-black">Operating Systems</div>
-            <div class="container-logos">
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://www.apple.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/sw_apple.svg"
-                    loading="lazy"
-                    width="120"
-                    height="142.4636688232422"
-                    alt="Apple Logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">Apple</div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://en.wikipedia.org/wiki/MacOS_Sonoma"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/sw_macOS.svg"
-                    loading="lazy"
-                    width="120"
-                    height="123.4"
-                    alt="MacOS Logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">macOS</div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://en.wikipedia.org/wiki/IOS_17"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                >
-                  <picture>
-                    <source srcset="/images/sw_iOS17.jxl" type="image/jxl" />
-                    <source srcset="/images/sw_iOS17.webp" type="image/webp" />
-                    <img
-                      src="/images/sw_iOS17.png"
-                      loading="lazy"
-                      width="120"
-                      height="120"
-                      alt="Palemoon Logo"
-                      class="image-logo-software"
-                    />
-                  </picture>
-                </a>
-                <div class="text-regular-semibold wrap-none centered color-black">iOS 17+</div>
-              </div>
-            </div>
-            <div class="wrapper-text centered">
-              <div class="container-text-shaded centered">
-                <div class="text-regular-semibold color-black">Linux</div>
-                <p class="text-small-regular centered color-black">JPEG XL is packaged across the major Linux distributions.</p>
-                <ul class="linux-distributions text-small-regular color-black">
-                  <li><strong>Arch Linux & derivatives</strong> —{' '}
-                    <a href="https://archlinux.org/packages/extra/x86_64/libjxl/" target="_blank" rel="noopener noreferrer" class="link-text-body-underline">libjxl</a>{' '}
-                    is available for Arch, Manjaro, and EndeavourOS, with support across FFmpeg, ImageMagick, and KDE.</li>
-                  <li><strong>Fedora</strong> —{' '}
-                    <a href="https://packages.fedoraproject.org/pkgs/jpegxl/" target="_blank" rel="noopener noreferrer" class="link-text-body-underline">Libraries, development packages, and tools</a>{' '}
-                    are in the official repositories.</li>
-                  <li><strong>Debian</strong> —{' '}
-                    <a href="https://packages.debian.org/bookworm/libjxl-tools" target="_blank" rel="noopener noreferrer" class="link-text-body-underline">Command-line tools and libraries</a>{' '}
-                    are available in Debian 12 and newer.</li>
-                  <li><strong>Ubuntu & derivatives</strong> —{' '}
-                    <a href="https://packages.ubuntu.com/noble/libjxl-dev" target="_blank" rel="noopener noreferrer" class="link-text-body-underline">Packages are available in Ubuntu 24.04 LTS and newer</a>.
-                    For Mint, Pop!_OS, and Zorin OS, availability depends on the Ubuntu base.</li>
-                  <li><strong>openSUSE</strong> — Check{' '}
-                    <a href="https://software.opensuse.org/package/libjxl" target="_blank" rel="noopener noreferrer" class="link-text-body-underline">package availability</a>{' '}
-                    for your Tumbleweed or Leap release.</li>
-                  <li><strong>KaOS & OpenMandriva</strong> — Early adopters of JPEG XL viewing in Qt/KDE applications.</li>
-                </ul>
-                <p class="text-small-regular centered color-black">Image viewing and thumbnails depend on the application and installed desktop plugins.</p>
-              </div>
-            </div>
-            <div class="wrapper-text centered">
-              <div class="container-text-shaded centered">
-                <div class="text-regular-semibold color-black">Desktop integration & plugins</div>
-                <div class="text-small-regular centered color-black">
-                  <a
-                    href="https://github.com/novomesk/qt-jpegxl-image-plugin"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">Qt / KDE</a
-                  >: plugin available<a href="https://github.com/novomesk/qt-jpegxl-image-plugin"
-                    ><br />‍</a
-                  >GDK-pixbuf: plugin available in libjxl repo<br />‍<a
-                    href="https://ubuntuhandbook.org/index.php/2021/04/gthumb-3-11-3-adds-jpeg-xl-support/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">gThumb<br />‍</a
-                  >
-                  <a
-                    href="https://github.com/yllan/JXLook"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">MacOS Viewer/QuickLook Plugin<br />‍</a
-                  >
-                  <a
-                    href="https://github.com/mirillis/jpegxl-wic"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">Windows Imaging Component<br />‍</a
-                  >
-                  <a
-                    href="https://github.com/saschanaz/jxl-winthumb"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">Windows Thumbnail Handler<br /></a
-                  >
-                  <a
-                    href="https://www.enlightenment.org/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">EFL</a
-                  >
-                  (supported since 1.27, no external plugin needed)
-                </div>
-              </div>
-            </div>
+          <div>
+            <label for="software-platform">Platform</label>
+            <select id="software-platform" name="platform" aria-controls="software-results">
+              <option value="">All platforms</option>
+              {Object.entries(platforms).map(([value, label]) => (
+                <option value={value}>{label}</option>
+              ))}
+            </select>
           </div>
-          <div class="spacer-2rem"></div>
-          <div class="group-container">
-            <div class="text-xl-regular color-black">Browser Support</div>
-            <p class="text-small-regular color-black">JPEG XL browser support varies by version and release channel. Hover for version details:</p>
-            <div class="container-logos">
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://www.apple.com/ca/safari/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/sw_safari.svg"
-                    loading="lazy"
-                    width="120"
-                    height="119.3434066772461"
-                    alt="Safari Logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">Safari</div>
-              </div>
-              <div class="wrapper-logo-text browser-tooltip">
-                <a
-                  href="https://www.google.com/chrome/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-describedby="chrome-support-tooltip"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/Logo-Google-Chrome.svg"
-                    loading="lazy"
-                    width="120"
-                    height="120"
-                    alt="Chrome Logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">Chrome</div>
-                <div id="chrome-support-tooltip" class="browser-tooltip-content" role="tooltip">Enabled by default in Chrome 155 and newer.</div>
-              </div>
-              <div class="wrapper-logo-text browser-tooltip">
-                <a
-                  href="https://www.firefox.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-describedby="firefox-support-tooltip"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/Logo-Firefox.svg"
-                    loading="lazy"
-                    width="120"
-                    height="120"
-                    alt="Firefox Logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">Firefox</div>
-                <div id="firefox-support-tooltip" class="browser-tooltip-content" role="tooltip">Enabled by default in Firefox 158 and newer.</div>
-              </div>
-              <div class="wrapper-logo-text browser-tooltip">
-                <a
-                  href="https://brave.com/download/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-describedby="brave-support-tooltip"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/Logo-Brave.svg"
-                    loading="lazy"
-                    width="120"
-                    height="120"
-                    alt="Brave logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">Brave</div>
-                <div id="brave-support-tooltip" class="browser-tooltip-content" role="tooltip">Enabled by default in Brave 1.97.56 (stable), based on Chromium 155.</div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://thorium.rocks"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/sw_thorium.svg"
-                    loading="lazy"
-                    width="120"
-                    height="120"
-                    alt="Thorium Logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">Thorium</div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://www.waterfox.net"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/sw_waterfox.svg"
-                    loading="lazy"
-                    width="139.61538696289062"
-                    height="120"
-                    alt="Waterfox Icon"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">Waterfox</div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://www.palemoon.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                >
-                  <picture>
-                    <source srcset="/images/sw_palemoon.jxl" type="image/jxl" />
-                    <source srcset="/images/sw_palemoon.webp" type="image/webp" />
-                    <img
-                      src="/images/sw_palemoon.png"
-                      loading="lazy"
-                      width="120"
-                      height="120"
-                      alt="Palemoon Logo"
-                      class="image-logo-software"
-                    />
-                  </picture>
-                </a>
-                <div class="text-regular-semibold wrap-none centered color-black">Pale Moon</div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://www.basilisk-browser.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                >
-                  <picture>
-                    <source srcset="/images/BasiliskLogo.jxl" type="image/jxl" />
-                    <source srcset="/images/BasiliskLogo.webp" type="image/webp" />
-                    <img
-                      src="/images/BasiliskLogo.png"
-                      loading="lazy"
-                      width="120"
-                      height="120.5"
-                      alt="Palemoon Logo"
-                      class="image-logo-software"
-                    />
-                  </picture>
-                </a>
-                <div class="text-regular-semibold wrap-none centered color-black">Basilisk</div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://kagi.com/orion/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                >
-                  <picture>
-                    <source srcset="/images/sw_orion.jxl" type="image/jxl" />
-                    <source srcset="/images/sw_orion.webp" type="image/webp" />
-                    <img
-                      src="/images/sw_orion.png"
-                      loading="lazy"
-                      width="120"
-                      height="120"
-                      alt="Palemoon Logo"
-                      class="image-logo-software"
-                    />
-                  </picture>
-                </a>
-                <div class="text-regular-semibold wrap-none centered color-black">Orion</div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://ladybird.org/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/sw_ladybird.png"
-                    loading="lazy"
-                    width="120"
-                    height="120"
-                    alt="Ladybird Logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">Ladybird</div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://zen-browser.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/sw_zen.svg"
-                    loading="lazy"
-                    width="120"
-                    height="120"
-                    alt="Zen Browser Logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">Zen</div>
-              </div>
+          <div>
+            <label for="software-capability">Capability</label>
+            <select id="software-capability" name="capability" aria-controls="software-results">
+              <option value="">All capabilities</option>
+              {Object.entries(capabilities).map(([value, label]) => (
+                <option value={value}>{label}</option>
+              ))}
+            </select>
+          </div>
+          <button type="reset" class="software-reset" hidden>
+            Clear filters
+          </button>
+        </form>
+        <p class="software-directory-note">
+          Capability labels describe documented features. Unlabelled features may still be
+          supported; check the project for your version, edition, and build.
+        </p>
+        <p
+          class="software-result-count"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          data-result-count
+        >
+          {entries.length} tools across {categories.length} categories
+        </p>
+        <div class="software-directory-layout">
+          <nav class="software-category-nav" aria-label="Software by task">
+            <ul>
+              {grouped.map((group) => (
+                <li data-category-link={group.id}>
+                  <a href={`#${group.id}`}>
+                    {group.title}
+                    <span
+                      class="software-category-count"
+                      aria-hidden="true"
+                      data-category-count={group.id}
+                    >
+                      {group.entries.length}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <a class="software-demos-link" href="/resources/external-tools.html">
+              Demos &amp; experiments
+            </a>
+          </nav>
+          <div id="software-results">
+            <div class="software-empty" data-software-empty hidden>
+              <h3>No matching software</h3>
+              <p>Try a different name, platform, or capability.</p>
+              <button type="button" data-clear-filters>
+                Clear filters
+              </button>
             </div>
-            <div id="ciu-embed-wrap">
-              <p class="text-small-regular color-black">
-                The current state of support in major browsers is as follows:
-              </p>
-              <p
-                class="ciu-embed"
-                data-feature="jpegxl"
-                data-past="2"
-                data-future="3"
-                data-theme="auto"
+            {grouped.map((group) => (
+              <section
+                id={group.id}
+                class="software-group"
+                aria-labelledby={`${group.id}-title`}
+                data-software-group
               >
-              </p>
-            </div>
-          </div>
-          <div class="spacer-2rem"></div>
-          <div class="group-container">
-            <div class="text-xl-regular color-black">Image Editors</div>
-            <div class="container-logos">
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://www.adobe.com/products/photoshop.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/sw_photoshop.svg"
-                    loading="lazy"
-                    width="123.07691955566406"
-                    height="120"
-                    alt="Photoshop Logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">Photoshop</div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://lightroom.adobe.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/sw_lightroom.svg"
-                    loading="lazy"
-                    width="123.0719985961914"
-                    height="120"
-                    alt="Lightroom Logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">Lightroom</div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://www.affinity.studio"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/sw_affinity.svg"
-                    loading="lazy"
-                    width="120"
-                    height="120"
-                    alt="Affinity Logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">Affinity</div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://www.gimp.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/sw_gimp.svg"
-                    loading="lazy"
-                    width="120"
-                    height="120"
-                    alt="Gimp Logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">Gimp</div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://krita.org/en/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/Krita-icon---2021.svg"
-                    loading="lazy"
-                    width="120"
-                    height="120"
-                    alt="Krita Logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">Krita</div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://www.darktable.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/sw_darktable.svg"
-                    loading="lazy"
-                    width="120"
-                    height="120"
-                    alt="Darktable Logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">Darktable</div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://flyingmeat.com/acorn/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                >
-                  <picture>
-                    <source srcset="/images/sw_acorn.jxl" type="image/jxl" />
-                    <source srcset="/images/sw_acorn.webp" type="image/webp" />
-                    <img
-                      src="/images/sw_acorn.png"
-                      loading="lazy"
-                      width="146"
-                      height="31"
-                      alt="Acorn Logo"
-                      class="image-logo-software"
-                    />
-                  </picture>
-                </a>
-                <div class="text-regular-semibold wrap-none centered color-black">Acorn</div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://www.acdsee.com/en/photo-studio/whats-new/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link wrapper-logo-software-link--acdsee w-inline-block"
-                >
-                  <picture>
-                    <source srcset="/images/sw_acdsee.jxl" type="image/jxl" />
-                    <source srcset="/images/sw_acdsee.webp" type="image/webp" />
-                    <img
-                      src="/images/sw_acdsee.png"
-                      loading="lazy"
-                      width="296"
-                      height="62"
-                      alt="ACDSee Logo"
-                      class="image-logo-software image-logo-software--wide"
-                    />
-                  </picture>
-                </a>
-                <div class="text-regular-semibold wrap-none centered color-black">ACDSee</div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://helpx.adobe.com/ca/camera-raw/using/introduction-camera-raw.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link horizontal w-inline-block"
-                >
-                  <picture>
-                    <source srcset="/images/sw_adobe_camera_raw.jxl" type="image/jxl" />
-                    <source srcset="/images/sw_adobe_camera_raw.webp" type="image/webp" />
-                    <img
-                      src="/images/sw_adobe_camera_raw.png"
-                      loading="lazy"
-                      width="145.7"
-                      height="56"
-                      alt="Adobe Camera Raw Logo"
-                      class="image-logo-software"
-                    />
-                  </picture>
-                </a>
-                <div class="text-regular-semibold wrap-none centered color-black">Camera Raw</div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://www.shutterencoder.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link horizontal w-inline-block"
-                >
-                  <picture>
-                    <source srcset="/images/sw-shutterencoder-logo.jxl" type="image/jxl" />
-                    <source srcset="/images/sw-shutterencoder-logo.webp" type="image/webp" />
-                    <img
-                      src="/images/sw-shutterencoder-logo.png"
-                      loading="lazy"
-                      width="256"
-                      height="256"
-                      alt="Shutter Encoder"
-                      class="image-logo-software"
-                    />
-                  </picture>
-                </a>
-                <div class="text-regular-semibold wrap-none centered color-black">
-                  Shutter Encoder
+                <header>
+                  <h2 id={`${group.id}-title`}>{group.title}</h2>
+                  <p>{group.description}</p>
+                </header>
+                <div class="software-group-grid">
+                  {group.entries.map((entry) => (
+                    <SoftwareEntry entry={entry} primary={entry.category === group.id} />
+                  ))}
                 </div>
-              </div>
-            </div>
-            <div class="container-text-shaded centered">
-              <div class="text-regular-semibold color-black">And more</div>
-              <div class="wrapper-text">
-                <div class="text-small-regular color-black centered">
-                  <a
-                    href="https://www.lemkesoft.de/en/products/graphicconverter/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">Graphic Converter</a
-                  >: (since 11.5)<br />‍<a
-                    href="https://github.com/JacobDev1/xl-converter"
-                    class="link-text-body-underline">XL Converter<br /></a
-                  >
-                  <a
-                    href="https://github.com/T8RIN/ImageToolbox"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">Image Toolbox</a
-                  >: (supported since 2.6.0)<br />
-                  <a
-                    href="https://www.getpaint.net/index.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">Paint.NET</a
-                  >: Native support since 5.1.5, <a
-                    href="https://github.com/0xC0000054/pdn-jpegxl"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">plugin</a
-                  > support since 4.3.12.<br />
-                  <a
-                    href="https://gitlab.com/SuperSaltyGamer/jpegxlformat"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">Photoshop</a
-                  >: plugin for Adobe Photoshop 2020 and above on Windows.<br />
-                  <a
-                    href="https://apps.apple.com/app/jpeg-xl-toolbox/id6470681357"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">JPEG XL Toolbox</a
-                  >: by SUIKA LTD<br />
-                  <a
-                    href="https://github.com/Beep6581/RawTherapee"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">RawTherapee</a
-                  >: (since version 5.11) Currently supports opening JXL files only. <a
-                    href="https://github.com/Beep6581/RawTherapee/pull/7097"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">Export support planned for the 6.0 release.</a
-                  ><br />
-                  <a
-                    href="https://www.photopea.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">Photopea</a
-                  >: Supports importing, a plugin is required for exporting.<br />
-                  <a
-                    href="https://www.iridientdigital.com/products/iridientdeveloper.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link-text-body-underline">Iridient Developer:</a
-                  >
-                  Version 5 adds export support for JPEG XL file format in lossless, near lossless and
-                  lossy modes.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="spacer-2rem"></div>
-          <div class="group-container">
-            <div class="text-xl-regular color-black">Image Libraries</div>
-            <div class="container-logos">
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://gdal.org/en/latest/drivers/raster/jpegxl.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/sw_gdal.svg"
-                    loading="lazy"
-                    width="108.50286865234375"
-                    height="120"
-                    alt="GDAl Logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">GDAL</div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://imagemagick.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link w-inline-block"
-                  ><img
-                    src="/images/ImageMagic.svg"
-                    loading="lazy"
-                    width="115.94313049316406"
-                    height="120"
-                    alt="Image Magick Logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">Image Magick</div>
-              </div>
-              <div class="wrapper-logo-text">
-                <a
-                  href="https://www.ffmpeg.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="wrapper-logo-software-link horizontal w-inline-block"
-                  ><img
-                    src="/images/sw_ffmpeg.svg"
-                    loading="lazy"
-                    width="208.81605529785156"
-                    height="56"
-                    alt="FFmpeg Logo"
-                    class="image-logo-software"
-                  /></a
-                >
-                <div class="text-regular-semibold wrap-none centered color-black">FF mpeg</div>
-              </div>
-            </div>
-            <div class="container-text-shaded centered">
-              <div class="text-regular-semibold color-black">And more</div>
-              <div class="text-small-regular color-black centered">
-                ‍<a href="https://libvips.github.io/libvips/" class="link-text-body-underline"
-                  >libvips</a
-                > (supported since 8.11)<br />‍<a
-                  href="https://docs.enlightenment.org/api/imlib2/html/"
-                  class="link-text-body-underline">Imlib2</a
-                >‍<br />‍<a
-                  href="http://www.graphicsmagick.org/NEWS.html#march-26-2022"
-                  class="link-text-body-underline">Graphics Magick</a
-                > (supported since 1.3.38)<br />‍<a
-                  href="https://sail.software/"
-                  class="link-text-body-underline">SAIL</a
-                > (supported since 0.9.0)<br />‍
-                <a href="https://github.com/awxkee/jxl-coder" class="link-text-body-underline"
-                  >JPEG XL Decoder/Encoder for Android.</a
-                > (supports version from Android 5.0 - API Level 21)<br />‍
-                <a href="https://github.com/awxkee/jxl-coder-swift" class="link-text-body-underline"
-                  >JPEG XL Decoder/Encoder for iOS, MacOS. Swift bindings</a
-                ><br />‍
-                <a
-                  href="https://github.com/SDWebImage/SDWebImageJPEGXLCoder"
-                  class="link-text-body-underline">SDWebImage JPEGXL Coder</a
-                > (supported since 0.1.0)
-              </div>
-            </div>
-          </div>
-          <div class="spacer-2rem"></div>
-          <div class="group-container">
-            <div class="text-xl-regular color-black">Additional Categories</div>
-            <div class="container-text-shaded centered">
-              <div class="wrapper-text gap-2rem">
-                <div class="text-regular-semibold color-black">Metadata Manipulation Libraries</div>
-                <div class="text-small-regular color-black centered">
-                  <a href="https://exiftool.org/" class="link-text-body-underline"
-                    >ExifTool by Phil Harvey</a
-                  >{' '}(supported since 12.25)<br />‍<a
-                    href="https://exiv2.org/"
-                    class="link-text-body-underline">Exiv2</a
-                  >{' '}(supported since 0.27.4)<br />‍<a
-                    href="https://github.com/ashampoo/kim"
-                    class="link-text-body-underline">Ashampoo Kim</a
-                  >{' '}(supported since 0.10)
-                </div>
-              </div>
-            </div>
-            <div class="container-text-shaded centered">
-              <div class="wrapper-text gap-2rem">
-                <div class="text-regular-semibold color-black">Online Tools</div>
-                <div class="text-small-regular centered color-black">
-                  <a href="https://www.gumlet.com/blog/jpeg-xl/" class="link-text-body-underline"
-                    >Gumlet<br />‍</a
-                  >
-                  <a href="https://squoosh.app/" class="link-text-body-underline">Squoosh</a> (caution,
-                  very outdated)<br />
-                  <a href="https://mconverter.eu/" class="link-text-body-underline"
-                    >MConverter<br />‍</a
-                  >
-                  <a href="https://jpegxl.io/" class="link-text-body-underline">jpegxl.io<br />‍</a>
-                  <a href="https://stefan-oltmann.de/exif-viewer" class="link-text-body-underline"
-                    >EXIF Viewer</a
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="container-text-shaded centered">
-              <div class="wrapper-text gap-2rem">
-                <div class="text-regular-semibold color-black">
-                  Cloud-based Image Delivery Platforms
-                </div>
-                <div class="text-small-regular centered color-black">
-                  <a
-                    href="https://cloudinary.com/blog/cloudinary_supports_jpeg_xl"
-                    class="link-text-body-underline">Cloudinary<br />‍</a
-                  >
-                  <a
-                    href="https://www.fastly.com/blog/level-up-your-images-jpeg-xl-now-supported-by-image-optimizer/"
-                    class="link-text-body-underline">Fastly<br />‍</a
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="container-text-shaded centered">
-              <div class="wrapper-text gap-2rem">
-                <div class="text-regular-semibold color-black">Image Viewers</div>
-                <div class="text-small-regular centered color-black">
-                  <a href="https://aspect.bildhuus.com/" class="link-text-body-underline"
-                    >Aspect<br />‍</a
-                  >
-                  <a href="https://imageglass.org/" class="link-text-body-underline"
-                    >ImageGlass<br />‍</a
-                  >
-                  <a href="https://www.irfanview.com/" class="link-text-body-underline">IrfanView</a
-                  > (supported since 4.59 - requires a <a
-                    href="https://www.irfanview.com/plugins.htm"
-                    class="link-text-body-underline">plugin</a
-                  > to be downloaded and enabled)<br />‍<a
-                    href="https://github.com/sylikc/jpegview/releases"
-                    class="link-text-body-underline">jpegview<br />‍</a
-                  >
-                  <a href="https://github.com/artemsen/swayimg" class="link-text-body-underline"
-                    >Swayimg<br />‍</a
-                  >
-                  <a href="https://mihon.app/" class="link-text-body-underline">Mihon<br />‍</a>
-                  <a href="https://www.xnview.com/en/" class="link-text-body-underline"
-                    >XnView<br />‍</a
-                  ><a
-                    href="https://github.com/Bevara/Light-Matter"
-                    class="link-text-body-underline">Light Matter<br />‍</a
-                  >Any viewer based on Qt, KDE, GDK-pixbuf, EFL, ImageMagick, libvips or imlib2 (see
-                  above)<br />Qt viewers: gwenview, digiKam, KolourPaint, KPhotoAlbum, LXImage-Qt,
-                  qimgv, qView, nomacs, VookiImageViewer, PhotoQt<br />GTK viewers: Eye of Gnome
-                  (eog), gThumb, Geeqie<br />EFL viewers: entice, ephoto
-                </div>
-              </div>
-            </div>
-            <div class="container-text-shaded centered">
-              <div class="wrapper-text gap-2rem">
-                <div class="text-regular-semibold color-black">Duplicate Image Finders</div>
-                <div class="text-small-regular">
-                  <a href="https://ermig1979.github.io/AntiDupl/english/download.html" class="link-text-body-underline"
-                    >AntiDupl.NET</a
-                  >
-                </div>
-              </div>
-            </div>
+                {group.note && <p class="software-group-note">{group.note}</p>}
+              </section>
+            ))}
           </div>
         </div>
-      </div>
+        <p class="software-contribution-note">
+          Missing a tool or found an outdated detail?{' '}
+          <a href="https://github.com/jxl-community/jxl-community.github.io/blob/main/docs/software-directory.md">
+            Contribute a listing or correction
+          </a>
+          .
+        </p>
       </section>
     </div>
   </main>
   <script>
-    document.querySelectorAll<HTMLElement>('.browser-tooltip').forEach((browser) => {
-      browser.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') browser.classList.add('tooltip-dismissed');
-      });
-      browser.addEventListener('mouseleave', () => browser.classList.remove('tooltip-dismissed'));
-      browser.addEventListener('focusout', () => browser.classList.remove('tooltip-dismissed'));
-    });
-
-    const embed = document.querySelector('#ciu-embed-wrap .ciu-embed');
-
-    if (embed) {
-      // The third-party module may insert its frame before or after this script.
-      const observer = new MutationObserver(labelFrame);
-
-      function labelFrame() {
-        const frame = embed?.querySelector('iframe');
-        if (!frame) return;
-        frame.title = 'JPEG XL browser support';
-        observer.disconnect();
-      }
-
-      observer.observe(embed, { childList: true, subtree: true });
-      labelFrame();
-    }
+    import '../../scripts/software-directory';
   </script>
 </BaseLayout>
-
-<style>
-  .linux-distributions {
-    text-align: left;
-    padding-left: 1.25rem;
-    margin: 0;
-    max-width: 65ch;
-  }
-  .linux-distributions li {
-    color: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    line-height: inherit;
-  }
-  .linux-distributions li + li { margin-top: 1rem; }
-  .browser-tooltip { position: relative; }
-  .browser-tooltip-content {
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(16rem, 80vw);
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
-    background: var(--page-black);
-    color: var(--page-white, var(--white));
-    font-size: 0.875rem;
-    line-height: 1.5;
-    text-align: center;
-    z-index: 10;
-    visibility: hidden;
-    opacity: 0;
-    box-shadow: 0 4px 16px var(--overlay--black-20);
-  }
-  .browser-tooltip:hover .browser-tooltip-content,
-  .browser-tooltip:focus-within .browser-tooltip-content {
-    visibility: visible;
-    opacity: 1;
-  }
-  .browser-tooltip.tooltip-dismissed .browser-tooltip-content {
-    visibility: hidden;
-    opacity: 0;
-  }
-</style>

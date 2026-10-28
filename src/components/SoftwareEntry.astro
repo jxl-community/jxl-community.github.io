@@ -1,0 +1,91 @@
+---
+import { existsSync } from 'node:fs';
+import { capabilities, platforms, type SoftwareEntry } from '../data/software';
+// Entries listed in a secondary category omit the id so anchors stay unique.
+type Props = { entry: SoftwareEntry; primary?: boolean };
+const { entry, primary = true } = Astro.props;
+const extraLinks = [
+  ...entry.sources.filter((source) => source.url !== entry.url),
+  ...(entry.links ?? []),
+];
+// Serve a JPEG XL copy of a raster logo when one sits next to it in public/.
+const jxlLogo = entry.logo?.replace(/\.png$/, '.jxl');
+const hasJxlLogo = jxlLogo !== entry.logo && existsSync(`public${jxlLogo}`);
+---
+
+<article
+  id={primary ? `software-${entry.id}` : undefined}
+  class="software-entry"
+  data-software-entry
+  data-entry-id={entry.id}
+  data-platforms={entry.platforms.join(' ')}
+  data-capabilities={entry.capabilities?.join(' ') ?? ''}
+  data-keywords={entry.keywords?.join(' ') ?? ''}
+>
+  <div class="software-entry-heading">
+    {entry.logo ? (
+      <picture class="software-entry-logo-picture">
+        {hasJxlLogo && <source srcset={jxlLogo} type="image/jxl" />}
+        <img
+          src={entry.logo}
+          alt=""
+          width="44"
+          height="44"
+          loading="lazy"
+          class="software-entry-logo"
+        />
+      </picture>
+    ) : (
+      <span class="software-entry-logo software-entry-monogram" aria-hidden="true">
+        {entry.name.charAt(0)}
+      </span>
+    )}
+    <div>
+      <h3>
+        <a href={entry.url} rel="noopener noreferrer">
+          {entry.name}
+        </a>
+      </h3>
+      <p class="software-platforms">
+        {entry.platforms.map((platform) => platforms[platform]).join(' · ') ||
+          'Platform not verified'}
+      </p>
+    </div>
+  </div>
+  <p class="software-entry-description">{entry.description}</p>
+  {entry.requirements && <p class="software-requirements">{entry.requirements}</p>}
+  {entry.contributors && (
+    <p class="software-credits">
+      {entry.contributors.length > 1 || entry.etAl ? 'Contributors:' : 'Contributor:'}{' '}
+      {entry.contributors.map((contributor, index) => (
+        <Fragment>
+          {index > 0 && ', '}
+          <a href={contributor.url}>{contributor.name}</a>
+        </Fragment>
+      ))}
+      {entry.etAl && ', et al.'}
+    </p>
+  )}
+  {(entry.capabilities || extraLinks.length > 0) && (
+    <div class="software-entry-footer">
+      {entry.capabilities && (
+        <ul class="software-capabilities" aria-label={`${entry.name} documented capabilities`}>
+          {entry.capabilities.map((capability) => (
+            <li data-capability={capability}>{capabilities[capability]}</li>
+          ))}
+        </ul>
+      )}
+      {extraLinks.length > 0 && (
+        <ul class="software-entry-links" aria-label={`${entry.name} resources`}>
+          {extraLinks.map((link) => (
+            <li>
+              <a href={link.url} rel="noopener noreferrer">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )}
+</article>
