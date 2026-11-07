@@ -96,6 +96,28 @@ export const software: SoftwareEntry[] = [
     logo: '/images/sw_aspect.png',
   },
   {
+    id: 'cobalt-photo',
+    name: 'Cobalt Photo',
+    url: 'https://cobaltsmith.com/',
+    category: 'view',
+    also: ['edit', 'convert'],
+    platforms: ['windows'],
+    description: 'Photo viewer and manager for Windows that opens and saves JPEG XL and shows JXL thumbnails in File Explorer.',
+    capabilities: ['open', 'export', 'animation', 'metadata'],
+    requirements:
+      'Windows 10 and 11, from the Microsoft Store. Uses libjxl, linked statically. Viewing and File Explorer thumbnails are free; converting is part of Cobalt Photo Pro (subscription, 14-day trial).',
+    sources: [
+      { label: 'JPEG XL support', url: 'https://cobaltsmith.com/photo/docs/heic-avif-jxl/#jxl' },
+      { label: 'Animated JPEG XL', url: 'https://cobaltsmith.com/photo/docs/icons-animations-svg/#animations' },
+    ],
+    links: [
+      {
+        label: 'JXL thumbnails in File Explorer',
+        url: 'https://cobaltsmith.com/photo/articles/show-psd-jpeg-xl-raw-thumbnails-in-file-explorer/',
+      },
+    ],
+  },
+  {
     id: 'imageglass',
     name: 'ImageGlass',
     url: 'https://imageglass.org/',
