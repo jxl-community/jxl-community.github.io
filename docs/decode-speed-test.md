@@ -17,8 +17,8 @@ encodes:
 - WebP (cwebp 1.6.0, quality 80, method 4).
 - AVIF at 8, 10, and 12 bits (avifenc 1.4.2, quality 60, speed 6).
 - Five lossy JPEG XL variants (cjxl 0.12.0, distance 2, effort 7,
-  `--faster-decoding` levels 0–4).
-- Five lossless PNG-to-JXL variants (effort 7, `--faster-decoding` levels 0–4).
+  `--faster_decoding` levels 0–4).
+- Five lossless PNG-to-JXL variants (effort 7, `--faster_decoding` levels 0–4).
 - Lossless JPEG transcodes of the Pillow JPEG and JPEGli JPEG.
 
 With WASM included, each JPEG XL file gets separate WASM and native rows, so

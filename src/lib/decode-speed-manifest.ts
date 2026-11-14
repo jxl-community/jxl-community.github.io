@@ -102,14 +102,14 @@ export const decodeSpeedManifest = {
       ...settings.jxl_faster_decoding_levels.map((level) => ({
         label: `JPEG XL fd${level}`,
         encoder: jxlEncoder,
-        specifics: `--faster-decoding=${level} · distance ${settings.jxl_lossy_distance} · effort ${settings.jxl_effort}`,
+        specifics: `--faster_decoding=${level} · distance ${settings.jxl_lossy_distance} · effort ${settings.jxl_effort}`,
         mime: 'image/jxl',
         url: asset(`${stem}${level === 0 ? '' : `-fd${level}`}.jxl`),
       })),
       ...settings.jxl_lossless_faster_decoding_levels.map((level, index) => ({
         label: `JPEG XL lossless fd${level}`,
         encoder: jxlEncoder,
-        specifics: `Lossless from PNG master · --faster-decoding=${level} · effort ${settings.jxl_effort}`,
+        specifics: `Lossless from PNG master · --faster_decoding=${level} · effort ${settings.jxl_effort}`,
         mime: 'image/jxl',
         url: asset(losslessFiles[index]),
       })),
