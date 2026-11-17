@@ -624,6 +624,22 @@ export const software: SoftwareEntry[] = [
     logo: '/images/sw_jpeg-xl-toolbox.png',
   },
   {
+    id: 'jxl2jpg-com',
+    name: 'JXL to JPG (jxl2jpg.com)',
+    url: 'https://jxl2jpg.com/',
+    category: 'convert',
+    platforms: ['browser'],
+    description: 'Convert JPEG XL still images to JPG in the browser, individually or as a batch with a ZIP download.',
+    capabilities: ['open'],
+    requirements: 'Requires WebAssembly. Free conversion for up to 10 files per batch without an account; a Pro plan is listed for larger batches.',
+    sources: [
+      {
+        label: 'Try a sample image',
+        url: 'https://jxl2jpg.com/#converter',
+      },
+    ],
+  },
+  {
     id: 'karmadisk',
     name: 'KarmaDisk',
     url: 'https://www.karmadisk.eu/',
