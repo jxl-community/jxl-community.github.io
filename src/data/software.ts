@@ -624,6 +624,22 @@ export const software: SoftwareEntry[] = [
     logo: '/images/sw_jpeg-xl-toolbox.png',
   },
   {
+    id: 'jxl-to-jpg',
+    name: 'JXL to JPG',
+    url: 'https://jxl-to-jpg.com/',
+    category: 'convert',
+    platforms: ['browser'],
+    description: 'Convert a JPEG XL file to JPG in the browser. The file stays on the device.',
+    sources: [
+      {
+        label: 'Support details',
+        url: 'https://jxl-to-jpg.com/',
+      },
+    ],
+    capabilities: ['open'],
+    requirements: 'Free, no account. Decoding runs locally with WebAssembly. JPG quality defaults to 90. Limits are 40 MB and 40 megapixels.',
+  },
+  {
     id: 'karmadisk',
     name: 'KarmaDisk',
     url: 'https://www.karmadisk.eu/',
